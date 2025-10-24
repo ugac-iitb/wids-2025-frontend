@@ -29,30 +29,34 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-99999 w-full py-7 ${
+      className={`fixed left-0 top-0 z-99999 w-full py-4 ${
         stickyMenu
-          ? "bg-white py-4! shadow-sm transition duration-100 dark:bg-black"
+          ? "bg-white shadow-sm transition duration-100 dark:bg-black"
           : ""
       }`}
     >
       <div className="relative mx-auto max-w-c-1390 items-center justify-between px-4 md:px-8 xl:flex 2xl:px-0">
         <div className="flex w-full items-center justify-between xl:w-1/4">
+          <div className="relative h-10 w-20">
           <a href="/">
             <Image
-              src="/images/logo/logo-dark.svg"
+              src="/images/logo/ugac.png"
               alt="logo"
-              width={119.03}
-              height={30}
-              className="hidden w-full dark:block"
+              // width={120}
+              // height={30}
+              fill
+              className="hidden dark:block"
             />
             <Image
-              src="/images/logo/logo-light.svg"
-              alt="logo"
-              width={119.03}
-              height={30}
-              className="w-full dark:hidden"
+              src="/images/logo/ugac.png"
+              alt="ugaclogo"
+              // width={120}
+              // height={30}
+              fill
+              className="dark:hidden"
             />
           </a>
+          </div>
 
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
@@ -154,18 +158,18 @@ const Header = () => {
           <div className="mt-7 flex items-center gap-6 xl:mt-0">
             <ThemeToggler />
 
-            <Link
+            {/* <Link
               href="https://github.com/NextJSTemplates/solid-nextjs"
               className="text-regular font-medium text-waterloo hover:text-primary"
             >
-              GitHub Repo 🌟
-            </Link>
+              SignIn
+            </Link> */}
 
             <Link
               href="https://nextjstemplates.com/templates/solid"
               className="flex items-center justify-center rounded-full bg-primary px-7.5 py-2.5 text-regular text-white duration-300 ease-in-out hover:bg-primaryho"
             >
-              Get Pro 🔥
+              Login 
             </Link>
           </div>
         </div>

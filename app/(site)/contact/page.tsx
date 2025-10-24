@@ -1,0 +1,23 @@
+import React from "react";
+import { Metadata } from "next";
+import TeamIntro from "@/components/TeamIntro";
+import FeedbackForm from "@/components/FeedbackForm";
+
+
+export const metadata: Metadata = {
+  title: "Contact Page",
+
+  // other metadata
+  description: "This is Contact page for Analytics Club"
+};
+
+const SupportPage = () => {
+  return (
+    <div className="pb-20 pt-40">
+      <TeamIntro />
+      <FeedbackForm />
+    </div>
+  );
+};
+
+export default SupportPage;
