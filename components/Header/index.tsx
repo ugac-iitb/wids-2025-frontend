@@ -7,10 +7,32 @@ import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 
+const useAuth = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) setUser(JSON.parse(savedUser));
+  }, []);
+
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+  };
+
+  return { user, login, logout };
+};
+
 const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [dropdownToggler, setDropdownToggler] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
+  const { user, logout } = useAuth();
 
   const pathUrl = usePathname();
 
@@ -37,28 +59,22 @@ const Header = () => {
     >
       <div className="relative mx-auto max-w-c-1390 items-center justify-between px-4 md:px-8 xl:flex 2xl:px-0">
         <div className="flex w-full items-center justify-between xl:w-1/4">
-          <div className="relative h-10 w-20">
-          <a href="/">
-            <Image
-              src="/images/logo/ugac.png"
-              alt="logo"
-              // width={120}
-              // height={30}
-              fill
-              className="hidden dark:block"
-            />
-            <Image
-              src="/images/logo/ugac.png"
-              alt="ugaclogo"
-              // width={120}
-              // height={30}
-              fill
-              className="dark:hidden"
-            />
-          </a>
+          {/* Logos container */}
+          <div className="flex items-center gap-3.5"> {/* gap-2.5 = 10px */}
+            <div className="relative h-10 w-20">
+              <Link href="/" className="relative block h-10 w-20">
+                <Image src="/images/logo/ugac.png" alt="ugaclogo" fill />
+              </Link>
+            </div>
+
+            <div className="relative h-10 w-20">
+              <Link href="/" className="relative block h-10 w-15">
+                <Image src="/images/logo/analyticsclub.png" alt="analyticsclublogo" fill />
+              </Link>
+            </div>
           </div>
 
-          {/* <!-- Hamburger Toggle BTN --> */}
+          {/* Hamburger Toggle BTN */}
           <button
             aria-label="hamburger Toggler"
             className="block xl:hidden"
@@ -96,8 +112,8 @@ const Header = () => {
               </span>
             </span>
           </button>
-          {/* <!-- Hamburger Toggle BTN --> */}
         </div>
+
 
         {/* Nav Menu Start   */}
         <div
@@ -157,20 +173,21 @@ const Header = () => {
 
           <div className="mt-7 flex items-center gap-6 xl:mt-0">
             <ThemeToggler />
-
-            {/* <Link
-              href="https://github.com/NextJSTemplates/solid-nextjs"
-              className="text-regular font-medium text-waterloo hover:text-primary"
-            >
-              SignIn
-            </Link> */}
-
-            <Link
-              href="https://nextjstemplates.com/templates/solid"
-              className="flex items-center justify-center rounded-full bg-primary px-7.5 py-2.5 text-regular text-white duration-300 ease-in-out hover:bg-primaryho"
-            >
-              Login 
-            </Link>
+            {!user ? (
+              <Link
+                href="/login"
+                className="rounded-full bg-primary px-6 py-2 text-white hover:bg-primaryho duration-300"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                onClick={logout}
+                className="rounded-full bg-red-500 px-6 py-2 text-white hover:bg-red-600 duration-300"
+              >
+                Logout
+              </button>
+          )}
           </div>
         </div>
       </div>
@@ -178,6 +195,5 @@ const Header = () => {
   );
 };
 
-// w-full delay-300
 
 export default Header;

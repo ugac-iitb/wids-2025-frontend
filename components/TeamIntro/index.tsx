@@ -47,7 +47,7 @@ const TeamIntro = () => {
         )}
 
         {/* Bottom Rows: Next 4 Members */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-70 gap-y-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-35 gap-y-6">
           {teamdata.slice(1, 5).map((member) => (
             <motion.div
               key={member.id}

@@ -32,10 +32,10 @@ export default function Home() {
       <Integration />
       <CTA />
       <FAQ />
-      <Testimonial />
-      <Pricing />
-      <Contact />
-      <Blog />
+      {/* <Testimonial /> */}
+      {/* <Pricing /> */}
+      {/* <Contact /> */}
+      {/* <Blog /> */}
     </main>
   );
 }

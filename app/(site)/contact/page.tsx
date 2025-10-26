@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const SupportPage = () => {
   return (
-    <div className="pb-20 pt-40">
+    <div className="pb-10 pt-30">
       <TeamIntro />
       <FeedbackForm />
     </div>
