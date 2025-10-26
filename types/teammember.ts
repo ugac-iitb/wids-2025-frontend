@@ -6,5 +6,4 @@ export interface Teammember {
   imagePath: StaticImageData;
   designation: string;
   mail: string;
-  phone: string;
 }

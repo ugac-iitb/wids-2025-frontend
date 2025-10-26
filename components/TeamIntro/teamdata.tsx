@@ -1,53 +1,48 @@
 import { Teammember } from "@/types/teammember";
-import AanshImg from "@/public/images/members/aansh.png";
-import AryanImg from "@/public/images/members/aryan.png";
-import BhaktiImg from "@/public/images/members/bhakti.png";
-import AdvaitImg from "@/public/images/members/advait.png";
-import MehakImg from "@/public/images/members/mehak.png";
+import AnshumanImg from "@/public/images/members/Anshuman Gupta.png";
+import AnvishkaImg from "@/public/images/members/Anviksha Vipasanna.png";
+import AryanImg from "@/public/images/members/Aryan Kashyap.png";
+import PranavImg from "@/public/images/members/Pranav Mylarassu.png";
+import TanyaImg from "@/public/images/members/Tanya Menghani.png";
 
 const teamdata: Teammember[] = [
   {
     id: 1,
-    name: "Aansh Samyani",
-    imagePath: AanshImg,
+    name: "Aryan Kashyap",
+    imagePath: AryanImg,
     designation: "Manager, Analytics Club",
-    mail: "manageranalytics@iitb.ac.in",
-    phone: "7021068263",
+    mail: "manager.analytics.iitb@gmail.com",
   },
   {
     id: 2,
-    name: "Aryan Kashyap",
-    imagePath: AryanImg,
+    name: "Anshuman Gupta",
+    imagePath: AnshumanImg,
     designation: "Convener, Analytics Club",
     mail: "analytics.convener@gmail.com",
-    phone: "6206443754",
 
   },
   {
     id: 3,
-    name: "Bhakti Bansal",
-    imagePath: BhaktiImg,
+    name: "Anvishka Vipasanna",
+    imagePath: AnvishkaImg,
     designation: "Convener, Analytics Club",
     mail: "analytics.convener@gmail.com",
-    phone: "9717782855",
 
   },
   {
     id: 4,
-    name: "Advait Bhedasgaonkar",
-    imagePath: AdvaitImg,
+    name: "Pranav Mylarassu",
+    imagePath: PranavImg,
     designation: "Convener, Analytics Club",
     mail: "analytics.convener@gmail.com",
-    phone: "9970426665",
   },
   {
     id: 5,
-    name: "Mehak",
-    imagePath: MehakImg,
+    name: "Tanya Meghnani",
+    imagePath: TanyaImg,
     designation: "Convener, Analytics Club",
-    mail: "analytics.convener@gmail.com",
-    phone: "7988346345",
-  },
+    mail: "analytics.convener@gmail.com"
+   },
 ];
 
 export default teamdata;

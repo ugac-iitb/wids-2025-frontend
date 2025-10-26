@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Introheader  from "./introheader"
+import Introheader from "./introheader";
 import teamdata from "./teamdata";
 
 const TeamIntro = () => {
@@ -23,13 +23,15 @@ const TeamIntro = () => {
             className="flex justify-center"
           >
             <div className="text-center">
-              <Image
-                src={teamdata[0].imagePath}
-                alt={teamdata[0].name}
-                width={200}
-                height={200}
-                className="rounded-full shadow-lg object-cover"
-              />
+              <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-lg">
+                <Image
+                  src={teamdata[0].imagePath}
+                  alt={teamdata[0].name}
+                  width={180}
+                  height={180}
+                  className="object-cover w-full h-full"
+                />
+              </div>
               <h3 className="mt-4 text-xl font-semibold text-black dark:text-white">
                 {teamdata[0].name}
               </h3>
@@ -38,9 +40,6 @@ const TeamIntro = () => {
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {teamdata[0].mail}
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {teamdata[0].phone}
               </p>
             </div>
           </motion.div>
@@ -57,13 +56,15 @@ const TeamIntro = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <Image
-                src={member.imagePath}
-                alt={member.name}
-                width={180}
-                height={180}
-                className="mx-auto rounded-full shadow-md object-cover"
-              />
+              <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
+                <Image
+                  src={member.imagePath}
+                  alt={member.name}
+                  width={180}
+                  height={180}
+                  className="object-cover w-full h-full"
+                />
+              </div>
               <h3 className="mt-4 text-lg font-semibold text-black dark:text-white">
                 {member.name}
               </h3>
@@ -72,9 +73,6 @@ const TeamIntro = () => {
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {member.mail}
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {member.phone}
               </p>
             </motion.div>
           ))}
