@@ -5,7 +5,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <>
-      <footer className="border-t border-stroke bg-white dark:border-strokedark dark:bg-blacksection">
+      <footer className="border-t border-[#6D6D71] bg-[#1A141C]">
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <div className="flex flex-col items-center justify-center py-7 space-y-2">
             <motion.div
@@ -25,10 +25,14 @@ const Footer = () => {
               viewport={{ once: true }}
               className="animate_top flex flex-col items-center text-center space-y-2"
             >
-              <p className="text-xl font-semibold">WIDS 2025</p>
-              <p>Dive deep in the realm of Academic and Industry related research projects</p>
-              <p>Created with <span className="text-red-500">❤</span> by UGAC Web Team, 2025-2026</p>
-              <p>&copy; {new Date().getFullYear()} UGAC, IIT Bombay</p>
+              <p className="text-xl font-semibold text-[#E7E3E5]">WIDS 2025</p>
+              <p className="text-[#6D6D71]">
+                Dive deep in the realm of Academic and Industry related research projects
+              </p>
+              <p className="text-[#E7E3E5]">
+                Created with <span className="text-[#6A6FDB]">❤</span> by UGAC Web Team, 2025-2026
+              </p>
+              <p className="text-[#6D6D71]">&copy; {new Date().getFullYear()} UGAC, IIT Bombay</p>
             </motion.div>
           </div>
         </div>
