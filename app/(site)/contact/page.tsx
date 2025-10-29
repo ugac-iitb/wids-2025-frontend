@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description: "This is Contact page for Analytics Club"
 };
 
-const SupportPage = () => {
+const ContactPage = () => {
   return (
     <div className="pb-10 pt-30">
       <TeamIntro />
-      <FeedbackForm />
+      {/* <FeedbackForm /> */}
     </div>
   );
 };
 
-export default SupportPage;
+export default ContactPage;

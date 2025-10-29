@@ -1,9 +1,7 @@
-import { StaticImageData } from "next/image";
-
-export interface Teammember {
+export interface TeamMember {
   id: number;
   name: string;
-  imagePath: StaticImageData;
+  imagePath: string;
   designation: string;
   mail: string;
 }
