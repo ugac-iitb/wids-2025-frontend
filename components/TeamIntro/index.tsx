@@ -53,10 +53,9 @@ const TeamIntro = () => {
               </p>
             </div>
           </motion.div>
-
-          {/* Bottom Rows: Remaining Members */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-20 gap-y-14">
-            {teamdata.slice(1).map((member) => (
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-14 w-full justify-items-center">
+            {teamdata.slice(1,3).map((member) => (
               <motion.div
                 key={member.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -67,7 +66,7 @@ const TeamIntro = () => {
               >
                 <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
                   <Image
-                    src={member.imagePath}
+                    src={member.imagePath || "/images/placeholder.png"}
                     alt={member.name}
                     width={176}
                     height={176}
@@ -84,6 +83,78 @@ const TeamIntro = () => {
               </motion.div>
             ))}
           </div>
+          {/* Bottom Rows: Remaining Members (two rows of up to 4 items each) */}
+          {(() => {
+            const remaining = teamdata.slice(3);
+            const rowA = remaining.slice(0, 4);
+            const rowB = remaining.slice(4, 8);
+            return (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-14 w-full">
+                  {rowA.map((member) => (
+                    <motion.div
+                      key={member.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      viewport={{ once: true }}
+                      className="text-center"
+                    >
+                      <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
+                        <Image
+                          src={member.imagePath || "/images/placeholder.png"}
+                          alt={member.name}
+                          width={176}
+                          height={176}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <h3 className="mt-4 text-lg font-semibold text-gray-200">
+                        {member.name}
+                      </h3>
+                      <p className="text-sm text-gray-400">{member.designation}</p>
+                      <p className="text-sm text-blue-400 hover:underline">
+                        <a href={`mailto:${member.mail}`}>{member.mail}</a>
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {rowB.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-14 w-full">
+                    {rowB.map((member) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className="text-center"
+                      >
+                        <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
+                          <Image
+                            src={member.imagePath || "/images/placeholder.png"}
+                            alt={member.name}
+                            width={176}
+                            height={176}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                        <h3 className="mt-4 text-lg font-semibold text-gray-200">
+                          {member.name}
+                        </h3>
+                        <p className="text-sm text-gray-400">{member.designation}</p>
+                        <p className="text-sm text-blue-400 hover:underline">
+                          <a href={`mailto:${member.mail}`}>{member.mail}</a>
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+              </>
+            );
+          })()}
+          
         </div>
       </div>
     </section>

@@ -8,30 +8,72 @@
   },
   {
     "id": 2,
+    "name": "Abhijat Bharadwaj",
+    "imagePath": "/images/members/Abhijat Bharadwaj.png",
+    "designation": "Web Team Head",
+    "mail": "web.ugac@iitb.ac.in"
+ },
+ {
+    "id": 3,
+    "name": "Shrey Aggarwal ",
+    "imagePath": "/images/members/Shrey Aggarwal.png",
+    "designation": "Web Team Head",
+    "mail": "web.ugac@iitb.ac.in"
+ },
+  {
+    "id": 4,
     "name": "Anshuman Gupta",
     "imagePath": "/images/members/Anshuman Gupta.png",
     "designation": "Convener, Analytics Club",
     "mail": "analytics.convener@gmail.com"
   },
   {
-    "id": 3,
+    "id": 5,
     "name": "Anvishka Vipasanna",
     "imagePath": "/images/members/Anviksha Vipasanna.png",
     "designation": "Convener, Analytics Club",
     "mail": "analytics.convener@gmail.com"
   },
   {
-    "id": 4,
+    "id": 6,
     "name": "Pranav Mylarassu",
     "imagePath": "/images/members/Pranav Mylarassu.png",
     "designation": "Convener, Analytics Club",
     "mail": "analytics.convener@gmail.com"
   },
   {
-    "id": 5,
+    "id": 7,
     "name": "Tanya Meghnani",
     "imagePath": "/images/members/Tanya Menghani.png",
     "designation": "Convener, Analytics Club",
     "mail": "analytics.convener@gmail.com"
+  },
+  {
+    "id": 8,
+    "name": "Karan Bansal",
+    "imagePath": "/images/placeholder.png",
+    "designation": "Web Team Member",
+    "mail": ""
+  },
+  {
+    "id": 9,
+    "name": "Shourya Saxena",
+    "imagePath": "/images/members/Shourya Saxena.png",
+    "designation": "Web Team Member",
+    "mail": ""
+  },
+  {
+    "id": 10,
+    "name": "Sai Dheeraj",
+    "imagePath": "",
+    "designation": "Web Team Member",
+    "mail": ""
+  },
+  {
+    "id": 11,
+    "name": "Pranathi Sreeja Meesala",
+    "imagePath": "/images/members/Pranathi Sreeja Meesala.png",
+    "designation": "Web Team Member",
+    "mail": ""
   }
 ]
