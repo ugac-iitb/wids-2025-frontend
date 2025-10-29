@@ -4,7 +4,7 @@
 
 @theme {
   --font-*: initial;
-  --font-outfit: "Outfit", "Outfit Placeholder", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
 
   /* 🎨 Core colors */
   --color-background: #18171C;
@@ -29,15 +29,15 @@
   --transition-property-width: width;
 
   /* Text sizing */
-  --text-regular: 16px, 26px;
-  --text-metatitle3: 18px, 26px;
-  --text-itemtitle: 26px, 32px;
-  --text-hero: 44px, 58px;
+  --text-regular: 16px / 26px;
+  --text-metatitle3: 18px / 26px;
+  --text-itemtitle: 26px / 32px;
+  --text-hero: 44px / 58px;
 }
 
 @layer base {
   body {
-    @apply bg-[var(--color-background)] text-[var(--color-text)] font-[var(--font-outfit)] relative z-1 px-4 md:px-8 lg:px-12;
+    @apply bg-[var(--color-background)] text-[var(--color-text)] font-[var(--font-outfit)] relative z-[1] ;
   }
 }
 
