@@ -1,10 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ProjectItem } from "@/types/projectitem";
 
 const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const {
+    id,
     ["Project Title"]: projectTitle,
     ["Project Description"]: projectDescription,
     ["Project Type"]: projectType,
@@ -21,7 +23,8 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   );
 
   return (
-    <motion.div
+    <Link href={`/projects/${String(id)}`} aria-label={`Open project: ${projectTitle}`} className="block">
+      <motion.div
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
@@ -34,8 +37,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
                  backdrop-blur-sm hover:from-blue-800/50 hover:to-purple-900/40
                  transform transition-all duration-300 hover:-translate-y-2 
                  hover:shadow-[0_0_25px_rgba(106,111,219,0.25)] cursor-pointer border border-white/10"
-      aria-label={`Open project: ${projectTitle}`}
-    >
+      >
       {/* IMAGE */}
       <div className="relative w-full p-4 flex items-center justify-center bg-[#1A141C] rounded-t-2xl">
         <div className="relative w-full h-44 sm:h-48 md:h-52 lg:h-48 xl:h-52 overflow-hidden rounded-xl">
@@ -55,12 +57,6 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           {projectTitle}
         </h3>
 
-        {/* {projectDescription && (
-          <p className="text-sm text-gray-300 line-clamp-3">
-            {projectDescription}
-          </p>
-        )} */}
-
         {tags.length > 0 && (
           <div className="flex flex-wrap justify-center gap-2 mt-2">
             {tags.map((tag, i) => (
@@ -74,7 +70,8 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           </div>
         )}
       </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 };
 
