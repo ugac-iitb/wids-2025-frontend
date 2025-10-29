@@ -36,7 +36,7 @@ const AboutPage = () => {
         {/* Decorative Background Image (public/analytics-club-logo.jpg) */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-          style={{ backgroundImage: "url('/images/analytics-club-logo.jpg')" }}
+          style={{ backgroundImage: "url('/images/analytics-club-logo.jpeg')" }}
           aria-hidden="true"
         />
 
