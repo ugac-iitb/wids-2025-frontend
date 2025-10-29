@@ -8,10 +8,9 @@ import FunFact from "@/components/FunFact";
 import Integration from "@/components/Integration";
 import CTA from "@/components/CTA";
 import FAQ from "@/components/FAQ";
-import Pricing from "@/components/Pricing";
-import Contact from "@/components/Contact";
-import Blog from "@/components/Blog";
-import Testimonial from "@/components/Testimonial";
+import WhatIsWiDS from "@/components/WhatisWiDS";
+import WhyWiDS from "@/components/WhyWiDS";
+import SelectionProcedure from "@/components/SelectionProcedure";
 
 export const metadata: Metadata = {
   title: "WiDS-Home",
@@ -23,19 +22,18 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <Hero />
-      <Brands />
+      {/* <Brands />
       <Feature />
       <About />
       <FeaturesTab />
       <FunFact />
       <Integration />
-      <CTA />
+      <CTA /> */}
+      <Hero />
+      <WhatIsWiDS />
+      <WhyWiDS />
+      <SelectionProcedure />
       <FAQ />
-      {/* <Testimonial /> */}
-      {/* <Pricing /> */}
-      {/* <Contact /> */}
-      {/* <Blog /> */}
     </main>
   );
 }

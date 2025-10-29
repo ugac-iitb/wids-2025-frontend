@@ -7,6 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Outfit } from "next/font/google";
 import "../globals.css";
 import ToasterContext from "../context/ToastContext";
+import PageTransition from "@/components/Transition";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -33,7 +34,9 @@ export default function RootLayout({
       >
         <Header />
         <ToasterContext />
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
         <Footer />
         <ScrollToTop />
       </body>
