@@ -15,7 +15,7 @@ const FAQ = () => {
   return (
     <>
       {/* <!-- ===== FAQ Start ===== --> */}
-      <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
+  <section className="pt-16 md:pt-24 overflow-hidden pb-20 lg:pb-25 xl:pb-30 bg-gradient-to-br from-black via-[#05021a] to-[#0b0212] relative">
         <div className="relative mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
           {/* Background Dotted Image */}
           <div className="absolute -bottom-16 -z-1 h-full w-full">
@@ -46,8 +46,10 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="animate_left w-full md:w-3/4 lg:w-2/3"
             >
-              <h2 className="relative z-10 mb-6 text-3.5xl text-[#E7E3E5] xl:text-4xl drop-shadow-sm">
-                Frequently Asked <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-[#6A6FDB]/20">Questions</span>
+              <h2 className="relative z-10 mb-10 text-3.5xl xl:text-6xl drop-shadow-sm">
+                <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                  Frequently Asked Questions
+                </span>
               </h2>
             </motion.div>
           </div>
@@ -65,7 +67,7 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="animate_right w-full md:w-3/4 lg:w-2/3"
             >
-              <div className="rounded-lg bg-white shadow-solid-8 dark:border dark:border-strokedark dark:bg-blacksection">
+              <div className="rounded-lg bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md border border-white/8 relative z-10">
                 {faqData.map((faq, key) => (
                   <FAQItem
                     key={key}
