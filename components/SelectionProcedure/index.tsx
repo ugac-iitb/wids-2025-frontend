@@ -70,11 +70,11 @@ const SelectionProcedure = () => {
               className="relative group"
             >
               {/* Stage Number Badge */}
-              <div className="absolute -top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+              <div className="absolute -top-4 right-4 z-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold px-3 py-1 rounded-full">
                 Stage {stage.number}
               </div>
 
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300">
+              <div className="relative z-0 p-8 rounded-2xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300">
                 {/* Icon with connecting line */}
                 <div className="relative mb-6">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
