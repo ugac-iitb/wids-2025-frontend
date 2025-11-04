@@ -27,6 +27,8 @@ const ProjectDetailsCard = ({
 
   const hasCoMentor =
     project["Co-Mentor Name"] || project["Co-Mentor"] ? true : false;
+  
+  const CoMentorMail = project["Co-Mentor Mail"] || project["Co-Mentor"] ? true : false;
 
   return (
     <motion.div
@@ -127,7 +129,7 @@ const ProjectDetailsCard = ({
                     {project["Co-Mentor Name"] || "—"}
                   </div>
                   <div className="text-xs text-blue-300">
-                    {project["Co-Mentor"] || "—"}
+                    {project["Co-Mentor Mail"] || "—"}
                   </div>
                 </div>
               )}
