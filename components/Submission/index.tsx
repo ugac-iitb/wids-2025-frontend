@@ -12,7 +12,7 @@ const Project = () => {
     const fetchData = async () => {
       const res = await fetch("/data/wishlist.json");
       const data = await res.json();
-      setProjects(data);
+      setProjects(data.slice(0,5));
     };
     fetchData();
   }, []);
@@ -42,7 +42,7 @@ const Project = () => {
             WishList Submission
           </h2>
           <p className="text-gray-400 text-sm md:text-base">
-           Review your shortlisted projects and add your SOPs below. Simply drag and drop the cards to arrange them in your preferred order.
+           Review your shortlisted projects and add your SOPs below. Drag and drop the cards to arrange them in your preferred order — you can submit up to five preferences.
           </p>
         </motion.div>
       </div>
@@ -55,16 +55,25 @@ const Project = () => {
           onReorder={setProjects}
           className="flex flex-col gap-10"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <Reorder.Item
               key={project.id}
               value={project}
               whileDrag={{ scale: 1.03 }}
-              className="cursor-grab active:cursor-grabbing"
+              className="cursor-grab active:cursor-grabbing flex items-start gap-4"
             >
-              <SubmissionCard project={project} />
+              {/* Number indicator */}
+              <div className="flex-shrink-0 text-2xl font-bold text-purple-400 mt-2">
+                {index + 1}.
+              </div>
+
+              {/* Project card */}
+              <div className="flex-1">
+                <SubmissionCard project={project} />
+              </div>
             </Reorder.Item>
           ))}
+
         </Reorder.Group>
 
 
