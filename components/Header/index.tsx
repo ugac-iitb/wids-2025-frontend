@@ -35,24 +35,18 @@ const Header = () => {
 
   const pathUrl = usePathname();
 
-  // Build the Gymkhana OAuth URL from env vars when available.
+  // Build the Gymkhana OAuth URL with debug logging
   const getAuthUrl = () => {
-    const clientId = process.env.NEXT_PUBLIC_GYMKHANA_CLIENT_ID;
-    const redirectUri = process.env.NEXT_PUBLIC_GYMKHANA_REDIRECT_URI;
-    const state = process.env.NEXT_PUBLIC_GYMKHANA_STATE || 'some_state';
-
-    if (clientId && redirectUri) {
-      return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${encodeURIComponent(
-        clientId
-      )}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
-        redirectUri
-      )}&state=${encodeURIComponent(state)}`;
-    }
-
-    // Fallback to a URL that uses the provided ngrok redirect URI. This
-    // ensures the app redirects to the correct callback when env vars are
-    // not set.
-    return 'https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=http://localhost:3000/&state=some_state';
+    const redirectUri = 'http://localhost:3000/process-login/';
+    // Enhanced debug logging
+    console.log('OAuth Debug Info:');
+    console.log('1. Raw redirect URI:', redirectUri);
+    console.log('2. Encoded redirect URI:', encodeURIComponent(redirectUri));
+    console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectUri)}&state=some_state`);
+    
+    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
+      redirectUri
+    )}&state=some_state`;
   };
 
   const authUrl = getAuthUrl();
@@ -144,14 +138,6 @@ const Header = () => {
           {!user ? (
             <a
               href={authUrl}
-              onClick={(e) => {
-                // Prevent immediate navigation so we can log the exact URL
-                // being used for OAuth. This is a temporary diagnostic
-                // helper — remove or revert after debugging.
-                e.preventDefault();
-                console.log('Gymkhana auth URL (header):', authUrl);
-                window.location.href = authUrl;
-              }}
               className="rounded-full bg-[#6A6FDB] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
             >
               Login
@@ -206,15 +192,8 @@ const Header = () => {
           {!user ? (
             <a
               href={authUrl}
-              onClick={(e) => {
-                e.preventDefault();
-                console.log('Gymkhana auth URL (mobile menu):', authUrl);
-                setNavigationOpen(false);
-                // navigate after menu closes
-                window.location.href = authUrl;
-              }}
               className="rounded-full bg-[#6A6FDB] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
-              onKeyDown={() => setNavigationOpen(false)}
+              onClick={() => setNavigationOpen(false)}
             >
               Login
             </a>

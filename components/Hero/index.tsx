@@ -10,20 +10,13 @@ const Hero = () => {
   // Avoid manipulating `document.body` (it caused the body to stay at
   // opacity: 0 and produced a blank page after navigation).
   const handleGetStarted = () => {
-    // Build Gymkhana OAuth URL using env vars if present, otherwise fall back
-    // to the placeholder URL provided.
-    const clientId = process.env.NEXT_PUBLIC_GYMKHANA_CLIENT_ID;
-    const redirectUri = process.env.NEXT_PUBLIC_GYMKHANA_REDIRECT_URI;
-    const state = process.env.NEXT_PUBLIC_GYMKHANA_STATE || 'some_state';
-
-    const authUrl =
-      clientId && redirectUri
-        ? `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${encodeURIComponent(
-            clientId
-          )}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
-            redirectUri
-          )}&state=${encodeURIComponent(state)}`
-  : 'https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=https://understandably-subquadrangular-keven.ngrok-free.dev/auth/callback&state=some_state';
+    // Use fixed redirect URI with debug logging
+    const redirectUri = 'http://localhost:3000/process-login';
+    console.log('Debug - Raw redirect URI:', redirectUri);
+    console.log('Debug - Encoded redirect URI:', encodeURIComponent(redirectUri));
+    const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
+      redirectUri
+    )}&state=some_state`;
 
     // Diagnostic log so we can inspect the exact URL sent to the OAuth server.
     // Remove this after confirming the redirect_uri is correct.

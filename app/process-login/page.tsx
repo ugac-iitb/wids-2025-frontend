@@ -18,12 +18,21 @@ import { useRouter } from "next/navigation";
 const ProcessLogin = () => {
   const router = useRouter();
   const [status, setStatus] = useState("Processing login...");
+  const [codeVal, setCodeVal] = useState<string | null>(null);
+  const [stateVal, setStateVal] = useState<string | null>(null);
+  const [exchangeUrlDisplay, setExchangeUrlDisplay] = useState<string | null>(null);
+  const [responseText, setResponseText] = useState<string | null>(null);
+  const [responseStatus, setResponseStatus] = useState<number | null>(null);
 
   useEffect(() => {
     // Parse code and state from URL
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const state = params.get("state");
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  console.log("process-login: extracted code from URL:", code);
+  const state = params.get("state");
+
+  setCodeVal(code);
+  setStateVal(state);
 
     if (!code) {
       setStatus("No authorization code found in URL.");
@@ -36,29 +45,52 @@ const ProcessLogin = () => {
         setStatus("Exchanging code for token...");
 
         // Backend exchange endpoint (must be public to client since this runs in the browser)
-        const exchangeUrl =
-          (process.env.NEXT_PUBLIC_AUTH_EXCHANGE_URL as string) ||
-          "http://localhost:8000/auth/exchange";
+        const exchangeUrl = "https://understandably-subquadrangular-keven.ngrok-free.dev/auth/callback";
 
-        console.log("process-login: POST to exchange URL:", exchangeUrl);
+        setExchangeUrlDisplay(exchangeUrl);
+        console.log("process-login: POST to exchange URL:", exchangeUrl, { code, state });
 
-        const res = await fetch(exchangeUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ code, state }),
-          // If your backend requires credentials/cookies, set credentials: 'include'
-        });
+        // Allow opting in to sending credentials via env var
+        const includeCreds = process.env.NEXT_PUBLIC_AUTH_INCLUDE_CREDENTIALS === "true";
+
+        let res: Response; 
+        try { 
+          res = await fetch(exchangeUrl, { 
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ code, state }),
+            credentials: includeCreds ? "include" : "same-origin",
+            mode: "cors",
+          });
+        } catch (networkErr: any) {
+          // Network-level error (CORS preflight blocked, DNS, connection refused, etc.)
+          console.error("process-login network error:", networkErr);
+          setStatus("Network error while contacting backend. See console for details.");
+          setResponseText(String(networkErr));
+          return;
+        }
+
+        setResponseStatus(res.status);
+
+        const text = await res.text();
+        setResponseText(text);
 
         if (!res.ok) {
-          const text = await res.text();
           throw new Error(`Token exchange failed: ${res.status} ${text}`);
         }
 
-        const data = await res.json();
-        // Expecting backend to return something like { token, username, roll, ... }
-        console.log("process-login: exchange response:", data);
+        // Try to parse JSON from response
+        let data: any = null;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          // Not JSON; keep raw text
+          data = null;
+        }
+
+        console.log("process-login: exchange response:", { status: res.status, text, json: data });
 
         // Minimal validation
         if (!data || (!data.token && !data.access_token && !data.auth_token)) {
