@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { Reorder, motion } from "framer-motion";
 import SubmissionCard from "./submissionCard";
 import { ProjectItem } from "@/types/projectitem";
 
@@ -42,24 +42,31 @@ const Project = () => {
             WishList Submission
           </h2>
           <p className="text-gray-400 text-sm md:text-base">
-            Review your selected projects and write your SOPs below.
+           Review your shortlisted projects and add your SOPs below. Simply drag and drop the cards to arrange them in your preferred order.
           </p>
         </motion.div>
       </div>
 
       {/* Cards List */}
       <div className="relative z-10 mx-auto mt-10 max-w-5xl px-4 md:px-8 xl:px-0">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
+        <Reorder.Group
+          axis="y"
+          values={projects}
+          onReorder={setProjects}
           className="flex flex-col gap-10"
         >
           {projects.map((project) => (
-            <SubmissionCard key={project.id} project={project} />
+            <Reorder.Item
+              key={project.id}
+              value={project}
+              whileDrag={{ scale: 1.03 }}
+              className="cursor-grab active:cursor-grabbing"
+            >
+              <SubmissionCard project={project} />
+            </Reorder.Item>
           ))}
-        </motion.div>
+        </Reorder.Group>
+
 
         {/* Submit Button */}
         <div className="flex justify-center mt-12">
