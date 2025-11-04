@@ -32,4 +32,5 @@ export type ProjectItem = {
   "Project Experience": string;
   "Resources Link": string;
   Comments: string;
+  InWishList : string;
 };

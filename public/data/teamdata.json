@@ -51,7 +51,7 @@
   {
     "id": 8,
     "name": "Karan Bansal",
-    "imagePath": "/images/placeholder.png",
+    "imagePath": "/images/members/Karan Bansal.jpg",
     "designation": "Web Team Member",
     "mail": ""
   },
@@ -64,8 +64,8 @@
   },
   {
     "id": 10,
-    "name": "Sai Dheeraj",
-    "imagePath": "",
+    "name": "T Sai Dheeraj",
+    "imagePath": "/images/members/T Sai Dheeraj.jpg",
     "designation": "Web Team Member",
     "mail": ""
   },

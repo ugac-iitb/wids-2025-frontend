@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProjectItem } from "@/types/projectitem";
 import { useState } from "react";
-import { Heart, HeartOff } from "lucide-react";
+import { Heart, HeartOff } from "lucide-react"; // ✅ ensure installed via npm install lucide-react
 
 const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const {

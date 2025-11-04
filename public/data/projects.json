@@ -31,8 +31,9 @@
     "Project Image": "object_detection_in_images.png",
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
-    "Resources Link": "https://github.com/priyasingh1/object_detection_in_images",
-    "Comments": ""
+    "Resources Link": "",
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "2",
@@ -67,7 +68,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/raghavdesai2/sentiment_analysis",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "3",
@@ -102,7 +104,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/shreyabhat3/time_series_forecasting",
-    "Comments": "No"
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "4",
@@ -137,7 +140,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ritikasharma4/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "5",
@@ -172,7 +176,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/siddharthmehta5/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "6",
@@ -207,7 +212,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ritikasharma6/handwritten_digit_recognition",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "7",
@@ -242,7 +248,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/simrankaur7/recommendation_system",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "True"
   },
   {
     "id": "8",
@@ -277,7 +284,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/nehajoshi8/image_classification_with_cnns",
-    "Comments": "No"
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "9",
@@ -312,7 +320,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ishapatel9/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "10",
@@ -347,7 +356,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/nehajoshi10/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "11",
@@ -382,7 +392,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/rohitreddy11/sentiment_analysis",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "12",
@@ -417,7 +428,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/siddharthmehta12/recommendation_system",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "13",
@@ -452,7 +464,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/anikasharma13/stock_price_prediction",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "14",
@@ -487,7 +500,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/adityanair14/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "15",
@@ -522,7 +536,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/karankapoor15/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "16",
@@ -557,7 +572,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/karankapoor16/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "17",
@@ -592,7 +608,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/raghavdesai17/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "18",
@@ -627,7 +644,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/amanverma18/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "19",
@@ -662,7 +680,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/siddharthmehta19/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "20",
@@ -697,7 +716,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/priyasingh20/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "21",
@@ -732,7 +752,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ishapatel21/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "22",
@@ -767,7 +788,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ritikasharma22/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "23",
@@ -802,7 +824,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/nehajoshi23/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "24",
@@ -837,7 +860,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/anikasharma24/handwritten_digit_recognition",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "25",
@@ -872,7 +896,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/nehajoshi25/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "26",
@@ -907,7 +932,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ishapatel26/handwritten_digit_recognition",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "27",
@@ -942,7 +968,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/karankapoor27/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "28",
@@ -977,7 +1004,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/adityanair28/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "29",
@@ -1012,7 +1040,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanvigupta29/reinforcement_learning_for_game_ai",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "30",
@@ -1047,7 +1076,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/amanverma30/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "31",
@@ -1082,7 +1112,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/mayaiyer31/recommendation_system",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "32",
@@ -1117,7 +1148,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/simrankaur32/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "33",
@@ -1152,7 +1184,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/adityanair33/stock_price_prediction",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "34",
@@ -1187,7 +1220,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanyamalhotra34/handwritten_digit_recognition",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "35",
@@ -1222,7 +1256,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanvigupta35/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "36",
@@ -1257,7 +1292,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/rahulchoudhary36/stock_price_prediction",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "37",
@@ -1292,7 +1328,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/siddharthmehta37/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "38",
@@ -1327,7 +1364,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/shreyabhat38/object_detection_in_images",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "39",
@@ -1362,7 +1400,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanyamalhotra39/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "40",
@@ -1397,7 +1436,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/anikasharma40/customer_segmentation",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "41",
@@ -1432,7 +1472,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/raghavdesai41/object_detection_in_images",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "42",
@@ -1467,7 +1508,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/adityanair42/time_series_forecasting",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "43",
@@ -1502,7 +1544,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ishapatel43/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "44",
@@ -1537,7 +1580,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanyamalhotra44/recommendation_system",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "45",
@@ -1572,7 +1616,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/karankapoor45/object_detection_in_images",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "46",
@@ -1607,7 +1652,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/simrankaur46/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "47",
@@ -1642,7 +1688,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanyamalhotra47/image_classification_with_cnns",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "48",
@@ -1677,7 +1724,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/ritikasharma48/object_detection_in_images",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "49",
@@ -1712,7 +1760,8 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/tanyamalhotra49/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   },
   {
     "id": "50",
@@ -1747,6 +1796,7 @@
     "Previously Completed?": "Yes",
     "Project Experience": "Completed Python/ML projects",
     "Resources Link": "https://github.com/anikasharma50/chatbot_using_nlp",
-    "Comments": ""
+    "Comments": "",
+    "InWishList": "False"
   }
 ]
