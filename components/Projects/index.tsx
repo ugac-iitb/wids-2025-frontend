@@ -1,51 +1,57 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "./projectcard";
 import { ProjectItem } from "@/types/projectitem";
 
+const API = "https://understandably-subquadrangular-keven.ngrok-free.dev";
+
 const Project = () => {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
+
+    // 🔒 If no user info in localStorage → probably not logged in
     if (!user) {
-      // 🔒 Not logged in
       setIsLoggedIn(false);
       setLoading(false);
       return;
     }
 
     setIsLoggedIn(true);
-    const API = "https://understandably-subquadrangular-keven.ngrok-free.dev";
 
     async function fetchProjects() {
       try {
         const res = await fetch(`${API}/api/project/`, {
           method: "GET",
-          credentials: "include",
+          credentials: "include", // send session cookie for IsAuthenticated
+          headers: {
+            "Accept": "application/json",
+          },
         });
 
         console.log("Projects response:", res.status, res.headers.get("content-type"));
 
         if (!res.ok) {
           const text = await res.text().catch(() => "");
+          if (res.status === 403 || res.status === 401) {
+            throw new Error("You must be logged in to view projects.");
+          }
           throw new Error(`Projects fetch failed: ${res.status} ${text}`);
         }
 
-        let data;
-        try {
-          data = await res.json();
-        } catch {
-          throw new Error("Server did not return valid JSON");
-        }
+        const data = await res.json();
+        console.log("Projects data:", data);
 
-        setProjects(data.items ?? []);
+        // your backend returns data.items
+        setProjects(Array.isArray(data.items) ? data.items : []);
       } catch (err: any) {
-        console.error(err);
+        console.error("Fetch error:", err);
         setError(err.message || "Failed to fetch projects");
         setProjects([]);
       } finally {
@@ -56,16 +62,8 @@ const Project = () => {
     fetchProjects();
   }, []);
 
-  // 🔒 If not logged in
-  if (!isLoggedIn && !loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
-        <p>Please log in to view projects.</p>
-      </div>
-    );
-  }
-
-  if (loading) {
+  // ⏳ While checking login or fetching
+  if (isLoggedIn === null || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
         <p>Loading projects...</p>
@@ -73,6 +71,16 @@ const Project = () => {
     );
   }
 
+  // 🔒 Not logged in
+  if (!isLoggedIn) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
+        <p>Please log in to view projects.</p>
+      </div>
+    );
+  }
+
+  // ❌ Error state
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen text-red-400">
@@ -81,6 +89,7 @@ const Project = () => {
     );
   }
 
+  // ✅ Main content
   return (
     <section className="px-4 md:px-8 lg:px-12 pt-23 pb-10 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden">
       <div className="absolute inset-0 opacity-30"></div>
@@ -112,9 +121,15 @@ const Project = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {projects.length === 0 ? (
+            <p className="text-gray-400 text-center col-span-full">
+              No projects available at the moment.
+            </p>
+          ) : (
+            projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          )}
         </motion.div>
       </div>
     </section>
