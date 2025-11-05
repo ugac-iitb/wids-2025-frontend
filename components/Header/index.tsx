@@ -44,7 +44,7 @@ const Header = () => {
     console.log('2. Encoded redirect URI:', encodeURIComponent(redirectUri));
     console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectUri)}&state=some_state`);
     
-    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
+    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
       redirectUri
     )}&state=some_state`;
   };

@@ -1,18 +1,20 @@
 "use client";
 
+import UserDetails from "@/components/UserDetails";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { User } from "@/types/user"; // ✅ Import your User type
 
 export default function ProcessLogin() {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
 
   const [responseMsg, setResponseMsg] = useState("Processing login...");
+  const [user, setUser] = useState<User | null>(null);
 
-  // Your Django endpoint (must match your backend route exactly)
   const exchangeUrl =
     "https://understandably-subquadrangular-keven.ngrok-free.dev/auth/callback/";
-  const includeCreds = true; // Django session cookie
+  const includeCreds = true;
 
   useEffect(() => {
     if (!code) {
@@ -27,14 +29,13 @@ export default function ProcessLogin() {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: new URLSearchParams({ code }), // ✅ only sending code
+          body: new URLSearchParams({ code }),
           credentials: includeCreds ? "include" : "same-origin",
           mode: "cors",
         });
 
         if (!res.ok) {
           const errText = await res.text();
-          // ❌ previously used quotes incorrectly — should use backticks for template strings
           throw new Error(`Server responded with ${res.status}: ${errText}`);
         }
 
@@ -42,8 +43,15 @@ export default function ProcessLogin() {
         console.log("Backend response:", data);
 
         if (data.ok) {
-          // ✅ backticks used properly now
-          setResponseMsg(`Welcome ${data.user?.name || "User"}!`);
+          const { user, token_type, access_token } = data;
+
+          // ✅ Save to localStorage
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("access_token", access_token);
+          localStorage.setItem("token_type", token_type);
+
+          setUser(user);
+          setResponseMsg(`Welcome ${user?.name || "User"}!`);
         } else {
           setResponseMsg(`Error: ${data.error || "Login failed"}`);
         }
@@ -54,15 +62,15 @@ export default function ProcessLogin() {
     };
 
     sendCodeToBackend();
-  }, [code, exchangeUrl, includeCreds]);
+  }, [code]);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Processing Login...</h1>
-      <p>
-        <strong>Code:</strong> {code || "No code found"}
-      </p>
-      <p className="mt-4 text-blue-600">{responseMsg}</p>
+    <div className="pb-10 pt-30 flex flex-col items-center justify-center min-h-screen">
+      {user ? (
+        <UserDetails user={user} /> // ✅ Pass user as prop
+      ) : (
+        <p className="text-gray-600 text-lg">{responseMsg}</p>
+      )}
     </div>
   );
 }
