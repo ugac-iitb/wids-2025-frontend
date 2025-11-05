@@ -11,13 +11,11 @@ import { authEvents } from "@/app/utils/authEvent";
 const useAuth = () => {
   const [user, setUser] = useState<any>(null);
 
-  // Initialize user from localStorage
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) setUser(JSON.parse(savedUser));
   }, []);
 
-  // Subscribe to authEvents to update in real-time
   useEffect(() => {
     const unsubscribe = authEvents.subscribe(() => {
       const savedUser = localStorage.getItem("user");
@@ -33,14 +31,24 @@ const useAuth = () => {
 
   const logout = async () => {
     try {
-      await fetch("/auth/logout", { method: "POST" });
+      const res = await fetch("https://understandably-subquadrangular-keven.ngrok-free.dev/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        const errText = await res.text().catch(() => "");
+        throw new Error(`Logout failed: ${res.status} ${errText}`);
+      }
+
+      await res.json().catch(() => ({}));
     } catch (e) {
-      console.error("Logout API error", e);
+      console.error("Logout API error:", e);
     } finally {
       localStorage.removeItem("user");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token_type");
-      authEvents.trigger();
+      authEvents.trigger?.();
     }
   };
 
@@ -61,7 +69,6 @@ const Header = () => {
     "http://localhost:3000/process-login/"
   )}&state=some_state`;
 
-  // Sticky navbar effect
   useEffect(() => {
     const handleScroll = () => setStickyMenu(window.scrollY >= 80);
     window.addEventListener("scroll", handleScroll);
@@ -107,8 +114,9 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Auth Section */}
-        <div className="relative">
+        {/* Right side: Login or Avatar + Hamburger */}
+        <div className="flex items-center gap-4 relative">
+          {/* Auth Section */}
           {user ? (
             <>
               <button
@@ -156,30 +164,30 @@ const Header = () => {
               Login
             </a>
           )}
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="xl:hidden ml-4"
-          onClick={() => setNavOpen(!navOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="flex flex-col gap-1.5">
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className={`h-0.5 w-6 rounded-sm transition-all duration-200 ${
-                  navOpen ? "bg-[#719EA8]" : "bg-[#E7E3E5]"
-                }`}
-              />
-            ))}
-          </div>
-        </button>
+          {/* Mobile Menu Button */}
+          <button
+            className="xl:hidden ml-2"
+            onClick={() => setNavOpen(!navOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="flex flex-col gap-1.5">
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className={`h-0.5 w-6 rounded-sm transition-all duration-200 ${
+                    navOpen ? "bg-[#719EA8]" : "bg-[#E7E3E5]"
+                  }`}
+                />
+              ))}
+            </div>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation Dropdown */}
       {navOpen && (
-        <div className="xl:hidden bg-[#1A141C] text-[#E7E3E5] flex flex-col items-center gap-5 p-6 mt-3">
+        <div className="xl:hidden bg-[#1A141C] text-[#E7E3E5] flex flex-col items-center gap-5 p-6 border-t border-white/10">
           {menuData.map((item, i) => (
             <Link
               key={i}
@@ -192,37 +200,7 @@ const Header = () => {
               {item.title}
             </Link>
           ))}
-          {!user ? (
-            <a
-              href={authUrl}
-              onClick={() => setNavOpen(false)}
-              className="rounded-full bg-[#6A6FDB] px-6 py-2 hover:bg-[#719EA8] transition"
-            >
-              Login
-            </a>
-          ) : (
-            <>
-              <button
-                onClick={() => {
-                  router.push("/user");
-                  setNavOpen(false);
-                }}
-                className="rounded-full bg-[#6A6FDB] px-6 py-2 hover:bg-[#719EA8] transition"
-              >
-                User Details
-              </button>
-              <button
-                onClick={async () => {
-                  await logout();
-                  setNavOpen(false);
-                  router.push("/");
-                }}
-                className="rounded-full bg-[#054066] px-6 py-2 hover:bg-[#719EA8] transition"
-              >
-                Logout
-              </button>
-            </>
-          )}
+          {/* 🔥 Removed user details + logout from here */}
         </div>
       )}
     </header>

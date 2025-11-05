@@ -6,22 +6,87 @@ import { ProjectItem } from "@/types/projectitem";
 
 const Project = () => {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("/data/projects.json");
-      const data = await res.json();
-      setProjects(data);
-    };
-    fetchData();
+    const user = localStorage.getItem("user");
+    if (!user) {
+      // 🔒 Not logged in
+      setIsLoggedIn(false);
+      setLoading(false);
+      return;
+    }
+
+    setIsLoggedIn(true);
+    const API = "https://understandably-subquadrangular-keven.ngrok-free.dev";
+
+    async function fetchProjects() {
+      try {
+        const res = await fetch(`${API}/api/project/`, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        console.log("Projects response:", res.status, res.headers.get("content-type"));
+
+        if (!res.ok) {
+          const text = await res.text().catch(() => "");
+          throw new Error(`Projects fetch failed: ${res.status} ${text}`);
+        }
+
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          throw new Error("Server did not return valid JSON");
+        }
+
+        setProjects(data.items ?? []);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || "Failed to fetch projects");
+        setProjects([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProjects();
   }, []);
 
+  // 🔒 If not logged in
+  if (!isLoggedIn && !loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
+        <p>Please log in to view projects.</p>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
+        <p>Loading projects...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-red-400">
+        <p>{error}</p>
+      </div>
+    );
+  }
+
   return (
-    <section className="px-4 md:px-8 lg:px-12 pt-23 pb-10 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden ">
+    <section className="px-4 md:px-8 lg:px-12 pt-23 pb-10 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden">
       <div className="absolute inset-0 opacity-30"></div>
 
+      {/* Header */}
       <div className="relative z-10 mx-auto max-w-c-1315 px-4 md:px-8 py-4 xl:px-0">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +103,7 @@ const Project = () => {
         </motion.div>
       </div>
 
-      {/* Grid */}
+      {/* Projects Grid */}
       <div className="relative z-10 mx-auto mt-10 max-w-c-1280 px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
