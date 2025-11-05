@@ -24,16 +24,10 @@ const WhatIsWiDS = () => {
             className="space-y-6 text-lg text-gray-300"
           >
             <p>
-              Winter in Data Science (WiDS) is an intensive 6-week program hosted by the Undergraduate Academic Council (UGAC) at IIT Bombay. 
-              This immersive experience is designed to introduce students to the fascinating world of data science through hands-on projects 
-              and expert mentorship.
+              Winter in Data Science is your ultimate destination for comprehensive learning, exploration, and hands-on application in the realm of Al and ML-driven Data Analytics. Immerse yourself in the ML world through an extensive two-week boot camp and a user-friendly ML booklet that covers everything from Python basics to a sufficient grasp of Deep Learning. Following this boot camp, you can delve into a multitude of PROJECTS offered by the Analytics Club. It is a hands-on learning opportunity to learn ML and apply it through various projects offered.
             </p>
 
-            <p>
-              During WiDS, participants work on real-world data science projects under the guidance of experienced mentors. 
-              The program covers essential concepts including data analysis, machine learning, statistical modeling, and practical 
-              implementation using popular tools and frameworks.
-            </p>
+            
 
             <div className="grid md:grid-cols-3 gap-8 mt-12">
               <motion.div 
