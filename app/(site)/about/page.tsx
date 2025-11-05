@@ -43,7 +43,7 @@ const AboutPage = () => {
           <div className="md:grid md:grid-cols-2 md:gap-8">
             <div className="md:col-span-1" />
             <div className="md:col-span-1 py-24">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 mt-8">
                 <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
                   About Analytics Club
                 </span>

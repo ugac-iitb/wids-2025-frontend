@@ -1,16 +1,15 @@
 "use client";
 
-import UserDetails from "@/components/UserDetails";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { User } from "@/types/user"; // ✅ Import your User type
+import { authEvents } from "@/app/utils/authEvent";
 
 export default function ProcessLogin() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const code = searchParams.get("code");
 
   const [responseMsg, setResponseMsg] = useState("Processing login...");
-  const [user, setUser] = useState<User | null>(null);
 
   const exchangeUrl =
     "https://understandably-subquadrangular-keven.ngrok-free.dev/auth/callback/";
@@ -45,13 +44,16 @@ export default function ProcessLogin() {
         if (data.ok) {
           const { user, token_type, access_token } = data;
 
-          // ✅ Save to localStorage
+          // ✅ Save auth info
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("access_token", access_token);
           localStorage.setItem("token_type", token_type);
 
-          setUser(user);
-          setResponseMsg(`Welcome ${user?.name || "User"}!`);
+          // ✅ Trigger navbar update
+          authEvents.trigger();
+
+          // ✅ Redirect immediately to /user
+          router.push("/user");
         } else {
           setResponseMsg(`Error: ${data.error || "Login failed"}`);
         }
@@ -62,15 +64,11 @@ export default function ProcessLogin() {
     };
 
     sendCodeToBackend();
-  }, [code]);
+  }, [code, router]);
 
   return (
-    <div className="pb-10 pt-30 flex flex-col items-center justify-center min-h-screen">
-      {user ? (
-        <UserDetails user={user} /> // ✅ Pass user as prop
-      ) : (
-        <p className="text-gray-600 text-lg">{responseMsg}</p>
-      )}
+    <div className="flex flex-col items-center justify-center min-h-screen text-[#E7E3E5]">
+      <h1 className="text-2xl font-semibold">{responseMsg}</h1>
     </div>
   );
 }
