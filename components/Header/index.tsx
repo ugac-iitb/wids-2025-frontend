@@ -133,7 +133,7 @@ const Header = () => {
               </button>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-3 w-44 bg-[#1A141C] rounded-md shadow-md p-2 text-[#E7E3E5]">
+                <div className="absolute right-0 top-[2.5rem] w-44 bg-[#1A141C] rounded-md shadow-md p-2 text-[#E7E3E5]">
                   <button
                     onClick={() => {
                       setDropdownOpen(false);

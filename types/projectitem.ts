@@ -25,6 +25,7 @@ export interface ProjectItem {
   comments: string;
   mentor: Mentor;
   co_mentor: Mentor | null;
+  is_wishlisted?: boolean;
   updated_at: string; // or Date, depending on how you parse it
 }
 
