@@ -54,7 +54,7 @@ const TeamIntro = () => {
             </div>
           </motion.div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-14 w-full justify-items-center">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-14 w-full justify-items-center">
             {teamdata.slice(1,3).map((member) => (
               <motion.div
                 key={member.id}
@@ -82,7 +82,7 @@ const TeamIntro = () => {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </div> */}
           {/* Bottom Rows: Remaining Members (two rows of up to 4 items each) */}
           {(() => {
             const remaining = teamdata.slice(3);
@@ -120,7 +120,7 @@ const TeamIntro = () => {
                   ))}
                 </div>
 
-                {rowB.length > 0 && (
+                {/* {rowB.length > 0 && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-14 w-full">
                     {rowB.map((member) => (
                       <motion.div
@@ -150,7 +150,7 @@ const TeamIntro = () => {
                       </motion.div>
                     ))}
                   </div>
-                )}
+                )} */}
               </>
             );
           })()}

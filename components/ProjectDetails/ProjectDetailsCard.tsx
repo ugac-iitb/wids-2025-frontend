@@ -16,7 +16,8 @@ const ProjectDetailsCard = ({
   inWishlist,
   onWishlistToggle,
 }: ProjectDetailsCardProps) => {
-  const imgSrc = project.project_image || "/images/placeholder.png";
+  // const imgSrc = project.project_image || "/images/placeholder.png";
+  const imgSrc = "/images/placeholder.png";
 
   const tags = [
     project.project_type,
@@ -46,7 +47,7 @@ const ProjectDetailsCard = ({
               src={imgSrc}
               alt={project.project_title}
               fill
-              className="object-cover rounded-xl"
+              className="object-cover transition-transform duration-500 hover:scale-105"
             />
           </div>
         </div>

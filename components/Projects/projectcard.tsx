@@ -22,7 +22,8 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   // Wishlist feature placeholder
   const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted || false);
 
-  const imgSrc = project_image || "/images/placeholder.png";
+  // const imgSrc = project_image || "/images/placeholder.png";
+  const imgSrc = "/images/placeholder.png";
 
   const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
     (t) => t && t.trim().length > 0
@@ -74,8 +75,9 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           <div className="relative w-full h-44 sm:h-48 md:h-52 lg:h-48 xl:h-52 overflow-hidden rounded-xl">
             <Image
               src={imgSrc}
-              alt={project.project_title}
-              className="object-cover w-full h-64 sm:h-80"
+              alt={project_title}
+              fill
+              className="object-cover transition-transform duration-500 hover:scale-105"
             />
           </div>
         </div>

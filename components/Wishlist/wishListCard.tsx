@@ -9,25 +9,23 @@ import { Heart, HeartOff } from "lucide-react"; // ✅ ensure installed via npm 
 const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const {
     id,
-    ["Project Title"]: projectTitle,
-    ["Project Description"]: projectDescription,
-    ["Project Type"]: projectType,
-    Difficulty: difficulty,
-    ["Project Domain 1"]: projectDomain1,
-    ["Project Domain 2"]: projectDomain2,
-    ["Project Image"]: projectImage,
-    InWishList, // ✅ boolean true/false
+    project_title,
+    project_type,
+    difficulty,
+    project_domain_1,
+    project_domain_2,
+    project_image,
+    is_wishlisted
   } = project;
 
-  // Normalize the "TRUE"/"FALSE" string to boolean
-  const isInitialWishlist = InWishList?.toLowerCase() === "true";
-  const [isWishlisted, setIsWishlisted] = useState<boolean>(isInitialWishlist);
+  // Initialize wishlist state from the boolean value
+  const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted ?? false);
 
-  // const safeSrc = projectImage || "/images/placeholder.png";
+  // const safeSrc = project_image || "/images/placeholder.png";
   const safeSrc = "/images/placeholder.png";
 
 
-  const tags = [projectType, difficulty, projectDomain1, projectDomain2].filter(
+  const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
     (t) => t && t.trim().length > 0
   );
 
@@ -44,8 +42,8 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
       setIsWishlisted((prev) => !prev);
       console.log(
         isWishlisted
-          ? `Removed "${projectTitle}" from wishlist`
-          : `Added "${projectTitle}" to wishlist`
+          ? `Removed "${project_title}" from wishlist`
+          : `Added "${project_title}" to wishlist`
       );
     } catch (error) {
       console.error("Failed to update wishlist:", error);
@@ -55,7 +53,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   return (
     <Link
       href={`/projects/${String(id)}`}
-      aria-label={`Open project: ${projectTitle}`}
+      aria-label={`Open project: ${project_title}`}
       className="block"
     >
       <motion.div
@@ -79,7 +77,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           <div className="relative w-full h-44 sm:h-48 md:h-52 lg:h-48 xl:h-52 overflow-hidden rounded-xl">
             <Image
               src={safeSrc}
-              alt={projectTitle}
+              alt={project_title}
               fill
               className="object-cover transition-transform duration-500 hover:scale-105"
             />
@@ -89,7 +87,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
         {/* CONTENT */}
         <div className="flex flex-col flex-1 px-5 py-6 space-y-3 text-center">
           <h3 className="line-clamp-2 text-lg font-semibold text-blue-300">
-            {projectTitle}
+            {project_title}
           </h3>
 
           {tags.length > 0 && (

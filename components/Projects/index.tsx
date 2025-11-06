@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "./projectcard";
 import { ProjectItem } from "@/types/projectitem";
@@ -20,6 +19,9 @@ async function fetchJSON(url: string, opts: RequestInit = {}) {
   const ct = res.headers.get("content-type") || "";
 
   if (!res.ok) {
+    if (res.status === 401) {
+      throw new Error("Session expired. Please log in again.");
+    }
     throw new Error(`HTTP ${res.status} ${url}\n${text.slice(0, 500)}`);
   }
   if (!ct.toLowerCase().includes("application/json")) {
@@ -33,6 +35,9 @@ const Project = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [selectedDomain, setSelectedDomain] = useState("All");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("All");
+  const [selectedType, setSelectedType] = useState("All");
 
   useEffect(() => {
     (async () => {
@@ -43,19 +48,17 @@ const Project = () => {
           throw new Error("Please log in to view projects.");
         }
 
-        // Optional: verify auth; if this fails we’ll still show the error text
         try {
           const me = await fetchJSON(`${API}/api/me`);
-          setIsLoggedIn(!!me?.authenticated);
-          if (!me?.authenticated) throw new Error("Your session expired. Please log in again.");
-        } catch (e) {
-          console.warn("Auth check warning:", e);
+          if (!me?.authenticated) throw new Error("Session expired. Please log in again.");
+          setIsLoggedIn(true);
+        } catch (e: any) {
+          console.warn("Auth check failed:", e.message);
+          throw e;
         }
 
-        // Fetch projects (Bearer header added by fetchJSON)
         const data = await fetchJSON(`${API}/api/project`);
         setProjects(Array.isArray(data?.items) ? data.items : []);
-        setIsLoggedIn(true);
       } catch (err: any) {
         console.error("Projects load error:", err);
         setError(err?.message || "Failed to fetch projects.");
@@ -67,7 +70,63 @@ const Project = () => {
     })();
   }, []);
 
-  if (loading) {
+
+
+  const domainOptions = useMemo(() => {
+    const set = new Set<string>();
+    projects.forEach((p) => {
+      if (p["Project Domain 1"]) set.add(p["Project Domain 1"]);
+      if (p["Project Domain 2"]) set.add(p["Project Domain 2"]);
+    });
+    return ["All", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
+  }, [projects]);
+
+  const difficultyOptions = useMemo(() => {
+    const set = new Set<string>();
+    projects.forEach((p) => {
+      if (p.difficulty) set.add(p.difficulty);
+    });
+    return ["All", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
+  }, [projects]);
+
+  const typeOptions = useMemo(() => {
+    return ["All", "Collaborative Project", "Guided Project"];
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    const normalize = (val: string | undefined) => (val || "").trim().toLowerCase();
+    const matchesTypeFn = (p: ProjectItem) => {
+      if (selectedType === "All") return true;
+      const dataType = normalize(p["Project Type"]);
+      if (normalize(selectedType) === "collaborative project") {
+        return dataType.includes("collaborative");
+      }
+      if (normalize(selectedType) === "guided project") {
+        return dataType.includes("guided") || dataType.includes("teaching");
+      }
+      return true;
+    };
+
+    return projects.filter((p) => {
+      const matchesDomain =
+        selectedDomain === "All" ||
+        p["Project Domain 1"] === selectedDomain ||
+        p["Project Domain 2"] === selectedDomain;
+
+      const matchesDifficulty =
+        selectedDifficulty === "All" || p.difficulty === selectedDifficulty;
+
+      return matchesDomain && matchesDifficulty && matchesTypeFn(p);
+    });
+  }, [projects, selectedDomain, selectedDifficulty, selectedType]);
+
+  const clearFilters = () => {
+    setSelectedDomain("All");
+    setSelectedDifficulty("All");
+    setSelectedType("All");
+  };
+
+    if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
         <p>Loading projects...</p>
@@ -104,6 +163,63 @@ const Project = () => {
             Explore all mentor-led projects for Winter in Data Science 2025
           </p>
         </motion.div>
+
+        {/* Filters */}
+        <div className="mt-6 flex flex-col gap-3 items-center">
+          <div className="flex items-center gap-3 w-full max-w-3xl flex-wrap md:flex-nowrap">
+            <div className="flex items-center gap-2 flex-1">
+              <label className="text-sm text-gray-300 whitespace-nowrap">Domain</label>
+              <select
+                value={selectedDomain}
+                onChange={(e) => setSelectedDomain(e.target.value)}
+                className="w-full min-h-[40px] rounded-lg bg-[#1b1530] border border-white/20 text-blue-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+              >
+                {domainOptions.map((opt) => (
+                  <option key={opt} value={opt} className="bg-[#1b1530] text-blue-200">
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2 flex-1">
+              <label className="text-sm text-gray-300 whitespace-nowrap">Difficulty</label>
+              <select
+                value={selectedDifficulty}
+                onChange={(e) => setSelectedDifficulty(e.target.value)}
+                className="w-full min-h-[40px] rounded-lg bg-[#1b1530] border border-white/20 text-blue-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+              >
+                {difficultyOptions.map((opt) => (
+                  <option key={opt} value={opt} className="bg-[#1b1530] text-blue-200">
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2 flex-1">
+              <label className="text-sm text-gray-300 whitespace-nowrap">Type</label>
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className="w-full min-h-[40px] rounded-lg bg-[#1b1530] border border-white/20 text-blue-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+              >
+                {typeOptions.map((opt) => (
+                  <option key={opt} value={opt} className="bg-[#1b1530] text-blue-200">
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              onClick={clearFilters}
+              className="px-3 py-2 text-sm rounded-lg border border-white/20 text-gray-200 hover:bg-white/10 transition"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto mt-10 max-w-c-1280 px-4 md:px-8 xl:px-0">
@@ -114,12 +230,14 @@ const Project = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {projects.length === 0 ? (
+          {filteredProjects.length === 0 ? (
             <p className="text-gray-400 text-center col-span-full">
-              No projects available at the moment.
+              {projects.length === 0
+                ? "No projects available at the moment."
+                : "No projects match your filters."}
             </p>
           ) : (
-            projects.map((project) => (
+            filteredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))
           )}

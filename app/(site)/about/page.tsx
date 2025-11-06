@@ -4,27 +4,23 @@ import React from 'react';
 const AboutPage = () => {
   const events = [
     {
-      date: 'OCT 26, 2023',
-      title: 'DATA VISUALIZATION WORKSHOP',
-      icon: '📊',
+      date: '1st August, 2025',
+      title: 'Stratify',
       status: 'past'
     },
     {
-      date: 'NOV 15, 2023',
-      title: 'PREDICTIVE MODELING SEMINAR',
-      icon: '📈',
+      date: '21st September, 2025',
+      title: 'Codelite Analytics',
       status: 'past'
     },
     {
-      date: 'DEC 5, 2024',
-      title: 'MACHINE LEARNING HACKATHON',
-      icon: '🤖',
-      status: 'upcoming'
+      date: '17th October, 2025',
+      title: 'Deep Learning Bootcamp',
+      status: 'past'
     },
     {
-      date: 'FEB 10, 2024',
-      title: 'AI ETHICS PANEL',
-      icon: '⚖️',
+      date: '1st December,2025',  
+      title: 'WiDS 5.0',
       status: 'upcoming'
     },
   ];
@@ -112,7 +108,6 @@ const AboutPage = () => {
                     ${index % 2 === 0 ? 'text-left' : 'text-right'}
                   `}
                 >
-                  <div className="text-3xl mb-3">{event.icon}</div>
                   <h3 className="text-white text-2xl font-semibold mb-2">{event.title}</h3>
                   <p
                     className={`text-sm tracking-wide ${

@@ -39,7 +39,7 @@ export default function ProcessLogin() {
         }
 
         const data = await res.json();
-        console.log("Backend response:", data);
+        // console.log("Backend response:", data);
 
         if (data.ok) {
           const { user, token_type, access_token } = data;

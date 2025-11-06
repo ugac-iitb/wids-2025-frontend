@@ -92,11 +92,11 @@ const WhyWiDS = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          {/* <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Join us this winter and take your first step towards becoming a data scientist.
             Whether you're just starting out or looking to enhance your skills, WiDS provides
             the perfect environment for growth and learning.
-          </p>
+          </p> */}
         </motion.div>
       </div>
     </section>

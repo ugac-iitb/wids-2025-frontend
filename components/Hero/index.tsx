@@ -5,22 +5,13 @@ import { motion } from "framer-motion";
 const Hero = () => {
   const router = useRouter();
 
-  // Use direct client-side navigation. The page transitions are handled
-  // by the `PageTransition` component in the layout (Framer Motion).
-  // Avoid manipulating `document.body` (it caused the body to stay at
-  // opacity: 0 and produced a blank page after navigation).
   const handleGetStarted = () => {
-    // Use fixed redirect URI with debug logging
-    const redirectUri = 'http://localhost:3000/process-login';
-    console.log('Debug - Raw redirect URI:', redirectUri);
-    console.log('Debug - Encoded redirect URI:', encodeURIComponent(redirectUri));
-    const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
-      redirectUri
-    )}&state=some_state`;
+    // Use fixed redirect URL
+    const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
+    "http://localhost:3000/process-login/"
+  )}&state=some_state`;
 
     // Diagnostic log so we can inspect the exact URL sent to the OAuth server.
-    // Remove this after confirming the redirect_uri is correct.
-    console.log('Gymkhana auth URL (hero):', authUrl);
     router.push(authUrl);
   };
 
@@ -33,7 +24,6 @@ const Hero = () => {
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-black">
         {/* Dynamic Background Animation */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/hero/data-background.jpg')] bg-cover bg-center opacity-20 animate-pulse"></div>
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
