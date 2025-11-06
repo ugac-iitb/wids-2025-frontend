@@ -4,27 +4,23 @@ import React from 'react';
 const AboutPage = () => {
   const events = [
     {
-      date: 'OCT 26, 2023',
-      title: 'DATA VISUALIZATION WORKSHOP',
-      icon: '📊',
+      date: '1st August, 2025',
+      title: 'Stratify  📊',
       status: 'past'
     },
     {
-      date: 'NOV 15, 2023',
-      title: 'PREDICTIVE MODELING SEMINAR',
-      icon: '📈',
+      date: '21st September, 2025',
+      title: 'Codelite Analytics  📈',
       status: 'past'
     },
     {
-      date: 'DEC 5, 2024',
-      title: 'MACHINE LEARNING HACKATHON',
-      icon: '🤖',
-      status: 'upcoming'
+      date: '17th October, 2025',
+      title: 'Deep Learning Bootcamp  🤖',
+      status: 'past'
     },
     {
-      date: 'FEB 10, 2024',
-      title: 'AI ETHICS PANEL',
-      icon: '⚖️',
+      date: '1st December,2025',
+      title: 'WiDS 5.0  ⚖️',
       status: 'upcoming'
     },
   ];
@@ -74,7 +70,7 @@ const AboutPage = () => {
       </section>
 
       {/* Analytics Club Events Section */}
-      <section className="py-20 bg-[#0a0a0a]">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">Analytics Club Events</h2>
           
