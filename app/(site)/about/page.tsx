@@ -61,91 +61,86 @@ const AboutPage = () => {
         </div>
       </section>
 
-{/* Timeline Section - Glow / Futuristic Redesign */}
-<section className="py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f1a] to-black relative overflow-hidden">
-  {/* Background Gradient Blur Orbs */}
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-3xl rounded-full" />
-  <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-purple-500/10 blur-3xl rounded-full" />
+      {/* Timeline Section - Glow / Futuristic Redesign */}
+      <section className="py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f1a] to-black relative overflow-hidden">
+        {/* Background Gradient Blur Orbs */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-purple-500/10 blur-3xl rounded-full" />
 
-  <div className="relative container mx-auto px-4">
-    <h2 className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-      Analytics Club Events
-    </h2>
+        <div className="relative container mx-auto px-4">
+          <h2 className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+            Analytics Club Events
+          </h2>
 
-    {/* Central Line (Hidden on small screens) */}
-    <div className="relative max-w-4xl mx-auto">
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 opacity-50 hidden md:block"></div>
+          {/* Central Line (Hidden on small screens) */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 opacity-50 hidden md:block"></div>
 
-      {/* Event Cards */}
-      {events.map((event, index) => (
-        <div
-          key={index}
-          className={`relative flex items-center justify-between mb-20 ${
-            index % 2 === 0 ? 'md:flex-row-reverse' : ''
-          } flex-col md:flex-row`}
-        >
-          {/* Connector Dot (Hidden on small screens) */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex-col items-center hidden md:flex">
-            <div
-              className={`relative w-6 h-6 rounded-full border-2 
-                ${
-                  event.status === 'upcoming'
-                    ? 'border-orange-400 bg-orange-500/30'
-                    : 'border-blue-400 bg-blue-500/30'
-                }`}
-            >
+            {/* Event Cards */}
+            {events.map((event, index) => (
               <div
-                className={`absolute inset-0 rounded-full blur-md 
-                  ${
-                    event.status === 'upcoming'
-                      ? 'bg-orange-500/60'
-                      : 'bg-blue-500/60'
-                  }`}
-              ></div>
-            </div>
+                key={index}
+                className={`relative flex items-center justify-between mb-20 ${
+                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                } flex-col md:flex-row`}
+              >
+                {/* Connector Dot (Hidden on small screens) */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 flex-col items-center hidden md:flex">
+                  <div
+                    className={`relative w-6 h-6 rounded-full border-2 
+                      ${
+                        event.status === 'upcoming'
+                          ? 'border-orange-400 bg-orange-500/30'
+                          : 'border-blue-400 bg-blue-500/30'
+                      }`}
+                  >
+                    <div
+                      className={`absolute inset-0 rounded-full blur-md 
+                        ${
+                          event.status === 'upcoming'
+                            ? 'bg-orange-500/60'
+                            : 'bg-blue-500/60'
+                        }`}
+                    ></div>
+                  </div>
 
-            {/* Glowing pulse */}
-            <div
-              className={`absolute w-6 h-6 rounded-full animate-ping 
-                ${
-                  event.status === 'upcoming'
-                    ? 'bg-orange-400/40'
-                    : 'bg-blue-400/40'
-                }`}
-            ></div>
-          </div>
+                  {/* Glowing pulse */}
+                  <div
+                    className={`absolute w-6 h-6 rounded-full animate-ping 
+                      ${
+                        event.status === 'upcoming'
+                          ? 'bg-orange-400/40'
+                          : 'bg-blue-400/40'
+                      }`}
+                  ></div>
+                </div>
 
-          {/* Event Card */}
-          <div
-            className={`relative w-full md:w-[45%] p-6 rounded-2xl backdrop-blur-md shadow-lg
-              transition-all duration-300 hover:scale-105 
-              ${
-                event.status === 'upcoming'
-                  ? 'bg-gradient-to-br from-orange-500/20 to-orange-700/10 border border-orange-400/30 hover:shadow-orange-500/30'
-                  : 'bg-gradient-to-br from-blue-500/20 to-purple-700/10 border border-blue-400/30 hover:shadow-blue-500/30'
-              }
-              ${index % 2 === 0 ? 'md:text-left text-center' : 'md:text-right text-center'}
-            `}
-          >
-            <h3 className="text-white text-2xl font-semibold mb-2">{event.title}</h3>
-            <p
-              className={`text-sm tracking-wide ${
-                event.status === 'upcoming' ? 'text-orange-300' : 'text-blue-300'
-              }`}
-            >
-              {event.date}
-            </p>
+                {/* Event Card */}
+                <div
+                  className={`relative w-full md:w-[45%] p-6 rounded-2xl backdrop-blur-md shadow-lg
+                    transition-all duration-300 hover:scale-105 
+                    ${
+                      event.status === 'upcoming'
+                        ? 'bg-gradient-to-br from-orange-500/20 to-orange-700/10 border border-orange-400/30 hover:shadow-orange-500/30'
+                        : 'bg-gradient-to-br from-blue-500/20 to-purple-700/10 border border-blue-400/30 hover:shadow-blue-500/30'
+                    }
+                    ${index % 2 === 0 ? 'md:text-left text-center' : 'md:text-right text-center'}
+                  `}
+                >
+                  <h3 className="text-white text-2xl font-semibold mb-2">{event.title}</h3>
+                  <p
+                    className={`text-sm tracking-wide ${
+                      event.status === 'upcoming' ? 'text-orange-300' : 'text-blue-300'
+                    }`}
+                  >
+                    {event.date}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-
- 
-
+      </section>
     </>
   );
 };

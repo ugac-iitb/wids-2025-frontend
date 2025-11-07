@@ -13,7 +13,7 @@ type ProjectDetailsCardProps = {
 
 const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardProps) => {
   const isWishlisted = !!project.is_wishlisted;
-  const imgSrc = "/images/placeholder.png";
+  const imgSrc = `/images/projects/project_image_${project.id}` || "/images/placeholder.png";
   const tags = [
     project.project_type,
     project.difficulty,
