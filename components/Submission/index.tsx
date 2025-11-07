@@ -4,6 +4,7 @@ import { Reorder, motion } from "framer-motion";
 import SubmissionCard from "./submissionCard";
 import { ProjectItem } from "@/types/projectitem";
 import { API_URL } from "@/lib/constants";
+import { useRouter } from "next/navigation";
 
 const API = `${API_URL}`;
 
@@ -38,6 +39,7 @@ const SubmissionList = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const router = useRouter();
 
   // 🔹 Fetch wishlist projects
   useEffect(() => {
@@ -134,6 +136,10 @@ const SubmissionList = () => {
     setLoading(true);
   };
 
+  const handleBackHome = async () => {
+    router.push("/");
+  };
+
   // 🔹 Loading state
   if (loading) {
     return (
@@ -188,6 +194,17 @@ const SubmissionList = () => {
         <p className="text-gray-400 text-base md:text-lg mb-8">
           Thank you for completing your wishlist submission.
         </p>
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleBackHome}
+          className="group inline-flex items-center gap-2 px-5 py-2.5 mb-5 rounded-full 
+          border border-zinc-700 bg-zinc-800/60 text-zinc-300 font-semibold 
+          hover:bg-zinc-700/80 hover:text-white transition-all duration-300"
+        >
+          Back to Home
+        </motion.button>
 
         {/* Revert Button (for testing) */}
         <motion.button

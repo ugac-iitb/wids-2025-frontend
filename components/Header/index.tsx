@@ -125,7 +125,7 @@ const Header = () => {
                 className="flex items-center focus:outline-none"
               >
                 <Image
-                  src={user.avatar || "/images/avatar.png"}
+                  src={user.avatar || "/images/user/avatar.png"}
                   alt="User Avatar"
                   width={40}
                   height={40}

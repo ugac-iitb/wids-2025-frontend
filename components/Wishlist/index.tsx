@@ -89,6 +89,10 @@ const Wishlist = () => {
   }
 
   const handleSubmit = () => {
+    if (projects.length === 0) {
+      alert("Your wishlist is empty. Please add projects before submitting.");
+      return;
+    }
     router.push("/submission");
   };
 
@@ -124,7 +128,7 @@ const Wishlist = () => {
           {projects.length === 0 ? (
             <p className="text-gray-400 text-center col-span-full">
               {projects.length === 0
-                ? "No projects available at the moment."
+                ? "Your wishlist is currently empty."
                 : "No projects match your filters."}
             </p>
           ) : (

@@ -71,8 +71,6 @@ const Project = () => {
     })();
   }, []);
 
-
-
   const domainOptions = useMemo(() => {
     const set = new Set<string>();
     projects.forEach((p) => {
@@ -127,23 +125,26 @@ const Project = () => {
     setSelectedType("All");
   };
 
-    if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
-        <p>Loading projects...</p>
-      </div>
-    );
-  }
+   if (loading) {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-[#1A141C] text-[#E7E3E5]">
+      <p className="text-lg animate-pulse">Loading projects...</p>
+    </div>
+  );
+}
 
-  if (!isLoggedIn || error) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-red-400 text-center px-4">
-        <div>
-          <p className="mb-2">{error || "Please log in to view projects."}</p>
-        </div>
-      </div>
-    );
-  }
+if (error || !isLoggedIn) {
+  console.error("❌ Project Load Error:", error);
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-[#1A141C] text-center px-6">
+      <p className="text-xl text-red-400 font-medium">
+        {error || "Please log in to view projects."}
+      </p>
+    </div>
+  );
+}
+
 
   return (
     <section className="px-4 md:px-8 lg:px-12 pt-23 pb-10 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden">
