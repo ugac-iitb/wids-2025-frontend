@@ -1,22 +1,19 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import WhatIsWIDS from "../WhatisWiDS";
+import { useRef } from "react";
 
 const Hero = () => {
   const router = useRouter();
+  const whatIsWIDSRef = useRef<HTMLDivElement>(null);
 
   const handleGetStarted = () => {
-    // Use fixed redirect URL
-    const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
-    "http://localhost:3000/process-login/"
-  )}&state=some_state`;
-
-    // Diagnostic log so we can inspect the exact URL sent to the OAuth server.
-    router.push(authUrl);
+    router.push("/projects");
   };
 
   const handleLearnMore = () => {
-    router.push("/about");
+    whatIsWIDSRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -80,6 +77,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <div ref={whatIsWIDSRef} className="mt-20 w-full">
+          <WhatIsWIDS />
+        </div>
     </>
   );
 };

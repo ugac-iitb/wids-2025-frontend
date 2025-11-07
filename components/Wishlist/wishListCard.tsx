@@ -4,9 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProjectItem } from "@/types/projectitem";
 import { useState } from "react";
-import { Heart, HeartOff } from "lucide-react"; // ✅ ensure installed via npm install lucide-react
+import { Heart, HeartOff } from "lucide-react";
+import { API_URL } from "@/lib/constants";
 
-const ProjectCard = ({ project }: { project: ProjectItem }) => {
+const API = `${API_URL}`;
+
+interface ProjectCardProps {
+  project: ProjectItem;
+  onRemove?: () => void; // 👈 optional callback (used only in wishlist)
+}
+
+const ProjectCard = ({ project, onRemove }: ProjectCardProps) => {
   const {
     id,
     project_title,
@@ -15,38 +23,65 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
     project_domain_1,
     project_domain_2,
     project_image,
-    is_wishlisted
+    is_wishlisted,
   } = project;
 
-  // Initialize wishlist state from the boolean value
   const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted ?? false);
+  const [loading, setLoading] = useState(false);
 
   // const safeSrc = project_image || "/images/placeholder.png";
   const safeSrc = "/images/placeholder.png";
-
-
   const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
     (t) => t && t.trim().length > 0
   );
 
-  // Placeholder for backend update
   const handleWishlistToggle = async (e: React.MouseEvent) => {
-    e.preventDefault(); // avoid navigating when clicking inside Link
-    try {
-      // 🔧 TODO: Replace with your backend API call here
-      // Example:
-      // await fetch(`/api/wishlist/${id}`, {
-      //   method: isWishlisted ? "DELETE" : "POST",
-      // });
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
 
-      setIsWishlisted((prev) => !prev);
-      console.log(
-        isWishlisted
-          ? `Removed "${project_title}" from wishlist`
-          : `Added "${project_title}" to wishlist`
-      );
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      alert("Please log in to manage wishlist");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const url = `${API}/api/project/${id}/wishlist`;
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Wishlist API error:", errorText);
+        throw new Error(`Failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // ✅ Backend returns the new state — use that
+      const newState = Boolean(data.is_wishlisted);
+      setIsWishlisted(newState);
+
+      if (!newState) {
+        console.log(`Removed "${project_title}" from wishlist`);
+        // 👇 Instantly remove from UI (if inside Wishlist page)
+        onRemove?.();
+      } else {
+        console.log(`Added "${project_title}" to wishlist`);
+      }
     } catch (error) {
       console.error("Failed to update wishlist:", error);
+      alert("Failed to update wishlist. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,20 +138,20 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
             </div>
           )}
 
-          {/* Divider */}
           <div className="border-t border-white/10 mx-auto w-2/3 mt-3"></div>
 
           {/* WISHLIST BUTTON */}
           <div className="mt-4">
             <button
               onClick={handleWishlistToggle}
+              disabled={loading}
               className={`group relative inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full 
               transition-all duration-300 border focus:outline-none
               ${
                 isWishlisted
                   ? "border-pink-500/40 bg-pink-500/10 text-pink-300 hover:bg-pink-500/20"
                   : "border-cyan-500/40 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20"
-              }`}
+              } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
             >
               {isWishlisted ? (
                 <>
@@ -124,7 +159,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
                     size={16}
                     className="text-pink-300 transition-transform group-hover:scale-110"
                   />
-                  Remove from Wishlist
+                  {loading ? "Updating..." : "Remove from Wishlist"}
                 </>
               ) : (
                 <>
@@ -132,7 +167,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
                     size={16}
                     className="text-cyan-300 transition-transform group-hover:scale-110"
                   />
-                  Add to Wishlist
+                  {loading ? "Updating..." : "Add to Wishlist"}
                 </>
               )}
             </button>

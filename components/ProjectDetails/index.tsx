@@ -5,37 +5,36 @@ import ProjectDetailsCard from "./ProjectDetailsCard";
 import { ProjectItem } from "@/types/projectitem";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { API_URL } from "@/lib/constants";
 
 type ProjectDetailsPageProps = {
   projectId: string;
 };
 
-const API = "https://understandably-subquadrangular-keven.ngrok-free.dev";
-
-async function fetchJSON(url: string, opts: RequestInit = {}) {
-  const token = localStorage.getItem("access_token") ?? "";
-  const headers: HeadersInit = {
-    Authorization: `Bearer ${token}`,
-    "ngrok-skip-browser-warning": "true",
-    ...(opts.headers || {}),
-  };
-
-  const res = await fetch(url, { ...opts, headers });
-  const text = await res.text();
-  const ct = res.headers.get("content-type") || "";
-
-  if (!res.ok) throw new Error(`HTTP ${res.status} ${url}\n${text.slice(0, 500)}`);
-  if (!ct.toLowerCase().includes("application/json"))
-    throw new Error(`Non-JSON response (${ct}) at ${url}\n${text.slice(0, 500)}`);
-
-  return JSON.parse(text);
-}
+const API = API_URL.replace(/\/+$/, ""); // ensure no trailing slash
 
 const ProjectDetailsPage = ({ projectId }: ProjectDetailsPageProps) => {
   const [project, setProject] = useState<ProjectItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [inWishlist, setInWishlist] = useState(false);
+
+  async function fetchJSON(url: string, opts: RequestInit = {}) {
+    const token = localStorage.getItem("access_token") ?? "";
+    const headers: HeadersInit = {
+      Authorization: `Bearer ${token}`,
+      "ngrok-skip-browser-warning": "true",
+      ...(opts.headers || {}),
+    };
+    const res = await fetch(url, { ...opts, headers });
+    const text = await res.text();
+    const ct = res.headers.get("content-type") || "";
+
+    if (!res.ok) throw new Error(`HTTP ${res.status} ${url}\n${text.slice(0, 500)}`);
+    if (!ct.toLowerCase().includes("application/json"))
+      throw new Error(`Non-JSON response (${ct}) at ${url}\n${text.slice(0, 500)}`);
+
+    return JSON.parse(text);
+  }
 
   useEffect(() => {
     (async () => {
@@ -43,15 +42,11 @@ const ProjectDetailsPage = ({ projectId }: ProjectDetailsPageProps) => {
         const token = localStorage.getItem("access_token");
         if (!token) throw new Error("Please log in to view projects.");
 
-        // ✅ Fetch project details
         const data = await fetchJSON(`${API}/api/get_project_details/${projectId}`);
-        const proj = data.project;
-        setProject(proj);
-        setInWishlist(!!proj?.is_wishlisted);
+        setProject(data.project);
       } catch (err: any) {
         console.error("Projects load error:", err);
         setError(err?.message || "Failed to fetch project details.");
-        setProject(null);
       } finally {
         setLoading(false);
       }
@@ -60,25 +55,29 @@ const ProjectDetailsPage = ({ projectId }: ProjectDetailsPageProps) => {
 
   const handleWishlistToggle = async () => {
     if (!project) return;
-
-    const newStatus = !inWishlist;
-    setInWishlist(newStatus);
-    setProject({ ...project, is_wishlisted: newStatus });
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      alert("Please log in to manage wishlist");
+      return;
+    }
 
     try {
-      const token = localStorage.getItem("access_token");
-      if (!token) throw new Error("You must be logged in to modify wishlist.");
+      const res = await fetch(`${API}/api/project/${project.id}/wishlist`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
-      const endpoint = `${API}/api/${
-        newStatus ? "add_to_wishlist" : "remove_from_wishlist"
-      }/${project.id}`;
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const result = await res.json();
 
-      await fetchJSON(endpoint, { method: "POST" });
+      // ✅ Update state to reflect new wishlist status
+      setProject((prev) => (prev ? { ...prev, is_wishlisted: result.is_wishlisted } : prev));
     } catch (err) {
-      console.error("Wishlist toggle error:", err);
-      // revert state on error
-      setInWishlist(!newStatus);
-      setProject({ ...project, is_wishlisted: !newStatus });
+      console.error("Wishlist toggle failed:", err);
+      alert("Failed to update wishlist. Please try again.");
     }
   };
 
@@ -104,11 +103,7 @@ const ProjectDetailsPage = ({ projectId }: ProjectDetailsPageProps) => {
 
   return (
     <div className="flex flex-col items-center gap-8 p-6">
-      <ProjectDetailsCard
-        project={project}
-        inWishlist={inWishlist}
-        onWishlistToggle={handleWishlistToggle}
-      />
+      <ProjectDetailsCard project={project} onWishlistToggle={handleWishlistToggle} />
 
       <Link
         href="/projects"

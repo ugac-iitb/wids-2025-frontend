@@ -6,6 +6,9 @@ import Link from "next/link";
 import { ProjectItem } from "@/types/projectitem";
 import { useState } from "react";
 import { Heart, HeartOff } from "lucide-react";
+import { API_URL } from "@/lib/constants";
+
+const API = `${API_URL}`;
 
 const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const {
@@ -21,6 +24,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
 
   // Wishlist feature placeholder
   const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted || false);
+  const [loading, setLoading] = useState(false);
 
   // const imgSrc = project_image || "/images/placeholder.png";
   const imgSrc = "/images/placeholder.png";
@@ -30,13 +34,35 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   );
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
-    e.preventDefault(); // avoid navigating when clicking inside Link
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      alert("Please log in to manage wishlist");
+      setLoading(false);
+      return;
+    }
+
     try {
-      // 🔧 TODO: Replace this with your backend wishlist API
-      // await fetch(`/api/wishlist/${id}`, {
-      //   method: isWishlisted ? "DELETE" : "POST",
-      //   credentials: "include",
-      // });
+      const url = `${API}/api/project/${id}/wishlist`;
+
+      const response = await fetch(url, {
+        method: "POST", // ✅ only POST toggles wishlist
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Wishlist API error:", errorText);
+        throw new Error(`Failed with status ${response.status}`);
+      }
+
+      // ✅ Toggle frontend state after success
       setIsWishlisted((prev) => !prev);
       console.log(
         isWishlisted
@@ -45,6 +71,9 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
       );
     } catch (error) {
       console.error("Failed to update wishlist:", error);
+      alert("Failed to update wishlist. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 

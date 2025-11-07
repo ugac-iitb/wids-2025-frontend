@@ -3,8 +3,9 @@ import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "./projectcard";
 import { ProjectItem } from "@/types/projectitem";
+import { API_URL } from "@/lib/constants";
 
-const API = "https://understandably-subquadrangular-keven.ngrok-free.dev";
+const API = `${API_URL}`;
 
 async function fetchJSON(url: string, opts: RequestInit = {}) {
   const token = localStorage.getItem("access_token") ?? "";

@@ -54,14 +54,29 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="w-full md:w-3/4 lg:w-2/3"
             >
-              <div className="relative rounded-2xl bg-gradient-to-br from-[#0d0d1f]/60 to-[#050212]/40 border border-white/10 backdrop-blur-xl shadow-[0_0_20px_rgba(79,70,229,0.05)]">
+              <div className="space-y-5">
                 {faqData.map((faq, key) => (
-                  <FAQItem
+                  <motion.div
                     key={key}
-                    faqData={{ ...faq, activeFaq, handleFaqToggle }}
-                  />
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    initial="hidden"
+                    whileInView="visible"
+                    transition={{ duration: 0.5, delay: key * 0.1 }}
+                    viewport={{ once: true }}
+                    className="rounded-2xl bg-gradient-to-br from-[#0d0d1f]/60 to-[#050212]/40
+                              border border-white/10 backdrop-blur-xl
+                              shadow-[0_0_20px_rgba(79,70,229,0.05)]
+                              hover:shadow-[0_0_25px_rgba(168,85,247,0.005)]
+                              transition-all duration-300"
+                  >
+                    <FAQItem faqData={{ ...faq, activeFaq, handleFaqToggle }} />
+                  </motion.div>
                 ))}
               </div>
+
             </motion.div>
           </div>
         </div>

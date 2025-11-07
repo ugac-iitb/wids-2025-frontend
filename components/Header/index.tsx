@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import menuData from "./menuData";
 import { authEvents } from "@/app/utils/authEvent";
+import { API_URL } from "@/lib/constants";
 
 /* ✅ Centralized Auth Hook */
 const useAuth = () => {
@@ -31,7 +32,7 @@ const useAuth = () => {
 
   const logout = async () => {
     try {
-      const res = await fetch("https://understandably-subquadrangular-keven.ngrok-free.dev/auth/logout", {
+      const res = await fetch(`${API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

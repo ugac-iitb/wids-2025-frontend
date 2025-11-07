@@ -1,30 +1,30 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { ProjectItem } from "@/types/projectitem";
 
-const SubmissionCard = ({ project }: { project: ProjectItem }) => {
+type Props = {
+  project: ProjectItem;
+  onSopChange: (sop: string) => void;
+};
+
+const SubmissionCard = ({ project, onSopChange }: Props) => {
   const {
-    ["Project Title"]: projectTitle,
-    ["Project Description"]: projectDescription,
-    ["Project Type"]: projectType,
-    Difficulty: difficulty,
-    ["Project Domain 1"]: projectDomain1,
-    ["Project Domain 2"]: projectDomain2,
-    ["Project Image"]: projectImage,
+    project_title,
+    project_type,
+    difficulty,
+    project_domain_1,
+    project_domain_2,
   } = project;
 
-//   const safeSrc = projectImage || "/images/placeholder.png";
-    const safeSrc = "/images/placeholder.png";
-
-  const [sop, setSop] = useState("");
+  const safeSrc = "/images/placeholder.png";
 
   const handleSopChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSop(e.target.value);
+    onSopChange(e.target.value);
   };
 
-  const tags = [projectType, difficulty, projectDomain1, projectDomain2].filter(
+  const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
     (t) => t && t.trim().length > 0
   );
 
@@ -44,7 +44,7 @@ const SubmissionCard = ({ project }: { project: ProjectItem }) => {
       <div className="relative w-full md:w-1/3 h-56 md:h-64 rounded-xl overflow-hidden flex-shrink-0">
         <Image
           src={safeSrc}
-          alt={projectTitle}
+          alt={project_title}
           fill
           className="object-cover transition-transform duration-500 hover:scale-105"
         />
@@ -54,11 +54,8 @@ const SubmissionCard = ({ project }: { project: ProjectItem }) => {
       <div className="flex-1 flex flex-col justify-between text-left space-y-4">
         <div>
           <h3 className="text-2xl font-semibold text-blue-300 mb-2">
-            {projectTitle}
+            {project_title}
           </h3>
-          <p className="text-gray-300 text-sm leading-relaxed line-clamp-4">
-            {projectDescription}
-          </p>
 
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-3">
@@ -82,7 +79,7 @@ const SubmissionCard = ({ project }: { project: ProjectItem }) => {
             Statement of Purpose
           </label>
           <textarea
-            value={sop}
+            value={project.sop || ""}
             onChange={handleSopChange}
             placeholder="Write your motivation, approach, or experience related to this project..."
             className="w-full min-h-[120px] rounded-xl bg-[#1d1a27] text-gray-200 text-sm 

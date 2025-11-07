@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <WhatIsWiDS />
+      {/* <WhatIsWiDS /> */}
       <WhyWiDS />
       <SelectionProcedure />
       <FAQ />

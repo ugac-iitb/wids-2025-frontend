@@ -3,6 +3,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { authEvents } from "@/app/utils/authEvent";
+import { API_URL } from "@/lib/constants";
 
 export default function ProcessLogin() {
   const searchParams = useSearchParams();
@@ -12,7 +13,7 @@ export default function ProcessLogin() {
   const [responseMsg, setResponseMsg] = useState("Processing login...");
 
   const exchangeUrl =
-    "https://understandably-subquadrangular-keven.ngrok-free.dev/auth/callback/";
+    `${API_URL}/auth/callback/`;
   const includeCreds = true;
 
   useEffect(() => {
