@@ -57,16 +57,18 @@ const TeamIntro = () => {
               {/* Contact Icons */}
               <div className="flex justify-center gap-4 mt-3">
                 {/* Email */}
-                <a
-                  href={`mailto:${teamdata[0].mail}`}
+                {teamdata?.[0]?.mail && (
+                  <a
+                  href={`mailto:${teamdata[0].mail}?subject=Hey%20this%20is%20about%20WiDS`}
                   className="w-10 h-10 flex items-center justify-center rounded-full 
-                                      bg-purple-500/10 border border-purple-400/20 
-                                      text-purple-300 hover:text-purple-400 
-                                      hover:bg-purple-500/20 transition-all"
+                              bg-purple-500/10 border border-purple-400/20 
+                              text-purple-300 hover:text-purple-400 
+                              hover:bg-purple-500/20 transition-all"
                   title="Send Email"
-                >
+                  >
                   <Mail className="w-5 h-5" />
-                </a>
+                  </a>
+                )}
 
                 {/* LinkedinIcon */}
                 <a
@@ -74,9 +76,9 @@ const TeamIntro = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 flex items-center justify-center rounded-full 
-                                      bg-purple-500/10 border border-purple-400/20 
-                                      text-purple-300 hover:text-purple-400 
-                                      hover:bg-purple-500/20 transition-all"
+                              bg-purple-500/10 border border-purple-400/20 
+                              text-purple-300 hover:text-purple-400 
+                              hover:bg-purple-500/20 transition-all"
                   title="View LinkedIn Profile"
                 >
                   <SiLinkedin className="w-5 h-5" />
@@ -118,16 +120,18 @@ const TeamIntro = () => {
                       {/* Contact Icons */}
                       <div className="flex justify-center gap-4 mt-3">
                         {/* Email */}
-                        <a
-                          href={`mailto:${member.mail}`}
+                        {member?.mail && (
+                          <a
+                          href={`mailto:${member.mail}?subject=Hey%20this%20is%20about%20WiDS!!`}
                           className="w-10 h-10 flex items-center justify-center rounded-full 
-                                    bg-purple-500/10 border border-purple-400/20 
-                                    text-purple-300 hover:text-purple-400 
-                                    hover:bg-purple-500/20 transition-all"
+                                      bg-purple-500/10 border border-purple-400/20 
+                                      text-purple-300 hover:text-purple-400 
+                                      hover:bg-purple-500/20 transition-all"
                           title="Send Email"
-                        >
+                          >
                           <Mail className="w-5 h-5" />
-                        </a>
+                          </a>
+                        )}
 
                         {/* LinkedIn */}
                         {member.linkedin && (

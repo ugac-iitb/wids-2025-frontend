@@ -56,6 +56,7 @@ const SubmissionCard = ({ project, onSopChange }: Props) => {
           <h3 className="text-2xl font-semibold text-blue-300 mb-2">
             {project_title}
           </h3>
+          <p className="text-s text-white/50">ID: {project.id}</p>
 
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-3">

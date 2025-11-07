@@ -31,6 +31,8 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
       <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
         {project.project_title}
       </h2>
+        <p className="text-s text-white/50">ID: {project.id}</p>
+
 
       {/* Image + Info */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
