@@ -82,7 +82,7 @@ const Header = () => {
         stickyMenu ? "bg-[#1A141C]/95 shadow-md backdrop-blur-md" : "bg-[#1A141C]"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 md:px-12 lg:px-20">
+      <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-3 md:px-4 lg:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-4">
           <Image
@@ -93,7 +93,7 @@ const Header = () => {
             className="brightness-0 invert"
           />
           <Image
-            src="/images/logo/analyticsclub.png"
+            src="/images/logo/analyticsclub-dark.png"
             alt="Analytics Club"
             width={40}
             height={40}

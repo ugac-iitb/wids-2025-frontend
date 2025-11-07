@@ -76,8 +76,8 @@ const Project = () => {
   const domainOptions = useMemo(() => {
     const set = new Set<string>();
     projects.forEach((p) => {
-      if (p["Project Domain 1"]) set.add(p["Project Domain 1"]);
-      if (p["Project Domain 2"]) set.add(p["Project Domain 2"]);
+      if (p.project_domain_1) set.add(p.project_domain_1);
+      if (p.project_domain_2) set.add(p.project_domain_2);
     });
     return ["All", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
   }, [projects]);
@@ -98,7 +98,7 @@ const Project = () => {
     const normalize = (val: string | undefined) => (val || "").trim().toLowerCase();
     const matchesTypeFn = (p: ProjectItem) => {
       if (selectedType === "All") return true;
-      const dataType = normalize(p["Project Type"]);
+      const dataType = normalize(p.project_type);
       if (normalize(selectedType) === "collaborative project") {
         return dataType.includes("collaborative");
       }
@@ -111,8 +111,8 @@ const Project = () => {
     return projects.filter((p) => {
       const matchesDomain =
         selectedDomain === "All" ||
-        p["Project Domain 1"] === selectedDomain ||
-        p["Project Domain 2"] === selectedDomain;
+        p.project_domain_1 === selectedDomain ||
+        p.project_domain_2 === selectedDomain;
 
       const matchesDifficulty =
         selectedDifficulty === "All" || p.difficulty === selectedDifficulty;
@@ -167,7 +167,9 @@ const Project = () => {
 
         {/* Filters */}
         <div className="mt-6 flex flex-col gap-3 items-center">
-          <div className="flex items-center gap-3 w-full max-w-3xl flex-wrap md:flex-nowrap">
+          {/* Filters Stack Responsively */}
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 w-full max-w-3xl">
+
             <div className="flex items-center gap-2 flex-1">
               <label className="text-sm text-gray-300 whitespace-nowrap">Domain</label>
               <select
