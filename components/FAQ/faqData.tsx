@@ -14,7 +14,7 @@ const faqData: FAQ[] = [
   {
     id: 3,
     quest: "What is the duration of WiDS?",
-    ans: "What is the duration of WiDS? The duration mentioned on the projects is tentatively a month. Starting in the 1st week of December 2024 and ending in 1st week of January 2025.",
+    ans: "What is the duration of WiDS? The duration mentioned on the projects is tentatively a month. Starting in the 1st December 2025 and ending in 1st week of January 2026.",
   },
   {
     id: 4,
