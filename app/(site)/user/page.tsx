@@ -50,7 +50,9 @@ export default function UserPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 text-[#E7E3E5]">
-      <h1 className="text-2xl font-semibold mb-6">Your Profile</h1>
+      <h2 className="text-4xl md:text-5xl font-extrabold mb-10 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+        Your Profile
+      </h2>
       <UserDetails user={user} />
     </div>
   );

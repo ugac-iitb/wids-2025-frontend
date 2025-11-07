@@ -20,7 +20,7 @@ const UserDetails = ({ user }: { user: User }) => {
       className="flex flex-col items-center gap-5 p-8 rounded-2xl 
                  bg-gradient-to-br from-[#1b1530] via-[#191622] to-[#15131b]
                  border border-white/10 shadow-lg 
-                 hover:shadow-[0_0_40px_rgba(120,100,255,0.25)]
+                 hover:shadow-[0_0_40px_rgba(120,100,255,0.02)]
                  transition-all duration-300 hover:-translate-y-1 max-w-md mx-auto w-full"
     >
       {/* Profile Image */}
