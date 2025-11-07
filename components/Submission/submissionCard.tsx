@@ -18,7 +18,7 @@ const SubmissionCard = ({ project, onSopChange }: Props) => {
     project_domain_2,
   } = project;
 
-  const safeSrc = `/images/projects/project_image_${project.id}` || "/images/placeholder.png";
+  const safeSrc = `/images/projects/project_image_${project.id}.jpg` || "/images/placeholder.png";
 
 
   const handleSopChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
