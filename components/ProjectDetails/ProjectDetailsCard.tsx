@@ -31,7 +31,6 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
       <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
         {project.project_title}
       </h2>
-        <p className="text-s text-white/50">ID: {project.id}</p>
 
 
       {/* Image + Info */}
@@ -50,7 +49,7 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
         {/* Info */}
         <div className="flex flex-col justify-between gap-6 text-sm">
           {tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-2 justify-center">
               {tags.map((tag) => (
                 <span
                   key={tag}

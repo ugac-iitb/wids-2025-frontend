@@ -115,8 +115,6 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           <h3 className="line-clamp-2 text-lg font-semibold text-blue-300">
             {project_title}
           </h3>
-          <p className="text-s text-white/50">ID: {id}</p>
-
           
 
           {tags.length > 0 && (

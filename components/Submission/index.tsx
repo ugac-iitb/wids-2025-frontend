@@ -38,10 +38,9 @@ const SubmissionList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [validationError, setValidationError] = useState<string | null>(null);
   const router = useRouter();
 
-  // 🔹 Fetch wishlist projects
+  // 🔹 Fetch preferences first; fallback to wishlist if none exist
   useEffect(() => {
     (async () => {
       try {
@@ -55,8 +54,33 @@ const SubmissionList = () => {
         if (!me?.authenticated) throw new Error("Session expired. Please log in again.");
         setIsLoggedIn(true);
 
-        const data = await fetchJSON(`${API}/api/project/wishlist`);
-        setProjects(Array.isArray(data?.tiles) ? data.tiles.slice(0, 5) : []);
+        // Step 1️⃣ — Try preferences API (if user already submitted)
+        const prefData = await fetchJSON(`${API}/api/project/preferences`);
+        const prefTiles = Array.isArray(prefData?.tiles) ? prefData.tiles : [];
+
+        if (prefTiles.length > 0) {
+          setProjects(prefTiles.sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999)));
+          setSubmitted(true);
+          return;
+        }
+
+        // Step 2️⃣ — If not submitted, load from localStorage (selected_wishlist_ids)
+        const storedIds = JSON.parse(localStorage.getItem("selected_wishlist_ids") || "[]");
+
+        if (storedIds.length > 0) {
+          // Fetch all projects and filter only the selected ones
+          const wishlistData = await fetchJSON(`${API}/api/project/wishlist`);
+          const allWishlistTiles = Array.isArray(wishlistData?.tiles) ? wishlistData.tiles : [];
+
+          // Only include projects that match stored IDs
+          const filtered = allWishlistTiles.filter((p: any) => storedIds.includes(p.id));
+
+          setProjects(filtered.slice(0, 5)); // limit to 5
+          setSubmitted(false);
+        } else {
+          setError("No selected projects found. Please select projects from your wishlist first.");
+          setSubmitted(false);
+        }
       } catch (err: any) {
         console.error("Projects load error:", err);
         setError(err?.message || "Failed to fetch projects.");
@@ -68,6 +92,7 @@ const SubmissionList = () => {
     })();
   }, []);
 
+
   // 🔹 Update SOP for a project
   const handleSopChange = (projectId: number, sop: string) => {
     setProjects((prev) =>
@@ -77,9 +102,8 @@ const SubmissionList = () => {
 
   // 🔹 Submit preferences
   const handleSubmit = useCallback(async () => {
-    setValidationError(null);
+    if (submitted) return;
 
-    // Check if any SOP is empty
     const emptySop = projects.find((p) => !p.sop || p.sop.trim() === "");
     if (emptySop) {
       alert("⚠️ Please fill in all SOPs before submitting.");
@@ -87,64 +111,61 @@ const SubmissionList = () => {
     }
 
     const confirmSubmit = window.confirm(
-    "🚨 Are you sure you want to submit your preferences?\n\n" +
-    "Once submitted, you won't be able to edit or reorder them later."
-  );
-
-  if (!confirmSubmit) {
-    return; // user canceled submission
-  }
-
-    setSubmitted(true);
+      "🚨 Are you sure you want to submit your preferences?\n\n" +
+        "Once submitted, you won't be able to edit or reorder them later."
+    );
+    if (!confirmSubmit) return;
 
     try {
-      // Loop through projects in the chosen order
       for (let index = 0; index < projects.length; index++) {
         const p = projects[index];
-
-        // Build the body payload for each project
-        const payload = {
-          sop: p.sop || "",
-          rank: index + 1, // based on user’s drag order
-        };
-
-        // Call each endpoint separately
+        const payload = { sop: p.sop || "", rank: index + 1 };
         await fetchJSON(`${API}/api/project/${p.id}/preference/upsert`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-
-        console.log(`✅ Submitted preference for project ${p.id}`);
       }
 
-      console.log("All preferences submitted successfully!");
       localStorage.setItem("preferences_submitted", "true");
+      setSubmitted(true);
     } catch (err: any) {
       console.error("Submission failed:", err.message);
+      alert("❌ Submission failed. Please try again.");
     }
-  }, [projects]);
+  }, [projects, submitted]);
 
-  useEffect(() => {
-    const alreadySubmitted = localStorage.getItem("preferences_submitted") === "true";
-    if (alreadySubmitted) setSubmitted(true);
-  }, []);
+    // 🔹 Revert submitted preferences
+  const handleRevertSubmission = useCallback(async () => {
+    const confirmRevert = window.confirm(
+      "⚠️ Are you sure you want to revert your submission?\n\n" +
+      "This will delete all your submitted preferences and allow you to re-edit and resubmit."
+    );
+    if (!confirmRevert) return;
 
-  const handleRevert = async () => {
-    localStorage.removeItem("preferences_submitted");
-    setSubmitted(false);
-    setLoading(true);
-  };
+    try {
+      for (const project of projects) {
+        await fetchJSON(`${API}/api/project/${project.id}/preference/delete`, {
+          method: "DELETE",
+        });
+      }
 
-  const handleBackHome = async () => {
-    router.push("/");
-  };
+      localStorage.removeItem("preferences_submitted");
+      alert("✅ Your submission has been reverted. You can now edit and resubmit your preferences.");
+      setSubmitted(false);
+      router.refresh(); // reload the component data
+    } catch (err: any) {
+      console.error("Revert failed:", err.message);
+      alert("❌ Failed to revert submission. Please try again.");
+    }
+  }, [projects, router]);
+
 
   // 🔹 Loading state
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen text-gray-400">
-        Loading wishlist...
+        Loading your projects...
       </div>
     );
   }
@@ -180,9 +201,10 @@ const SubmissionList = () => {
     );
   }
 
+  // 🔹 Already submitted view (read-only)
   if (submitted) {
     return (
-      <section className="min-h-screen flex flex-col justify-center items-center bg-[#1A141C] text-center px-4">
+      <section className="min-h-screen flex flex-col justify-center items-center bg-[#1A141C] text-center px-4 mt-30">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -192,36 +214,59 @@ const SubmissionList = () => {
           You have already submitted your preferences 🎉
         </motion.h2>
         <p className="text-gray-400 text-base md:text-lg mb-8">
-          Thank you for completing your wishlist submission.
+          These are the projects you submitted, displayed in your ranked order.
         </p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleBackHome}
-          className="group inline-flex items-center gap-2 px-5 py-2.5 mb-5 rounded-full 
-          border border-zinc-700 bg-zinc-800/60 text-zinc-300 font-semibold 
-          hover:bg-zinc-700/80 hover:text-white transition-all duration-300"
-        >
-          Back to Home
-        </motion.button>
+        <div className="w-full max-w-4xl space-y-6 text-left">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className="flex items-start gap-4 bg-zinc-900/50 p-5 rounded-2xl border border-zinc-700"
+            >
+              <div className="text-2xl font-bold text-purple-400 mt-2">
+                {index + 1}.
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {project.project_title}
+                </h3>
+                <p className="text-gray-400 mb-2">{project.project_description}</p>
+                <div className="bg-zinc-800 text-gray-300 text-sm p-3 rounded-md border border-zinc-700">
+                  <strong className="text-purple-400">Your SOP:</strong>
+                  <p className="mt-1 whitespace-pre-line">{project.sop || "(No SOP provided)"}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-        {/* Revert Button (for testing) */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleRevert}
-          className="px-6 py-2 text-sm font-semibold rounded-full border border-red-500 text-red-400 hover:bg-red-500/10 transition-all"
-        >
-          Revert Submission (for testing)
-        </motion.button>
+        <div className="flex flex-col md:flex-row gap-4 mt-10 mb-10">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => router.push("/")}
+            className="px-6 py-2 rounded-full border border-zinc-700 text-zinc-300 hover:bg-zinc-700/50 transition"
+          >
+            Back to Home
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleRevertSubmission}
+            className="px-6 py-2 rounded-full border border-red-500 text-red-400 hover:bg-red-500/20 transition"
+          >
+            Revert Submission
+          </motion.button>
+        </div>
+
       </section>
     );
   }
 
+  // 🔹 Editable wishlist view
   return (
     <section className="px-4 md:px-8 lg:px-12 pt-20 pb-16 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden min-h-screen">
-      {/* Header */}
       <div className="relative z-10 mx-auto max-w-c-1315 px-4 md:px-8 py-4 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -231,7 +276,7 @@ const SubmissionList = () => {
           className="text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-            WishList Submission
+            Wishlist Submission
           </h2>
           <p className="text-gray-400 text-sm md:text-base">
             Review your shortlisted projects and add your SOPs below. Drag and drop the cards to arrange them in your preferred order — you can submit up to five preferences.
@@ -241,12 +286,7 @@ const SubmissionList = () => {
 
       {/* Cards List */}
       <div className="relative z-10 mx-auto mt-10 max-w-5xl px-4 md:px-8 xl:px-0">
-        <Reorder.Group
-          axis="y"
-          values={projects}
-          onReorder={setProjects}
-          className="flex flex-col gap-10"
-        >
+        <Reorder.Group axis="y" values={projects} onReorder={setProjects} className="flex flex-col gap-10">
           {projects.map((project, index) => (
             <Reorder.Item
               key={project.id}
@@ -257,7 +297,6 @@ const SubmissionList = () => {
               <div className="flex-shrink-0 text-2xl font-bold text-purple-400 mt-2">
                 {index + 1}.
               </div>
-
               <div className="flex-1">
                 <SubmissionCard
                   project={project}
@@ -268,21 +307,14 @@ const SubmissionList = () => {
           ))}
         </Reorder.Group>
 
-        {/* Submit Button */}
         <div className="flex justify-center mt-12">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleSubmit}
-            disabled={submitted}
-            className={`px-10 py-3 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 
-              ${
-                submitted
-                  ? "bg-green-600 text-white cursor-default"
-                  : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
-              }`}
+            className="px-10 py-3 text-lg font-semibold rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white transition-all duration-300"
           >
-            {submitted ? "Submitted Successfully" : "Submit Preferences"}
+            Submit Preferences
           </motion.button>
         </div>
       </div>

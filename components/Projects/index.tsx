@@ -55,7 +55,7 @@ const Project = () => {
           setIsLoggedIn(true);
         } catch (e: any) {
           console.warn("Auth check failed:", e.message);
-          throw e;
+          throw new Error("Your session token has expired, Please log in again to continue.");
         }
 
         const data = await fetchJSON(`${API}/api/project`);
@@ -125,25 +125,65 @@ const Project = () => {
     setSelectedType("All");
   };
 
-   if (loading) {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-[#1A141C] text-[#E7E3E5]">
-      <p className="text-lg animate-pulse">Loading projects...</p>
-    </div>
-  );
-}
+  if (loading) {
+    return (
+      <section className="flex flex-col items-center justify-center min-h-screen bg-[#1A141C] text-[#E7E3E5]">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <p className="text-lg text-gray-300 animate-pulse">
+            Loading projects, please wait...
+          </p>
+        </motion.div>
+      </section>
+    );
+  }
 
-if (error || !isLoggedIn) {
-  console.error("❌ Project Load Error:", error);
+  // 🟣 CASE 1: User not logged in
+  if (!isLoggedIn) {
+    return (
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md max-w-md shadow-lg"
+        >
+          <h2 className="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-3">
+            You're Not Logged In or Session Expired
+          </h2>
+          <p className="text-gray-300 mb-6">
+            Please log in to view and manage your projects.
+          </p>
+        </motion.div>
+      </section>
+    );
+  }
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-[#1A141C] text-center px-6">
-      <p className="text-xl text-red-400 font-medium">
-        {error || "Please log in to view projects."}
-      </p>
-    </div>
-  );
-}
+  // 🔴 CASE 2: Error occurred (e.g. network, server)
+  if (error) {
+    return (
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#1A141C] via-red-900/10 to-[#1A141C] text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md max-w-md shadow-lg"
+        >
+          <h2 className="text-3xl font-semibold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent mb-3">
+            Something Went Wrong
+          </h2>
+          <p className="text-gray-300 mb-6">
+            We couldn't load your projects right now. Please refresh the page
+            or try again later.
+          </p>
+        </motion.div>
+      </section>
+    );
+  }
 
 
   return (
