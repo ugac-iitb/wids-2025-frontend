@@ -1,61 +1,85 @@
 "use client";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectItem } from "@/types/projectitem";
 import { useState } from "react";
 import { Heart, HeartOff } from "lucide-react";
+import { API_URL } from "@/lib/constants";
+
+const API = `${API_URL}`;
 
 const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const {
     id,
-    ["Project Title"]: projectTitle,
-    ["Project Description"]: projectDescription,
-    ["Project Type"]: projectType,
-    Difficulty: difficulty,
-    ["Project Domain 1"]: projectDomain1,
-    ["Project Domain 2"]: projectDomain2,
-    ["Project Image"]: projectImage,
-    InWishList, // ✅ boolean true/false
+    project_title,
+    project_type,
+    difficulty,
+    project_domain_1,
+    project_domain_2,
+    is_wishlisted
   } = project;
 
-  // Normalize the "TRUE"/"FALSE" string to boolean
-  const isInitialWishlist = InWishList?.toLowerCase() === "true";
-  const [isWishlisted, setIsWishlisted] = useState<boolean>(isInitialWishlist);
+  // Wishlist feature placeholder
+  const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted || false);
+  const [loading, setLoading] = useState(false);
 
-  // const safeSrc = projectImage || "/images/placeholder.png";
-  const safeSrc = "/images/placeholder.png";
+  const imgSrc = `/images/projects/project_image_${project.id}.jpg` || "/images/placeholder.png";
 
 
-  const tags = [projectType, difficulty, projectDomain1, projectDomain2].filter(
+  const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
     (t) => t && t.trim().length > 0
   );
 
-  // Placeholder for backend update
   const handleWishlistToggle = async (e: React.MouseEvent) => {
-    e.preventDefault(); // avoid navigating when clicking inside Link
-    try {
-      // 🔧 TODO: Replace with your backend API call here
-      // Example:
-      // await fetch(`/api/wishlist/${id}`, {
-      //   method: isWishlisted ? "DELETE" : "POST",
-      // });
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
 
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      alert("Please log in to manage wishlist");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const url = `${API}/api/project/${id}/wishlist`;
+
+      const response = await fetch(url, {
+        method: "POST", // ✅ only POST toggles wishlist
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Wishlist API error:", errorText);
+        throw new Error(`Failed with status ${response.status}`);
+      }
+
+      // ✅ Toggle frontend state after success
       setIsWishlisted((prev) => !prev);
       console.log(
         isWishlisted
-          ? `Removed "${projectTitle}" from wishlist`
-          : `Added "${projectTitle}" to wishlist`
+          ? `Removed "${project_title}" from wishlist`
+          : `Added "${project_title}" to wishlist`
       );
     } catch (error) {
       console.error("Failed to update wishlist:", error);
+      alert("Failed to update wishlist. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Link
-      href={`/projects/${String(id)}`}
-      aria-label={`Open project: ${projectTitle}`}
+      href={`/projects/${id}`}
+      aria-label={`Open project: ${project_title}`}
       className="block"
     >
       <motion.div
@@ -78,8 +102,8 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
         <div className="relative w-full p-4 flex items-center justify-center bg-[#1A141C] rounded-t-2xl">
           <div className="relative w-full h-44 sm:h-48 md:h-52 lg:h-48 xl:h-52 overflow-hidden rounded-xl">
             <Image
-              src={safeSrc}
-              alt={projectTitle}
+              src={imgSrc}
+              alt={project_title}
               fill
               className="object-cover transition-transform duration-500 hover:scale-105"
             />
@@ -89,15 +113,18 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
         {/* CONTENT */}
         <div className="flex flex-col flex-1 px-5 py-6 space-y-3 text-center">
           <h3 className="line-clamp-2 text-lg font-semibold text-blue-300">
-            {projectTitle}
+            {project_title}
           </h3>
+          {imgSrc}
 
           {tags.length > 0 && (
-            <div className="flex flex-wrap justify-center gap-2 mt-2">
+            <div className="flex flex-wrap justify-center gap-2 mt-3">
               {tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/10 text-blue-300 border border-blue-400/20 hover:bg-blue-500/20 transition-colors"
+                  className="px-3 py-1 text-xs font-medium rounded-full 
+                             bg-blue-500/10 text-blue-300 border border-blue-400/20 
+                             hover:bg-blue-500/20 transition-colors"
                 >
                   {tag}
                 </span>
@@ -113,12 +140,12 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
             <button
               onClick={handleWishlistToggle}
               className={`group relative inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full 
-              transition-all duration-300 border focus:outline-none
-              ${
-                isWishlisted
-                  ? "border-pink-500/40 bg-pink-500/10 text-pink-300 hover:bg-pink-500/20"
-                  : "border-cyan-500/40 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20"
-              }`}
+                          transition-all duration-300 border focus:outline-none
+                          ${
+                            isWishlisted
+                              ? "border-pink-500/40 bg-pink-500/10 text-pink-300 hover:bg-pink-500/20"
+                              : "border-cyan-500/40 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20"
+                          }`}
             >
               {isWishlisted ? (
                 <>

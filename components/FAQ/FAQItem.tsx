@@ -17,9 +17,9 @@ const FAQItem = ({ faqData }: { faqData: FaqData }) => {
     <div className="flex flex-col border-b border-stroke last-of-type:border-none dark:border-strokedark">
       <button
         onClick={() => handleFaqToggle(id)}
-        className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left text-metatitle3 font-medium text-gray-200 hover:text-white lg:px-9 lg:py-7.5"
+        className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left text-[1.1rem] font-medium text-gray-200 hover:text-white lg:px-9 lg:py-7.5"
       >
-        <span className="flex-1 text-left">{quest}</span>
+        <span className="flex-1 text-left leading-relaxed">{quest}</span>
 
         {isActive ? (
           <svg
@@ -50,7 +50,6 @@ const FAQItem = ({ faqData }: { faqData: FaqData }) => {
         )}
       </button>
 
-
       {/* Smooth slide animation */}
       <AnimatePresence initial={false}>
         {isActive && (
@@ -62,7 +61,7 @@ const FAQItem = ({ faqData }: { faqData: FaqData }) => {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="overflow-hidden border-t border-stroke dark:border-strokedark"
           >
-            <p className="px-6 py-5 text-gray-300 lg:px-9 lg:py-7.5">
+            <p className="px-6 py-5 text-[1.05rem] text-gray-300 leading-relaxed lg:px-9 lg:py-7.5">
               {ans}
             </p>
           </motion.div>

@@ -4,4 +4,5 @@ export interface TeamMember {
   imagePath: string;
   designation: string;
   mail: string;
+  linkedin: string;
 }

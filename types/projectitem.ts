@@ -1,36 +1,36 @@
-export type ProjectItem = {
-  id: string;
-  Name: string;
-  "Roll Number": string;
-  "LDAP-ID": string;
-  "Mail-ID": string;
-  "Contact Number": string;
-  "Year of Study": string;
-  "Academic Department": string;
-  "Degree Enrolled for": string;
-  "Co-Mentor": string;
-  "Co-Mentor Name": string;
-  "Co-Mentor Roll": string;
-  "Co-Mentor LDAP": string;
-  "Co-Mentor Mail": string;
-  "Co-Mentor Contact": string;
-  "Co-Mentor Year": string;
-  "Co-Mentor Dept": string;
-  "Co-Mentor Degree": string;
-  "Project Domain 1": string;
-  "Project Domain 2": string;
-  "Project Title": string;
-  "Project Description": string;
-  Difficulty: string;
-  "Project Type": string;
-  "Duration (weeks)": string;
-  "Weekly Hours": string;
-  "Number of Mentees": string;
-  "Pre-Requisites": string;
-  "Project Image": string;
-  "Previously Completed?": string;
-  "Project Experience": string;
-  "Resources Link": string;
-  Comments: string;
-  InWishList : string;
-};
+export interface Mentor {
+  id: number;
+  name: string;
+  email: string;
+  roll_no: string | null;
+  is_mentor: boolean;
+}
+
+export interface ProjectItem {
+  id: number;
+  project_domain_1: string;
+  project_domain_2: string;
+  project_title: string;
+  project_description: string;
+  difficulty: string;
+  project_type: string;
+  duration_weeks: number;
+  weekly_hours: number;
+  number_of_mentees: number;
+  pre_requisites: string;
+  project_image: string;
+  resources_link: string;
+  previously_completed: boolean;
+  project_experience: string;
+  comments: string;
+  mentor: Mentor;
+  co_mentor: Mentor | null;
+  is_wishlisted?: boolean;
+  sop: string;
+  updated_at: string; // or Date, depending on how you parse it
+}
+
+export interface ProjectResponse {
+  ok: boolean;
+  project: ProjectItem;
+}
