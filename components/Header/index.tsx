@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import menuData from "./menuData";
 import { authEvents } from "@/app/utils/authEvent";
 import { API_URL } from "@/lib/constants";
+import { clientID, redirectURI } from "@/lib/constants";
 
 /* ✅ Centralized Auth Hook */
 const useAuth = () => {
@@ -66,8 +67,8 @@ const Header = () => {
   const router = useRouter();
   const path = usePathname();
 
-  const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
-    "http://localhost:3000/process-login/"
+  const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
+    redirectURI
   )}&state=some_state`;
 
   useEffect(() => {
