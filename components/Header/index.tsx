@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import menuData from "./menuData";
+import { checkIsMentor } from "@/lib/api";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -31,9 +32,23 @@ const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [dropdownToggler, setDropdownToggler] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
+  const [isMentor, setIsMentor] = useState(false);
   const { user, logout } = useAuth();
 
   const pathUrl = usePathname();
+
+  // Check if user is a mentor
+  useEffect(() => {
+    const checkMentorStatus = async () => {
+      if (user) {
+        const mentorStatus = await checkIsMentor();
+        setIsMentor(mentorStatus);
+      } else {
+        setIsMentor(false);
+      }
+    };
+    checkMentorStatus();
+  }, [user]);
 
   // Build the Gymkhana OAuth URL with debug logging
   const getAuthUrl = () => {
@@ -130,6 +145,19 @@ const Header = () => {
                 )}
               </li>
             ))}
+            {/* Mentor link - conditionally shown */}
+            {isMentor && (
+              <li>
+                <Link
+                  href="/mentor"
+                  className={`transition hover:text-[#6A6FDB] ${
+                    pathUrl === "/mentor" ? "text-[#6A6FDB]" : "text-[#E7E3E5]"
+                  }`}
+                >
+                  Mentor
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
 
@@ -187,6 +215,18 @@ const Header = () => {
               {menuItem.title}
             </Link>
           ))}
+          {/* Mentor link in mobile menu - conditionally shown */}
+          {isMentor && (
+            <Link
+              href="/mentor"
+              className={`transition hover:text-[#6A6FDB] ${
+                pathUrl === "/mentor" ? "text-[#6A6FDB]" : "text-[#E7E3E5]"
+              }`}
+              onClick={() => setNavigationOpen(false)}
+            >
+              Mentor
+            </Link>
+          )}
 
           {/* Auth Button inside Mobile Menu */}
           {!user ? (
