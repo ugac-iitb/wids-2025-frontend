@@ -1,19 +1,18 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { authEvents } from "@/app/utils/authEvent";
 import { API_URL } from "@/lib/constants";
 
-function ProcessLoginClient() {
+export default function ProcessLoginClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const code = searchParams.get("code");
 
   const [responseMsg, setResponseMsg] = useState("Processing login...");
 
-  const exchangeUrl =
-    `${API_URL}/auth/callback/`;
+  const exchangeUrl = `${API_URL}/auth/callback/`;
   const includeCreds = true;
 
   useEffect(() => {
@@ -40,20 +39,16 @@ function ProcessLoginClient() {
         }
 
         const data = await res.json();
-        // console.log("Backend response:", data);
 
         if (data.ok) {
           const { user, token_type, access_token } = data;
 
-          // ✅ Save auth info
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("access_token", access_token);
           localStorage.setItem("token_type", token_type);
 
-          // ✅ Trigger navbar update
           authEvents.trigger();
 
-          // ✅ Redirect immediately to /user
           router.push("/user");
         } else {
           setResponseMsg(`Error: ${data.error || "Login failed"}`);
@@ -71,20 +66,5 @@ function ProcessLoginClient() {
     <div className="flex flex-col items-center justify-center min-h-screen text-[#E7E3E5]">
       <h1 className="text-2xl font-semibold">{responseMsg}</h1>
     </div>
-  );
-}
-
-export default function Page() {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center min-h-screen text-[#E7E3E5]">
-          <h1 className="text-2xl font-semibold">Processing login...</h1>
-        </div>
-      }
-    >
-      {/* Client component uses useSearchParams; render inside Suspense */}
-      <ProcessLoginClient />
-    </Suspense>
   );
 }
