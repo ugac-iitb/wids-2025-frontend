@@ -9,7 +9,7 @@ const ResourceCard = ({ resource }: { resource: ResourceItem }) => {
   const safeSrc =
     typeof image_url === "string" && image_url.trim().length > 0
       ? image_url.trim()
-      : "/images/placeholder.png";
+      : "/wids-2025/images/placeholder.png";
 
   return (
     <motion.a
@@ -42,7 +42,7 @@ const ResourceCard = ({ resource }: { resource: ResourceItem }) => {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src = "/images/placeholder.png";
+            target.src = "/wids-2025/images/placeholder.png";
           }}
         />
       </div>

@@ -106,7 +106,7 @@ const TeamIntro = () => {
                     >
                       <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
                         <Image
-                          src={member.imagePath || "/images/placeholder.png"}
+                          src={member.imagePath || "/wids-2025/images/placeholder.png"}
                           alt={member.name}
                           width={176}
                           height={176}

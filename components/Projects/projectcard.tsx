@@ -25,7 +25,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted || false);
   const [loading, setLoading] = useState(false);
 
-  const imgSrc = `/images/projects/project_image_${project.id}.jpg` || "/images/placeholder.png";
+  const imgSrc = `/wids-2025/images/projects/project_image_${project.id}.jpg` || "/wids-2025/images/placeholder.png";
 
 
   const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
@@ -115,7 +115,6 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           <h3 className="line-clamp-2 text-lg font-semibold text-blue-300">
             {project_title}
           </h3>
-          {imgSrc}
 
           {tags.length > 0 && (
             <div className="flex flex-wrap justify-center gap-2 mt-3">

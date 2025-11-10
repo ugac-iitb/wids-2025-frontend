@@ -26,7 +26,7 @@ const UserDetails = ({ user }: { user: User }) => {
       {/* Profile Image */}
       <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-blue-400 shadow-md">
         <Image
-          src="/images/user/avatar.png" // fallback avatar, or user.avatar if available
+          src="/wids-2025/images/user/avatar.png" // fallback avatar, or user.avatar if available
           alt="User avatar"
           fill
           sizes="96px"

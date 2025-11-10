@@ -21,13 +21,13 @@ const Contact = () => {
     <div className="absolute bottom-0 left-0 -z-1 flex w-full justify-center">
       <div className="relative w-full max-w-5xl h-[180px] opacity-70">
         <Image
-          src="./images/shape/shape-dotted-light.svg"
+          src="./wids-2025/images/shape/shape-dotted-light.svg"
           alt="Dotted"
           fill
           className="dark:hidden object-contain object-bottom"
         />
         <Image
-          src="./images/shape/shape-dotted-dark.svg"
+          src="./wids-2025/images/shape/shape-dotted-dark.svg"
           alt="Dotted"
           fill
           className="hidden dark:block object-contain object-bottom"
@@ -56,7 +56,7 @@ const Contact = () => {
         <Image
           width={260}
           height={300}
-          src="/images/shape/shape-04.png"
+          src="/wids-2025/images/shape/shape-04.png"
           alt="Illustration"
           className="rounded-md"
         />
