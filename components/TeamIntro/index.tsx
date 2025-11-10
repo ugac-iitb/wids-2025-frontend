@@ -11,7 +11,7 @@ const TeamIntro = () => {
   const [teamdata, setTeamData] = useState<TeamMember[]>([]);
 
   useEffect(() => {
-    fetch("/data/teamdata.json")
+    fetch("/wids-2025/data/teamdata.json")
       .then((res) => res.json())
       .then((data) => setTeamData(data))
       .catch((err) => console.error("Error loading team data:", err));
