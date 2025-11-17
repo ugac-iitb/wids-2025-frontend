@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import menuData from "./menuData";
+import { checkIsMentor } from "@/lib/api";
 import { authEvents } from "@/app/utils/authEvent";
 import { API_URL } from "@/lib/constants";
 import { clientID, redirectURI } from "@/lib/constants";
@@ -63,13 +64,28 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const [isMentor, setIsMentor] = useState(false);
   const { user, logout } = useAuth();
-  const router = useRouter();
-  const path = usePathname();
 
-  const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
-    redirectURI
-  )}&state=some_state`;
+  const pathUrl = usePathname();
+
+  // Build the Gymkhana OAuth URL with debug logging
+  const getAuthUrl = () => {
+    const redirectUri = 'http://localhost:3000/process-login/';
+    // Enhanced debug logging
+    console.log('OAuth Debug Info:');
+    console.log('1. Raw redirect URI:', redirectUri);
+    console.log('2. Encoded redirect URI:', encodeURIComponent(redirectUri));
+    console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectUri)}&state=some_state`);
+    
+    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
+      redirectUri
+    )}&state=some_state`;
+  };
+
+  const authUrl = getAuthUrl();
+
+  const handleStickyMenu = () => setStickyMenu(window.scrollY >= 80);
 
   useEffect(() => {
     const handleScroll = () => setStickyMenu(window.scrollY >= 80);
@@ -202,7 +218,27 @@ const Header = () => {
               {item.title}
             </Link>
           ))}
-          {/* 🔥 Removed user details + logout from here */}
+
+          {/* Auth Button inside Mobile Menu */}
+          {!user ? (
+            <a
+              href={authUrl}
+              className="rounded-full bg-[#6A6FDB] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
+              onClick={() => setNavigationOpen(false)}
+            >
+              Login
+            </a>
+          ) : (
+            <button
+              onClick={() => {
+                logout();
+                setNavigationOpen(false);
+              }}
+              className="rounded-full bg-[#054066] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
       )}
     </header>
