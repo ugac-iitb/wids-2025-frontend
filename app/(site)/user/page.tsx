@@ -5,6 +5,14 @@ import { User } from "@/types/user";
 import UserDetails from "@/components/UserDetails";
 import { authEvents } from "@/app/utils/authEvent";
 import { useRouter } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "WiDS-User Page",
+
+  // other metadata
+  description: "This page shows user details after login"
+};
 
 export default function UserPage() {
   const [user, setUser] = useState<User | null>(null);

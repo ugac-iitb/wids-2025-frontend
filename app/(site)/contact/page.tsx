@@ -5,7 +5,7 @@ import FeedbackForm from "@/components/FeedbackForm";
 
 
 export const metadata: Metadata = {
-  title: "Contact Page",
+  title: "WiDS-Contact Page",
 
   // other metadata
   description: "This is Contact page for Analytics Club"

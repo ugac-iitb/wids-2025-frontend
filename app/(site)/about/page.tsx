@@ -1,5 +1,12 @@
-'use client';
 import React from 'react';
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "WiDS-About Page",
+
+  // other metadata
+  description: "This page is about Analytics Club"
+};
 
 const AboutPage = () => {
   const events = [

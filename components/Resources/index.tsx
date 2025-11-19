@@ -9,7 +9,7 @@ const Resource = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("/data/resources.json");
+      const res = await fetch("/wids-2025/data/resources.json");
       const data = await res.json();
       setResources(data);
     };

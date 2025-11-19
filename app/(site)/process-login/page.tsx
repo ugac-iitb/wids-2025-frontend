@@ -4,6 +4,15 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { authEvents } from "@/app/utils/authEvent";
 import { API_URL } from "@/lib/constants";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "WiDS-Processing Login",
+
+  // other metadata
+  description: "This is page for processing login"
+};
 
 export default function ProcessLogin() {
   const searchParams = useSearchParams();

@@ -2,7 +2,7 @@ import Resource from "@/components/Resources";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Resources Page",
+  title: "WiDS-Resources Page",
 
   // other metadata
   description: "This is Resources page for Analytics Club"
