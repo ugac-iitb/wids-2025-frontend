@@ -1,38 +1,52 @@
 [
   {
     "_id": 1,
-    "resource_name": "Interview Preparation Booklet for Analytics",
-    "resource_link": "https://drive.google.com/file/d/1w-1zKQ6UUam5sxAXinlETkSLQDdJJb-x/view",
-    "image_url": "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png"
+    "resource_name": "Internship Preparation Bootcamps for Analytics and Quant Profiles",
+    "resource_link": "https://amusing-reply-35b.notion.site/Internship-Preparation-Bootcamps-2033a341c83b802fa31fda33770c9b53?pvs=73"
   },
   {
     "_id": 2,
-    "resource_name": "Internship Preparation Bootcamps for Analytics and Quant Profiles",
-    "resource_link": "https://amusing-reply-35b.notion.site/Internship-Preparation-Bootcamps-2033a341c83b802fa31fda33770c9b53?pvs=73",
-    "image_url": "https://www.notion.so/front-static/logo-ios.png"
+    "resource_name": "Business Analytics Casebook",
+    "resource_link": "https://drive.google.com/file/d/1Fu26GmDer62qq6dUsKOHCn4ztLBM_HQC/view?usp=sharing"
   },
   {
     "_id": 3,
-    "resource_name": "Business Analytics Casebook",
-    "resource_link": "https://drive.google.com/file/d/1Fu26GmDer62qq6dUsKOHCn4ztLBM_HQC/view?usp=sharing",
-    "image_url": "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png"
+    "resource_name": "Deep Learning Bootcamp - Natural Language Processing (NLP) Track",
+    "resource_link": "https://fuschia-hardboard-d83.notion.site/Natural-Language-Processing-NLP-11cbdcdb181f80748413da9c2951ba0c"
   },
   {
     "_id": 4,
-    "resource_name": "Deep Learning Bootcamp - Natural Language Processing (NLP) Track",
-    "resource_link": "https://fuschia-hardboard-d83.notion.site/Natural-Language-Processing-NLP-11cbdcdb181f80748413da9c2951ba0c",
-    "image_url": "https://www.notion.so/front-static/logo-ios.png"
+    "resource_name": "Deep Learning Bootcamp - Computer Vision (CV) Track",
+    "resource_link": "https://viridian-submarine-d74.notion.site/Computer-Vision-CV-11c6d54b585f80d18c38fb80b28b01af"
   },
   {
     "_id": 5,
-    "resource_name": "Deep Learning Bootcamp - Computer Vision (CV) Track",
-    "resource_link": "https://viridian-submarine-d74.notion.site/Computer-Vision-CV-11c6d54b585f80d18c38fb80b28b01af",
-    "image_url": "https://www.notion.so/front-static/logo-ios.png"
+    "resource_name": "Machine Learning Booklet",
+    "resource_link": "https://drive.google.com/file/d/1gf96XHPY2BFSUMLaVHO4q7GTmt1I8wF8/view?usp=sharing"
   },
   {
     "_id": 6,
-    "resource_name": "Machine Learning Booklet",
-    "resource_link": "https://drive.google.com/file/d/1gf96XHPY2BFSUMLaVHO4q7GTmt1I8wF8/view?usp=sharing",
-    "image_url": "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png"
+    "resource_name": "STRATIFY - A Business Analytics BootCamp",
+    "resource_link": "https://docs.google.com/document/d/1G0-1cu6kIoviO0TbDq0bhs7wPblcLzfijvvwhjj4Dj0/edit?usp=drive_link"
+  },
+  {
+    "_id": 7,
+    "resource_name": "Customizing LLMs with RAG and Finetuning - Presentation",
+    "resource_link": "https://docs.google.com/presentation/d/1DoQtZWDXuEWV4qB5BDYV7f-yRg8_Wlpr/edit?usp=drive_link&ouid=105186064362684300807&rtpof=true&sd=true"
+  },
+  {
+    "_id": 8,
+    "resource_name": "Masters in CS and DS",
+    "resource_link": "https://drive.google.com/drive/folders/1lkYwqFdRdhPSdPVDrkofvCJ3GtONsPEj?usp=drive_link"
+  },
+  {
+    "_id": 9,
+    "resource_name": "Big Data Handling with Excel and SQL",
+    "resource_link": "https://docs.google.com/document/d/1C7hkUNgjM6ywJxxs3DBs5q9M2Czuiz5-D12Vy3VgQG0/edit?usp=drive_link"
+  },
+  {
+    "_id": 10,
+    "resource_name": "Data Science Fundamentals with Python",
+    "resource_link": "https://drive.google.com/drive/folders/1u1ltJ-xgsOwCw4GQJQFVWL1UoEaIVMW0?usp=drive_link"
   }
 ]

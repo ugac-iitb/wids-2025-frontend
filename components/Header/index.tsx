@@ -68,6 +68,8 @@ const Header = () => {
   const { user, logout } = useAuth();
 
   const pathUrl = usePathname();
+  const router = useRouter();
+  const path = pathUrl || "/";
 
   // Build the Gymkhana OAuth URL with debug logging
   const getAuthUrl = () => {
@@ -224,7 +226,7 @@ const Header = () => {
             <a
               href={authUrl}
               className="rounded-full bg-[#6A6FDB] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
-              onClick={() => setNavigationOpen(false)}
+              onClick={() => setNavOpen(false)}
             >
               Login
             </a>
@@ -232,7 +234,7 @@ const Header = () => {
             <button
               onClick={() => {
                 logout();
-                setNavigationOpen(false);
+                setNavOpen(false);
               }}
               className="rounded-full bg-[#054066] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
             >

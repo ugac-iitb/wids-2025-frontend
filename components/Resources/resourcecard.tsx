@@ -5,11 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const ResourceCard = ({ resource }: { resource: ResourceItem }) => {
-  const { resource_name, resource_link, image_url } = resource;
-  const safeSrc =
-    typeof image_url === "string" && image_url.trim().length > 0
-      ? image_url.trim()
-      : "/wids-2025/images/placeholder.png";
+  const { resource_name, resource_link} = resource;
 
   return (
     <motion.a
@@ -34,16 +30,10 @@ const ResourceCard = ({ resource }: { resource: ResourceItem }) => {
     >
       {/* IMAGE */}
       <div className="relative w-full h-44 sm:h-48 md:h-52 lg:h-48 xl:h-52 overflow-hidden flex items-center justify-center bg-[#1A141C]">
-        <Image
-          src={safeSrc}
-          alt={resource_name}
-          fill
-          className="object-contain transition-transform duration-500 hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = "/wids-2025/images/placeholder.png";
-          }}
+        <img
+          src={`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(resource_link)}`}
+          alt="Resource preview"
+          className="w-32 h-32 rounded object-cover"
         />
       </div>
 
