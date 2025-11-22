@@ -65,7 +65,8 @@ const ResourceCard = ({ resource }: { resource: ResourceItem }) => {
       whileInView="visible"
       transition={{ duration: 0.5, delay: 0.08 }}
       viewport={{ once: true }}
-      className="flex flex-col overflow-hidden rounded-xl border border-transparent bg-gradient-to-b from-[#0f0b10] to-[#121018] hover:from-[#14121A] hover:to-[#15141A] transform transition-shadow duration-200 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+      className="flex flex-col overflow-hidden rounded-xl border border-transparent bg-gradient-to-b from-[#0f0b10] to-[#121018] hover:from-[#14121A] hover:to-[#15141A] transform transition-shadow duration-200 hover:-translate-y-1 cursor-pointer
+                 hover:shadow-[0_8px_40px_rgba(99,102,241,0.14),0_2px_10px_rgba(99,102,241,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30"
       aria-label={`Open resource: ${resource_name}`}
     >
       {/* Header: favicon / placeholder + domain */}
