@@ -60,6 +60,7 @@ const Project = () => {
 
         const data = await fetchJSON(`${API}/api/project`);
         setProjects(Array.isArray(data?.items) ? data.items : []);
+        console.log("Projects loaded:", data?.items?.length || 0);
       } catch (err: any) {
         console.error("Projects load error:", err);
         setError(err?.message || "Failed to fetch projects.");
