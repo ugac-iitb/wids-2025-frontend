@@ -73,15 +73,14 @@ const Header = () => {
 
   // Build the Gymkhana OAuth URL with debug logging
   const getAuthUrl = () => {
-    const redirectUri = 'http://localhost:3000/process-login/';
     // Enhanced debug logging
     console.log('OAuth Debug Info:');
-    console.log('1. Raw redirect URI:', redirectUri);
-    console.log('2. Encoded redirect URI:', encodeURIComponent(redirectUri));
-    console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectUri)}&state=some_state`);
+    console.log('1. Raw redirect URI:', redirectURI);
+    console.log('2. Encoded redirect URI:', encodeURIComponent(redirectURI));
+    console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectURI)}&state=some_state`);
     
-    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=7fd2hw5HewaGKKDGzsWghCpcBonwe5ytqsNPH0I3&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
-      redirectUri
+    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
+      redirectURI
     )}&state=some_state`;
   };
 
