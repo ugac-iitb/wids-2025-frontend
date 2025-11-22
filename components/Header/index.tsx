@@ -79,9 +79,9 @@ const Header = () => {
     console.log('2. Encoded redirect URI:', encodeURIComponent(redirectURI));
     console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectURI)}&state=some_state`);
     
-    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(
-      redirectURI
-    )}&state=some_state`;
+    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
+    redirectURI
+  )}&state=some_state`;
   };
 
   const authUrl = getAuthUrl();
