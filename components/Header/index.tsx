@@ -63,6 +63,7 @@ const Header = () => {
   const [stickyMenu, setStickyMenu] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState(menuData);
 
   const [isMentor, setIsMentor] = useState(false);
   const { user, logout } = useAuth();
@@ -94,6 +95,40 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const updateMentorMenu = () => {
+      const storedUser = localStorage.getItem("user");
+
+      let isMentorFlag = false;
+
+      if (storedUser) {
+        try {
+          const userObj = JSON.parse(storedUser);
+          isMentorFlag = Boolean(userObj.is_mentor);
+          setIsMentor(isMentorFlag);
+        } catch (err) {
+          console.error("Invalid user JSON in localStorage");
+          setIsMentor(false);
+        }
+      } else {
+        setIsMentor(false);
+      }
+
+      // Now update the menu based on isMentorFlag
+      if (isMentorFlag) {
+        setMenuItems(menuData);
+      } else {
+        setMenuItems(menuData.filter(item => item.path !== "/mentor"));
+      }
+    };
+
+    updateMentorMenu();
+  }, [user]);  // Runs again on logout
+
+
+
+
+
   return (
     <header
       className={`fixed left-0 top-0 z-[99999] w-full py-4 transition duration-200 ${
@@ -120,7 +155,7 @@ const Header = () => {
 
         {/* Menu (Desktop) */}
         <nav className="hidden xl:flex items-center gap-10 text-[#E7E3E5]">
-          {menuData.map((item, i) => (
+          {menuItems.map((item, i) => (
             <Link
               key={i}
               href={item.path}
@@ -207,7 +242,7 @@ const Header = () => {
       {/* Mobile Navigation Dropdown */}
       {navOpen && (
         <div className="xl:hidden bg-[#1A141C] text-[#E7E3E5] flex flex-col items-center gap-5 p-6 border-t border-white/10">
-          {menuData.map((item, i) => (
+          {menuItems.map((item, i) => (
             <Link
               key={i}
               href={item.path}
