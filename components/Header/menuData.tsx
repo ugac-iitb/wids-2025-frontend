@@ -27,12 +27,18 @@ const menuData: Menu[] = [
   },
   {
     id: 5,
+    title: "Mentor",
+    newTab: false,
+    path: "/mentor",
+  },
+  {
+    id: 6,
     title: "Resources",
     newTab: false,
     path: "/resources",
   },
   {
-    id: 6,
+    id: 7,
     title: "Contact Us",
     newTab: false,
     path: "/contact",

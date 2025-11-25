@@ -89,20 +89,7 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
         <p className="text-gray-300 mb-6 leading-relaxed">{project.project_description}</p>
 
         <div className="flex flex-wrap justify-center items-center gap-4 mt-4 text-center">
-          {project.resources_link ? (
-            <a
-              href={project.resources_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 hover:bg-blue-500/20 transition-all duration-300"
-            >
-              + View Resources
-            </a>
-          ) : (
-            <span className="px-5 py-2.5 text-sm rounded-full font-medium border border-gray-600/40 bg-zinc-800/30 text-gray-400">
-              No resources
-            </span>
-          )}
+
 
           {/* Wishlist button */}
           <button

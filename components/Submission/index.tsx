@@ -204,7 +204,7 @@ const SubmissionList = () => {
   // 🔹 Already submitted view (read-only)
   if (submitted) {
     return (
-      <section className="min-h-screen flex flex-col justify-center items-center bg-[#1A141C] text-center px-4 mt-30">
+      <section className="min-h-screen flex flex-col justify-center items-center bg-[#1A141C] text-center px-4 mt-15">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

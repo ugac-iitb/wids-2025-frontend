@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import menuData from "./menuData";
+import { checkIsMentor } from "@/lib/api";
 import { authEvents } from "@/app/utils/authEvent";
 import { API_URL } from "@/lib/constants";
 import { clientID, redirectURI } from "@/lib/constants";
@@ -62,20 +63,71 @@ const Header = () => {
   const [stickyMenu, setStickyMenu] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState(menuData);
 
+  const [isMentor, setIsMentor] = useState(false);
   const { user, logout } = useAuth();
-  const router = useRouter();
-  const path = usePathname();
 
-  const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
+  const pathUrl = usePathname();
+  const router = useRouter();
+  const path = pathUrl || "/";
+
+  // Build the Gymkhana OAuth URL with debug logging
+  const getAuthUrl = () => {
+    // Enhanced debug logging
+    console.log('OAuth Debug Info:');
+    console.log('1. Raw redirect URI:', redirectURI);
+    console.log('2. Encoded redirect URI:', encodeURIComponent(redirectURI));
+    console.log('3. Full OAuth URL about to be used:', `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic&redirect_uri=${encodeURIComponent(redirectURI)}&state=some_state`);
+    
+    return `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
     redirectURI
   )}&state=some_state`;
+  };
+
+  const authUrl = getAuthUrl();
+
+  const handleStickyMenu = () => setStickyMenu(window.scrollY >= 80);
 
   useEffect(() => {
     const handleScroll = () => setStickyMenu(window.scrollY >= 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const updateMentorMenu = () => {
+      const storedUser = localStorage.getItem("user");
+
+      let isMentorFlag = false;
+
+      if (storedUser) {
+        try {
+          const userObj = JSON.parse(storedUser);
+          isMentorFlag = Boolean(userObj.is_mentor);
+          setIsMentor(isMentorFlag);
+        } catch (err) {
+          console.error("Invalid user JSON in localStorage");
+          setIsMentor(false);
+        }
+      } else {
+        setIsMentor(false);
+      }
+
+      // Now update the menu based on isMentorFlag
+      if (isMentorFlag) {
+        setMenuItems(menuData);
+      } else {
+        setMenuItems(menuData.filter(item => item.path !== "/mentor"));
+      }
+    };
+
+    updateMentorMenu();
+  }, [user]);  // Runs again on logout
+
+
+
+
 
   return (
     <header
@@ -103,7 +155,7 @@ const Header = () => {
 
         {/* Menu (Desktop) */}
         <nav className="hidden xl:flex items-center gap-10 text-[#E7E3E5]">
-          {menuData.map((item, i) => (
+          {menuItems.map((item, i) => (
             <Link
               key={i}
               href={item.path}
@@ -190,7 +242,7 @@ const Header = () => {
       {/* Mobile Navigation Dropdown */}
       {navOpen && (
         <div className="xl:hidden bg-[#1A141C] text-[#E7E3E5] flex flex-col items-center gap-5 p-6 border-t border-white/10">
-          {menuData.map((item, i) => (
+          {menuItems.map((item, i) => (
             <Link
               key={i}
               href={item.path}
@@ -202,7 +254,27 @@ const Header = () => {
               {item.title}
             </Link>
           ))}
-          {/* 🔥 Removed user details + logout from here */}
+
+          {/* Auth Button inside Mobile Menu */}
+          {!user ? (
+            <a
+              href={authUrl}
+              className="rounded-full bg-[#6A6FDB] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
+              onClick={() => setNavOpen(false)}
+            >
+              Login
+            </a>
+          ) : (
+            <button
+              onClick={() => {
+                logout();
+                setNavOpen(false);
+              }}
+              className="rounded-full bg-[#054066] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
       )}
     </header>

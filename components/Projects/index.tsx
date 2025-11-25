@@ -292,26 +292,3 @@ const Project = () => {
 };
 
 export default Project;
-
-// // how to add same global filtering logic to my projects page too ?
-// // perhaps lift the state up to a common parent component ? 
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import { motion } from "framer-motion";
-// import ProjectCard from "./projectcard";
-// import { ProjectItem } from "@/types/projectitem";
-
-// const Project = () => {
-//   const [projects, setProjects] = useState<ProjectItem[]>([]);
-//   const [selectedDomain, setSelectedDomain] = useState<string>("All");
-//   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("All");
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       // Fetch all projects and wishlist
-//       const [projectsRes, wishlistRes] = await Promise.all([
-//         fetch("/data/projects.json"),
-//         fetch("/data/wishlist.json")
-//       ]);
-      
-//       const projectsData = await projectsRes.json();
