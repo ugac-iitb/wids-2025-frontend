@@ -11,7 +11,7 @@ const SelectionProcedure = () => {
       number: "01",
       title: "Application for Projects",
       description: "Please fill in your general motivation to apply and your previous work experience in the application form.",
-      deadline: "11.59 PM on 27th November ‘25.",
+      deadline: "11.59 PM on 30th November ‘25.",
       delay: 0.2,
     },
     {
