@@ -14,7 +14,7 @@ const faqData: FAQ[] = [
   {
     id: 3,
     quest: "What is the duration of WiDS?",
-    ans: "What is the duration of WiDS? The duration mentioned on the projects is tentatively a month. Starting in the 1st week of December 2024 and ending in 1st week of January 2025.",
+    ans: "The duration mentioned on the projects is tentatively a month. Starting in the 1st week of December 2025 and ending in 1st week of January 2026.",
   },
   {
     id: 4,
@@ -25,6 +25,23 @@ const faqData: FAQ[] = [
     id: 5,
     quest: "In case of any query, what is supposed to be done?",
     ans: "Please contact Manager Analytics Club or any of the WiDS team members whose details you can find on the contact tab."
+  }
+  , {
+    id: 6,
+    quest: "What is the duration and schedule of the bootcamp?",
+    ans: "The Data Science Bootcamp runs for 3 weeks during the first three weeks of December. The program blends self-paced online resources with interactive live online sessions, ensuring plenty of hands-on assignments. This bootcamp is supplementary and is meant to be done along with the WiDS projects."
+  }, {
+    id: 7,
+    quest: "Are there any prerequisites or required skills to join the bootcamp?",
+    ans: "No prerequisites! This beginner-level bootcamp is designed for anyone interested in data science. It’s a perfect starting point and also serves as a supplementary learning experience for participants of the WiDS Project."
+  }, {
+    id: 8,
+    quest: "What topics will be covered in the bootcamp?",
+    ans: "We’ll take you step by step through: The basics of Statistics and Python; Exploratory Data Analysis (EDA); Fundamentals of Machine Learning (both supervised & unsupervised learning models); and an introduction to ensemble methods."
+  }, {
+    id: 9,
+    quest: "Should I take the bootcamp if I didn’t get a WiDS Project?",
+    ans: "Absolutely! Even if you weren’t assigned a WiDS project, this bootcamp is a fantastic way to get started with data science. You’ll have the opportunity to complete assignments and hands-on projects that will kickstart your journey in DS."
   }
 ];
 
