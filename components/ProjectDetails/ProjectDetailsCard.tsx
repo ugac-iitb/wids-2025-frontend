@@ -32,7 +32,6 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
         {project.project_title}
       </h2>
 
-
       {/* Image + Info */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="w-full rounded-xl overflow-hidden bg-[#111013] shadow-inner">
@@ -79,6 +78,26 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
               <div className="text-xs text-gray-400">Pre-Requisites</div>
               <div className="font-medium">{project.pre_requisites || "—"}</div>
             </div>
+
+            {/* New: Mentor */}
+            <div>
+              <div className="text-xs text-gray-400">Mentor</div>
+              <div className="font-medium">
+                {project.mentor
+                  ? `${project.mentor.name} (${project.mentor.roll_no || "—"})`
+                  : "—"}
+              </div>
+            </div>
+
+            {/* New: Co-Mentor */}
+            <div>
+              <div className="text-xs text-gray-400">Co-Mentor</div>
+              <div className="font-medium">
+                {project.co_mentor
+                  ? `${project.co_mentor.name} (${project.co_mentor.roll_no || "—"})`
+                  : "—"}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -89,8 +108,6 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
         <p className="text-gray-300 mb-6 leading-relaxed">{project.project_description}</p>
 
         <div className="flex flex-wrap justify-center items-center gap-4 mt-4 text-center">
-
-
           {/* Wishlist button */}
           <button
             onClick={onWishlistToggle}
