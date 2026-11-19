@@ -139,14 +139,14 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-4">
           <Image
-            src="/wids-2025/images/logo/ugac.png"
+            src="/WiDS/images/logo/ugac.png"
             alt="UGAC"
             width={80}
             height={40}
             className="brightness-0 invert"
           />
           <Image
-            src="/wids-2025/images/logo/analyticsclub-dark.png"
+            src="/WiDS/images/logo/analyticsclub-dark.png"
             alt="Analytics Club"
             width={40}
             height={40}
@@ -196,7 +196,7 @@ const Header = () => {
                 className="flex items-center focus:outline-none"
               >
                 <Image
-                  src={user.avatar || "/wids-2025/images/user/avatar.png"}
+                  src={user.avatar || "/WiDS/images/user/avatar.png"}
                   alt="User Avatar"
                   width={40}
                   height={40}
