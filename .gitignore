@@ -14,7 +14,7 @@
 
 # contentlayer
 .contentlayer
-
+.env.production
 # production
 /build
 
