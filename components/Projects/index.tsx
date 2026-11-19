@@ -202,7 +202,7 @@ const Project = () => {
             My Projects
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            View your wishlisted projects for Winter in Data Science 2025
+            View your wishlisted projects for Winter in Data Science 2026
           </p>
         </motion.div>
 

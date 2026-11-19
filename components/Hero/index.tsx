@@ -47,7 +47,7 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 animate-fade-in-up">
             <span className="block">WELCOME TO</span>
             <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mt-2">
-              WINTER IN DATA SCIENCE 2025
+              WINTER IN DATA SCIENCE 2026
             </span>
           </h1>
 

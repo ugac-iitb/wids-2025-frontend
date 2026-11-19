@@ -25,12 +25,12 @@ const Footer = () => {
               viewport={{ once: true }}
               className="animate_top flex flex-col items-center text-center space-y-2"
             >
-              <p className="text-xl font-semibold text-[#E7E3E5]">WIDS 2025</p>
+              <p className="text-xl font-semibold text-[#E7E3E5]">WIDS 2026</p>
               <p className="text-[#6D6D71]">
                 Dive deep in the realm of Academic and Industry related research projects
               </p>
               <p className="text-[#E7E3E5]">
-                Created with <span className="text-[#6A6FDB]">❤</span> by UGAC Web Team, 2025-2026
+                Created with <span className="text-[#6A6FDB]">❤</span> by UGAC Web Team, 2026-2027
               </p>
               <p className="text-[#6D6D71]">&copy; {new Date().getFullYear()} UGAC, IIT Bombay</p>
             </motion.div>

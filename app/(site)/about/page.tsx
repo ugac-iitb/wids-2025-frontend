@@ -4,22 +4,22 @@ import React from 'react';
 const AboutPage = () => {
   const events = [
     {
-      date: '1st August, 2025',
+      date: '1st August, 2026',
       title: 'Stratify',
       status: 'past'
     },
     {
-      date: '21st September, 2025',
+      date: '21st September, 2026',
       title: 'Codelite Analytics',
       status: 'past'
     },
     {
-      date: '17th October, 2025',
+      date: '17th October, 2026',
       title: 'Deep Learning Bootcamp',
       status: 'past'
     },
     {
-      date: '1st December,2025',  
+      date: '1st December, 2026',  
       title: 'WiDS 5.0',
       status: 'upcoming'
     },

@@ -11,7 +11,7 @@ const SelectionProcedure = () => {
       number: "01",
       title: "Application for Projects",
       description: "Please fill in your general motivation to apply and your previous work experience in the application form.",
-      deadline: "11.59 PM on 27th November ‘25.",
+      deadline: "11.59 PM on 27th November ‘26.",
       delay: 0.2,
     },
     {
@@ -19,7 +19,7 @@ const SelectionProcedure = () => {
       number: "02",
       title: "SOP shortlisting by WiDS team",
       description: "This will help the mentors of WiDS gauge whether a student is really driven and will see the project through. Only one project will be allocated per student.",
-      deadline: "1st December ‘25 to 6th December ‘25",
+      deadline: "1st December ‘26 to 6th December ‘26",
       delay: 0.4,
     },
     {
@@ -27,7 +27,7 @@ const SelectionProcedure = () => {
       number: "03",
       title: "Mentor Allocation and Project Kick-off",
       description: "Mentors will guide the mentees on material to refer and a tentative action plan. Mentor feedback forms will be released towards the end of December.",
-      deadline: "1st Week of December ‘25- 3rd Week of January ‘26",
+      deadline: "1st Week of December ‘26- 3rd Week of January ‘27",
       delay: 0.6,
     },
   ];
@@ -49,7 +49,7 @@ const SelectionProcedure = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-            WiDS 2025 Selection Procedure
+            WiDS 2026 Selection Procedure
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Note: The timelines are tentative and subject to change based on the guidance of the project mentors.

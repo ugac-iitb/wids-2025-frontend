@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { authEvents } from "@/app/utils/authEvent";
 import { API_URL } from "@/lib/constants";
 
@@ -9,6 +9,7 @@ export default function ProcessLoginClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const code = searchParams.get("code");
+  const hasExecuted = useRef(false);
 
   const [responseMsg, setResponseMsg] = useState("Processing login...");
 
@@ -20,6 +21,9 @@ export default function ProcessLoginClient() {
       setResponseMsg("No authorization code found.");
       return;
     }
+
+    if (hasExecuted.current) return;
+    hasExecuted.current = true;
 
     const sendCodeToBackend = async () => {
       try {

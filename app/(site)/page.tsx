@@ -8,7 +8,7 @@ import SelectionProcedure from "@/components/SelectionProcedure";
 export const metadata: Metadata = {
   title: "WiDS-Home",
   // other metadata
-  description: "Winter in Data Science 2025"
+  description: "Winter in Data Science 2026"
 };
 
 export default function Home() {

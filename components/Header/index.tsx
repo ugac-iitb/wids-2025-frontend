@@ -169,7 +169,25 @@ const Header = () => {
         </nav>
 
         {/* Right side: Login or Avatar + Hamburger */}
-        <div className="flex items-center gap-4 relative">
+        <div className="flex items-center gap-3 sm:gap-4 relative">
+          {/* Distinct Standout Mentor Button - Just left to Login / Avatar */}
+          <Link
+            href="/mentor"
+            className={`relative inline-flex items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-all duration-300 shadow-sm group ${
+              path === "/mentor"
+                ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_0_20px_rgba(147,51,234,0.5)] border border-purple-400"
+                : "bg-gradient-to-r from-purple-950/60 via-indigo-950/50 to-purple-900/60 text-purple-200 border border-purple-500/50 hover:border-purple-400 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:scale-105 active:scale-95"
+            }`}
+          >
+            <span className="flex items-center gap-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              </span>
+              <span>Mentor Portal</span>
+            </span>
+          </Link>
+
           {/* Auth Section */}
           {user ? (
             <>
@@ -254,6 +272,15 @@ const Header = () => {
               {item.title}
             </Link>
           ))}
+
+          {/* Distinct Standout Mentor Button inside Mobile Menu */}
+          <Link
+            href="/mentor"
+            className="w-full text-center py-2.5 px-6 rounded-full font-medium text-sm transition-all duration-300 bg-gradient-to-r from-purple-900/60 to-indigo-900/60 text-purple-200 border border-purple-500/50 hover:text-white"
+            onClick={() => setNavOpen(false)}
+          >
+            ✦ Mentor Portal
+          </Link>
 
           {/* Auth Button inside Mobile Menu */}
           {!user ? (
