@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { API_URL, clientID, redirectURI } from "@/lib/constants";
 import toast from "react-hot-toast";
 
@@ -61,7 +61,11 @@ const MentorPortal = () => {
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submittedSuccess, setSubmittedSuccess] = useState(false);
+  const [isSavingDraft, setIsSavingDraft] = useState(false);
+  const [isFinalSubmitted, setIsFinalSubmitted] = useState(false);
+  const [submittedAt, setSubmittedAt] = useState<string | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [autoSaveStatus, setAutoSaveStatus] = useState<string>("Draft auto-save ready");
 
   // Section 1: General Information
   const [ldapEmail, setLdapEmail] = useState("");
@@ -86,6 +90,12 @@ const MentorPortal = () => {
   const [numMentees, setNumMentees] = useState("");
   const [prerequisites, setPrerequisites] = useState("");
 
+  // Section 3: Mentor Information
+  const [pastProjectWork, setPastProjectWork] = useState("");
+  const [pythonMlExperience, setPythonMlExperience] = useState("");
+  const [projectResourcesLink, setProjectResourcesLink] = useState("");
+  const [commentsSuggestions, setCommentsSuggestions] = useState("");
+
   // Image Upload state
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -94,11 +104,15 @@ const MentorPortal = () => {
   const [driveUrl, setDriveUrl] = useState<string>(GDRIVE_FOLDER_URL);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const initialLoadDone = useRef(false);
 
   const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
     redirectURI
   )}&state=some_state`;
 
+  const draftKey = `wids_mentor_draft_${ldapEmail || "anonymous"}`;
+
+  // Initial Data Fetch & Load Draft
   useEffect(() => {
     (async () => {
       try {
@@ -118,18 +132,22 @@ const MentorPortal = () => {
 
         setIsLoggedIn(true);
 
-        // Pre-fill user data from auth profile
-        if (me?.user) {
-          if (me.user.email) setLdapEmail(me.user.email);
-          if (me.user.name) setName(me.user.name);
-          if (me.user.roll_no) setRollNo(me.user.roll_no);
-        }
+        const userLdap = me?.user?.email || "";
+        if (userLdap) setLdapEmail(userLdap);
+        if (me?.user?.name) setName(me.user.name);
+        if (me?.user?.roll_no) setRollNo(me.user.roll_no);
 
-        // Check if mentor registration was already submitted
+        // Fetch saved status / cloud draft from Backend
         try {
           const statusRes = await fetchJSON(`${API}/api/mentor/registration-status`);
           if (statusRes?.submitted && statusRes?.data) {
             const data = statusRes.data;
+
+            if (data.is_submitted) {
+              setIsFinalSubmitted(true);
+              setSubmittedAt(data.submitted_at);
+            }
+
             if (data.ldap_email) setLdapEmail(data.ldap_email);
             if (data.name) setName(data.name);
             if (data.roll_no) setRollNo(data.roll_no);
@@ -138,7 +156,7 @@ const MentorPortal = () => {
             if (data.academic_department) setAcademicDepartment(data.academic_department);
             if (data.co_mentor) setCoMentor(data.co_mentor);
 
-            // Handle year of study
+            // Year of study
             if (yearOptions.slice(0, 4).includes(data.year_of_study)) {
               setYearOfStudyChoice(data.year_of_study);
             } else if (data.year_of_study) {
@@ -146,7 +164,7 @@ const MentorPortal = () => {
               setYearOfStudyOther(data.year_of_study);
             }
 
-            // Handle degree
+            // Degree
             if (degreeOptions.slice(0, 7).includes(data.degree_enrolled)) {
               setDegreeChoice(data.degree_enrolled);
             } else if (data.degree_enrolled) {
@@ -154,7 +172,7 @@ const MentorPortal = () => {
               setDegreeOther(data.degree_enrolled);
             }
 
-            // Handle Section 2: Project Information
+            // Section 2
             if (data.project_title) setProjectTitle(data.project_title);
             if (data.project_description) setProjectDescription(data.project_description);
             if (Array.isArray(data.domains)) {
@@ -166,15 +184,55 @@ const MentorPortal = () => {
             }
             if (data.project_category) setProjectCategory(data.project_category);
             if (data.duration_weeks) setDurationWeeks(data.duration_weeks);
-            if (data.weekly_time_commitment)
-              setWeeklyTimeCommitment(data.weekly_time_commitment);
+            if (data.weekly_time_commitment) setWeeklyTimeCommitment(data.weekly_time_commitment);
             if (data.num_mentees) setNumMentees(data.num_mentees);
             if (data.prerequisites) setPrerequisites(data.prerequisites);
             if (data.image_name) setSavedImageName(data.image_name);
             if (data.project_image_url) setSavedImageUrl(data.project_image_url);
             if (data.image_drive_link) setDriveUrl(data.image_drive_link);
 
-            setSubmittedSuccess(true);
+            // Section 3
+            if (data.past_project_work) setPastProjectWork(data.past_project_work);
+            if (data.python_ml_experience) setPythonMlExperience(data.python_ml_experience);
+            if (data.project_resources_link) setProjectResourcesLink(data.project_resources_link);
+            if (data.comments_suggestions) setCommentsSuggestions(data.comments_suggestions);
+
+            setAutoSaveStatus(data.is_submitted ? "Application Finalized" : "Draft synced from account");
+          } else {
+            // If backend has no data, check local device storage for any draft
+            const localKey = `wids_mentor_draft_${userLdap || "anonymous"}`;
+            const rawDraft = localStorage.getItem(localKey);
+            if (rawDraft) {
+              try {
+                const draft = JSON.parse(rawDraft);
+                if (draft.nonLdapEmail) setNonLdapEmail(draft.nonLdapEmail);
+                if (draft.contactNumber) setContactNumber(draft.contactNumber);
+                if (draft.yearOfStudyChoice) setYearOfStudyChoice(draft.yearOfStudyChoice);
+                if (draft.yearOfStudyOther) setYearOfStudyOther(draft.yearOfStudyOther);
+                if (draft.academicDepartment) setAcademicDepartment(draft.academicDepartment);
+                if (draft.degreeChoice) setDegreeChoice(draft.degreeChoice);
+                if (draft.degreeOther) setDegreeOther(draft.degreeOther);
+                if (draft.coMentor) setCoMentor(draft.coMentor);
+
+                if (draft.projectTitle) setProjectTitle(draft.projectTitle);
+                if (draft.projectDescription) setProjectDescription(draft.projectDescription);
+                if (Array.isArray(draft.selectedDomains)) setSelectedDomains(draft.selectedDomains);
+                if (draft.projectCategory) setProjectCategory(draft.projectCategory);
+                if (draft.durationWeeks) setDurationWeeks(draft.durationWeeks);
+                if (draft.weeklyTimeCommitment) setWeeklyTimeCommitment(draft.weeklyTimeCommitment);
+                if (draft.numMentees) setNumMentees(draft.numMentees);
+                if (draft.prerequisites) setPrerequisites(draft.prerequisites);
+
+                if (draft.pastProjectWork) setPastProjectWork(draft.pastProjectWork);
+                if (draft.pythonMlExperience) setPythonMlExperience(draft.pythonMlExperience);
+                if (draft.projectResourcesLink) setProjectResourcesLink(draft.projectResourcesLink);
+                if (draft.commentsSuggestions) setCommentsSuggestions(draft.commentsSuggestions);
+
+                setAutoSaveStatus("Restored draft from device");
+              } catch (err) {
+                console.warn("Could not parse local draft", err);
+              }
+            }
           }
         } catch (e) {
           console.warn("Could not check registration status", e);
@@ -184,11 +242,183 @@ const MentorPortal = () => {
         setIsLoggedIn(false);
       } finally {
         setLoading(false);
+        initialLoadDone.current = true;
       }
     })();
   }, []);
 
+  // Save to LocalStorage immediately on state changes
+  useEffect(() => {
+    if (!initialLoadDone.current || isFinalSubmitted || !isLoggedIn) return;
+
+    const draftData = {
+      nonLdapEmail,
+      contactNumber,
+      yearOfStudyChoice,
+      yearOfStudyOther,
+      academicDepartment,
+      degreeChoice,
+      degreeOther,
+      coMentor,
+      projectTitle,
+      projectDescription,
+      selectedDomains,
+      projectCategory,
+      durationWeeks,
+      weeklyTimeCommitment,
+      numMentees,
+      prerequisites,
+      pastProjectWork,
+      pythonMlExperience,
+      projectResourcesLink,
+      commentsSuggestions,
+      savedAt: new Date().toISOString(),
+    };
+
+    localStorage.setItem(draftKey, JSON.stringify(draftData));
+    setAutoSaveStatus("Draft auto-saved on device");
+  }, [
+    nonLdapEmail,
+    contactNumber,
+    yearOfStudyChoice,
+    yearOfStudyOther,
+    academicDepartment,
+    degreeChoice,
+    degreeOther,
+    coMentor,
+    projectTitle,
+    projectDescription,
+    selectedDomains,
+    projectCategory,
+    durationWeeks,
+    weeklyTimeCommitment,
+    numMentees,
+    prerequisites,
+    pastProjectWork,
+    pythonMlExperience,
+    projectResourcesLink,
+    commentsSuggestions,
+    isFinalSubmitted,
+    isLoggedIn,
+    draftKey,
+  ]);
+
+  // Cloud Draft Auto-Save Function (called on blur or explicit click)
+  const saveCloudDraft = useCallback(
+    async (showToast = false) => {
+      if (!isLoggedIn || isFinalSubmitted || isSubmitting || isSavingDraft) return;
+
+      const finalYearOfStudy =
+        yearOfStudyChoice === "other" ? yearOfStudyOther.trim() : yearOfStudyChoice;
+      const finalDegree =
+        degreeChoice === "other" ? degreeOther.trim() : degreeChoice;
+
+      setIsSavingDraft(true);
+      setAutoSaveStatus("Saving draft to cloud...");
+
+      try {
+        const token = localStorage.getItem("access_token") ?? "";
+        const formData = new FormData();
+
+        formData.append("is_draft", "true");
+        formData.append("ldap_email", ldapEmail.trim());
+        formData.append("name", name.trim());
+        formData.append("roll_no", rollNo.trim());
+        formData.append("non_ldap_email", nonLdapEmail.trim());
+        formData.append("contact_number", contactNumber.trim());
+        formData.append("year_of_study", finalYearOfStudy);
+        formData.append("academic_department", academicDepartment.trim());
+        formData.append("degree_enrolled", finalDegree);
+        formData.append("co_mentor", coMentor);
+
+        formData.append("project_title", projectTitle.trim());
+        formData.append("project_description", projectDescription.trim());
+        formData.append("domains", JSON.stringify(selectedDomains));
+        formData.append("project_category", projectCategory);
+        formData.append("duration_weeks", durationWeeks);
+        formData.append("weekly_time_commitment", weeklyTimeCommitment.trim());
+        formData.append("num_mentees", numMentees.trim());
+        formData.append("prerequisites", prerequisites.trim());
+
+        formData.append("past_project_work", pastProjectWork.trim());
+        formData.append("python_ml_experience", pythonMlExperience.trim());
+        formData.append("project_resources_link", projectResourcesLink.trim());
+        formData.append("comments_suggestions", commentsSuggestions.trim());
+
+        if (imageFile) {
+          formData.append("project_image", imageFile);
+        }
+
+        const res = await fetch(`${API}/api/mentor/register`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "ngrok-skip-browser-warning": "true",
+          },
+          body: formData,
+        });
+
+        const data = await res.json();
+        if (res.ok && data?.ok) {
+          setAutoSaveStatus("Draft synced with cloud");
+          if (data.image_name) setSavedImageName(data.image_name);
+          if (data.image_url) setSavedImageUrl(data.image_url);
+          if (showToast) toast.success("Draft saved successfully to cloud!");
+        } else {
+          setAutoSaveStatus("Draft saved locally");
+        }
+      } catch (e) {
+        console.warn("Cloud draft save error:", e);
+        setAutoSaveStatus("Draft saved locally");
+      } finally {
+        setIsSavingDraft(false);
+      }
+    },
+    [
+      isLoggedIn,
+      isFinalSubmitted,
+      isSubmitting,
+      isSavingDraft,
+      yearOfStudyChoice,
+      yearOfStudyOther,
+      degreeChoice,
+      degreeOther,
+      ldapEmail,
+      name,
+      rollNo,
+      nonLdapEmail,
+      contactNumber,
+      academicDepartment,
+      coMentor,
+      projectTitle,
+      projectDescription,
+      selectedDomains,
+      projectCategory,
+      durationWeeks,
+      weeklyTimeCommitment,
+      numMentees,
+      prerequisites,
+      pastProjectWork,
+      pythonMlExperience,
+      projectResourcesLink,
+      commentsSuggestions,
+      imageFile,
+    ]
+  );
+
+  // Periodic Cloud Auto-Save (Every 45 seconds if changes occurred)
+  useEffect(() => {
+    if (!isLoggedIn || isFinalSubmitted) return;
+
+    const interval = setInterval(() => {
+      saveCloudDraft(false);
+    }, 45000);
+
+    return () => clearInterval(interval);
+  }, [isLoggedIn, isFinalSubmitted, saveCloudDraft]);
+
   const toggleDomain = (domain: string) => {
+    if (isFinalSubmitted) return;
     if (selectedDomains.includes(domain)) {
       setSelectedDomains(selectedDomains.filter((d) => d !== domain));
     } else {
@@ -201,6 +431,7 @@ const MentorPortal = () => {
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isFinalSubmitted) return;
     const file = e.target.files?.[0];
     if (file) {
       if (!file.type.startsWith("image/")) {
@@ -220,10 +451,12 @@ const MentorPortal = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Open confirmation modal before final submit
+  const handlePreSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isFinalSubmitted) return;
 
-    // Section 1 validation
+    // Validate Section 1
     const finalYearOfStudy =
       yearOfStudyChoice === "other" ? yearOfStudyOther.trim() : yearOfStudyChoice;
     const finalDegree =
@@ -262,7 +495,7 @@ const MentorPortal = () => {
       return;
     }
 
-    // Section 2 validation
+    // Validate Section 2
     if (!projectTitle.trim()) {
       toast.error("Please enter the Project Title.");
       return;
@@ -300,10 +533,38 @@ const MentorPortal = () => {
       return;
     }
 
+    // Validate Section 3
+    if (!pastProjectWork.trim()) {
+      toast.error("Please fill in question 1 in Section 3 (Past Project Work or 'No').");
+      return;
+    }
+    if (!pythonMlExperience.trim()) {
+      toast.error("Please fill in question 2 in Section 3 (Python/ML Experience).");
+      return;
+    }
+    if (!projectResourcesLink.trim()) {
+      toast.error("Please fill in question 3 in Section 3 (Project Resources Link).");
+      return;
+    }
+
+    setShowConfirmModal(true);
+  };
+
+  // Execute Final One-Time Submission
+  const handleFinalSubmit = async () => {
+    setShowConfirmModal(false);
     setIsSubmitting(true);
+
+    const finalYearOfStudy =
+      yearOfStudyChoice === "other" ? yearOfStudyOther.trim() : yearOfStudyChoice;
+    const finalDegree =
+      degreeChoice === "other" ? degreeOther.trim() : degreeChoice;
+
     try {
       const token = localStorage.getItem("access_token") ?? "";
       const formData = new FormData();
+
+      formData.append("is_draft", "false"); // Final submission!
 
       // Section 1
       formData.append("ldap_email", ldapEmail.trim());
@@ -326,7 +587,12 @@ const MentorPortal = () => {
       formData.append("num_mentees", numMentees.trim());
       formData.append("prerequisites", prerequisites.trim());
 
-      // File attachment
+      // Section 3
+      formData.append("past_project_work", pastProjectWork.trim());
+      formData.append("python_ml_experience", pythonMlExperience.trim());
+      formData.append("project_resources_link", projectResourcesLink.trim());
+      formData.append("comments_suggestions", commentsSuggestions.trim());
+
       if (imageFile) {
         formData.append("project_image", imageFile);
       }
@@ -343,11 +609,14 @@ const MentorPortal = () => {
       const data = await res.json();
 
       if (res.ok && data?.ok) {
-        toast.success("Mentor Registration and Project Idea submitted successfully!");
-        setSubmittedSuccess(true);
+        toast.success("Mentor Registration submitted and finalized successfully!");
+        setIsFinalSubmitted(true);
+        setSubmittedAt(new Date().toISOString());
+        setAutoSaveStatus("Application Finalized & Locked");
         if (data.image_name) setSavedImageName(data.image_name);
         if (data.image_url) setSavedImageUrl(data.image_url);
         if (data.image_drive_link) setDriveUrl(data.image_drive_link);
+        localStorage.removeItem(draftKey);
       } else {
         toast.error(data?.error || "Failed to submit registration.");
       }
@@ -369,7 +638,7 @@ const MentorPortal = () => {
           className="text-center"
         >
           <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-lg text-gray-300">Checking credentials, please wait...</p>
+          <p className="text-lg text-gray-300">Checking credentials & loading draft...</p>
         </motion.div>
       </section>
     );
@@ -404,7 +673,7 @@ const MentorPortal = () => {
             You're Not Logged In or Session Expired
           </h2>
           <p className="text-gray-300 mb-8 leading-relaxed">
-            Please log in to view and view the mentor portal
+            Please log in to view and fill the mentor portal
           </p>
           <a
             href={authUrl}
@@ -430,14 +699,12 @@ const MentorPortal = () => {
     );
   }
 
-  // Predicted image filename
   const predictedFileName = `${
     projectTitle.trim()
       ? projectTitle.trim().replace(/[\\/*?:"<>|]/g, "")
       : "Project Title"
   }.${imageFile ? imageFile.name.split(".").pop()?.toLowerCase() || "jpg" : "jpg"}`;
 
-  // CASE 2: User is logged in -> Render Mentor Registration Form
   return (
     <section className="px-4 md:px-8 lg:px-12 pt-28 pb-16 bg-gradient-to-b from-[#1A141C] via-[#21162d]/50 to-[#1A141C] min-h-screen text-[#E7E3E5] relative overflow-hidden">
       {/* Background glow effects */}
@@ -462,11 +729,51 @@ const MentorPortal = () => {
           </p>
         </motion.div>
 
+        {/* ======================================================== */}
+        {/* EXPLICIT NOTIFICATION CARDS: AUTO-SAVE & SUBMISSION POLICY */}
+        {/* ======================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="mb-8 grid sm:grid-cols-2 gap-4"
+        >
+          {/* Card 1: Auto-Save Active */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-blue-950/30 border border-blue-500/30 backdrop-blur-md flex items-start gap-3 shadow-lg">
+            <div className="p-2 rounded-xl bg-blue-500/20 text-blue-300 mt-0.5 shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-blue-200 text-sm">Automatic Progress Saving</p>
+              <p className="text-xs text-blue-300/80 mt-1 leading-relaxed">
+                Incompletely filled responses are saved automatically as a draft. You can close this tab and return anytime or log in tomorrow to complete your submission.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: One-Time Final Submission */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30 backdrop-blur-md flex items-start gap-3 shadow-lg">
+            <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300 mt-0.5 shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-amber-200 text-sm">One-Time Final Submission</p>
+              <p className="text-xs text-amber-300/80 mt-1 leading-relaxed">
+                Once submitted, your application is permanently locked and cannot be updated. Please review all details and resources thoroughly before submitting.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Mentorship Program Info & Guidelines Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-8 p-6 sm:p-8 rounded-3xl border border-purple-500/30 bg-[#1e152d]/70 backdrop-blur-md shadow-xl space-y-6 text-sm sm:text-base"
         >
           {/* Domains */}
@@ -543,29 +850,39 @@ const MentorPortal = () => {
           </div>
         </motion.div>
 
-        {/* Success Banner if already submitted */}
-        {submittedSuccess && (
+        {/* LOCKED BANNER (If already final submitted) */}
+        {isFinalSubmitted && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mb-8 p-5 sm:p-6 rounded-2xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 shadow-xl space-y-3"
+            className="mb-8 p-5 sm:p-6 rounded-2xl bg-emerald-950/50 border border-emerald-500/50 text-emerald-200 shadow-xl space-y-3"
           >
             <div className="flex items-start gap-3">
-              <div className="p-1.5 rounded-full bg-emerald-500/20 text-emerald-400 mt-0.5">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-300 mt-0.5 shrink-0">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-emerald-300 text-base">
-                  Registration Response Recorded!
+                <div className="flex items-center gap-2">
+                  <p className="font-bold text-emerald-200 text-base sm:text-lg">
+                    Application Submitted & Locked
+                  </p>
+                  <span className="text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full">
+                    Finalized
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-emerald-200/90 mt-1 leading-relaxed">
+                  Your mentor registration and project proposal have been successfully submitted and are currently under review by The Analytics Club. In accordance with the submission policy, further updates or modifications cannot be made.
                 </p>
-                <p className="text-xs sm:text-sm text-emerald-200/80 mt-1">
-                  Your mentor registration and project idea are saved in the WiDS database. You can review or update any information below.
-                </p>
+                {submittedAt && (
+                  <p className="text-xs text-emerald-300/80 mt-1.5 font-mono">
+                    Submitted on: {new Date(submittedAt).toLocaleString()}
+                  </p>
+                )}
                 {savedImageName && (
-                  <p className="text-xs text-emerald-300/90 mt-2 font-mono">
-                    Project Image Saved: <span className="font-semibold">{savedImageName}</span>
+                  <p className="text-xs text-emerald-300/90 mt-1 font-mono">
+                    Project Image: <span className="font-semibold">{savedImageName}</span>
                   </p>
                 )}
               </div>
@@ -594,10 +911,44 @@ const MentorPortal = () => {
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="p-6 sm:p-10 rounded-3xl border border-white/10 bg-[#1e1726]/80 backdrop-blur-xl shadow-2xl"
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="p-6 sm:p-10 rounded-3xl border border-white/10 bg-[#1e1726]/80 backdrop-blur-xl shadow-2xl relative"
         >
-          <form onSubmit={handleSubmit} className="space-y-10">
+          {/* Top Status Bar: Auto-Save Tracker */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-white/10">
+            <div className="flex items-center gap-2 text-xs">
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  isFinalSubmitted
+                    ? "bg-emerald-400"
+                    : isSavingDraft
+                    ? "bg-amber-400 animate-pulse"
+                    : "bg-blue-400 animate-pulse"
+                }`}
+              ></span>
+              <span className="text-gray-300 font-medium">{autoSaveStatus}</span>
+            </div>
+
+            {!isFinalSubmitted && (
+              <button
+                type="button"
+                onClick={() => saveCloudDraft(true)}
+                disabled={isSavingDraft}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white transition flex items-center gap-1.5"
+              >
+                {isSavingDraft ? (
+                  <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                  </svg>
+                )}
+                <span>Save Draft Now</span>
+              </button>
+            )}
+          </div>
+
+          <form onSubmit={handlePreSubmit} className="space-y-10">
 
             {/* ======================================================== */}
             {/* SECTION 1: GENERAL INFORMATION */}
@@ -623,10 +974,12 @@ const MentorPortal = () => {
                 <input
                   type="email"
                   required
+                  disabled={isFinalSubmitted}
                   value={ldapEmail}
                   onChange={(e) => setLdapEmail(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="youremail@iitb.ac.in"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -638,10 +991,12 @@ const MentorPortal = () => {
                 <input
                   type="text"
                   required
+                  disabled={isFinalSubmitted}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -653,10 +1008,12 @@ const MentorPortal = () => {
                 <input
                   type="text"
                   required
+                  disabled={isFinalSubmitted}
                   value={rollNo}
                   onChange={(e) => setRollNo(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="eg. xxBxxxx"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -668,10 +1025,12 @@ const MentorPortal = () => {
                 <input
                   type="email"
                   required
+                  disabled={isFinalSubmitted}
                   value={nonLdapEmail}
                   onChange={(e) => setNonLdapEmail(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. yourname@gmail.com"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -683,10 +1042,12 @@ const MentorPortal = () => {
                 <input
                   type="tel"
                   required
+                  disabled={isFinalSubmitted}
                   value={contactNumber}
                   onChange={(e) => setContactNumber(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. +91 9876543210"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -699,7 +1060,9 @@ const MentorPortal = () => {
                   {yearOptions.map((opt) => (
                     <label
                       key={opt}
-                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border cursor-pointer text-sm font-medium transition ${
+                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-sm font-medium transition ${
+                        isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                      } ${
                         yearOfStudyChoice === opt
                           ? "bg-purple-600/30 border-purple-400 text-white shadow-sm"
                           : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20"
@@ -709,6 +1072,7 @@ const MentorPortal = () => {
                         type="radio"
                         name="year_of_study"
                         value={opt}
+                        disabled={isFinalSubmitted}
                         checked={yearOfStudyChoice === opt}
                         onChange={() => setYearOfStudyChoice(opt)}
                         className="accent-purple-500"
@@ -727,10 +1091,12 @@ const MentorPortal = () => {
                     <input
                       type="text"
                       required
+                      disabled={isFinalSubmitted}
                       value={yearOfStudyOther}
                       onChange={(e) => setYearOfStudyOther(e.target.value)}
+                      onBlur={() => saveCloudDraft(false)}
                       placeholder="Please specify your year of study (e.g., 1st Year, Ph.D. 2nd Year)"
-                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-400/50 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-400/50 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </motion.div>
                 )}
@@ -744,10 +1110,12 @@ const MentorPortal = () => {
                 <input
                   type="text"
                   required
+                  disabled={isFinalSubmitted}
                   value={academicDepartment}
                   onChange={(e) => setAcademicDepartment(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. Computer Science and Engineering"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -758,9 +1126,10 @@ const MentorPortal = () => {
                 </label>
                 <select
                   required
+                  disabled={isFinalSubmitted}
                   value={degreeChoice}
                   onChange={(e) => setDegreeChoice(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-[#140e1b] border border-white/15 text-white focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-[#140e1b] border border-white/15 text-white focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <option value="" disabled className="text-gray-500">
                     Select Degree Enrolled For
@@ -781,10 +1150,12 @@ const MentorPortal = () => {
                     <input
                       type="text"
                       required
+                      disabled={isFinalSubmitted}
                       value={degreeOther}
                       onChange={(e) => setDegreeOther(e.target.value)}
+                      onBlur={() => saveCloudDraft(false)}
                       placeholder="Please specify your degree"
-                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-400/50 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-400/50 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </motion.div>
                 )}
@@ -799,7 +1170,9 @@ const MentorPortal = () => {
                   {["Yes", "No"].map((opt) => (
                     <label
                       key={opt}
-                      className={`flex items-center gap-2.5 px-6 py-2.5 rounded-xl border cursor-pointer text-sm font-medium transition ${
+                      className={`flex items-center gap-2.5 px-6 py-2.5 rounded-xl border text-sm font-medium transition ${
+                        isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                      } ${
                         coMentor === opt
                           ? "bg-purple-600/30 border-purple-400 text-white"
                           : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20"
@@ -809,6 +1182,7 @@ const MentorPortal = () => {
                         type="radio"
                         name="co_mentor"
                         value={opt}
+                        disabled={isFinalSubmitted}
                         checked={coMentor === opt}
                         onChange={() => setCoMentor(opt)}
                         className="accent-purple-500"
@@ -845,10 +1219,12 @@ const MentorPortal = () => {
                 <input
                   type="text"
                   required
+                  disabled={isFinalSubmitted}
                   value={projectTitle}
                   onChange={(e) => setProjectTitle(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. Agentic Multi-Agent Framework for Algorithmic Trading"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -861,10 +1237,12 @@ const MentorPortal = () => {
                 <textarea
                   required
                   rows={5}
+                  disabled={isFinalSubmitted}
                   value={projectDescription}
                   onChange={(e) => setProjectDescription(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="Provide an overview of the project idea, motivation, key concepts explored, and expected outcomes..."
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -898,11 +1276,12 @@ const MentorPortal = () => {
                       <button
                         type="button"
                         key={domain}
+                        disabled={isFinalSubmitted || (isMaxReached && !isSelected)}
                         onClick={() => toggleDomain(domain)}
                         className={`flex items-center justify-between px-4 py-3 rounded-xl border text-left text-sm font-medium transition-all ${
                           isSelected
                             ? "bg-gradient-to-r from-purple-600/35 to-blue-600/35 border-purple-400 text-white shadow-md"
-                            : isMaxReached
+                            : isMaxReached || isFinalSubmitted
                             ? "bg-black/20 border-white/5 text-gray-500 cursor-not-allowed"
                             : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20 hover:text-white"
                         }`}
@@ -946,7 +1325,9 @@ const MentorPortal = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* Guided Project */}
                   <label
-                    className={`p-4 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
+                    className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
+                      isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                    } ${
                       projectCategory === "Guided Project"
                         ? "bg-purple-600/25 border-purple-400 shadow-md"
                         : "bg-black/30 border-white/10 hover:border-white/20"
@@ -960,6 +1341,7 @@ const MentorPortal = () => {
                         type="radio"
                         name="project_category"
                         value="Guided Project"
+                        disabled={isFinalSubmitted}
                         checked={projectCategory === "Guided Project"}
                         onChange={() => setProjectCategory("Guided Project")}
                         className="accent-purple-500 mt-1"
@@ -972,7 +1354,9 @@ const MentorPortal = () => {
 
                   {/* Collaborative Project */}
                   <label
-                    className={`p-4 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
+                    className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
+                      isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                    } ${
                       projectCategory === "Collaborative Project"
                         ? "bg-blue-600/25 border-blue-400 shadow-md"
                         : "bg-black/30 border-white/10 hover:border-white/20"
@@ -986,6 +1370,7 @@ const MentorPortal = () => {
                         type="radio"
                         name="project_category"
                         value="Collaborative Project"
+                        disabled={isFinalSubmitted}
                         checked={projectCategory === "Collaborative Project"}
                         onChange={() => setProjectCategory("Collaborative Project")}
                         className="accent-blue-500 mt-1"
@@ -1008,7 +1393,9 @@ const MentorPortal = () => {
                   {durationOptions.map((dur) => (
                     <label
                       key={dur}
-                      className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl border cursor-pointer text-sm font-medium transition ${
+                      className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition ${
+                        isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                      } ${
                         durationWeeks === dur
                           ? "bg-purple-600/30 border-purple-400 text-white shadow-sm"
                           : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20"
@@ -1018,6 +1405,7 @@ const MentorPortal = () => {
                         type="radio"
                         name="duration_weeks"
                         value={dur}
+                        disabled={isFinalSubmitted}
                         checked={durationWeeks === dur}
                         onChange={() => setDurationWeeks(dur)}
                         className="accent-purple-500"
@@ -1037,10 +1425,12 @@ const MentorPortal = () => {
                 <input
                   type="text"
                   required
+                  disabled={isFinalSubmitted}
                   value={weeklyTimeCommitment}
                   onChange={(e) => setWeeklyTimeCommitment(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. 6 to 8 hours / week"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -1059,10 +1449,12 @@ const MentorPortal = () => {
                 <input
                   type="text"
                   required
+                  disabled={isFinalSubmitted}
                   value={numMentees}
                   onChange={(e) => setNumMentees(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. 5 to 10 mentees"
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -1074,10 +1466,12 @@ const MentorPortal = () => {
                 <textarea
                   required
                   rows={3}
+                  disabled={isFinalSubmitted}
                   value={prerequisites}
                   onChange={(e) => setPrerequisites(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
                   placeholder="e.g. Proficiency in Python, basic familiarity with Pandas & NumPy, basic Linear Algebra, interest in Deep Learning..."
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -1093,13 +1487,20 @@ const MentorPortal = () => {
 
                 {/* Upload Box */}
                 <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-purple-500/30 hover:border-purple-400/60 rounded-2xl p-6 text-center bg-black/30 hover:bg-black/40 cursor-pointer transition-all duration-200 group"
+                  onClick={() => {
+                    if (!isFinalSubmitted) fileInputRef.current?.click();
+                  }}
+                  className={`border-2 border-dashed rounded-2xl p-6 text-center transition-all duration-200 group ${
+                    isFinalSubmitted
+                      ? "border-white/10 bg-black/20 cursor-not-allowed opacity-75"
+                      : "border-purple-500/30 hover:border-purple-400/60 bg-black/30 hover:bg-black/40 cursor-pointer"
+                  }`}
                 >
                   <input
                     ref={fileInputRef}
                     type="file"
                     accept="image/*"
+                    disabled={isFinalSubmitted}
                     onChange={handleImageChange}
                     className="hidden"
                   />
@@ -1117,9 +1518,11 @@ const MentorPortal = () => {
                         <p className="font-semibold text-purple-300">
                           {imageFile ? imageFile.name : savedImageName || "Saved Project Image"}
                         </p>
-                        <p className="text-gray-400 mt-0.5">
-                          Click to choose a different image
-                        </p>
+                        {!isFinalSubmitted && (
+                          <p className="text-gray-400 mt-0.5">
+                            Click to choose a different image
+                          </p>
+                        )}
                       </div>
                     </div>
                   ) : (
@@ -1144,7 +1547,7 @@ const MentorPortal = () => {
                   )}
                 </div>
 
-                {/* Live Name Preview & Google Drive Indicator */}
+                {/* Target Name Preview & Google Drive Indicator */}
                 <div className="mt-3 p-3.5 rounded-xl bg-purple-950/20 border border-purple-400/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2 text-purple-200">
                     <span className="font-medium text-gray-400">Target Image Name:</span>
@@ -1153,7 +1556,7 @@ const MentorPortal = () => {
                     </span>
                   </div>
                   <a
-                    href={GDRIVE_FOLDER_URL}
+                    href={driveUrl || GDRIVE_FOLDER_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-purple-400 hover:text-purple-300 font-semibold underline underline-offset-2"
@@ -1172,28 +1575,199 @@ const MentorPortal = () => {
               </div>
             </div>
 
-            {/* Submit Button */}
-            <div className="pt-4 border-t border-white/10">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 px-6 rounded-xl font-semibold text-base text-white bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-500 hover:via-purple-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Saving Registration & Uploading Image...</span>
-                  </>
-                ) : submittedSuccess ? (
-                  <span>Update Registration & Project Proposal</span>
-                ) : (
-                  <span>Submit Mentor Registration</span>
-                )}
-              </button>
+            {/* ======================================================== */}
+            {/* SECTION 3: MENTOR INFORMATION */}
+            {/* ======================================================== */}
+            <div className="space-y-6 pt-6 border-t border-purple-500/20">
+              <div className="border-b border-white/10 pb-4">
+                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-400/30">
+                  Section 3
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mt-2">
+                  Mentor Information
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                  Your prior technical experience and initial week-wise resources for the project.
+                </p>
+              </div>
+
+              {/* 1) Past project experience */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-200 mb-1 leading-relaxed">
+                  1) Have you previously completed/worked on this (or a similar) project? If Yes, please share the GitHub Repo/Google Drive Link of the code files, if No, fill in "No"{" "}
+                  <span className="text-red-400">*</span>
+                </label>
+                <p className="text-xs text-purple-300/90 mb-2 italic">
+                  You are encouraged to create new projects and bring your unique ideas to life through WiDS 5.0
+                </p>
+                <textarea
+                  required
+                  rows={4}
+                  disabled={isFinalSubmitted}
+                  value={pastProjectWork}
+                  onChange={(e) => setPastProjectWork(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
+                  placeholder="If Yes, share the GitHub repo or Google Drive link with brief details. If No, fill in 'No'..."
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
+                />
+              </div>
+
+              {/* 2) Project/Course Experience in Python/ML */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-200 mb-1 leading-relaxed">
+                  2) Project/Course Experience in Python/ML (Can be Self Projects, Institute projects/courses, Online Courses, Professional/Research Experience, etc.){" "}
+                  <span className="text-red-400">*</span>
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  disabled={isFinalSubmitted}
+                  value={pythonMlExperience}
+                  onChange={(e) => setPythonMlExperience(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
+                  placeholder="Detail relevant coursework (e.g. CS 725, CS 419), independent projects, internships, research or tools mastered..."
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
+                />
+              </div>
+
+              {/* 3) GitHub Link/Google Drive Link/Notion Page Link for Project Resources */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-200 mb-1 leading-relaxed">
+                  3) GitHub Link/Google Drive Link/Notion Page Link for Project Resources (Upload resources at least up to Week 1){" "}
+                  <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  disabled={isFinalSubmitted}
+                  value={projectResourcesLink}
+                  onChange={(e) => setProjectResourcesLink(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
+                  placeholder="https://github.com/... or https://drive.google.com/... or Notion URL"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                />
+              </div>
+
+              {/* 4) Comments/Questions/Suggestions */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-200 mb-1 leading-relaxed">
+                  4) Comments/Questions/Suggestions:
+                </label>
+                <textarea
+                  rows={3}
+                  disabled={isFinalSubmitted}
+                  value={commentsSuggestions}
+                  onChange={(e) => setCommentsSuggestions(e.target.value)}
+                  onBlur={() => saveCloudDraft(false)}
+                  placeholder="Any questions or special requests for the WiDS team..."
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
+                />
+              </div>
+            </div>
+
+            {/* Final Submission Notice & Actions */}
+            <div className="pt-6 border-t border-white/10 space-y-4">
+              {!isFinalSubmitted ? (
+                <>
+                  <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-400/30 text-xs text-amber-200/90 leading-relaxed flex items-start gap-2.5">
+                    <svg className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold block text-amber-300">Important Submission Policy:</span>
+                      Once you click Submit, your answers are final and locked for review. You will <strong>NOT</strong> be able to update or modify your submission afterwards.
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => saveCloudDraft(true)}
+                      disabled={isSavingDraft || isSubmitting}
+                      className="w-full sm:w-auto py-3.5 px-6 rounded-xl font-medium text-sm text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/15 transition flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                      </svg>
+                      <span>{isSavingDraft ? "Saving Draft..." : "Save Draft"}</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full sm:flex-1 py-4 px-6 rounded-xl font-semibold text-base text-white bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-500 hover:via-purple-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Finalizing Application...</span>
+                        </>
+                      ) : (
+                        <span>Submit Mentor Registration</span>
+                      )}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-center">
+                  <p className="text-emerald-300 font-semibold text-sm">
+                    🔒 Application Finalized & Locked
+                  </p>
+                  <p className="text-xs text-emerald-200/80 mt-1">
+                    Your responses are submitted and securely stored in the WiDS database.
+                  </p>
+                </div>
+              )}
             </div>
           </form>
         </motion.div>
       </div>
+
+      {/* Confirmation Modal Before Final Submit */}
+      <AnimatePresence>
+        {showConfirmModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="max-w-md w-full p-6 sm:p-8 rounded-2xl bg-[#21162d] border border-purple-500/30 shadow-2xl space-y-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-white">
+                  Confirm Final Submission?
+                </h3>
+                <p className="text-sm text-gray-300 mt-2 leading-relaxed">
+                  Submitting your application is <strong>permanent</strong>. Once submitted, your registration will be locked and you will <strong>NOT</strong> be able to edit your project proposal or mentor details.
+                </p>
+              </div>
+
+              <div className="pt-2 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmModal(false)}
+                  className="flex-1 py-3 px-4 rounded-xl font-medium text-sm text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 transition"
+                >
+                  Review Again
+                </button>
+                <button
+                  type="button"
+                  onClick={handleFinalSubmit}
+                  className="flex-1 py-3 px-4 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 transition shadow-lg hover:shadow-purple-500/25"
+                >
+                  Yes, Submit Final
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
