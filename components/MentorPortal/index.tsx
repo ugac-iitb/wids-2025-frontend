@@ -937,7 +937,7 @@ const MentorPortal = () => {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="p-6 sm:p-10 rounded-3xl border border-pink-500/20 bg-gradient-to-br from-[#180d2c]/90 via-[#130724]/80 to-[#0a0316]/95 backdrop-blur-xl shadow-[0_10px_50px_rgba(236,72,153,0.15)] relative"
         >
-          {/* Top Status Bar: Auto-Save Tracker */}
+          {/* Top Status Bar: Auto-Save Tracker & Submission Deadline */}
           {!isFinalSubmitted && (
             <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-white/10">
               <div className="flex items-center gap-2 text-xs">
@@ -949,6 +949,10 @@ const MentorPortal = () => {
                   }`}
                 ></span>
                 <span className="text-gray-300 font-medium">{autoSaveStatus}</span>
+              </div>
+
+              <div className="text-xs sm:text-sm font-semibold text-pink-300/90 text-center tracking-wide">
+                (Deadline for form submission : 25th December 11:59pm)
               </div>
 
               <button

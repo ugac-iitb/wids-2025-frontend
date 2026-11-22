@@ -91,17 +91,17 @@ const Hero = () => {
               Mentor registrations are now open!
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-lg sm:text-xl text-[#ededf1] font-medium">
-              <span>Click</span>
-              <button 
-                onClick={() => router.push("/mentor")}
-                className="px-7 py-3 rounded-full font-bold text-white bg-gradient-to-r from-[#e16993] via-[#c2185b] to-[#7b1fa2] hover:from-[#f06292] hover:to-[#8e24aa] shadow-[0_0_25px_rgba(225,105,147,0.5)] border border-[#ffa6c9]/60 transition-transform duration-200 hover:scale-[1.03] active:scale-95 inline-flex items-center gap-2 group"
-              >
-                <span>Register as Mentor</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </button>
-              <span>to register yourself as a mentor.</span>
-            </div>
+            <button 
+              onClick={() => router.push("/mentor")}
+              className="px-8 py-3.5 rounded-full font-bold text-white text-lg sm:text-xl bg-gradient-to-r from-[#e16993] via-[#c2185b] to-[#7b1fa2] hover:from-[#f06292] hover:to-[#8e24aa] shadow-[0_0_25px_rgba(225,105,147,0.5)] border border-[#ffa6c9]/60 transition-transform duration-200 hover:scale-[1.03] active:scale-95 inline-flex items-center gap-2.5 group cursor-pointer"
+            >
+              <span>Register as Mentor</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+            </button>
+
+            <p className="mt-3.5 text-sm sm:text-base text-pink-200/90 font-medium tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] text-center">
+              (Mentor Registration Deadline: 25 December, 11:59 PM)
+            </p>
           </motion.div>
         </div>
       </div>
