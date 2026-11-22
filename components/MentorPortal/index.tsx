@@ -942,17 +942,16 @@ const MentorPortal = () => {
             <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-white/10">
               <div className="flex items-center gap-2 text-xs">
                 <span
-                  className={`w-2 h-2 rounded-full ${
-                    isSavingDraft
+                  className={`w-2 h-2 rounded-full ${isSavingDraft
                       ? "bg-amber-400 animate-pulse"
                       : "bg-blue-400 animate-pulse"
-                  }`}
+                    }`}
                 ></span>
                 <span className="text-gray-300 font-medium">{autoSaveStatus}</span>
               </div>
 
               <div className="text-xs sm:text-sm font-semibold text-pink-300/90 text-center tracking-wide">
-                (Deadline for form submission : 25th December 11:59pm)
+                (Deadline for form submission : 25th November, 11:59pm)
               </div>
 
               <button
@@ -1090,13 +1089,11 @@ const MentorPortal = () => {
                   {yearOptions.map((opt) => (
                     <label
                       key={opt}
-                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-sm font-medium transition ${
-                        isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
-                      } ${
-                        yearOfStudyChoice === opt
+                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-sm font-medium transition ${isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                        } ${yearOfStudyChoice === opt
                           ? "bg-purple-600/30 border-purple-400 text-white shadow-sm"
                           : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20"
-                      }`}
+                        }`}
                     >
                       <input
                         type="radio"
@@ -1201,13 +1198,11 @@ const MentorPortal = () => {
                   {["Yes", "No"].map((opt) => (
                     <label
                       key={opt}
-                      className={`flex items-center gap-2.5 px-6 py-2.5 rounded-xl border text-sm font-medium transition ${
-                        isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
-                      } ${
-                        coMentor === opt
+                      className={`flex items-center gap-2.5 px-6 py-2.5 rounded-xl border text-sm font-medium transition ${isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                        } ${coMentor === opt
                           ? "bg-purple-600/30 border-purple-400 text-white"
                           : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20"
-                      }`}
+                        }`}
                     >
                       <input
                         type="radio"
@@ -1287,11 +1282,10 @@ const MentorPortal = () => {
                     <span className="text-red-400">*</span>
                   </label>
                   <span
-                    className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${
-                      selectedDomains.length > 0
+                    className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${selectedDomains.length > 0
                         ? "bg-purple-500/20 text-purple-300 border border-purple-400/40"
                         : "bg-gray-800 text-gray-400"
-                    }`}
+                      }`}
                   >
                     Selected: {selectedDomains.length} / 2
                   </span>
@@ -1311,21 +1305,19 @@ const MentorPortal = () => {
                         key={domain}
                         disabled={isFinalSubmitted || (isMaxReached && !isSelected)}
                         onClick={() => toggleDomain(domain)}
-                        className={`flex items-center justify-between px-4 py-3 rounded-xl border text-left text-sm font-medium transition-all ${
-                          isSelected
+                        className={`flex items-center justify-between px-4 py-3 rounded-xl border text-left text-sm font-medium transition-all ${isSelected
                             ? "bg-gradient-to-r from-purple-600/35 to-blue-600/35 border-purple-400 text-white shadow-md"
                             : isMaxReached || isFinalSubmitted
-                            ? "bg-black/20 border-white/5 text-gray-500 cursor-not-allowed"
-                            : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20 hover:text-white"
-                        }`}
+                              ? "bg-black/20 border-white/5 text-gray-500 cursor-not-allowed"
+                              : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20 hover:text-white"
+                          }`}
                       >
                         <span>{domain}</span>
                         <div
-                          className={`w-5 h-5 rounded-md flex items-center justify-center border transition ${
-                            isSelected
+                          className={`w-5 h-5 rounded-md flex items-center justify-center border transition ${isSelected
                               ? "bg-purple-500 border-purple-400 text-white"
                               : "border-white/20 bg-black/40"
-                          }`}
+                            }`}
                         >
                           {isSelected && (
                             <svg
@@ -1358,13 +1350,11 @@ const MentorPortal = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* Guided Project */}
                   <label
-                    className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
-                      isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
-                    } ${
-                      projectCategory === "Guided Project"
+                    className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                      } ${projectCategory === "Guided Project"
                         ? "bg-purple-600/25 border-purple-400 shadow-md"
                         : "bg-black/30 border-white/10 hover:border-white/20"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start justify-between mb-2">
                       <span className="font-semibold text-purple-200">
@@ -1387,13 +1377,11 @@ const MentorPortal = () => {
 
                   {/* Collaborative Project */}
                   <label
-                    className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
-                      isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
-                    } ${
-                      projectCategory === "Collaborative Project"
+                    className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                      } ${projectCategory === "Collaborative Project"
                         ? "bg-blue-600/25 border-blue-400 shadow-md"
                         : "bg-black/30 border-white/10 hover:border-white/20"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start justify-between mb-2">
                       <span className="font-semibold text-blue-200">
@@ -1426,13 +1414,11 @@ const MentorPortal = () => {
                   {durationOptions.map((dur) => (
                     <label
                       key={dur}
-                      className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition ${
-                        isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
-                      } ${
-                        durationWeeks === dur
+                      className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition ${isFinalSubmitted ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+                        } ${durationWeeks === dur
                           ? "bg-purple-600/30 border-purple-400 text-white shadow-sm"
                           : "bg-black/30 border-white/10 text-gray-300 hover:border-white/20"
-                      }`}
+                        }`}
                     >
                       <input
                         type="radio"
@@ -1526,11 +1512,10 @@ const MentorPortal = () => {
                   onClick={() => {
                     if (!isFinalSubmitted) fileInputRef.current?.click();
                   }}
-                  className={`border-2 border-dashed rounded-2xl p-6 text-center transition-all duration-200 group ${
-                    isFinalSubmitted
+                  className={`border-2 border-dashed rounded-2xl p-6 text-center transition-all duration-200 group ${isFinalSubmitted
                       ? "border-white/10 bg-black/20 cursor-not-allowed opacity-75"
                       : "border-purple-500/30 hover:border-purple-400/60 bg-black/30 hover:bg-black/40 cursor-pointer"
-                  }`}
+                    }`}
                 >
                   <input
                     ref={fileInputRef}

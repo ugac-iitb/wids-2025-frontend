@@ -14,7 +14,7 @@ const Hero = () => {
         {/* ======================================================== */}
         {/* 🌌 DYNAMIC MOVING AURORA ASSET & COSMIC NIGHT SKY */}
         {/* ======================================================== */}
-        
+
         {/* Base cosmic deep sky gradient matching reference image */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0314] via-[#160728] to-[#0d0418] pointer-events-none" />
 
@@ -91,7 +91,7 @@ const Hero = () => {
               Mentor registrations are now open!
             </p>
 
-            <button 
+            <button
               onClick={() => router.push("/mentor")}
               className="px-8 py-3.5 rounded-full font-bold text-white text-lg sm:text-xl bg-gradient-to-r from-[#e16993] via-[#c2185b] to-[#7b1fa2] hover:from-[#f06292] hover:to-[#8e24aa] shadow-[0_0_25px_rgba(225,105,147,0.5)] border border-[#ffa6c9]/60 transition-transform duration-200 hover:scale-[1.03] active:scale-95 inline-flex items-center gap-2.5 group cursor-pointer"
             >
@@ -100,7 +100,7 @@ const Hero = () => {
             </button>
 
             <p className="mt-3.5 text-sm sm:text-base text-pink-200/90 font-medium tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] text-center">
-              (Mentor Registration Deadline: 25 December, 11:59 PM)
+              (Mentor Registration Deadline: 25th November, 11:59 PM)
             </p>
           </motion.div>
         </div>

@@ -318,7 +318,7 @@ const Project = () => {
           {filteredProjects.length === 0 ? (
             <p className="text-gray-300 text-center col-span-full text-base sm:text-lg py-8">
               {projects.length === 0
-                ? "Mentee registrations for projects will begin from 25th December"
+                ? "Mentee registrations for projects will begin from 25th November"
                 : "No projects match your filters."}
             </p>
           ) : (
