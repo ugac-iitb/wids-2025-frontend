@@ -96,6 +96,7 @@ const MentorPortal = () => {
 
   // Image Upload state
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageUploadedToCloud, setImageUploadedToCloud] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [savedImageName, setSavedImageName] = useState<string | null>(null);
   const [savedImageUrl, setSavedImageUrl] = useState<string | null>(null);
@@ -349,7 +350,7 @@ const MentorPortal = () => {
         if (imageDriveLink.trim()) {
           formData.append("image_drive_link", imageDriveLink.trim());
         }
-        if (imageFile) {
+        if (imageFile && !imageUploadedToCloud) {
           formData.append("project_image", imageFile);
         }
 
@@ -365,7 +366,10 @@ const MentorPortal = () => {
         const data = await res.json();
         if (res.ok && data?.ok) {
           setAutoSaveStatus("Draft synced with cloud");
-          if (data.image_name) setSavedImageName(data.image_name);
+          if (data.image_name) {
+            setSavedImageName(data.image_name);
+            setImageUploadedToCloud(true);
+          }
           if (data.image_url) setSavedImageUrl(data.image_url);
           if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
           if (showToast) toast.success("Draft saved successfully to cloud!");
@@ -409,6 +413,7 @@ const MentorPortal = () => {
       commentsSuggestions,
       imageFile,
       imageDriveLink,
+      imageUploadedToCloud,
     ]
   );
 
@@ -449,6 +454,7 @@ const MentorPortal = () => {
         return;
       }
       setImageFile(file);
+      setImageUploadedToCloud(false);
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
@@ -641,7 +647,7 @@ const MentorPortal = () => {
       if (imageDriveLink.trim()) {
         formData.append("image_drive_link", imageDriveLink.trim());
       }
-      if (imageFile) {
+      if (imageFile && !imageUploadedToCloud) {
         formData.append("project_image", imageFile);
       }
 
