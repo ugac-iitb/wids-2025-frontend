@@ -1,42 +1,79 @@
 [
   {
     "id": 1,
-    "name": "Aryan Kashyap",
-    "imagePath": "/wids-2025/images/members/Aryan Kashyap.png",
+    "name": "Tanya Meghani",
+    "imagePath": "/wids-2025/images/members/Tanya.png",
     "designation": "Manager, Analytics Club",
-    "mail": "manager.analytics.iitb@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/aryan-kshyp/"
+    "contactNumber": "62645 92527"
   },
   {
     "id": 2,
-    "name": "Anshuman Gupta",
-    "imagePath": "/wids-2025/images/members/Anshuman Gupta.png",
+    "name": "Tanya Meghani",
+    "imagePath": "/wids-2025/images/members/Tanya.png",
     "designation": "Convener, Analytics Club",
-    "mail": "analytics.convener@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/anshuman-gupta-775ab2230/"
+    "contactNumber": "62645 92527"
   },
   {
     "id": 3,
-    "name": "Anvishka Vipasanna",
-    "imagePath": "/wids-2025/images/members/Anviksha Vipasanna.png",
+    "name": "Tanya Meghani",
+    "imagePath": "/wids-2025/images/members/Tanya.png",
     "designation": "Convener, Analytics Club",
-    "mail": "analytics.convener@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/anviksha-vipassana-305087327/"
+    "contactNumber": "62645 92527"
   },
   {
     "id": 4,
-    "name": "Pranav Mylarassu",
-    "imagePath": "/wids-2025/images/members/Pranav Mylarassu.png",
+    "name": "Tanya Meghani",
+    "imagePath": "/wids-2025/images/members/Tanya.png",
     "designation": "Convener, Analytics Club",
-    "mail": "analytics.convener@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/pranav-mylarassu-84682128b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    "contactNumber": "62645 92527"
   },
   {
     "id": 5,
-    "name": "Tanya Meghnani",
-    "imagePath": "/wids-2025/images/members/Tanya Menghani.png",
+    "name": "Tanya Meghani",
+    "imagePath": "/wids-2025/images/members/Tanya.png",
     "designation": "Convener, Analytics Club",
-    "mail": "analytics.convener@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/tanya-menghani-165737313/"
+    "contactNumber": "62645 92527"
+  },
+  {
+    "id": 6,
+    "name": "Surhud Naik",
+    "imagePath": "/wids-2025/images/members/Surhud.png",
+    "designation": "UGAC Web Head",
+    "contactNumber": "96193 64473 (For technical issues only)"
+  },
+  {
+    "id": 7,
+    "name": "Ansh Oswal",
+    "imagePath": "/wids-2025/images/members/Ansh.png",
+    "designation": "UGAC Web Head",
+    "contactNumber": "77579 68925 (For technical issues only)"
+  },
+  {
+    "id": 8,
+    "name": "Sarbjeet Singh Pal",
+    "imagePath": "/wids-2025/images/members/Sarbjeet.png",
+    "designation": "UGAC Web Convenor",
+    "contactNumber": "7827560910"
+  },
+  {
+    "id": 9,
+    "name": "Nisarg Rathod",
+    "imagePath": "/wids-2025/images/members/Nisarg.png",
+    "designation": "UGAC Web Convenor",
+    "contactNumber": "8980013739"
+  },
+  {
+    "id": 10,
+    "name": "Saral Sachan",
+    "imagePath": "/wids-2025/images/members/Saral.png",
+    "designation": "UGAC Web Convenor",
+    "contactNumber": "6393613681"
+  },
+  {
+    "id": 11,
+    "name": "Arjun V",
+    "imagePath": "/wids-2025/images/members/Arjun.png",
+    "designation": "UGAC Web Convenor",
+    "contactNumber": "8088891157"
   }
 ]

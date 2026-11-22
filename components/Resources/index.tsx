@@ -17,9 +17,12 @@ const Resource = () => {
   }, []);
 
   return (
-    <section className="py-18 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden">
+    <section className="py-18 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514] relative overflow-hidden">
       {/* Decorative Glow Overlay */}
-      <div className="absolute inset-0 pointer-events-none"></div>
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute top-10 left-10 w-96 h-96 bg-pink-600/20 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-[140px]" />
+      </div>
 
       <div className="relative mx-auto max-w-c-1315 px-4 md:px-8 py-4 xl:px-0">
         {/* Header */}
@@ -30,7 +33,7 @@ const Resource = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
             Resources
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">

@@ -69,28 +69,28 @@ const Contact = () => {
         whileInView="visible"
         transition={{ duration: 1, delay: 0.1 }}
         viewport={{ once: true }}
-        className="animate_top w-full md:w-[52%] rounded-lg bg-[#1A141C] p-5 shadow-solid-8 dark:border dark:border-strokedark xl:p-8"
+        className="animate_top w-full md:w-[52%] rounded-2xl bg-gradient-to-br from-[#180d2c]/90 via-[#130724]/80 to-[#0a0316]/95 border border-pink-500/20 p-5 shadow-2xl xl:p-8"
       >
         <form action="#" method="POST" className="flex flex-col text-left">
           <input
             type="text"
             placeholder="Full Name"
-            className="mb-4 w-full border-b border-[#6D6D71] bg-transparent pb-2 text-sm text-[#E7E3E5] focus:border-[#054066] focus-visible:outline-hidden"
+            className="mb-4 w-full border-b border-pink-500/25 bg-transparent pb-2 text-sm text-[#f1e8f8] placeholder-pink-200/40 focus:border-pink-400 focus-visible:outline-hidden"
           />
           <input
             type="email"
             placeholder="Email Address"
-            className="mb-4 w-full border-b border-[#6D6D71] bg-transparent pb-2 text-sm text-[#E7E3E5] focus:border-[#054066] focus-visible:outline-hidden"
+            className="mb-4 w-full border-b border-pink-500/25 bg-transparent pb-2 text-sm text-[#f1e8f8] placeholder-pink-200/40 focus:border-pink-400 focus-visible:outline-hidden"
           />
           <textarea
             placeholder="Message"
             rows={3}
-            className="mb-5 w-full border-b border-[#6D6D71] bg-transparent pb-2 text-sm text-[#E7E3E5] focus:border-[#054066] focus-visible:outline-hidden"
+            className="mb-5 w-full border-b border-pink-500/25 bg-transparent pb-2 text-sm text-[#f1e8f8] placeholder-pink-200/40 focus:border-pink-400 focus-visible:outline-hidden"
           ></textarea>
 
           <button
             aria-label="send message"
-            className="inline-flex items-center gap-2.5 rounded-full bg-[#6A6FDB] px-4 py-2 text-sm font-medium text-[#E7E3E5] duration-300 ease-in-out hover:bg-[#719EA8] w-fit"
+            className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-600 to-purple-600 px-6 py-2.5 text-sm font-semibold text-white duration-300 ease-in-out hover:from-pink-400 hover:to-purple-500 shadow-[0_0_20px_rgba(236,72,153,0.35)] w-fit"
           >
             Send Message
             <svg

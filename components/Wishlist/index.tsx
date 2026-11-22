@@ -260,9 +260,9 @@ const Wishlist = () => {
 
   // 🟣 Normal wishlist mode (no submission yet)
   return (
-    <section className="px-4 md:px-8 lg:px-12 pt-20 pb-10 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C]">
+    <section className="px-4 md:px-8 lg:px-12 pt-28 pb-14 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514]">
       <div className="text-center">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mb-3">
+        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text mb-3 drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
           Wishlist
         </h2>
         <p className="text-gray-400">
@@ -326,7 +326,7 @@ const Wishlist = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleSubmit}
-          className="px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+          className="px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-purple-600 rounded-full shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:from-pink-400 hover:to-purple-500 transition-all duration-300"
         >
           {projects.length > 5 ? "Confirm Selected Projects" : "Submit Preferences"}
         </motion.button>

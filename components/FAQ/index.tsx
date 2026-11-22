@@ -50,16 +50,16 @@ const FAQ = () => {
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#0b0710] via-purple-900/5 to-[#0b0710] relative overflow-hidden"
+        className="py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#090514] via-[#16082b] to-[#090514] relative overflow-hidden"
       >
         {/* animated background blobs (interactive with mouse) */}
         <motion.div
           style={{ x: blob1X, y: blob1Y, rotate: blob1Rotate, opacity: blob1Opacity }}
-          className="absolute -left-20 top-8 w-72 h-72 rounded-full blur-3xl bg-gradient-to-r from-purple-600/50 to-blue-400/30 mix-blend-screen pointer-events-none z-0"
+          className="absolute -left-20 top-8 w-72 h-72 rounded-full blur-3xl bg-gradient-to-r from-pink-600/40 to-fuchsia-400/30 mix-blend-screen pointer-events-none z-0"
         />
         <motion.div
           style={{ x: blob2X, y: blob2Y, rotate: blob2Rotate, opacity: blob2Opacity }}
-          className="absolute -right-10 -bottom-6 w-96 h-96 rounded-full blur-2xl bg-gradient-to-tr from-pink-500/30 to-indigo-500/25 mix-blend-screen pointer-events-none z-0"
+          className="absolute -right-10 -bottom-6 w-96 h-96 rounded-full blur-2xl bg-gradient-to-tr from-purple-600/35 to-pink-500/25 mix-blend-screen pointer-events-none z-0"
         />
 
         <div className="relative z-10 mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
@@ -75,7 +75,7 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="w-full md:w-3/4 lg:w-2/3"
             >
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
                 WiDS Bootcamp (coming soon)
               </h2>
               <p className="text-gray-300 text-lg max-w-4xl mx-auto mb-4">
@@ -112,9 +112,7 @@ const FAQ = () => {
       {/* ===== WiDS Bootcamp End ===== */}
 
       {/* ===== FAQ Start ===== */}
-      <section className="py-18 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden">
-       
-
+      <section className="py-18 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514] relative overflow-hidden">
         {/* Main Content */}
         <div className="relative mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
           {/* Heading Section */}
@@ -130,10 +128,10 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="w-full md:w-3/4 lg:w-2/3"
             >
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
                 Frequently Asked Questions
               </h2>
-              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
                 Here’s everything you need to know about applying, submitting SOPs, and managing your project preferences.
               </p>
             </motion.div>
@@ -164,10 +162,10 @@ const FAQ = () => {
                     whileInView="visible"
                     transition={{ duration: 0.5, delay: key * 0.1 }}
                     viewport={{ once: true }}
-                    className="rounded-2xl bg-gradient-to-br from-[#0d0d1f]/60 to-[#050212]/40
-                              border border-white/10 backdrop-blur-xl
-                              shadow-[0_0_20px_rgba(79,70,229,0.05)]
-                              hover:shadow-[0_0_25px_rgba(168,85,247,0.005)]
+                    className="rounded-2xl bg-gradient-to-br from-[#180d2c]/80 to-[#0a0316]/90
+                              border border-pink-500/20 backdrop-blur-xl
+                              shadow-[0_0_20px_rgba(236,72,153,0.06)]
+                              hover:border-pink-400/40 hover:shadow-[0_0_25px_rgba(236,72,153,0.18)]
                               transition-all duration-300"
                   >
                     <FAQItem faqData={{ ...faq, activeFaq, handleFaqToggle }} />

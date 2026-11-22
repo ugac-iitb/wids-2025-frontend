@@ -27,10 +27,10 @@ const AboutPage = () => {
 
   return (
     <>
-      {/* Hero / About Section (unchanged) */}
-      <section className="relative min-h-[600px] w-full bg-gradient-to-br from-blue-900 via-purple-900 to-black">
+      {/* Hero / About Section */}
+      <section className="relative min-h-[600px] w-full bg-gradient-to-br from-[#1c082e] via-[#12061e] to-[#07030e]">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
           style={{ backgroundImage: "url('/wids-2025/images/logo/analytics-club-logo.jpeg')" }}
           aria-hidden="true"
         />
@@ -39,8 +39,8 @@ const AboutPage = () => {
           <div className="md:grid md:grid-cols-2 md:gap-8">
             <div className="md:col-span-1" />
             <div className="md:col-span-1 py-24">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 mt-8">
-                <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-8 mt-8">
+                <span className="block bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
                   About Analytics Club
                 </span>
               </h2>
@@ -61,20 +61,20 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Timeline Section - Glow / Futuristic Redesign */}
-      <section className="py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f1a] to-black relative overflow-hidden">
+      {/* Timeline Section - Aurora Glow */}
+      <section className="py-24 bg-gradient-to-b from-[#07030e] via-[#140826] to-[#07030e] relative overflow-hidden">
         {/* Background Gradient Blur Orbs */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-3xl rounded-full" />
-        <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-purple-500/10 blur-3xl rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-pink-600/15 blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-purple-600/15 blur-3xl rounded-full pointer-events-none" />
 
         <div className="relative container mx-auto px-4">
-          <h2 className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
             Analytics Club Events
           </h2>
 
           {/* Central Line (Hidden on small screens) */}
           <div className="relative max-w-4xl mx-auto">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 opacity-50 hidden md:block"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-pink-500 via-fuchsia-500 to-purple-500 opacity-50 hidden md:block"></div>
 
             {/* Event Cards */}
             {events.map((event, index) => (
@@ -90,16 +90,16 @@ const AboutPage = () => {
                     className={`relative w-6 h-6 rounded-full border-2 
                       ${
                         event.status === 'upcoming'
-                          ? 'border-orange-400 bg-orange-500/30'
-                          : 'border-blue-400 bg-blue-500/30'
+                          ? 'border-pink-400 bg-pink-500/30'
+                          : 'border-purple-400 bg-purple-500/30'
                       }`}
                   >
                     <div
                       className={`absolute inset-0 rounded-full blur-md 
                         ${
                           event.status === 'upcoming'
-                            ? 'bg-orange-500/60'
-                            : 'bg-blue-500/60'
+                            ? 'bg-pink-500/60'
+                            : 'bg-purple-500/60'
                         }`}
                     ></div>
                   </div>
@@ -109,8 +109,8 @@ const AboutPage = () => {
                     className={`absolute w-6 h-6 rounded-full animate-ping 
                       ${
                         event.status === 'upcoming'
-                          ? 'bg-orange-400/40'
-                          : 'bg-blue-400/40'
+                          ? 'bg-pink-400/50'
+                          : 'bg-purple-400/40'
                       }`}
                   ></div>
                 </div>
@@ -121,16 +121,16 @@ const AboutPage = () => {
                     transition-all duration-300 hover:scale-105 
                     ${
                       event.status === 'upcoming'
-                        ? 'bg-gradient-to-br from-orange-500/20 to-orange-700/10 border border-orange-400/30 hover:shadow-orange-500/30'
-                        : 'bg-gradient-to-br from-blue-500/20 to-purple-700/10 border border-blue-400/30 hover:shadow-blue-500/30'
+                        ? 'bg-gradient-to-br from-pink-500/20 via-fuchsia-900/20 to-purple-900/30 border border-pink-400/40 hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]'
+                        : 'bg-gradient-to-br from-[#180d2c]/90 to-[#0c0418]/90 border border-purple-500/20 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(168,85,247,0.2)]'
                     }
                     ${index % 2 === 0 ? 'md:text-left text-center' : 'md:text-right text-center'}
                   `}
                 >
                   <h3 className="text-white text-2xl font-semibold mb-2">{event.title}</h3>
                   <p
-                    className={`text-sm tracking-wide ${
-                      event.status === 'upcoming' ? 'text-orange-300' : 'text-blue-300'
+                    className={`text-sm tracking-wide font-medium ${
+                      event.status === 'upcoming' ? 'text-pink-300' : 'text-purple-300'
                     }`}
                   >
                     {event.date}

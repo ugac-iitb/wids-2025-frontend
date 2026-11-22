@@ -4,8 +4,56 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Introheader from "./introheader";
 import type { TeamMember } from "@/types/teammember";
-import { Mail } from "lucide-react";
-import { SiLinkedin } from "react-icons/si";
+
+const MemberCard = ({
+  member,
+  delay = 0,
+}: {
+  member: TeamMember;
+  delay?: number;
+}) => (
+  <motion.div
+    key={member.id}
+    initial={{ opacity: 0, y: 25 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay, ease: "easeOut" }}
+    viewport={{ once: true }}
+    className="text-center group"
+  >
+    {/* Profile Image */}
+    <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-xl border-2 border-pink-400/50 shadow-[0_0_25px_rgba(236,72,153,0.25)] group-hover:border-pink-300 group-hover:shadow-[0_0_35px_rgba(236,72,153,0.45)] transition-all duration-300">
+      <Image
+        src={member.imagePath || "/wids-2025/images/placeholder.png"}
+        alt={member.name}
+        width={176}
+        height={176}
+        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+
+    {/* Name & Designation */}
+    <h3 className="mt-4 text-lg sm:text-xl font-bold text-pink-100 group-hover:text-white transition-colors">
+      {member.name}
+    </h3>
+    <p className="text-sm text-pink-200/75 mt-0.5">{member.designation}</p>
+
+    {/* Contact Number */}
+    {member.contactNumber && (
+      <div className="mt-2 text-xs sm:text-sm font-medium">
+        {member.contactNumber.includes("technical issues") ? (
+          <span className="inline-block px-3 py-1 rounded-full bg-pink-500/15 border border-pink-500/30 text-pink-200 shadow-sm">
+            {member.contactNumber}
+          </span>
+        ) : (
+          <span className="text-pink-200/80">
+            Contact Number:{" "}
+            <span className="text-pink-100 font-semibold">{member.contactNumber}</span>
+          </span>
+        )}
+      </div>
+    )}
+  </motion.div>
+);
 
 const TeamIntro = () => {
   const [teamdata, setTeamData] = useState<TeamMember[]>([]);
@@ -17,144 +65,73 @@ const TeamIntro = () => {
       .catch((err) => console.error("Error loading team data:", err));
   }, []);
 
-  if (teamdata.length === 0) return null; // avoid rendering before data loads
+  if (teamdata.length === 0) return null;
+
+  // Split into designated groups
+  const member1 = teamdata[0];
+  const members2To5 = teamdata.slice(1, 5);
+  const members6And7 = teamdata.slice(5, 7);
+  const members8To11 = teamdata.slice(7, 11);
 
   return (
-    <section className="relative z-50 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C]">
+    <section className="relative z-50 pt-2 pb-16 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514]">
       <div className="mx-auto max-w-screen-xl px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <Introheader />
+        {/* Section 1 Header: Analytics Club */}
+        <Introheader title="Analytics Club" />
 
         {/* Team Layout */}
-        <div className="mt-16 flex flex-col items-center justify-center gap-20">
-          {/* Top Row: First Member */}
-          <motion.div
-            key={teamdata[0].id}
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="flex justify-center"
-          >
-            <div className="text-center">
-              {/* Profile Image */}
-              <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-lg">
-                <Image
-                  src={teamdata[0].imagePath}
-                  alt={teamdata[0].name}
-                  width={176}
-                  height={176}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-
-              {/* Name & Designation */}
-              <h3 className="mt-4 text-xl font-semibold text-gray-200">
-                {teamdata[0].name}
-              </h3>
-              <p className="text-sm text-gray-400">{teamdata[0].designation}</p>
-
-              {/* Contact Icons */}
-              <div className="flex justify-center gap-4 mt-3">
-                {/* Email */}
-                {teamdata?.[0]?.mail && (
-                  <a
-                  href={`mailto:${teamdata[0].mail}?subject=Hey%20this%20is%20about%20WiDS`}
-                  className="w-10 h-10 flex items-center justify-center rounded-full 
-                              bg-purple-500/10 border border-purple-400/20 
-                              text-purple-300 hover:text-purple-400 
-                              hover:bg-purple-500/20 transition-all"
-                  title="Send Email"
-                  >
-                  <Mail className="w-5 h-5" />
-                  </a>
-                )}
-
-                {/* LinkedinIcon */}
-                <a
-                  href={teamdata[0].linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full 
-                              bg-purple-500/10 border border-purple-400/20 
-                              text-purple-300 hover:text-purple-400 
-                              hover:bg-purple-500/20 transition-all"
-                  title="View LinkedIn Profile"
-                >
-                  <SiLinkedin className="w-5 h-5" />
-                </a>
-              </div>
+        <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center gap-14 sm:gap-16">
+          {/* Row 1: ID 1 (Manager, center aligned) */}
+          {member1 && (
+            <div className="flex justify-center w-full">
+              <MemberCard member={member1} delay={0.1} />
             </div>
+          )}
 
-          </motion.div>
-        
-          {/* Bottom Rows: Remaining Members (two rows of up to 4 items each) */}
-          {(() => {
-            const remaining = teamdata.slice(1);
-            const rowA = remaining.slice(0, 4);
-            return (
-              <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-14 w-full">
-                  {rowA.map((member) => (
-                    <motion.div
-                      key={member.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      viewport={{ once: true }}
-                      className="text-center"
-                    >
-                      <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
-                        <Image
-                          src={member.imagePath || "/wids-2025/images/placeholder.png"}
-                          alt={member.name}
-                          width={176}
-                          height={176}
-                          className="object-cover w-full h-full"
-                        />
-                      </div>
-                      <h3 className="mt-4 text-lg font-semibold text-gray-200">
-                        {member.name}
-                      </h3>
-                      <p className="text-sm text-gray-400">{member.designation}</p>
-                      {/* Contact Icons */}
-                      <div className="flex justify-center gap-4 mt-3">
-                        {/* Email */}
-                        {member?.mail && (
-                          <a
-                          href={`mailto:${member.mail}?subject=Hey%20this%20is%20about%20WiDS!!`}
-                          className="w-10 h-10 flex items-center justify-center rounded-full 
-                                      bg-purple-500/10 border border-purple-400/20 
-                                      text-purple-300 hover:text-purple-400 
-                                      hover:bg-purple-500/20 transition-all"
-                          title="Send Email"
-                          >
-                          <Mail className="w-5 h-5" />
-                          </a>
-                        )}
+          {/* Row 2: IDs 2-5 (4 members on horizontal line) */}
+          {members2To5.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 lg:gap-x-20 gap-y-12 w-full justify-items-center">
+              {members2To5.map((member, idx) => (
+                <MemberCard
+                  key={member.id}
+                  member={member}
+                  delay={0.1 * (idx + 1)}
+                />
+              ))}
+            </div>
+          )}
 
-                        {/* LinkedIn */}
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-10 h-10 flex items-center justify-center rounded-full 
-                                      bg-purple-500/10 border border-purple-400/20 
-                                      text-purple-300 hover:text-purple-400 
-                                      hover:bg-purple-500/20 transition-all"
-                            title="View LinkedIn Profile"
-                          >
-                            <SiLinkedin className="w-5 h-5" />
-                          </a>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </>
-            );
-          })()}
+          {/* Web Team Divider */}
+          <div className="w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-pink-500/40 to-transparent my-2" />
+
+          {/* Section 2 Header: Web Team (same font & styling) */}
+          <Introheader title="Web Team" />
+
+          {/* Row 3: IDs 6 and 7 (center aligned on same horizontal line) */}
+          {members6And7.length > 0 && (
+            <div className="flex flex-wrap items-center justify-center gap-12 sm:gap-20 md:gap-28 w-full -mt-4">
+              {members6And7.map((member, idx) => (
+                <MemberCard
+                  key={member.id}
+                  member={member}
+                  delay={0.1 * (idx + 1)}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Row 4: IDs 8-11 (other 4 on horizontal line just below IDs 6-7, like IDs 2-5) */}
+          {members8To11.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 lg:gap-x-20 gap-y-12 w-full justify-items-center">
+              {members8To11.map((member, idx) => (
+                <MemberCard
+                  key={member.id}
+                  member={member}
+                  delay={0.1 * (idx + 1)}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -3,6 +3,8 @@ export interface TeamMember {
   name: string;
   imagePath: string;
   designation: string;
-  mail: string;
-  linkedin: string;
+  contactNumber?: string;
+  contact?: string;
+  mail?: string;
+  linkedin?: string;
 }

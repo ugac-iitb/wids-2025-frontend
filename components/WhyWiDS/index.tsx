@@ -37,7 +37,7 @@ const WhyWiDS = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-b from-purple-900/20 to-black">
+    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514]">
       <div className="container px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ const WhyWiDS = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
             Why Choose WiDS?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -70,11 +70,11 @@ const WhyWiDS = () => {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-900/50 to-purple-900/50 hover:from-blue-800/50 hover:to-purple-800/50 backdrop-blur-sm transition-all duration-300 h-full">
-                <div className="mb-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+              <div className="p-8 rounded-2xl bg-gradient-to-br from-[#180d2c]/90 via-[#130724]/80 to-[#0a0316]/95 hover:from-[#22103d] hover:to-[#16072a] border border-pink-500/20 hover:border-pink-400/50 hover:shadow-[0_0_35px_rgba(236,72,153,0.3)] backdrop-blur-md transition-all duration-300 h-full hover:-translate-y-2">
+                <div className="mb-6 p-3 rounded-2xl bg-pink-500/10 border border-pink-500/20 text-pink-400 group-hover:text-pink-300 transition-colors duration-300 w-fit">
                   {benefit.icon}
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">
+                <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-pink-300 transition-colors duration-300">
                   {benefit.title}
                 </h3>
                 <p className="text-gray-300 leading-relaxed">

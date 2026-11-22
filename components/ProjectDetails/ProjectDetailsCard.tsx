@@ -26,16 +26,16 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-[1200px] bg-gradient-to-b from-blue-900/30 via-purple-900/20 to-[#0E0D12] rounded-2xl p-6 md:p-8 text-white shadow-[0_10px_30px_rgba(2,6,23,0.6)] space-y-10"
+      className="w-[1200px] bg-gradient-to-b from-[#1c0c32]/90 via-[#140826]/80 to-[#0a0316] border border-pink-500/25 rounded-2xl p-6 md:p-8 text-white shadow-[0_10px_35px_rgba(236,72,153,0.15)] space-y-10"
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
         {project.project_title}
       </h2>
 
 
       {/* Image + Info */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div className="w-full rounded-xl overflow-hidden bg-[#111013] shadow-inner">
+        <div className="w-full rounded-xl overflow-hidden bg-[#070210] border border-pink-500/20 shadow-inner">
           <div className="relative w-full h-64 sm:h-80">
             <Image
               src={imgSrc}
@@ -53,7 +53,7 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/10 text-blue-300 border border-blue-400/20"
+                  className="px-3 py-1 text-xs font-medium rounded-full bg-pink-500/10 text-pink-300 border border-pink-400/25"
                 >
                   {tag}
                 </span>

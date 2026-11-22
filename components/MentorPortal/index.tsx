@@ -5,8 +5,6 @@ import { API_URL, clientID, redirectURI } from "@/lib/constants";
 import toast from "react-hot-toast";
 
 const API = `${API_URL}`;
-const GDRIVE_FOLDER_URL =
-  "https://drive.google.com/drive/folders/1aaibfBjmg6-I-qZv9DGla4H204xB9r8S?usp=sharing";
 
 async function fetchJSON(url: string, opts: RequestInit = {}) {
   const token = localStorage.getItem("access_token") ?? "";
@@ -101,7 +99,7 @@ const MentorPortal = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [savedImageName, setSavedImageName] = useState<string | null>(null);
   const [savedImageUrl, setSavedImageUrl] = useState<string | null>(null);
-  const [driveUrl, setDriveUrl] = useState<string>(GDRIVE_FOLDER_URL);
+  const [imageDriveLink, setImageDriveLink] = useState<string>("");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const initialLoadDone = useRef(false);
@@ -189,7 +187,7 @@ const MentorPortal = () => {
             if (data.prerequisites) setPrerequisites(data.prerequisites);
             if (data.image_name) setSavedImageName(data.image_name);
             if (data.project_image_url) setSavedImageUrl(data.project_image_url);
-            if (data.image_drive_link) setDriveUrl(data.image_drive_link);
+            if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
 
             // Section 3
             if (data.past_project_work) setPastProjectWork(data.past_project_work);
@@ -227,6 +225,7 @@ const MentorPortal = () => {
                 if (draft.pythonMlExperience) setPythonMlExperience(draft.pythonMlExperience);
                 if (draft.projectResourcesLink) setProjectResourcesLink(draft.projectResourcesLink);
                 if (draft.commentsSuggestions) setCommentsSuggestions(draft.commentsSuggestions);
+                if (draft.imageDriveLink) setImageDriveLink(draft.imageDriveLink);
 
                 setAutoSaveStatus("Restored draft from device");
               } catch (err) {
@@ -272,6 +271,7 @@ const MentorPortal = () => {
       pythonMlExperience,
       projectResourcesLink,
       commentsSuggestions,
+      imageDriveLink,
       savedAt: new Date().toISOString(),
     };
 
@@ -298,6 +298,7 @@ const MentorPortal = () => {
     pythonMlExperience,
     projectResourcesLink,
     commentsSuggestions,
+    imageDriveLink,
     isFinalSubmitted,
     isLoggedIn,
     draftKey,
@@ -345,6 +346,9 @@ const MentorPortal = () => {
         formData.append("project_resources_link", projectResourcesLink.trim());
         formData.append("comments_suggestions", commentsSuggestions.trim());
 
+        if (imageDriveLink.trim()) {
+          formData.append("image_drive_link", imageDriveLink.trim());
+        }
         if (imageFile) {
           formData.append("project_image", imageFile);
         }
@@ -363,6 +367,7 @@ const MentorPortal = () => {
           setAutoSaveStatus("Draft synced with cloud");
           if (data.image_name) setSavedImageName(data.image_name);
           if (data.image_url) setSavedImageUrl(data.image_url);
+          if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
           if (showToast) toast.success("Draft saved successfully to cloud!");
         } else {
           setAutoSaveStatus("Draft saved locally");
@@ -403,6 +408,7 @@ const MentorPortal = () => {
       projectResourcesLink,
       commentsSuggestions,
       imageFile,
+      imageDriveLink,
     ]
   );
 
@@ -451,6 +457,25 @@ const MentorPortal = () => {
     }
   };
 
+  const scrollToField = (fieldId: string) => {
+    setTimeout(() => {
+      const el = document.getElementById(fieldId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (
+          el instanceof HTMLInputElement ||
+          el instanceof HTMLTextAreaElement ||
+          el instanceof HTMLSelectElement
+        ) {
+          el.focus();
+        } else {
+          const input = el.querySelector("input, textarea, select, button");
+          (input as HTMLElement)?.focus?.();
+        }
+      }
+    }, 60);
+  };
+
   // Open confirmation modal before final submit
   const handlePreSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -464,86 +489,106 @@ const MentorPortal = () => {
 
     if (!ldapEmail.trim()) {
       toast.error("Please enter your LDAP Email ID.");
+      scrollToField("field-ldap-email");
       return;
     }
     if (!name.trim()) {
       toast.error("Please enter your Name.");
+      scrollToField("field-name");
       return;
     }
     if (!rollNo.trim()) {
       toast.error("Please enter your Roll Number.");
+      scrollToField("field-roll-no");
       return;
     }
     if (!nonLdapEmail.trim()) {
       toast.error("Please enter your Non-LDAP Email ID.");
+      scrollToField("field-non-ldap-email");
       return;
     }
     if (!contactNumber.trim()) {
       toast.error("Please enter your Contact Number.");
+      scrollToField("field-contact-number");
       return;
     }
     if (!finalYearOfStudy) {
       toast.error("Please specify your Year of Study.");
+      scrollToField("field-year-of-study");
       return;
     }
     if (!academicDepartment.trim()) {
       toast.error("Please enter your Academic Department.");
+      scrollToField("field-academic-department");
       return;
     }
     if (!finalDegree) {
       toast.error("Please select or specify your Degree.");
+      scrollToField("field-degree");
       return;
     }
 
     // Validate Section 2
     if (!projectTitle.trim()) {
       toast.error("Please enter the Project Title.");
+      scrollToField("field-project-title");
       return;
     }
     if (!projectDescription.trim()) {
       toast.error("Please enter the Project Description.");
+      scrollToField("field-project-description");
       return;
     }
     if (selectedDomains.length === 0) {
       toast.error("Please select 1 or up to 2 domain(s) for the project.");
+      scrollToField("field-project-domains");
       return;
     }
     if (!projectCategory) {
       toast.error("Please select a project category.");
+      scrollToField("field-project-category");
       return;
     }
     if (!durationWeeks) {
       toast.error("Please select the project duration.");
+      scrollToField("field-duration-weeks");
       return;
     }
     if (!weeklyTimeCommitment.trim()) {
       toast.error("Please enter the weekly time commitment required.");
+      scrollToField("field-weekly-time-commitment");
       return;
     }
     if (!numMentees.trim()) {
       toast.error("Please enter the recommended number of mentees.");
+      scrollToField("field-num-mentees");
       return;
     }
     if (!prerequisites.trim()) {
       toast.error("Please enter the pre-requisites for the project.");
+      scrollToField("field-prerequisites");
       return;
     }
-    if (!imageFile && !savedImageUrl && !savedImageName) {
-      toast.error("Please upload an image relevant to the project.");
+    if (!imageFile && !savedImageUrl && !savedImageName && !imageDriveLink.trim()) {
+      toast.error("Please upload an image or provide a Google Drive link for the project.");
+      scrollToField("field-project-image");
       return;
     }
 
     // Validate Section 3
     if (!pastProjectWork.trim()) {
       toast.error("Please fill in question 1 in Section 3 (Past Project Work or 'No').");
+      scrollToField("field-past-project-work");
       return;
     }
     if (!pythonMlExperience.trim()) {
       toast.error("Please fill in question 2 in Section 3 (Python/ML Experience).");
+      scrollToField("field-python-ml-experience");
       return;
     }
     if (!projectResourcesLink.trim()) {
       toast.error("Please fill in question 3 in Section 3 (Project Resources Link).");
+      scrollToField("field-project-resources-link");
       return;
     }
 
@@ -593,6 +638,9 @@ const MentorPortal = () => {
       formData.append("project_resources_link", projectResourcesLink.trim());
       formData.append("comments_suggestions", commentsSuggestions.trim());
 
+      if (imageDriveLink.trim()) {
+        formData.append("image_drive_link", imageDriveLink.trim());
+      }
       if (imageFile) {
         formData.append("project_image", imageFile);
       }
@@ -615,7 +663,7 @@ const MentorPortal = () => {
         setAutoSaveStatus("Application Finalized & Locked");
         if (data.image_name) setSavedImageName(data.image_name);
         if (data.image_url) setSavedImageUrl(data.image_url);
-        if (data.image_drive_link) setDriveUrl(data.image_drive_link);
+        if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
         localStorage.removeItem(draftKey);
       } else {
         toast.error(data?.error || "Failed to submit registration.");
@@ -647,14 +695,14 @@ const MentorPortal = () => {
   // CASE 1: User not logged in
   if (!isLoggedIn) {
     return (
-      <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] text-center px-6 pt-24 pb-16">
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#090514] via-[#140828] to-[#070210] text-center px-6 pt-24 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="p-8 sm:p-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md max-w-lg shadow-2xl"
+          className="p-8 sm:p-10 rounded-2xl border border-pink-500/30 bg-[#120726]/80 backdrop-blur-xl max-w-lg shadow-[0_0_40px_rgba(236,72,153,0.2)]"
         >
-          <div className="w-16 h-16 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-5 text-purple-400">
+          <div className="w-16 h-16 rounded-full bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mx-auto mb-5 text-pink-400 shadow-[0_0_15px_rgba(236,72,153,0.3)]">
             <svg
               className="w-8 h-8"
               fill="none"
@@ -669,15 +717,15 @@ const MentorPortal = () => {
               />
             </svg>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-3">
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-300 via-fuchsia-300 to-purple-300 bg-clip-text text-transparent mb-3">
             You're Not Logged In or Session Expired
           </h2>
-          <p className="text-gray-300 mb-8 leading-relaxed">
+          <p className="text-[#f1e8f8]/80 mb-8 leading-relaxed text-sm sm:text-base">
             Please log in to view and fill the mentor portal
           </p>
           <a
             href={authUrl}
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3 text-white font-medium hover:from-blue-500 hover:to-purple-500 transition shadow-lg hover:shadow-purple-500/25"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 px-8 py-3 text-white font-semibold hover:from-pink-400 hover:to-purple-500 transition shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:scale-105 active:scale-95"
           >
             <span>Log in with IITB SSO</span>
             <svg
@@ -706,9 +754,9 @@ const MentorPortal = () => {
   }.${imageFile ? imageFile.name.split(".").pop()?.toLowerCase() || "jpg" : "jpg"}`;
 
   return (
-    <section className="px-4 md:px-8 lg:px-12 pt-28 pb-16 bg-gradient-to-b from-[#1A141C] via-[#21162d]/50 to-[#1A141C] min-h-screen text-[#E7E3E5] relative overflow-hidden">
+    <section className="px-4 md:px-8 lg:px-12 pt-28 pb-16 bg-gradient-to-b from-[#090514] via-[#16082c] to-[#090514] min-h-screen text-[#f1e8f8] relative overflow-hidden">
       {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-pink-600/15 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="relative z-10 max-w-3xl mx-auto">
         {/* Header */}
@@ -887,23 +935,6 @@ const MentorPortal = () => {
                 )}
               </div>
             </div>
-
-            <div className="pt-2 border-t border-emerald-500/20 flex flex-wrap items-center gap-3">
-              <a
-                href={driveUrl || GDRIVE_FOLDER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 border border-emerald-400/40 transition"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z" />
-                </svg>
-                <span>View in WiDS Drive Folder</span>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
           </motion.div>
         )}
 
@@ -912,7 +943,7 @@ const MentorPortal = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="p-6 sm:p-10 rounded-3xl border border-white/10 bg-[#1e1726]/80 backdrop-blur-xl shadow-2xl relative"
+          className="p-6 sm:p-10 rounded-3xl border border-pink-500/20 bg-gradient-to-br from-[#180d2c]/90 via-[#130724]/80 to-[#0a0316]/95 backdrop-blur-xl shadow-[0_10px_50px_rgba(236,72,153,0.15)] relative"
         >
           {/* Top Status Bar: Auto-Save Tracker */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-white/10">
@@ -972,6 +1003,7 @@ const MentorPortal = () => {
                   1) LDAP Email ID <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-ldap-email"
                   type="email"
                   required
                   disabled={isFinalSubmitted}
@@ -989,6 +1021,7 @@ const MentorPortal = () => {
                   2) Name <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-name"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1006,6 +1039,7 @@ const MentorPortal = () => {
                   3) Roll Number <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-roll-no"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1023,6 +1057,7 @@ const MentorPortal = () => {
                   4) Non LDAP Email ID <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-non-ldap-email"
                   type="email"
                   required
                   disabled={isFinalSubmitted}
@@ -1040,6 +1075,7 @@ const MentorPortal = () => {
                   5) Contact Number (Preferably WhatsApp) <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-contact-number"
                   type="tel"
                   required
                   disabled={isFinalSubmitted}
@@ -1052,7 +1088,7 @@ const MentorPortal = () => {
               </div>
 
               {/* 6) Year Of Study */}
-              <div>
+              <div id="field-year-of-study">
                 <label className="block text-sm font-semibold text-gray-200 mb-2">
                   6) Year Of Study <span className="text-red-400">*</span>
                 </label>
@@ -1108,6 +1144,7 @@ const MentorPortal = () => {
                   7) Academic Department <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-academic-department"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1120,7 +1157,7 @@ const MentorPortal = () => {
               </div>
 
               {/* 8) Degree Enrolled For */}
-              <div>
+              <div id="field-degree">
                 <label className="block text-sm font-semibold text-gray-200 mb-2">
                   8) Degree Enrolled For <span className="text-red-400">*</span>
                 </label>
@@ -1217,6 +1254,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-project-title"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1235,6 +1273,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <textarea
+                  id="field-project-description"
                   required
                   rows={5}
                   disabled={isFinalSubmitted}
@@ -1247,7 +1286,7 @@ const MentorPortal = () => {
               </div>
 
               {/* 3) Domain(s) Classification */}
-              <div>
+              <div id="field-project-domains">
                 <div className="flex items-center justify-between mb-1">
                   <label className="text-sm font-semibold text-gray-200">
                     3) In which of the following domain(s) would you classify the project?{" "}
@@ -1317,7 +1356,7 @@ const MentorPortal = () => {
               </div>
 
               {/* 4) Project Category (Guided / Collaborative) */}
-              <div>
+              <div id="field-project-category">
                 <label className="block text-sm font-semibold text-gray-200 mb-2">
                   4) In which category would you classify the project?{" "}
                   <span className="text-red-400">*</span>
@@ -1384,7 +1423,7 @@ const MentorPortal = () => {
               </div>
 
               {/* 5) Duration of the Project */}
-              <div>
+              <div id="field-duration-weeks">
                 <label className="block text-sm font-semibold text-gray-200 mb-2">
                   5) Duration of the Project (Number of weeks){" "}
                   <span className="text-red-400">*</span>
@@ -1423,6 +1462,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-weekly-time-commitment"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1447,6 +1487,7 @@ const MentorPortal = () => {
                   </div>
                 </div>
                 <input
+                  id="field-num-mentees"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1464,6 +1505,7 @@ const MentorPortal = () => {
                   8) Pre-Requisites for the project <span className="text-red-400">*</span>
                 </label>
                 <textarea
+                  id="field-prerequisites"
                   required
                   rows={3}
                   disabled={isFinalSubmitted}
@@ -1476,7 +1518,7 @@ const MentorPortal = () => {
               </div>
 
               {/* 9) Project Image Upload & Google Drive Integration */}
-              <div>
+              <div id="field-project-image">
                 <label className="block text-sm font-semibold text-gray-200 mb-1">
                   9) An image relevant to the project to be displayed on the site (try to make it appealing){" "}
                   <span className="text-red-400">*</span>
@@ -1547,30 +1589,43 @@ const MentorPortal = () => {
                   )}
                 </div>
 
-                {/* Target Name Preview & Google Drive Indicator */}
-                <div className="mt-3 p-3.5 rounded-xl bg-purple-950/20 border border-purple-400/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                {/* Target Name Preview */}
+                <div className="mt-3 p-3.5 rounded-xl bg-purple-950/20 border border-purple-400/20 flex items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2 text-purple-200">
                     <span className="font-medium text-gray-400">Target Image Name:</span>
                     <span className="font-mono bg-black/40 px-2 py-0.5 rounded border border-white/10 text-purple-300">
                       {predictedFileName}
                     </span>
                   </div>
-                  <a
-                    href={driveUrl || GDRIVE_FOLDER_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-purple-400 hover:text-purple-300 font-semibold underline underline-offset-2"
-                  >
-                    <span>WiDS Drive Folder</span>
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
+                </div>
+
+                {/* Direct Google Drive Link Input & Display */}
+                <div className="mt-3.5 p-3.5 rounded-xl bg-black/30 border border-white/10 space-y-2">
+                  <label className="block text-xs font-semibold text-gray-300">
+                    Google Drive Link to Image (Optional if uploaded directly above)
+                  </label>
+                  <input
+                    type="url"
+                    disabled={isFinalSubmitted}
+                    value={imageDriveLink}
+                    onChange={(e) => setImageDriveLink(e.target.value)}
+                    onBlur={() => saveCloudDraft(false)}
+                    placeholder="https://drive.google.com/file/d/.../view?usp=sharing"
+                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white text-xs placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  />
+                  {imageDriveLink && (
+                    <div className="flex items-center gap-2 text-[11px] text-pink-300/90 pt-1">
+                      <span>Saved Drive Link:</span>
+                      <a
+                        href={imageDriveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:text-pink-200 font-mono break-all"
+                      >
+                        {imageDriveLink}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -1601,6 +1656,7 @@ const MentorPortal = () => {
                   You are encouraged to create new projects and bring your unique ideas to life through WiDS 6.0
                 </p>
                 <textarea
+                  id="field-past-project-work"
                   required
                   rows={4}
                   disabled={isFinalSubmitted}
@@ -1619,6 +1675,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <textarea
+                  id="field-python-ml-experience"
                   required
                   rows={4}
                   disabled={isFinalSubmitted}
@@ -1637,6 +1694,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="field-project-resources-link"
                   type="text"
                   required
                   disabled={isFinalSubmitted}
@@ -1654,6 +1712,7 @@ const MentorPortal = () => {
                   4) Comments/Questions/Suggestions:
                 </label>
                 <textarea
+                  id="field-comments-suggestions"
                   rows={3}
                   disabled={isFinalSubmitted}
                   value={commentsSuggestions}
@@ -1695,7 +1754,7 @@ const MentorPortal = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full sm:flex-1 py-4 px-6 rounded-xl font-semibold text-base text-white bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-500 hover:via-purple-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full sm:flex-1 py-4 px-6 rounded-xl font-semibold text-base text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-purple-600 hover:from-pink-400 hover:via-fuchsia-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-pink-400 transition-all duration-300 shadow-xl hover:shadow-pink-500/35 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? (
                         <>
@@ -1712,9 +1771,6 @@ const MentorPortal = () => {
                 <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-center">
                   <p className="text-emerald-300 font-semibold text-sm">
                     🔒 Application Finalized & Locked
-                  </p>
-                  <p className="text-xs text-emerald-200/80 mt-1">
-                    Your responses are submitted and securely stored in the WiDS database.
                   </p>
                 </div>
               )}
@@ -1759,7 +1815,7 @@ const MentorPortal = () => {
                 <button
                   type="button"
                   onClick={handleFinalSubmit}
-                  className="flex-1 py-3 px-4 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 transition shadow-lg hover:shadow-purple-500/25"
+                  className="flex-1 py-3 px-4 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-purple-600 hover:from-pink-400 hover:via-fuchsia-500 hover:to-purple-500 transition shadow-lg hover:shadow-pink-500/30"
                 >
                   Yes, Submit Final
                 </button>

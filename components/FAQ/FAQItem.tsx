@@ -14,10 +14,10 @@ const FAQItem = ({ faqData }: { faqData: FaqData }) => {
   const isActive = activeFaq === id;
 
   return (
-    <div className="flex flex-col border-b border-stroke last-of-type:border-none dark:border-strokedark">
+    <div className={`flex flex-col border-b border-pink-500/15 last-of-type:border-none transition-colors duration-200 ${isActive ? "bg-pink-500/5 rounded-2xl" : ""}`}>
       <button
         onClick={() => handleFaqToggle(id)}
-        className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left text-[1.1rem] font-medium text-gray-200 hover:text-white lg:px-9 lg:py-7.5"
+        className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left text-[1.1rem] font-medium text-gray-200 hover:text-pink-300 lg:px-9 lg:py-7.5 transition-colors"
       >
         <span className="flex-1 text-left leading-relaxed">{quest}</span>
 

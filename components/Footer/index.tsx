@@ -5,9 +5,9 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <>
-      <footer className="border-t border-[#6D6D71] bg-[#1A141C]">
+      <footer className="border-t border-[#a54781]/25 bg-[#080212]">
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
-          <div className="flex flex-col items-center justify-center py-7 space-y-2">
+          <div className="flex flex-col items-center justify-center py-8 space-y-2">
             <motion.div
               variants={{
                 hidden: {
@@ -25,14 +25,16 @@ const Footer = () => {
               viewport={{ once: true }}
               className="animate_top flex flex-col items-center text-center space-y-2"
             >
-              <p className="text-xl font-semibold text-[#E7E3E5]">WIDS 2026</p>
-              <p className="text-[#6D6D71]">
+              <p className="text-xl font-bold bg-gradient-to-r from-pink-400 via-fuchsia-300 to-purple-400 text-transparent bg-clip-text">
+                WIDS 2026
+              </p>
+              <p className="text-gray-400 text-sm">
                 Dive deep in the realm of Academic and Industry related research projects
               </p>
-              <p className="text-[#E7E3E5]">
-                Created with <span className="text-[#6A6FDB]">❤</span> by UGAC Web Team, 2026-2027
+              <p className="text-[#f1e8f8] text-sm">
+                Created with <span className="text-pink-500 animate-pulse inline-block">❤</span> by UGAC Web Team, 2026-2027
               </p>
-              <p className="text-[#6D6D71]">&copy; {new Date().getFullYear()} UGAC, IIT Bombay</p>
+              <p className="text-gray-500 text-xs">&copy; {new Date().getFullYear()} UGAC, IIT Bombay</p>
             </motion.div>
           </div>
         </div>

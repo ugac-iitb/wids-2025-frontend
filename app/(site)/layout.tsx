@@ -23,8 +23,8 @@ export default function RootLayout({
       <body
         className={`${outfit.className}`}
         style={{
-          backgroundColor: "#1A141C",
-          color: "#E7E3E5",
+          backgroundColor: "#0d0418",
+          color: "#ededf1",
           ["--framer-font-family" as any]:
             '"Outfit", "Outfit Placeholder", sans-serif',
           ["--framer-font-family-bold" as any]:

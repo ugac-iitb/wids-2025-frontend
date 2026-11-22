@@ -187,8 +187,11 @@ const Project = () => {
 
 
   return (
-    <section className="px-4 md:px-8 lg:px-12 pt-23 pb-10 bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] relative overflow-hidden">
-      <div className="absolute inset-0 opacity-30"></div>
+    <section className="px-4 md:px-8 lg:px-12 pt-28 pb-14 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute top-10 left-10 w-96 h-96 bg-pink-600/20 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-[140px]" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-c-1315 px-4 md:px-8 py-4 xl:px-0">
         <motion.div
@@ -198,28 +201,28 @@ const Project = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 pb-2 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
             My Projects
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            View your wishlisted projects for Winter in Data Science 2026
+            View and explore projects for Winter in Data Science 2026
           </p>
         </motion.div>
 
         {/* Filters */}
-        <div className="mt-6 flex flex-col gap-3 items-center">
+        <div className="mt-8 flex flex-col gap-3 items-center">
           {/* Filters Stack Responsively */}
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 w-full max-w-3xl">
 
             <div className="flex items-center gap-2 flex-1">
-              <label className="text-sm text-gray-300 whitespace-nowrap">Domain</label>
+              <label className="text-sm text-pink-200 font-medium whitespace-nowrap">Domain</label>
               <select
                 value={selectedDomain}
                 onChange={(e) => setSelectedDomain(e.target.value)}
-                className="w-full min-h-[40px] rounded-lg bg-[#1b1530] border border-white/20 text-blue-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                className="w-full min-h-[42px] rounded-xl bg-[#140828] border border-pink-500/25 text-pink-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500/40"
               >
                 {domainOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-[#1b1530] text-blue-200">
+                  <option key={opt} value={opt} className="bg-[#140828] text-pink-100">
                     {opt}
                   </option>
                 ))}
@@ -227,14 +230,14 @@ const Project = () => {
             </div>
 
             <div className="flex items-center gap-2 flex-1">
-              <label className="text-sm text-gray-300 whitespace-nowrap">Difficulty</label>
+              <label className="text-sm text-pink-200 font-medium whitespace-nowrap">Difficulty</label>
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="w-full min-h-[40px] rounded-lg bg-[#1b1530] border border-white/20 text-blue-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                className="w-full min-h-[42px] rounded-xl bg-[#140828] border border-pink-500/25 text-pink-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500/40"
               >
                 {difficultyOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-[#1b1530] text-blue-200">
+                  <option key={opt} value={opt} className="bg-[#140828] text-pink-100">
                     {opt}
                   </option>
                 ))}
@@ -242,14 +245,14 @@ const Project = () => {
             </div>
 
             <div className="flex items-center gap-2 flex-1">
-              <label className="text-sm text-gray-300 whitespace-nowrap">Type</label>
+              <label className="text-sm text-pink-200 font-medium whitespace-nowrap">Type</label>
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-full min-h-[40px] rounded-lg bg-[#1b1530] border border-white/20 text-blue-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                className="w-full min-h-[42px] rounded-xl bg-[#140828] border border-pink-500/25 text-pink-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500/40"
               >
                 {typeOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-[#1b1530] text-blue-200">
+                  <option key={opt} value={opt} className="bg-[#140828] text-pink-100">
                     {opt}
                   </option>
                 ))}
@@ -258,7 +261,7 @@ const Project = () => {
 
             <button
               onClick={clearFilters}
-              className="px-3 py-2 text-sm rounded-lg border border-white/20 text-gray-200 hover:bg-white/10 transition"
+              className="px-4 py-2 text-sm rounded-xl border border-pink-500/30 text-pink-200 hover:bg-pink-500/15 transition"
             >
               Clear
             </button>

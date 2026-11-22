@@ -6,26 +6,27 @@
   --font-*: initial;
   --font-outfit: "Outfit", sans-serif;
 
-  /* 🎨 Core colors */
-  --color-background: #18171C;
-  --color-surface: #054066;
-  --color-accent: #6A6FDB;
-  --color-accent-light: #719EA8;
-  --color-border: #6D6D71;
-  --color-text: #E7E3E5;
+  /* 🌌 Aurora Theme Core Colors (Extracted from Reference Sky) */
+  --color-background: #0d0418;
+  --color-surface: #1a082e;
+  --color-accent: #e16993;
+  --color-accent-light: #ffa6c9;
+  --color-border: #a54781;
+  --color-text: #ededf1;
   --color-heading: #ffffff;
 
   /* ✅ Compatibility */
-  --color-white: #E7E3E5;
-  --color-black: #1A141C;
-  --color-primary: #6A6FDB;
-  --color-primaryho: #719EA8;
-  --color-stroke: #6D6D71;
-  --color-strokedark: #1A141C;
-  --color-meta: #719EA8;
+  --color-white: #ffffff;
+  --color-black: #0d0418;
+  --color-primary: #e16993;
+  --color-primaryho: #f06292;
+  --color-stroke: #6d3d72;
+  --color-strokedark: #140728;
+  --color-meta: #c084fc;
 
   /* Shadows, transitions */
-  --shadow-solid: 0px 6px 30px rgba(0, 0, 0, 0.5);
+  --shadow-solid: 0px 6px 30px rgba(0, 0, 0, 0.6);
+  --shadow-aurora: 0 0 40px rgba(225, 105, 147, 0.35);
   --transition-property-width: width;
 
   /* Text sizing */
@@ -37,8 +38,69 @@
 
 @layer base {
   body {
-    @apply bg-[var(--color-background)] text-[var(--color-text)] font-[var(--font-outfit)] relative z-[1] ;
+    @apply bg-[var(--color-background)] text-[var(--color-text)] font-[var(--font-outfit)] relative z-[1];
   }
+}
+
+/* 🌌 Aurora Curtain Animations */
+@keyframes aurora-curtain-1 {
+  0%, 100% {
+    transform: scaleY(1) skewX(-4deg) translateX(0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scaleY(1.15) skewX(5deg) translateX(30px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes aurora-curtain-2 {
+  0%, 100% {
+    transform: scaleY(1.1) skewX(6deg) translateX(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(0.95) skewX(-6deg) translateX(-25px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes aurora-curtain-3 {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1) translateY(-15px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes snow-sparkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateY(0px) scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-8px) scale(1.15);
+  }
+}
+
+.animate-aurora-1 {
+  animation: aurora-curtain-1 9s ease-in-out infinite;
+}
+
+.animate-aurora-2 {
+  animation: aurora-curtain-2 13s ease-in-out infinite;
+}
+
+.animate-aurora-3 {
+  animation: aurora-curtain-3 11s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: snow-sparkle 4s ease-in-out infinite;
 }
 
 @utility no-scrollbar {
