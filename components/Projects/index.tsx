@@ -316,9 +316,9 @@ const Project = () => {
           className="grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3"
         >
           {filteredProjects.length === 0 ? (
-            <p className="text-gray-400 text-center col-span-full">
+            <p className="text-gray-300 text-center col-span-full text-base sm:text-lg py-8">
               {projects.length === 0
-                ? "No projects available at the moment."
+                ? "Mentee registrations for projects will begin from 25th December"
                 : "No projects match your filters."}
             </p>
           ) : (

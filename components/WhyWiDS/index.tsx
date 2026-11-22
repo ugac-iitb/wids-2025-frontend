@@ -21,7 +21,7 @@ const WhyWiDS = () => {
     {
       icon: <HiOutlineUserGroup className="w-12 h-12" />,
       title: "Develop connections",
-      description: "Find a community of like-minded people and network with professionals.",
+      description: "Find a community of like-minded people and network with peers.",
       delay: 0.6,
     },
   ];
@@ -50,7 +50,7 @@ const WhyWiDS = () => {
             Why Choose WiDS?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Discover how Winter in Data Science can transform your journey into the world of data science
+            Discover how Winter in Data Science can be your gateway to the exciting world of data science
           </p>
         </motion.div>
 

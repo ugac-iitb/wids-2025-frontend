@@ -87,7 +87,7 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="max-w-3xl mx-auto mt-6 flex flex-col items-center"
           >
-            <p className="text-xl sm:text-2xl md:text-3xl text-[#ffa6c9] font-semibold mb-6 drop-shadow-[0_0_15px_rgba(225,105,147,0.35)]">
+            <p className="text-xl sm:text-2xl md:text-3xl text-white font-semibold mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
               Mentor registrations are now open!
             </p>
 

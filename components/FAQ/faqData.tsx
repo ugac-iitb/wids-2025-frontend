@@ -24,12 +24,12 @@ const faqData: FAQ[] = [
   {
     id: 5,
     quest: "In case of any query, what is supposed to be done?",
-    ans: "Please contact Manager Analytics Club or any of the WiDS team members whose details you can find on the contact tab."
+    ans: "Please contact Manager Analytics Club or any of the WiDS team members whose details you can find on the Contact Us tab."
   }
   , {
     id: 6,
     quest: "What is the duration and schedule of the bootcamp?",
-    ans: "The Data Science Bootcamp runs for 3 weeks during the first three weeks of December. The program blends self-paced online resources with interactive live online sessions, ensuring plenty of hands-on assignments. This bootcamp is supplementary and is meant to be done along with the WiDS projects."
+    ans: "The Data Science Bootcamp runs during the first 3 weeks of December. The program blends self-paced online resources with interactive live online sessions, ensuring plenty of hands-on assignments. This bootcamp is supplementary and is meant to be done along with the WiDS projects."
   }, {
     id: 7,
     quest: "Are there any prerequisites or required skills to join the bootcamp?",

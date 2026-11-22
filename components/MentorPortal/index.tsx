@@ -916,21 +916,13 @@ const MentorPortal = () => {
                   <p className="font-bold text-emerald-200 text-base sm:text-lg">
                     Application Submitted & Locked
                   </p>
-                  <span className="text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full">
-                    Finalized
-                  </span>
                 </div>
                 <p className="text-xs sm:text-sm text-emerald-200/90 mt-1 leading-relaxed">
-                  Your mentor registration and project proposal have been successfully submitted and are currently under review by The Analytics Club. In accordance with the submission policy, further updates or modifications cannot be made.
+                  Your mentor registration and project proposal have been successfully submitted and are currently under review by The Analytics Club.
                 </p>
                 {submittedAt && (
                   <p className="text-xs text-emerald-300/80 mt-1.5 font-mono">
                     Submitted on: {new Date(submittedAt).toLocaleString()}
-                  </p>
-                )}
-                {savedImageName && (
-                  <p className="text-xs text-emerald-300/90 mt-1 font-mono">
-                    Project Image: <span className="font-semibold">{savedImageName}</span>
                   </p>
                 )}
               </div>
@@ -946,21 +938,19 @@ const MentorPortal = () => {
           className="p-6 sm:p-10 rounded-3xl border border-pink-500/20 bg-gradient-to-br from-[#180d2c]/90 via-[#130724]/80 to-[#0a0316]/95 backdrop-blur-xl shadow-[0_10px_50px_rgba(236,72,153,0.15)] relative"
         >
           {/* Top Status Bar: Auto-Save Tracker */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-white/10">
-            <div className="flex items-center gap-2 text-xs">
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  isFinalSubmitted
-                    ? "bg-emerald-400"
-                    : isSavingDraft
-                    ? "bg-amber-400 animate-pulse"
-                    : "bg-blue-400 animate-pulse"
-                }`}
-              ></span>
-              <span className="text-gray-300 font-medium">{autoSaveStatus}</span>
-            </div>
+          {!isFinalSubmitted && (
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-white/10">
+              <div className="flex items-center gap-2 text-xs">
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    isSavingDraft
+                      ? "bg-amber-400 animate-pulse"
+                      : "bg-blue-400 animate-pulse"
+                  }`}
+                ></span>
+                <span className="text-gray-300 font-medium">{autoSaveStatus}</span>
+              </div>
 
-            {!isFinalSubmitted && (
               <button
                 type="button"
                 onClick={() => saveCloudDraft(true)}
@@ -976,8 +966,8 @@ const MentorPortal = () => {
                 )}
                 <span>Save Draft Now</span>
               </button>
-            )}
-          </div>
+            </div>
+          )}
 
           <form onSubmit={handlePreSubmit} className="space-y-10">
 
@@ -1524,7 +1514,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <p className="text-xs text-gray-400 mb-3">
-                  Upload a high-quality illustration or graphic representing your project. The image will be automatically named after your Project Title and uploaded to the WiDS Google Drive folder.
+                  Upload a high-quality illustration or graphic representing your project.
                 </p>
 
                 {/* Upload Box */}
