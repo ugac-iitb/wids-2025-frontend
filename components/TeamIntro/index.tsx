@@ -38,20 +38,19 @@ const MemberCard = ({
     <p className="text-sm text-pink-200/75 mt-0.5">{member.designation}</p>
 
     {/* Contact Number */}
-    {member.contactNumber && (
-      <div className="mt-2 text-xs sm:text-sm font-medium">
-        {member.contactNumber.includes("technical issues") ? (
-          <span className="inline-block px-3 py-1 rounded-full bg-pink-500/15 border border-pink-500/30 text-pink-200 shadow-sm">
-            {member.contactNumber}
-          </span>
-        ) : (
-          <span className="text-pink-200/80">
-            Contact Number:{" "}
-            <span className="text-pink-100 font-semibold">{member.contactNumber}</span>
-          </span>
-        )}
-      </div>
-    )}
+    {member.contactNumber && (() => {
+      const isTech = /technical issues/i.test(member.contactNumber);
+      const cleanNumber = member.contactNumber.replace(/\s*\(for technical issues only\)/i, "").trim();
+      return (
+        <div className="mt-2 text-xs sm:text-sm font-medium">
+          <span className="text-pink-200/80">Contact Number: </span>
+          <span className="text-pink-100 font-semibold">{cleanNumber}</span>
+          {isTech && (
+            <span className="text-pink-200/80"> (for technical issues only)</span>
+          )}
+        </div>
+      );
+    })()}
   </motion.div>
 );
 

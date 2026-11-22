@@ -747,12 +747,6 @@ const MentorPortal = () => {
     );
   }
 
-  const predictedFileName = `${
-    projectTitle.trim()
-      ? projectTitle.trim().replace(/[\\/*?:"<>|]/g, "")
-      : "Project Title"
-  }.${imageFile ? imageFile.name.split(".").pop()?.toLowerCase() || "jpg" : "jpg"}`;
-
   return (
     <section className="px-4 md:px-8 lg:px-12 pt-28 pb-16 bg-gradient-to-b from-[#090514] via-[#16082c] to-[#090514] min-h-screen text-[#f1e8f8] relative overflow-hidden">
       {/* Background glow effects */}
@@ -1587,16 +1581,6 @@ const MentorPortal = () => {
                       </p>
                     </div>
                   )}
-                </div>
-
-                {/* Target Name Preview */}
-                <div className="mt-3 p-3.5 rounded-xl bg-purple-950/20 border border-purple-400/20 flex items-center justify-between gap-2 text-xs">
-                  <div className="flex items-center gap-2 text-purple-200">
-                    <span className="font-medium text-gray-400">Target Image Name:</span>
-                    <span className="font-mono bg-black/40 px-2 py-0.5 rounded border border-white/10 text-purple-300">
-                      {predictedFileName}
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>

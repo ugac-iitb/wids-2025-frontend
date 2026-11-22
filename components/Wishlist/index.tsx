@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import WishlistCard from "./wishListCard";
 import { ProjectItem } from "@/types/projectitem";
-import { API_URL } from "@/lib/constants";
+import { API_URL, clientID, redirectURI } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 
 const API = `${API_URL}`;
+
+const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
+  redirectURI
+)}&state=some_state`;
 
 async function fetchJSON(url: string, opts: RequestInit = {}) {
   const token = localStorage.getItem("access_token") ?? "";
@@ -152,50 +156,76 @@ const Wishlist = () => {
   };
 
   // 🌀 Loading
-  if (loading)
-    return (
-      <div className="flex justify-center items-center min-h-screen text-gray-400">
-        Loading your projects...
-      </div>
-    );
-
   if (loading) {
-      return (
-        <section className="flex flex-col items-center justify-center min-h-screen bg-[#1A141C] text-[#E7E3E5]">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+    return (
+      <section className="flex flex-col items-center justify-center min-h-screen bg-[#090514] text-[#f1e8f8]">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-lg text-gray-300">Loading your projects, please wait...</p>
+        </motion.div>
+      </section>
+    );
+  }
+
+  // 🟣 CASE 1: User not logged in
+  if (!isLoggedIn) {
+    return (
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#090514] via-[#140828] to-[#070210] text-center px-6 pt-24 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="p-8 sm:p-10 rounded-2xl border border-pink-500/30 bg-[#120726]/80 backdrop-blur-xl max-w-lg shadow-[0_0_40px_rgba(236,72,153,0.2)]"
+        >
+          <div className="w-16 h-16 rounded-full bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mx-auto mb-5 text-pink-400 shadow-[0_0_15px_rgba(236,72,153,0.3)]">
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              />
+            </svg>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-300 via-fuchsia-300 to-purple-300 bg-clip-text text-transparent mb-3">
+            You're Not Logged In or Session Expired
+          </h2>
+          <p className="text-[#f1e8f8]/80 mb-8 leading-relaxed text-sm sm:text-base">
+            Please log in to view and manage your selected projects
+          </p>
+          <a
+            href={authUrl}
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 px-8 py-3 text-white font-semibold hover:from-pink-400 hover:to-purple-500 transition shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:scale-105 active:scale-95"
           >
-            <p className="text-lg text-gray-300 animate-pulse">
-              Loading projects, please wait...
-            </p>
-          </motion.div>
-        </section>
-      );
-    }
-  
-    // 🟣 CASE 1: User not logged in
-    if (!isLoggedIn) {
-      return (
-        <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#1A141C] via-purple-900/10 to-[#1A141C] text-center px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md max-w-md shadow-lg"
-          >
-            <h2 className="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-3">
-              You're Not Logged In or Session Expired
-            </h2>
-            <p className="text-gray-300 mb-6">
-              Please log in to view and manage your projects.
-            </p>
-          </motion.div>
-        </section>
-      );
-    }
+            <span>Log in with IITB SSO</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </a>
+        </motion.div>
+      </section>
+    );
+  }
 
   // ✅ Already submitted
   if (submitted)
