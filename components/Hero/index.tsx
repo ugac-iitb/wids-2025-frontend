@@ -51,29 +51,24 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-200">
-            Explore the world of data science through hands-on projects and expert guidance
-          </p>
-
-          <div className="flex justify-center gap-6 animate-fade-in-up animation-delay-300">
-            <motion.button 
-              onClick={handleGetStarted}
-              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              Get Started
-            </motion.button>
-            <motion.button 
-              onClick={handleLearnMore}
-              className="px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white/10 rounded-lg font-semibold transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              Learn More
-            </motion.button>
+          <div className="max-w-4xl mx-auto mb-12 animate-fade-in-up animation-delay-200 flex flex-col items-center">
+            <p className="text-xl md:text-2xl text-purple-200 font-medium mb-5">
+              Mentor registrations are now open!
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 text-lg md:text-xl text-gray-300">
+              <span>Click</span>
+              <motion.button 
+                onClick={() => router.push("/mentor")}
+                className="px-6 py-2.5 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 hover:from-purple-500 hover:to-indigo-500 shadow-[0_0_25px_rgba(147,51,234,0.45)] border border-purple-400/50 transition-all duration-300 inline-flex items-center gap-2 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <span>Register as Mentor</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </motion.button>
+              <span>to register yourself as a mentor.</span>
+            </div>
           </div>
         </div>
       </div>

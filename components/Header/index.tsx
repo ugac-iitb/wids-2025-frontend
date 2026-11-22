@@ -139,14 +139,14 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-4">
           <Image
-            src="/WiDS/images/logo/ugac.png"
+            src="/wids-2025/images/logo/ugac.png"
             alt="UGAC"
             width={80}
             height={40}
             className="brightness-0 invert"
           />
           <Image
-            src="/WiDS/images/logo/analyticsclub-dark.png"
+            src="/wids-2025/images/logo/analyticsclub-dark.png"
             alt="Analytics Club"
             width={40}
             height={40}
@@ -196,7 +196,7 @@ const Header = () => {
                 className="flex items-center focus:outline-none"
               >
                 <Image
-                  src={user.avatar || "/WiDS/images/user/avatar.png"}
+                  src={user.avatar || "/wids-2025/images/user/avatar.png"}
                   alt="User Avatar"
                   width={40}
                   height={40}
@@ -272,36 +272,6 @@ const Header = () => {
               {item.title}
             </Link>
           ))}
-
-          {/* Distinct Standout Mentor Button inside Mobile Menu */}
-          <Link
-            href="/mentor"
-            className="w-full text-center py-2.5 px-6 rounded-full font-medium text-sm transition-all duration-300 bg-gradient-to-r from-purple-900/60 to-indigo-900/60 text-purple-200 border border-purple-500/50 hover:text-white"
-            onClick={() => setNavOpen(false)}
-          >
-            ✦ Mentor Portal
-          </Link>
-
-          {/* Auth Button inside Mobile Menu */}
-          {!user ? (
-            <a
-              href={authUrl}
-              className="rounded-full bg-[#6A6FDB] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
-              onClick={() => setNavOpen(false)}
-            >
-              Login
-            </a>
-          ) : (
-            <button
-              onClick={() => {
-                logout();
-                setNavOpen(false);
-              }}
-              className="rounded-full bg-[#054066] px-6 py-2 text-[#E7E3E5] hover:bg-[#719EA8] transition"
-            >
-              Logout
-            </button>
-          )}
         </div>
       )}
     </header>

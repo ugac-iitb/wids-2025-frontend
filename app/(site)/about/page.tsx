@@ -20,7 +20,7 @@ const AboutPage = () => {
     },
     {
       date: '1st December, 2026',  
-      title: 'WiDS 5.0',
+      title: 'WiDS 6.0',
       status: 'upcoming'
     },
   ];
@@ -31,7 +31,7 @@ const AboutPage = () => {
       <section className="relative min-h-[600px] w-full bg-gradient-to-br from-blue-900 via-purple-900 to-black">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-          style={{ backgroundImage: "url('/WiDS/images/logo/analytics-club-logo.jpeg')" }}
+          style={{ backgroundImage: "url('/wids-2025/images/logo/analytics-club-logo.jpeg')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-black/60" />

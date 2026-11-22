@@ -76,7 +76,7 @@ const FAQ = () => {
               className="w-full md:w-3/4 lg:w-2/3"
             >
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-                WiDS Bootcamp
+                WiDS Bootcamp (coming soon)
               </h2>
               <p className="text-gray-300 text-lg max-w-4xl mx-auto mb-4">
                 Data Science Bootcamp in collaboration with School Of DS —
@@ -97,14 +97,14 @@ const FAQ = () => {
                 </ul>
               </div>
 
-              <div className="mt-6 flex justify-center">
+              {/* <div className="mt-6 flex justify-center">
                 <a
                   href="https://forms.gle/Zi6uzVH3Y4Xh59NFA"
                   className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium py-2 px-5 rounded-lg shadow-lg hover:opacity-95 transition"
                 >
                   Register for Bootcamp
                 </a>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </div>

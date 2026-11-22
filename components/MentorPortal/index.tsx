@@ -722,7 +722,7 @@ const MentorPortal = () => {
             Mentor Registration Form
           </h1>
           <p className="text-lg sm:text-xl font-medium text-purple-200/90 max-w-2xl mx-auto mb-2">
-            Are you passionate about Data Science, AI, or ML? Bring your innovative ideas to life through WiDS 5.0!
+            Are you passionate about Data Science, AI, or ML? Bring your innovative ideas to life through WiDS 6.0!
           </p>
           <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base">
             We’re inviting skilled individuals to mentor the next generation of data enthusiasts!
@@ -1206,7 +1206,7 @@ const MentorPortal = () => {
                   Project Information
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-400 mt-1">
-                  Details about the data science project you propose to mentor for WiDS 5.0.
+                  Details about the data science project you propose to mentor for WiDS 6.0.
                 </p>
               </div>
 
@@ -1598,7 +1598,7 @@ const MentorPortal = () => {
                   <span className="text-red-400">*</span>
                 </label>
                 <p className="text-xs text-purple-300/90 mb-2 italic">
-                  You are encouraged to create new projects and bring your unique ideas to life through WiDS 5.0
+                  You are encouraged to create new projects and bring your unique ideas to life through WiDS 6.0
                 </p>
                 <textarea
                   required

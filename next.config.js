@@ -2,7 +2,7 @@
 
 const nextConfig = {
   // output: "export",
-  basePath: "/WiDS",
+  basePath: "/wids-2025",
   reactStrictMode: true,
 };
 

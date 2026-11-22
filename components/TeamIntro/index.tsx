@@ -11,7 +11,7 @@ const TeamIntro = () => {
   const [teamdata, setTeamData] = useState<TeamMember[]>([]);
 
   useEffect(() => {
-    fetch("/WiDS/data/teamdata.json")
+    fetch("/wids-2025/data/teamdata.json")
       .then((res) => res.json())
       .then((data) => setTeamData(data))
       .catch((err) => console.error("Error loading team data:", err));
@@ -106,7 +106,7 @@ const TeamIntro = () => {
                     >
                       <div className="w-44 h-44 mx-auto rounded-full overflow-hidden shadow-md">
                         <Image
-                          src={member.imagePath || "/WiDS/images/placeholder.png"}
+                          src={member.imagePath || "/wids-2025/images/placeholder.png"}
                           alt={member.name}
                           width={176}
                           height={176}

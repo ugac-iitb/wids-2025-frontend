@@ -25,7 +25,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted || false);
   const [loading, setLoading] = useState(false);
 
-  const imgSrc = `/WiDS/images/projects/project_image_${project.id}.jpg` || "/WiDS/images/placeholder.png";
+  const imgSrc = `/wids-2025/images/projects/project_image_${project.id}.jpg` || "/wids-2025/images/placeholder.png";
 
 
   const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
