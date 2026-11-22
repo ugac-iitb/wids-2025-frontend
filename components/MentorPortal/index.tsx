@@ -37,7 +37,7 @@ const degreeOptions = [
   "IDDDP",
   "Mtech",
   "MSc-PhD",
-  "other",
+  "Other",
 ];
 
 const yearOptions = ["2nd", "3rd", "4th", "5th", "other"];
@@ -166,7 +166,7 @@ const MentorPortal = () => {
             if (degreeOptions.slice(0, 7).includes(data.degree_enrolled)) {
               setDegreeChoice(data.degree_enrolled);
             } else if (data.degree_enrolled) {
-              setDegreeChoice("other");
+              setDegreeChoice("Other");
               setDegreeOther(data.degree_enrolled);
             }
 
@@ -312,7 +312,7 @@ const MentorPortal = () => {
       const finalYearOfStudy =
         yearOfStudyChoice === "other" ? yearOfStudyOther.trim() : yearOfStudyChoice;
       const finalDegree =
-        degreeChoice === "other" ? degreeOther.trim() : degreeChoice;
+        degreeChoice.toLowerCase() === "other" ? degreeOther.trim() : degreeChoice;
 
       setIsSavingDraft(true);
       setAutoSaveStatus("Saving draft to cloud...");
@@ -485,7 +485,7 @@ const MentorPortal = () => {
     const finalYearOfStudy =
       yearOfStudyChoice === "other" ? yearOfStudyOther.trim() : yearOfStudyChoice;
     const finalDegree =
-      degreeChoice === "other" ? degreeOther.trim() : degreeChoice;
+      degreeChoice.toLowerCase() === "other" ? degreeOther.trim() : degreeChoice;
 
     if (!ldapEmail.trim()) {
       toast.error("Please enter your LDAP Email ID.");
@@ -569,8 +569,8 @@ const MentorPortal = () => {
       scrollToField("field-prerequisites");
       return;
     }
-    if (!imageFile && !savedImageUrl && !savedImageName && !imageDriveLink.trim()) {
-      toast.error("Please upload an image or provide a Google Drive link for the project.");
+    if (!imageFile && !savedImageUrl && !savedImageName) {
+      toast.error("Please upload an image relevant to the project.");
       scrollToField("field-project-image");
       return;
     }
@@ -603,7 +603,7 @@ const MentorPortal = () => {
     const finalYearOfStudy =
       yearOfStudyChoice === "other" ? yearOfStudyOther.trim() : yearOfStudyChoice;
     const finalDegree =
-      degreeChoice === "other" ? degreeOther.trim() : degreeChoice;
+      degreeChoice.toLowerCase() === "other" ? degreeOther.trim() : degreeChoice;
 
     try {
       const token = localStorage.getItem("access_token") ?? "";
@@ -1178,7 +1178,7 @@ const MentorPortal = () => {
                   ))}
                 </select>
 
-                {degreeChoice === "other" && (
+                {degreeChoice.toLowerCase() === "other" && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -1597,35 +1597,6 @@ const MentorPortal = () => {
                       {predictedFileName}
                     </span>
                   </div>
-                </div>
-
-                {/* Direct Google Drive Link Input & Display */}
-                <div className="mt-3.5 p-3.5 rounded-xl bg-black/30 border border-white/10 space-y-2">
-                  <label className="block text-xs font-semibold text-gray-300">
-                    Google Drive Link to Image (Optional if uploaded directly above)
-                  </label>
-                  <input
-                    type="url"
-                    disabled={isFinalSubmitted}
-                    value={imageDriveLink}
-                    onChange={(e) => setImageDriveLink(e.target.value)}
-                    onBlur={() => saveCloudDraft(false)}
-                    placeholder="https://drive.google.com/file/d/.../view?usp=sharing"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white text-xs placeholder-gray-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition disabled:opacity-60 disabled:cursor-not-allowed"
-                  />
-                  {imageDriveLink && (
-                    <div className="flex items-center gap-2 text-[11px] text-pink-300/90 pt-1">
-                      <span>Saved Drive Link:</span>
-                      <a
-                        href={imageDriveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline hover:text-pink-200 font-mono break-all"
-                      >
-                        {imageDriveLink}
-                      </a>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>

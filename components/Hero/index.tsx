@@ -75,7 +75,7 @@ const Hero = () => {
             <span className="block text-[#ededf1]/90 tracking-wider text-xl sm:text-2xl md:text-3xl font-medium mb-3">
               WELCOME TO
             </span>
-            <span className="block bg-gradient-to-r from-[#1d4ed8] via-[#1e3a8a] to-[#0a192f] text-transparent bg-clip-text drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] drop-shadow-[0_0_35px_rgba(30,58,138,0.55)]">
+            <span className="block bg-gradient-to-r from-white via-[#fed7e2] to-[#ffa6c9] text-transparent bg-clip-text drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] drop-shadow-[0_0_35px_rgba(255,166,201,0.5)]">
               WINTER IN DATA SCIENCE 2026
             </span>
           </h1>
