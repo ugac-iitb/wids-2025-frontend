@@ -1034,38 +1034,145 @@ const MentorPortal = () => {
       </div>
 
       <div className="relative mx-auto max-w-4xl">
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-pink-500/15 text-pink-300 border border-pink-400/30 mb-3 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
-            Winter in Data Science 2026
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            <span className="bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(236,72,153,0.35)]">
-              Mentor Registration & Project Proposal
-            </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.2] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+            WiDS 5.0 Mentor Registration Form
           </h1>
-          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Propose a project and guide passionate mentees through real-world applications in Machine Learning and Data Science.
+          <p className="text-lg sm:text-xl font-medium text-purple-200/90 max-w-2xl mx-auto mb-2">
+            Greetings from the Analytics Club!
+          </p>
+          <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base mb-2">
+            Are you passionate about Data Science, AI, or ML? Bring your innovative ideas to life through WiDS 5.0!
+          </p>
+          <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base">
+            We’re inviting skilled individuals to mentor the next generation of data enthusiasts!
           </p>
         </motion.div>
 
-        {/* Guidelines Callout */}
-        <div className="mb-6 p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md text-xs sm:text-sm text-gray-300 leading-relaxed">
-          <p className="font-semibold text-pink-300 mb-2 flex items-center gap-2">
-            <span>📌</span>
-            <span>Important Mentorship Guidelines:</span>
-          </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-300/90 ml-1">
-            <li>Projects in Python only</li>
-            <li>Prior experience & solid resources needed</li>
-            <li>Only one project per mentor (co-mentorship allowed)</li>
-          </ul>
-        </div>
+        {/* EXPLICIT NOTIFICATION CARDS: AUTO-SAVE & SUBMISSION POLICY */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="mb-8 grid sm:grid-cols-2 gap-4"
+        >
+          {/* Card 1: Auto-Save Active */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-blue-950/30 border border-blue-500/30 backdrop-blur-md flex items-start gap-3 shadow-lg">
+            <div className="p-2 rounded-xl bg-blue-500/20 text-blue-300 mt-0.5 shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-blue-200 text-sm">Automatic Progress Saving</p>
+              <p className="text-xs text-blue-300/80 mt-1 leading-relaxed">
+                Incompletely filled responses are saved automatically as a draft. You can close this tab and return anytime or log in tomorrow to complete your submission.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: One-Time Final Submission */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30 backdrop-blur-md flex items-start gap-3 shadow-lg">
+            <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300 mt-0.5 shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-amber-200 text-sm">One-Time Final Submission</p>
+              <p className="text-xs text-amber-300/80 mt-1 leading-relaxed">
+                Once submitted, your application is permanently locked and cannot be updated. Please review all details and resources thoroughly before submitting.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Mentorship Program Info & Guidelines Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-8 p-6 sm:p-8 rounded-3xl border border-purple-500/30 bg-[#1e152d]/70 backdrop-blur-md shadow-xl space-y-6 text-sm sm:text-base"
+        >
+          {/* Domains */}
+          <div>
+            <h3 className="text-xs uppercase tracking-wider text-purple-400 font-bold mb-2">
+              Domains
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "NLP",
+                "Computer Vision",
+                "Agentic AI",
+                "Quantitative Analytics",
+                "Theoretical ML",
+                "RL",
+                "Core Projects",
+              ].map((domain) => (
+                <span
+                  key={domain}
+                  className="px-3 py-1 text-xs font-semibold rounded-full bg-purple-500/15 border border-purple-400/30 text-purple-200"
+                >
+                  {domain}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Mentorship Modes */}
+          <div className="border-t border-white/10 pt-4">
+            <h3 className="text-xs uppercase tracking-wider text-blue-400 font-bold mb-3">
+              Mentorship Modes
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="p-3.5 rounded-2xl bg-black/30 border border-white/10">
+                <span className="font-semibold text-blue-300 block mb-1">
+                  Guided Project
+                </span>
+                <p className="text-xs sm:text-sm text-gray-300">
+                  The mentees create their own projects with guidance and resources from the mentor.
+                </p>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-black/30 border border-white/10">
+                <span className="font-semibold text-purple-300 block mb-1">
+                  Collaborative Project
+                </span>
+                <p className="text-xs sm:text-sm text-gray-300">
+                  The mentees would collaborate and work on the same project with the mentor.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Requirements */}
+          <div className="border-t border-white/10 pt-4">
+            <h3 className="text-xs uppercase tracking-wider text-pink-400 font-bold mb-2">
+              Requirements
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-gray-300 list-disc list-inside">
+              <li>Not open to 1st-year UGs</li>
+              <li>Projects in Python only</li>
+              <li>Prior experience & solid resources needed</li>
+              <li>Only one project per mentor (co-mentorship allowed)</li>
+            </ul>
+          </div>
+
+          {/* Closing & Signature */}
+          <div className="border-t border-white/10 pt-4 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p className="text-xs sm:text-sm italic text-gray-300 font-medium">
+              Make an impact. Share your expertise. Inspire the next wave of data scientists.
+            </p>
+            <span className="text-xs font-semibold tracking-wide text-purple-300 bg-purple-500/20 px-3 py-1 rounded-full border border-purple-400/30 whitespace-nowrap">
+              — The Analytics Club
+            </span>
+          </div>
+        </motion.div>
 
         {/* LOCKED BANNER (If already final submitted) */}
         {isFinalSubmitted && (
