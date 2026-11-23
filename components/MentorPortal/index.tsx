@@ -1026,14 +1026,14 @@ const MentorPortal = () => {
   }
 
   return (
-    <section className="py-12 sm:py-16 px-4 md:px-8 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514] relative overflow-hidden min-h-screen">
+    <section className="py-18 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514] relative overflow-hidden min-h-screen">
       {/* Decorative Glows */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-10 left-10 w-96 h-96 bg-pink-600/20 rounded-full blur-[140px]" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-[140px]" />
       </div>
 
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative mx-auto max-w-4xl py-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1042,13 +1042,13 @@ const MentorPortal = () => {
           className="text-center mb-8"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.2] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-            WiDS 5.0 Mentor Registration Form
+            WiDS 6.0 Mentor Registration Form
           </h1>
           <p className="text-lg sm:text-xl font-medium text-purple-200/90 max-w-2xl mx-auto mb-2">
             Greetings from the Analytics Club!
           </p>
           <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base mb-2">
-            Are you passionate about Data Science, AI, or ML? Bring your innovative ideas to life through WiDS 5.0!
+            Are you passionate about Data Science, AI, or ML? Bring your innovative ideas to life through WiDS 6.0!
           </p>
           <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base">
             We’re inviting skilled individuals to mentor the next generation of data enthusiasts!
