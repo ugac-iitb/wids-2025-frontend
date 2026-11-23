@@ -73,27 +73,54 @@ const FAQ = () => {
               whileInView="visible"
               transition={{ duration: 0.8, delay: 0.05 }}
               viewport={{ once: true }}
-              className="w-full md:w-3/4 lg:w-2/3"
+              className="w-full max-w-4xl mx-auto"
             >
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
                 WiDS Bootcamp (coming soon)
               </h2>
-              <p className="text-gray-300 text-lg max-w-4xl mx-auto mb-4">
-                Data Science Bootcamp in collaboration with School Of DS —
-                Kickstart your journey into Data Science this December with our intensive 3-week bootcamp, specially crafted for beginners.
+              <p className="text-gray-300 text-base sm:text-lg max-w-4xl mx-auto mb-4 leading-relaxed">
+                The Data Science and Machine Learning Bootcamp, held in collaboration with Gradient Learning aims to help you kickstart your Data Science journey. Whether you’re a complete beginner looking to find a holistic starter point into DS, or someone established willing to go beyond basics and learn straight from industry professionals, look no further than this Bootcamp.
               </p>
-              <p className="text-gray-400 text-base max-w-4xl mx-auto mb-6">
-                Spanning the first three weeks of December, the program pairs online self-paced resources with live interactive sessions and hands-on assignments. You can register whether or not you've applied for a WiDS project.
+              <p className="text-gray-300 text-base sm:text-lg max-w-4xl mx-auto mb-8 leading-relaxed">
+                Spanning across the 5 weeks of December and early January, this program pairs live interactive sessions which connect you to experts in the field, with hands-on assignments that build your understanding. Neither do you need any pre-requisites, nor do you have to be registered for a WiDS project to avail the full benefit of this Bootcamp.
               </p>
 
-              <div className="text-left max-w-4xl mx-auto">
-                <h4 className="text-lg font-semibold text-white mb-3">What you’ll get:</h4>
-                <ul className="list-inside list-disc space-y-2 text-gray-300">
-                  <li>A complete introduction to data science — no prerequisites required.</li>
-                  <li>Essential foundations: Statistics, Python programming, and Exploratory Data Analysis (EDA).</li>
-                  <li>Core ML skills: supervised & unsupervised learning, with exposure to different models.</li>
-                  <li>Insights into ensemble techniques and a peek into AutoML.</li>
-                  <li>Regular assignments and projects for practical experience — ideal alongside your WiDS project or as an entry point to DS.</li>
+              <div className="text-left max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#1d0e30]/70 via-[#130623]/70 to-[#0a0316]/80 border border-pink-500/20 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+                <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <span className="text-pink-400">✨</span>
+                  <span>What you’ll get:</span>
+                </h4>
+                <ul className="space-y-3 text-gray-300 text-sm sm:text-base leading-relaxed">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-pink-400 font-bold mt-1">•</span>
+                    <span>
+                      <strong className="text-white font-semibold">A complete Data Science journey:</strong> From absolute basics to building and deploying real-world ML applications.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-pink-400 font-bold mt-1">•</span>
+                    <span>
+                      <strong className="text-white font-semibold">Essential foundations:</strong> Python, Statistics, Data Preprocessing, and Exploratory Data Analysis (EDA).
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-pink-400 font-bold mt-1">•</span>
+                    <span>
+                      <strong className="text-white font-semibold">Core & Advanced ML:</strong> Regression, Classification, Unsupervised Learning, Ensemble Techniques, Model Optimization, and Explainable AI.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-pink-400 font-bold mt-1">•</span>
+                    <span>
+                      <strong className="text-white font-semibold">Generative AI:</strong> Neural Networks, LLMs, Prompt Engineering, RAG, and AI Agents.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-pink-400 font-bold mt-1">•</span>
+                    <span>
+                      <strong className="text-white font-semibold">From Model to Product:</strong> Hands-on experience with APIs, Docker, Cloud Deployment, and MLOps, guided by industry professionals.
+                    </span>
+                  </li>
                 </ul>
               </div>
 

@@ -29,7 +29,7 @@ const faqData: FAQ[] = [
   , {
     id: 6,
     quest: "What is the duration and schedule of the bootcamp?",
-    ans: "The Data Science Bootcamp runs during the first 3 weeks of December. The program blends self-paced online resources with interactive live online sessions, ensuring plenty of hands-on assignments. This bootcamp is supplementary and is meant to be done along with the WiDS projects."
+    ans: "The Data Science and Machine Learning Bootcamp spans across 5 weeks of December and early January, held in collaboration with Gradient Learning. The program pairs live interactive sessions with experts and hands-on assignments. You do not need any prerequisites or a WiDS project registration to join."
   }, {
     id: 7,
     quest: "Are there any prerequisites or required skills to join the bootcamp?",
