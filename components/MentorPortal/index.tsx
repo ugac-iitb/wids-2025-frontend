@@ -131,6 +131,13 @@ const MentorPortal = () => {
 
   const draftKey = `wids_mentor_draft_${ldapEmail || "anonymous"}`;
 
+  const getFullImageUrl = (url: string | null): string | null => {
+    if (!url) return null;
+    if (url.startsWith("http://") || url.startsWith("https://")) return url;
+    const baseBackend = API.replace(/\/apis-wids.*/, "");
+    return `${baseBackend}${url.startsWith("/") ? "" : "/"}${url}`;
+  };
+
   // Dynamic Step List based on Co-Mentor choice
   const stepList: FormStep[] = useMemo(() => {
     const steps: FormStep[] = [
@@ -301,7 +308,10 @@ const MentorPortal = () => {
             if (data.num_mentees) setNumMentees(data.num_mentees);
             if (data.prerequisites) setPrerequisites(data.prerequisites);
             if (data.image_name) setSavedImageName(data.image_name);
-            if (data.project_image_url) setSavedImageUrl(data.project_image_url);
+            if (data.project_image_url) {
+              setSavedImageUrl(getFullImageUrl(data.project_image_url));
+              setImageUploadedToCloud(true);
+            }
             if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
 
             // Section 3
@@ -568,7 +578,7 @@ const MentorPortal = () => {
           setSavedImageName(data.image_name);
           setImageUploadedToCloud(true);
         }
-        if (data.image_url) setSavedImageUrl(data.image_url);
+        if (data.image_url) setSavedImageUrl(getFullImageUrl(data.image_url));
         if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
         if (showToast) {
           toast.success("Draft saved to cloud successfully!");
@@ -962,7 +972,7 @@ const MentorPortal = () => {
         setSubmittedAt(new Date().toISOString());
         setAutoSaveStatus("Application Finalized & Locked");
         if (data.image_name) setSavedImageName(data.image_name);
-        if (data.image_url) setSavedImageUrl(data.image_url);
+        if (data.image_url) setSavedImageUrl(getFullImageUrl(data.image_url));
         if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
         localStorage.removeItem(draftKey);
       } else {
@@ -2120,22 +2130,34 @@ const MentorPortal = () => {
                         className="hidden"
                       />
 
-                      {imagePreview || savedImageUrl ? (
+                      {imagePreview || savedImageUrl || savedImageName ? (
                         <div className="space-y-4">
-                          <div className="relative inline-block mx-auto max-w-xs max-h-48 overflow-hidden rounded-xl border border-white/20 shadow-lg">
-                            <img
-                              src={imagePreview || savedImageUrl || ""}
-                              alt="Project Preview"
-                              className="w-full h-auto object-cover max-h-48"
-                            />
-                          </div>
+                          {imagePreview || savedImageUrl ? (
+                            <div className="relative inline-block mx-auto max-w-xs max-h-48 overflow-hidden rounded-xl border border-white/20 shadow-lg">
+                              <img
+                                src={imagePreview || savedImageUrl || ""}
+                                alt="Project Preview"
+                                className="w-full h-auto object-cover max-h-48"
+                                onError={(e) => {
+                                  // Fallback if image fails to load directly
+                                  (e.target as HTMLElement).style.display = "none";
+                                }}
+                              />
+                            </div>
+                          ) : null}
                           <div className="text-xs text-gray-300">
+                            {savedImageName && !imageFile && (
+                              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 mb-2">
+                                <span>✓</span>
+                                <span>Image saved on server</span>
+                              </div>
+                            )}
                             <p className="font-semibold text-purple-300">
                               {imageFile ? imageFile.name : savedImageName || "Saved Project Image"}
                             </p>
                             {!isFinalSubmitted && (
-                              <p className="text-gray-400 mt-0.5">
-                                Click to choose a different image
+                              <p className="text-gray-400 mt-1">
+                                Click or drag & drop to replace this image
                               </p>
                             )}
                           </div>
