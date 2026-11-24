@@ -100,7 +100,7 @@ const Hero = () => {
             </button>
 
             <p className="mt-3.5 text-sm sm:text-base text-pink-200/90 font-medium tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] text-center">
-              (Mentor Registration Deadline: 25th November, 11:59 PM)
+              (Mentor Registration Deadline: 27th November, 11:59 PM)
             </p>
           </motion.div>
         </div>

@@ -1281,7 +1281,7 @@ const MentorPortal = () => {
               </div>
 
               <div className="text-xs sm:text-sm font-semibold text-pink-300/90 text-center tracking-wide">
-                (Deadline for form submission : 25th December, 11:59 PM)
+                (Deadline for form submission : 27th November, 11:59 PM)
               </div>
 
               <button
