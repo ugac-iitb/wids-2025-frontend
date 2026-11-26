@@ -75,6 +75,10 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
               <div className="font-medium">{project.number_of_mentees || "—"}</div>
             </div>
             <div>
+              <div className="text-xs text-gray-400">Duration</div>
+              <div className="font-medium">{project.duration_weeks || "—"}</div>
+            </div>
+            <div>
               <div className="text-xs text-gray-400">Pre-Requisites</div>
               <div className="font-medium">{project.pre_requisites || "—"}</div>
             </div>
