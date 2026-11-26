@@ -571,7 +571,16 @@ const MentorPortal = () => {
         body: formData,
       });
 
-      const data = await res.json();
+      const rawText = await res.text();
+      let data: any = null;
+      try {
+        data = JSON.parse(rawText);
+      } catch (parseErr) {
+        console.warn("Non-JSON auto-save draft response:", rawText);
+        setAutoSaveStatus("Draft saved locally");
+        return;
+      }
+
       if (res.ok && data?.ok) {
         setAutoSaveStatus("Draft synced with cloud");
         if (data.image_name) {
@@ -964,7 +973,15 @@ const MentorPortal = () => {
         body: formData,
       });
 
-      const data = await res.json();
+      const rawText = await res.text();
+      let data: any = null;
+      try {
+        data = JSON.parse(rawText);
+      } catch (parseErr) {
+        console.error("Non-JSON server response on submit:", rawText);
+        toast.error(`Server error (${res.status}). The server returned an invalid response. Please try again.`);
+        return;
+      }
 
       if (res.ok && data?.ok) {
         toast.success("Mentor Registration submitted and finalized successfully!");
