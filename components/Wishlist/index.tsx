@@ -293,10 +293,10 @@ const Wishlist = () => {
     <section className="px-4 md:px-8 lg:px-12 pt-28 pb-14 bg-gradient-to-b from-[#090514] via-[#140828] to-[#090514]">
       <div className="text-center">
         <h2 className="text-4xl font-extrabold bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text mb-3 drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
-          Wishlist
+          My Projects
         </h2>
         <p className="text-gray-400">
-          Review your favorite projects before submitting preferences.
+          Review projects in your basket before submitting preferences.
         </p>
         {projects.length > 5 && (
           <p className="text-yellow-400 mt-2">
@@ -308,7 +308,7 @@ const Wishlist = () => {
       <div className="grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 mt-10">
         {projects.length === 0 ? (
           <p className="text-gray-400 text-center col-span-full">
-            Your wishlist is currently empty.
+            Your basket is currently empty.
           </p>
         ) : (
           projects.map((project) => {

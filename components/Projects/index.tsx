@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import ProjectCard from "./projectcard";
 import { ProjectItem } from "@/types/projectitem";
 import { API_URL, clientID, redirectURI } from "@/lib/constants";
+import { catalogProjects } from "@/lib/catalog";
 
 const API = `${API_URL}`;
 
@@ -46,31 +47,28 @@ const Project = () => {
 
   useEffect(() => {
     (async () => {
+      const catalog = catalogProjects.map((project) => ({
+        id: project.id,
+        project_title: project.project_name,
+        project_type: project.project_category,
+        project_domain_1: project.project_domains[0] || "",
+        project_domain_2: project.project_domains[1] || "",
+        difficulty: "",
+        mentor: { id: 0, name: project.mentor_name, email: project.mentor_ldap_mail, roll_no: null, is_mentor: true },
+        is_wishlisted: false,
+      } as ProjectItem));
+      setProjects(catalog);
+      setIsLoggedIn(true);
+      setLoading(false);
+
+      const token = localStorage.getItem("access_token");
+      if (!token) return;
       try {
-        const token = localStorage.getItem("access_token");
-        if (!token) {
-          setIsLoggedIn(false);
-          throw new Error("Please log in to view projects.");
-        }
-
-        try {
-          const me = await fetchJSON(`${API}/api/me`);
-          if (!me?.authenticated) throw new Error("Session expired. Please log in again.");
-          setIsLoggedIn(true);
-        } catch (e: any) {
-          console.warn("Auth check failed:", e.message);
-          throw new Error("Your session token has expired, Please log in again to continue.");
-        }
-
         const data = await fetchJSON(`${API}/api/project`);
-        setProjects(Array.isArray(data?.items) ? data.items : []);
-      } catch (err: any) {
-        console.error("Projects load error:", err);
-        setError(err?.message || "Failed to fetch projects.");
-        setProjects([]);
-        setIsLoggedIn(false);
-      } finally {
-        setLoading(false);
+        const savedIds = new Set<number>((data.items || []).filter((item: ProjectItem) => item.is_wishlisted).map((item: ProjectItem) => item.id));
+        setProjects(catalog.map((project) => ({ ...project, is_wishlisted: savedIds.has(project.id) })));
+      } catch (err) {
+        console.error("Could not load basket status:", err);
       }
     })();
   }, []);
@@ -240,7 +238,7 @@ const Project = () => {
           className="text-center"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 pb-2 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
-            My Projects
+            Projects
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             View and explore projects for Winter in Data Science 2026

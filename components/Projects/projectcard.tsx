@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectItem } from "@/types/projectitem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Heart, HeartOff } from "lucide-react";
 import { API_URL } from "@/lib/constants";
 
@@ -14,10 +14,6 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const {
     id,
     project_title,
-    project_type,
-    difficulty,
-    project_domain_1,
-    project_domain_2,
     is_wishlisted
   } = project;
 
@@ -25,12 +21,10 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
   const [isWishlisted, setIsWishlisted] = useState<boolean>(is_wishlisted || false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => setIsWishlisted(Boolean(is_wishlisted)), [is_wishlisted]);
+
   const imgSrc = `/wids-2025/images/projects/project_image_${project.id}.jpg` || "/wids-2025/images/placeholder.png";
 
-
-  const tags = [project_type, difficulty, project_domain_1, project_domain_2].filter(
-    (t) => t && t.trim().length > 0
-  );
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -39,7 +33,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
 
     const token = localStorage.getItem("access_token");
     if (!token) {
-      alert("Please log in to manage wishlist");
+      alert("Please log in with IITB SSO to add a project to your basket.");
       setLoading(false);
       return;
     }
@@ -61,13 +55,8 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
         throw new Error(`Failed with status ${response.status}`);
       }
 
-      // ✅ Toggle frontend state after success
-      setIsWishlisted((prev) => !prev);
-      console.log(
-        isWishlisted
-          ? `Removed "${project_title}" from wishlist`
-          : `Added "${project_title}" to wishlist`
-      );
+      const data = await response.json();
+      setIsWishlisted(Boolean(data.is_wishlisted));
     } catch (error) {
       console.error("Failed to update wishlist:", error);
       alert("Failed to update wishlist. Please try again.");
@@ -115,21 +104,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           <h3 className="line-clamp-2 text-lg font-semibold text-pink-100 group-hover:text-pink-300 transition-colors">
             {project_title}
           </h3>
-
-          {tags.length > 0 && (
-            <div className="flex flex-wrap justify-center gap-2 mt-3">
-              {tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 text-xs font-medium rounded-full 
-                             bg-pink-500/10 text-pink-300 border border-pink-400/25 
-                             hover:bg-pink-500/20 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          <p className="text-sm text-purple-200">{project.mentor?.name || "Mentor to be announced"}</p>
 
           {/* Divider */}
           <div className="border-t border-pink-500/15 mx-auto w-2/3 mt-3"></div>
@@ -138,6 +113,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
           <div className="mt-4">
             <button
               onClick={handleWishlistToggle}
+              disabled={loading}
               className={`group relative inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full 
                           transition-all duration-300 border focus:outline-none
                           ${
@@ -152,7 +128,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
                     size={16}
                     className="text-pink-300 transition-transform group-hover:scale-110"
                   />
-                  Remove from Wishlist
+                  {loading ? "Updating..." : "Remove from basket"}
                 </>
               ) : (
                 <>
@@ -160,7 +136,7 @@ const ProjectCard = ({ project }: { project: ProjectItem }) => {
                     size={16}
                     className="text-purple-300 transition-transform group-hover:scale-110"
                   />
-                  Add to Wishlist
+                  {loading ? "Updating..." : "Add project to basket"}
                 </>
               )}
             </button>

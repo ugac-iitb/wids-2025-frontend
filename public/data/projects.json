@@ -1,1 +1,1625 @@
-[]
+[
+  {
+    "id": 1,
+    "project_name": "Study of Models",
+    "mentor_name": "Harsh kumar singh",
+    "mentor_ldap_mail": "",
+    "project_description": "Introduce students to various types of baseline models and get a chance to explore linear models, decision trees, random forests, support vector machine etc . To understand the flow of code (using numpy, pandas, matplotlib, sklearn)+ use of these models in real life . Sounding basic but these are the most useful models in current age of A.I . Learning through  toy datasets of sklearn like diabetes , wine, iris or MNIST . Students will go through detail of each model learn differences and understand the application of each on different kind of problems like regression or classification.  This will be complete package of Machine learning . Finally students will choose any dataset from kaggle and run the code for baseline models with minimum (or 0 )help of GPT or LLM's",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Basic knowledge of python, mathematics and stastics",
+    "project_image_drive_link": "https://drive.google.com/open?id=17fPhVfUJJ3a_N-xPQNU88N1U1pJai2eC"
+  },
+  {
+    "id": 2,
+    "project_name": "AI Powered Anomaly Detection in Medical Imagery",
+    "mentor_name": "Viren Mehta",
+    "mentor_ldap_mail": "",
+    "project_description": "This project uses deep learning, especially Convolutional Neural Networks, to analyze medical scans like X-rays and MRIs. It focuses on detecting and segmenting abnormal regions in these images automatically. The system helps doctors identify diseases or irregularities more quickly and accurately. Such technology is valuable in healthcare for improving diagnostic efficiency and reducing human error. Its applications also extend to early detection of oncological anomalies, aiding in timely cancer diagnosis and treatment planning.",
+    "project_domains": [
+      "Core Projects",
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "Computer Vision, Image Processing",
+    "project_image_drive_link": "https://drive.google.com/open?id=1fqppEaozGAsu9HOs9MHc1GP_MZFYymQ9"
+  },
+  {
+    "id": 3,
+    "project_name": "Monte Carlo Simulations: From calculating area to Gambling in BlackJack",
+    "mentor_name": "Tanay Jha, Aadeshveer Singh",
+    "mentor_ldap_mail": "",
+    "project_description": "This five-week project is a structured journey designed to take you from a programming novice to the architect of a simple artificial intelligence. We begin in the first week by building a solid foundation, mastering the essential computational toolkit of Python and its numerical library, NumPy. With these tools in hand, our second week is dedicated to building a deep and intuitive understanding of the Monte Carlo method; we will write a simulation to estimate the areas of complex geometric shapes by metaphorically throwing millions of virtual darts, discovering how random sampling can be used to solve problems that would otherwise require calculus. Armed with this practical foundation in simulation, we then pause in the third week to learn the core theoretical language of Reinforcement Learning, defining the abstract concepts of agents, environments, policies, and value functions that are the building blocks of intelligent systems. In the fourth week, we bridge this theory with practice by applying our Monte Carlo skills to the game of Blackjack, not to play it, but to build an analytical engine that can evaluate any given strategy by calculating the long-term value of every possible game situation. Finally, in the culminating week, we empower our agent to learn for itself, implementing a Monte Carlo Control algorithm that allows it to start with zero knowledge, learn from the outcomes of thousands of games, and independently discover the mathematically optimal strategy to play Blackjack, completing the transformation from simple simulation to genuine artificial intelligence.",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "None! Just a lot of excitement and enthusiasm to learn new stuff.",
+    "project_image_drive_link": "https://drive.google.com/open?id=18OujHnj-v8jdPTUgf8FuEbxvf1plgq0O"
+  },
+  {
+    "id": 4,
+    "project_name": "Predicting Physics Observables at the LHC using Machine Learning on Advanced Collider Data",
+    "mentor_name": "Deependra Sharma",
+    "mentor_ldap_mail": "",
+    "project_description": "This project guides students in applying machine learning techniques to analyze large-scale, high-energy physics datasets from advanced detectors at CERN (Large Hadron Collider) and BNL (Brookhaven National Laboratory). Over the past decade, these facilities have accumulated massive amounts of data from particle collisions, offering unique insights into the physics of fundamental interactions and the properties of the exotic matter created in these events. The proposed work will involve building and training simple machine learning models to analyze this archival data and predict future physics observables for the next run of the LHC. This approach will equip students with practical skills in data analysis and contribute to the ongoing efforts to leverage advanced computational methods in particle physics research.",
+    "project_domains": [
+      "Core Projects",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 5,
+    "prerequisites": "Python, Probability density functions, matrix algebra",
+    "project_image_drive_link": "https://drive.google.com/open?id=16CaLMGT4jrgIMhGYkFS4PkTLjxcEZbwc"
+  },
+  {
+    "id": 5,
+    "project_name": "Beyond the blackbox",
+    "mentor_name": "Tanishk nath goswami, Farhan al zayed",
+    "mentor_ldap_mail": "",
+    "project_description": "This course is for students who know how to call model.fit() but want to understand what is happening under the hood. We will mathematically derive the \"why\" behind model behavior, optimization, and generalization, using linear algebra and calculus skills as our primary tool\r\n\r\nIn the first week, we will cover the core tradeoff in all of machine learning. We'll move beyond the vague idea of overfitting and formalize it. The session will introduce the statistical learning framework, distinguishing between the empirical risk (training error) and the true risk (test error). The main discussion topic will be the Bias-Variance Decomposition, breaking down the test error into its three conceptual parts: bias, which results from a model's overly simplistic assumptions; variance, which results from the model's sensitivity to the specific training data it saw; and irreducible error. This framework provides the core language for discussing why a simple model is stable but wrong (high bias, low variance) and a complex model is accurate but sensitive (low bias, high variance).\r\n\r\nFor the second week, the topic is optimization and the cost landscape, exploring how a model learns. We will frame learning as an optimization problem: finding the minimum of a high-dimensional cost function. Using linear algebra, we can represent the cost function, such as Mean SquaredError, in matrix form. The discussion will then compare the two primary methods for solving this. First, the analytical, one-shot solution given by the Normal Equation, which requires matrix inversion. Second, the iterative solution of Gradient Descent. The core of the discussion will be the computational tradeoffs between these two methods, explaining why the Normal Equation is often infeasible for high-dimensional data, which makes scalable algorithms like Stochastic Gradient Descent the workhorse of modern machine learning.\r\n\r\nWeek three will focus on generalization and model complexity, answering the question, Why does a model work on data it hasn't seen? We will discuss the need for a rigorous measure of model complexity that goes beyond just counting parameters. This leads to the central concept of VC Dimension, which we will explore intuitively through the idea of shattering. A model class's expressiveness, its VC dim, is the maximum number of points it can perfectly classify, regardless of how they are labeled. The key illustrative example for this session will be a walkthrough of why a 2D linear classifier can shatter any 3 points, but cannot shatter 4 points arranged in an XOR configuration, thus proving its complexity is finite even if the number of possible lines is infinite.\r\n\r\nIn week four, we will discuss the practical tools for controlling complexity, which are based on the theories from the previous weeks. The first part of the session will cover L2 (Ridge) and L1 (Lasso) regularization. We will use the linear algebra background to frame these as penalties on the vector norm of the model's weights. The discussion will center on the geometric intuition: the L2 norm's circle constraint shrinks all weights, while the L1 norm's diamond constraint has sharp corners that can force weights to exactly zero, thus performing feature selection. The second part of the session will cover the Kernel Trick, the conceptual magic behind models like SVMs, which allows us to solve non-linear problems by mapping data to a much higher-dimensional space where it becomes linearly separable, all without ever paying the computational cost of that transformation.\r\n\r\nThe final week will serve as a capstone, discussing the modern paradox of deep learning and where classical theory breaks. We will present the central mystery of deep learning: these models are massively over-parameterized, with far more parameters than data points. According to classical VC theory, they should overfit completely, but they generalize extremely well. This session will introduce the Double Descent phenomenon, where test error can surprisingly decrease again after passing the point of interpolation. This leads to the modern research topic of implicit regularization, suggesting the optimization algorithm itself is providing a hidden bias toward simpler solutions that our classical theories do not fully capture, making it a live and active field of research.",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 8,
+    "prerequisites": "Basic python, enthu, basics of linear algebra(soft pre req)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1dFH354k1xNrRWymK85zbEBWp109Kb2tg"
+  },
+  {
+    "id": 6,
+    "project_name": "AI for Self-Driving Car: Build a Traffic Sign Classifier",
+    "mentor_name": "Kunal Gandvane",
+    "mentor_ldap_mail": "",
+    "project_description": "Have you ever wondered how a self-driving car understands the world around it? How it can instantly recognize a Stop sign from a Speed Limit sign — and react correctly?\r\nIn this project, we’re going to build the core of that technology step by step, together.\r\n\r\nThis is a beginner-friendly introduction to Computer Vision and AI. You don’t need any prior experience — no coding background. We’ll start from scratch and learn everything along the way in a simple, hands-on manner.\r\n\r\nWe’ll learn how to teach a computer to see using a type of neural network called a Convolutional Neural Network (CNN). It sounds complicated now, but you’ll be surprised how intuitive it becomes once we break it down.\r\n\r\nWhat You’ll Learn\r\nPython, NumPy, Pandas, TensorFlow, Keras, CNN's \r\n\r\nBy the end of the project, you'll learn to train, test, and validate a model from scratch. You’ll have a working AI model that can recognize multiple traffic signs, which you can proudly show on your resume, LinkedIn, or portfolio.\r\n\r\nWhether you’re interested in AI, robotics, self-driving cars, or just want to explore how machines learn—this is the perfect place to start. Just bring your curiosity—we’ll build the rest together. 🚀",
+    "project_domains": [
+      "Computer Vision",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "None, just lots of enthusiasm and willingness to learn. This project is designed for complete beginners.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1jr1Ppk6fpdL2iBtw266UsGm8G-zOJXfO"
+  },
+  {
+    "id": 7,
+    "project_name": "Quant Agents: A Game Theory Model",
+    "mentor_name": "Salaj Sonar, Shivansh Gupta",
+    "mentor_ldap_mail": "",
+    "project_description": "Have you ever wondered why stock markets crash or why \"bubbles\" form? Is it driven by complex calculations, or just simple crowd psychology? In this project, we'll build an artificial stock market from the ground up to find the answer.\r\n\r\nThis project involves building an artificial stock market from scratch using Agent-Based Modeling (ABM). We will simulate a market populated by 100 autonomous \"Quant Agents\" whose interactions are governed by a core Game Theory rule: the Minority Game.\r\n\r\nIn this game, agents profit only by being in the minority (e.g., selling when the majority buys). Agents are not static; they are adaptive. Each agent possesses a \"toolbox\" of 10 unique trading strategies (heuristics) and maintains a \"scorebook\" tracking the virtual performance of each.\r\nAt each time step, an agent deploys the strategy with the currently highest score. This creates a non-stationary environment: as a strategy becomes popular, it becomes the majority and thus unprofitable, forcing agents to adapt. This dynamic feedback loop allows us to study the emergent behavior of a complex system, such as market oscillations and volatility clustering.\r\n\r\nYou will learn to:\r\n• Implement a multi-agent simulation in Python using the Mesa framework.\r\n• Model adaptive agents using heuristic scoring mechanisms.\r\n• Analyze the emergent, collective dynamics of a market from simple, individual rules.\r\n• Apply concepts from Game Theory and Econophysics to financial data.",
+    "project_domains": [
+      "Agentic AI",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 7,
+    "prerequisites": "Common sense, Python, Basics of ML like regression",
+    "project_image_drive_link": "https://drive.google.com/open?id=1UhejFw8nzkc4_Sro-3it_EX8rkDQakZK"
+  },
+  {
+    "id": 8,
+    "project_name": "deep learning. from scratch. in code. spelled out.",
+    "mentor_name": "Narendra Aironi",
+    "mentor_ldap_mail": "",
+    "project_description": "In this project, you will learn Deep Learning from scratch. Unlike most projects, this WILL be mathematically rigorous. We will also implement what we learn (instead of abstracting the complexity to external libraries) such as transformers and CNNs, on real data from Kaggle and HF. \r\n\r\nApply only if you are willing to commit as much time required for weekly assignments and assigned readings.\r\n\r\nIf you are not comfortable with Linear Algebra, go through the following resource, before WiDs begins\r\nCh.2, 3 and 4 of https://mml-book.github.io/\r\n\r\nRough Timeline, week-wise\r\nFor detailed description of each week, check ToC of d2l.ai and bishopbook.com\r\n1. Probability and Statistics\r\n2. Shallow Neural Networks\r\n3. Deep Neural Networks and Builder's Guide\r\n4. Gradient Descent, Backpropagation and Regularization\r\n5. Recurrent and Convolutional Neural Networks\r\n6. Attention Mechanisms and Transformers\r\n\r\nBased on the performance of the mentees, we may also cover one of the following.\r\n1. Graph Neural Networks\r\n2. Latent variables",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 5,
+    "prerequisites": "Python (OOP preferred), Multivariate Calculus and Linear Algebra (If you haven't done Linear Algebra, you might need additional efforts)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1FxL1eGPHLPVs3h1FmH3rXr5p_Rn9QMTp"
+  },
+  {
+    "id": 9,
+    "project_name": "Handwritten Digit Detection",
+    "mentor_name": "Vihaan Thaker",
+    "mentor_ldap_mail": "",
+    "project_description": "The Handwritten Digit Detection project aims to design and train a machine learning model capable of recognizing and classifying handwritten digits (0–9) from images. This problem is a classic benchmark in computer vision and artificial intelligence, serving as an ideal introduction to deep learning techniques such as Convolutional Neural Networks (CNNs).\r\nThe project uses the MNIST dataset, a large collection of 70,000 grayscale images of handwritten digits, each of size 28×28 pixels. The goal is to build a robust model that accurately predicts the digit represented in each image, even in the presence of variations in handwriting style, stroke thickness, and orientation.",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "None (Comfortable with Python will help, nonetheless not necessary)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1zQ4j2E8j1qbCMBQDuHSG-6SXmsF905pr"
+  },
+  {
+    "id": 10,
+    "project_name": "Sentiment Analysis for Social Media Posts",
+    "mentor_name": "Jyotirya Agrawal",
+    "mentor_ldap_mail": "",
+    "project_description": "This project is a complete tool built to analyze and automatically classify the sentiment of social media posts. The system processes a large volume of raw text and uses a Natural Language Processing (NLP) pipeline to accurately categorize each post as Positive, Negative, or Neutral.\r\n\r\nProject Pipeline & Features:\r\n1. Real-World Data Cleaning: The system is designed to handle \"noisy\" text from social media. It includes a robust cleaning module that automatically removes URLs, hashtags (#), user mentions (@), and punctuation to prepare the data for analysis.\r\n\r\n2. Core NLP Preprocessing: Once cleaned, the text is processed using standard NLP techniques, including:\r\n\r\nTokenization: Splitting sentences into individual words.\r\n\r\nStop Word Removal: Filtering out common but non-essential words (like 'the', 'is', 'a').\r\n\r\nLemmatization: Reducing words to their root form (e.g., \"running\" becomes \"run\") to consolidate their meaning.\r\n\r\n3. Feature Engineering with TF-IDF: To allow a machine learning model to understand the text, the project implements TF-IDF (Term Frequency-Inverse Document Frequency). This technique converts the cleaned text into a numerical matrix, giving more weight to words that are significant for determining sentiment.\r\n\r\n4. Machine Learning Models: The system trains and compares several foundational machine learning models, including Multinomial Naive Bayes and Logistic Regression, to find the most accurate classifier for the task.\r\n\r\n5. Performance Evaluation: The model's success isn't just measured by accuracy. The project includes a full evaluation using key metrics like Precision, Recall, F1-Score, and a Confusion Matrix to ensure the classifier is reliable and performs well for all sentiment classes (positive, negative, and neutral).",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "Willingness to learn",
+    "project_image_drive_link": "https://drive.google.com/open?id=1xeAl8jcIRDby_cQ3G3-l_wku9dCgEjMi"
+  },
+  {
+    "id": 11,
+    "project_name": "Training Models for Object detection through Machine learning",
+    "mentor_name": "Mahaswi Ganipisetty",
+    "mentor_ldap_mail": "",
+    "project_description": "Learn Basics of Open CV and how to train models for any Kind of Object detection or Human Detection through ML. Get ready to make your own model.",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "3",
+    "number_of_mentees": 9,
+    "prerequisites": "Enthusiasm and Basic Maths .",
+    "project_image_drive_link": "https://drive.google.com/open?id=1E531zuhloHkxCQO3A8ByUEVE8RfPVnR6"
+  },
+  {
+    "id": 12,
+    "project_name": "Exploratory Data Analysis (EDA) Using Python",
+    "mentor_name": "Disha Jain, Disha Agrawal",
+    "mentor_ldap_mail": "",
+    "project_description": "Conduct a comprehensive Exploratory Data Analysis (EDA) in Python, involving data cleaning, feature profiling, outlier detection, correlation analysis, and visualization. Used libraries like Pandas, NumPy, Matplotlib, and Seaborn to uncover trends and insights that informed subsequent modelling steps.",
+    "project_domains": [
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "Basic Python Programming (not a hard pre-requisite)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1dX3brOu2J3wUw2rj3isuK3e5Kyww85_R"
+  },
+  {
+    "id": 13,
+    "project_name": "IntelliBrief: Your Personal AI News Agent",
+    "mentor_name": "Anshit Singh, Aarnav Girish",
+    "mentor_ldap_mail": "",
+    "project_description": "Ever feel overwhelmed by the constant flood of online information? This project is your chance to build a solution! We will create IntelliBrief, a smart AI agent that acts as your personal news anchor.\r\nThe concept is simple but powerful: you'll run the program and tell the agent what you're interested in, using plain English like, \"What's the latest news on electric vehicles?\" The agent will then autonomously:\r\nUnderstand your request using Natural Language Processing (NLP).\r\nFetch the most recent, relevant articles from the live internet using a News API.\r\nSummarize the content of each article into a concise, easy-to-read briefing using a powerful transformer model from Hugging Face.\r\nPresent the summaries back to you in a clean, conversational format.\r\nThis project is the perfect introduction to building practical AI applications. You'll learn how to connect different technologies to create an end-to-end system that takes natural language as input and produces valuable, summarized information as output.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Agentic AI"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 3,
+    "prerequisites": "Enthusiasm, willingness to learn.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1WZJ1gcmvSRPslNgYf3no_mbh2y0jisg2"
+  },
+  {
+    "id": 14,
+    "project_name": "Agentic AI for Automated Research and Knowledge Discovery",
+    "mentor_name": "Rahul Pal",
+    "mentor_ldap_mail": "",
+    "project_description": "Build an AI agent that autonomously explores datasets, generates hypotheses, and tests them using theoretical ML models. The project focuses on how agents can independently reason about data and produce interpretable, validated insights.",
+    "project_domains": [
+      "Agentic AI",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4-5",
+    "number_of_mentees": 3,
+    "prerequisites": "Python, Deep learning, NLP and lots of enthu",
+    "project_image_drive_link": "https://drive.google.com/open?id=1Spvm4PcFgw9JmWnlAefiGcXsndcPCbRh"
+  },
+  {
+    "id": 15,
+    "project_name": "Guide into the World of ML",
+    "mentor_name": "Prashant bothra, Anubhav Dash",
+    "mentor_ldap_mail": "",
+    "project_description": "What You’ll Learn & Build:\r\n\r\nPython & NumPy: Learn how to code, manipulate data, and perform efficient numerical operations.\r\n\r\nPandas & Matplotlib: Clean, analyze, and visualize real-world datasets with intuitive tools.\r\n\r\nBasic Probability & Statistics: Understand key concepts like mean, variance, correlation, and data distributions — the foundation of data science.\r\n\r\nMachine Learning with Scikit-learn: Build your first predictive model to classify or forecast outcomes.\r\n\r\nDeep Learning with TensorFlow: Create and train a simple neural network to understand how AI learns patterns.\r\n\r\nFinal Project: Combine all your skills to analyze a dataset end-to-end — from preprocessing to model presentation.",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 5,
+    "prerequisites": "This project is built on a \"zero-prerequisite\" philosophy. The only requirement is curiosity to learn!",
+    "project_image_drive_link": "https://drive.google.com/open?id=1qoReErXZzWxx2JDcNkzOKIT3td4auIhY"
+  },
+  {
+    "id": 16,
+    "project_name": "SSMphony - AI voice generation using Mamba + SSMs",
+    "mentor_name": "Shibam Sundar Mahakud, Aarav Gupta",
+    "mentor_ldap_mail": "",
+    "project_description": "Transformers have dominated AI but there’s a new architecture in town. Mamba, built on the power of Selective State Space Models (SSMs), brings linear-time efficiency and infinite context to sequence modeling. Imagine generating lifelike, emotionally rich voices that adapt fluidly, not just token by token, but with deep memory and dynamic context awareness.\r\n\r\nUnlike Transformers, which recalculate attention for every word, Mamba listens, remembers, and reacts, just like the human brain processing speech. This makes it perfect for real-time voice generation, expressive narration, and conversational AI.\r\n\r\nJoin us as we build an AI model based on Mamba + SSMs which sounds just like any other human being.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 3,
+    "prerequisites": "Python, PyTorch, basics of ML and some basic knowledge of Transformers. (Some experience with controls on LTI systems is a plus)",
+    "project_image_drive_link": "https://drive.google.com/open?id=19vmKv5rudWFhQWsonVm4CTsXMNgZF4fH"
+  },
+  {
+    "id": 17,
+    "project_name": "Playing with Artificial Intelligence & Machine Learning",
+    "mentor_name": "Adeesh Jain, Naman Nayak",
+    "mentor_ldap_mail": "",
+    "project_description": "In this exciting basic machine learning project, mentees will get hands-on experience building intelligent systems that can learn from data and make predictions, just like the technology behind recommendation engines, self-driving cars, or voice assistants. The project will guide them step-by-step through the core ML workflow — from collecting and cleaning real-world data, exploring patterns through visualizations, training models like decision trees, logistic regression, or random forests, and finally evaluating their performance using accuracy and other metrics. Along the way, they’ll learn how to turn raw data into meaningful insights, understand how algorithms think, and gain confidence in using popular tools like Python, Pandas, and scikit-learn. This project is not only a perfect foundation for anyone curious about artificial intelligence but also helps build critical problem-solving, analytical, and programming skills that are highly valued in today’s tech world. By the end, mentees won’t just understand the theory—they’ll have a working ML model they can proudly showcase as their first step into the world of data science and AI innovation.",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 6,
+    "prerequisites": "Lots of Enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1WVIqCLvTw50ko7n-li5vakmxgcUFGWjE"
+  },
+  {
+    "id": 18,
+    "project_name": "SentiMind",
+    "mentor_name": "Yashneil Rawat, Adeesh Jain",
+    "mentor_ldap_mail": "",
+    "project_description": "Building an end-to-end sentiment analysis pipeline with automated preprocessing (tokenization, stopword removal, lemmatization) and TF-IDF feature engineering to process upon the given dataset and predict the user sentiment based on their reviews.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 5,
+    "prerequisites": "A basic overview of python with great enthusiasm!",
+    "project_image_drive_link": "https://drive.google.com/open?id=1ejAQx6TPRThCGhRmAlAGIDUe2Cwopy4W"
+  },
+  {
+    "id": 19,
+    "project_name": "Teaching AI Agents to Walk: Reinforcement Learning with Humanoids",
+    "mentor_name": "Aryan Metha, Syed Ali",
+    "mentor_ldap_mail": "",
+    "project_description": "Starting from absolute basics of Programming and Machine Learning, this course gradually builds the foundation needed to understand and implement Reinforcement Learning to challenging problems\r\n\r\nThe central challenge: teach a simulated humanoid agent to stand up, balance, and walk -as fast as possible. Not as easy as it sounds :) \r\n\r\nThrough this journey, students will gain a deep, hands on understanding of how cutting edge AI systems learn like humans to tackle challenges ranging from robotics and industrial systems to finance and personalization systems. \r\nOver the course of five weeks, students will first implement reinforcement learning algorithms from scratch, exploring concepts such as dynamic programming, value functions and policy gradients while implementing them in various environments. After mastering the fundamentals, we will advance to modern deep reinforcement learning techniques apply them to challenging environments - Like Multi Joint Coordination in Bipeds and Quadrupeds\r\n\r\nBy the end of the project, participants will have experienced the full arc of reinforcement learning, from mathematical intuition and algorithmic coding to training autonomous intelligent agents.",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 +1(one week buffer+ extra challenges)",
+    "number_of_mentees": 15,
+    "prerequisites": "A computer...Internet access .... And Lots of Enthusiasm :)",
+    "project_image_drive_link": "https://drive.google.com/open?id=10Dt5X2u_GpgwCfRUnqUPn12Y7jF2F4qt"
+  },
+  {
+    "id": 20,
+    "project_name": "Citadel — Build the Algorithmic Black Box",
+    "mentor_name": "Vatsh van, Anshuman Gupta",
+    "mentor_ldap_mail": "",
+    "project_description": "This project builds a fully coded miniature financial market where many autonomous trading agents interact. You create different trader types — market makers, trend followers and noise traders — and place a Reinforcement Learning agent in the center. The AI starts clueless but learns to trade by observing prices, taking risks and adapting to other agents, similar to algorithms used by top quant firms. You also build the market’s core infrastructure: an order book, trade-matching engine and simulations of supply, demand and herding behavior. The system reveals real market phenomena like bubbles, crashes and liquidity shifts. The goal is to understand how markets behave and how intelligent trading strategies emerge from simple rules.\r\n\r\nWeek 1 – Market Microstructure & System Architecture Begin with the core machinery of modern markets — order books, bid-ask spreads, liquidity depth and execution latency. You will understand how real-world exchanges function beneath the surface. You will then draft the architectural blueprint for the market simulator, dividing responsibilities across environment design, agent behavior and visualization modules. \r\n\r\nWeek 2 – Constructing the Market Engine Develop the backbone of the project: a limit order book simulator capable of processing, queuing and matching buy–sell orders dynamically. Implement basic analytics to visualize order flow, mid-price movement and trade-level volatility in real time - essentially creating a synthetic market from scratch. \r\n\r\nWeek 3 – Modeling Market Participants Introduce heterogeneity into the system through multiple agent archetypes - random noise traders, momentum-following speculators and liquidity-providing market makers. Fine-tune their micro-behaviors and observe how collective interactions drive emergent price formation and volatility cycles. \r\n\r\nWeek 4 – Integrating an AI-Driven Trader Deploy a Reinforcement Learning (RL)-based trading agent using frameworks like Gymnasium and Stable-Baselines3. The AI agent interacts with the market environment, executing trades and learning from experience, rewards and competition against other agents. \r\n\r\nWeek 5 – Emergent Market Dynamics & Behavioral Analysis Run large-scale simulations with varying agent compositions. Examine the emergence of real-world phenomena such as volatility clustering, flash crashes, bubbles, herding and liquidity traps. Analyze these through both quantitative indicators and behavioral models, bridging social learning theory with computational finance. \r\n\r\nWeek 6 – Optimization, Insights & Demonstration Refine the AI trader through hyperparameter tuning and performance benchmarking. Visualize the evolution of its strategy, portfolio trajectory and cumulative rewards. Conclude with a demo session and research discussion - can machine intelligence uncover the same inefficiencies human traders exploit?\r\n\r\nExpected Deliverables: A fully functional multi-agent trading simulator with a live order book and trading engine. A trained RL trading agent that interacts with other agents in the simulated market. Analytical insights and visualizations on emergent market behavior. (Optional) A research-style paper or report exploring behavioral and algorithmic phenomena observed in the simulation.\r\n\r\nWhy You Will Love It:\r\nThis project is where engineering meets Wall Street. You’ll build systems that think, simulate markets that react and witness intelligence emerge from noise. It’s a playground for coders, economists and dreamers — and a rare chance to build what real hedge funds only whisper about. By the end, you’ll have something worth showing to recruiters, professors and even potential research collaborators — a digital market where AI fights to find alpha. And yeah, all are welcome to apply :)",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6-7 Weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "Basic programming knowledge (preferably Python, just recommendation not necessary), Familiarity with high-school level mathematics — algebra, probability and basic statistics, Curiosity about financial markets and how algorithmic trading works and Interest in AI, data-driven decision-making or simulation design.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1TVHDrffcC6egh-jnqMLiRiA4VVWnYKyu"
+  },
+  {
+    "id": 21,
+    "project_name": "Stock price prediction using Reinforcement Learning",
+    "mentor_name": "Vaidehi Agrawal, Abhinav Badegaonkar",
+    "mentor_ldap_mail": "",
+    "project_description": "Ever wondered if a computer could learn to trade like a human , in fact smarter than a human? This project dives into the fascinating world of Reinforcement Learning (RL), where we train an AI agent to predict stock price movements and make intelligent trading decisions.\r\n\r\nWe’re building a learning agent that interacts with a simulated stock market, buys, sells, or holds, and learns from its own profits and mistakes over time.\r\n\r\nAt the heart of it, you’ll get to explore:- \r\n1. Python and Github\r\n2. Basics of Machine learning, deep learning and most importantly Reinforcement learning\r\n3. RL algorithms like DQN and PPO which are used by real hedge funds and trading bots\r\n4. Feature engineering using technical indicators (RSI, MACD, moving averages, etc.)\r\n5. Insights into how stock markets work - making an environment for buy hold and sell decisions.\r\n6. Simulation & visualization - watching your agent evolve from clueless to strategic\r\n\r\nBy the end, you’ll have a working prototype that shows how an RL-based trader adapts to changing markets, balancing risk and reward,  just like in real trading\r\n\r\nIf you’re curious about AI + finance, love to build cool stuff, and want to work on something that feels like building a mini-hedge fund brain, this project is for you :)",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 10,
+    "prerequisites": "Only basic Python knowledge, your curiosity and enthusiasm to explore AI-driven trading <3",
+    "project_image_drive_link": "https://drive.google.com/open?id=14yXzbv8txZdoessp96TeExAFVA_KacQ3"
+  },
+  {
+    "id": 22,
+    "project_name": "Deep Learning from Scratch: From Perceptron to Custom CNN",
+    "mentor_name": "Aditya Khambete",
+    "mentor_ldap_mail": "",
+    "project_description": "In this 6-week project, you will learn deep learning collaboratively by building it step by step.\r\n\r\nWe start with a simple perceptron, then build a neural network (MLP), and finally create a full convolutional neural network (CNN). We will write our own versions of key components like linear layers, activation functions, and even an optimizer.\r\n\r\nThe project uses real images and runs on GPU. Each week will include hands-on coding, Kaggle contests, and group work on a shared model.\r\n\r\nAt the end, we will have a working CNN, based on your own architecture, and your own functions.\r\n\r\nNo prior knowledge needed, just curiosity\r\n\r\nFor more details: https://adityak1729.github.io/Projects/WiDS5/",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 10,
+    "prerequisites": "Tons of enthusiasm, CS 101 knowledge (loops, functions, lists) is a bonus",
+    "project_image_drive_link": "https://drive.google.com/open?id=1gRZzKaHcOlwbakBQMRJQct_Y2nOGq_AG"
+  },
+  {
+    "id": 23,
+    "project_name": "Introduction to Reinforcement Learning",
+    "mentor_name": "Rushil Bhat, Nitanshu Bhutada",
+    "mentor_ldap_mail": "",
+    "project_description": "Our project introduces the core concepts of Reinforcement Learning in an intuitive and engaging way. It begins by building a strong foundation through the study of RL elements such as agents, environments, rewards, and policies, and exploring how these interact to drive intelligent behaviour. We then shift to implementing simulations that demonstrate how an agent learns to make better decisions through experience and feedback. Finally, we apply these principles to both predefined and custom-built environments, showcasing the effectiveness of RL algorithms in varied scenarios. Overall, it serves as an ideal gateway into the world of reinforcement learning systems.",
+    "project_domains": [
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 8,
+    "prerequisites": "NA",
+    "project_image_drive_link": "https://drive.google.com/open?id=1N4G1Igc4x1e2t-DfjWPK6AC2ZQadYQYr"
+  },
+  {
+    "id": 24,
+    "project_name": "EyeQ",
+    "mentor_name": "Sagnik Dey, Abhishek Kumar",
+    "mentor_ldap_mail": "",
+    "project_description": "We will begin by exploring the fundamentals of key Python libraries such as NumPy, Matplotlib, Pandas, and Seaborn to build a strong foundation in Python utilities.\r\nNext, we will learn about neural networks, diving into the underlying mathematics from scratch. We will study different types of models including ANN, CNN, FCNN, RNN, and their variants.\r\nAfter that, we will move on to computer vision-specific libraries such as MediaPipe, OpenCV, Torch, TensorFlow, and Scikit-Image. This will be followed by a focus on image transformations and preprocessing techniques, along with image filters and enhancement algorithms.\r\nWe will then explore object segmentation models and learn about color domain processing, thresholding, watershed, GrabCut, and the Hough Transform.\r\nAdvanced topics will include modern architectures such as DPM, YOLO, and ResNet. If time permits, we will also take a brief look at semantic segmentation models.\r\nFinally, mentees will work on an individual project of their choice, applying all the concepts and techniques learned throughout the course.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "No hard prerequisites are required, although having a basic understanding of AI and ML concepts would be helpful.",
+    "project_image_drive_link": "https://drive.google.com/open?id=13vYTyhnqInUiXcKntPUmPjyltRl6u6hs"
+  },
+  {
+    "id": 25,
+    "project_name": "Mini-GPT2",
+    "mentor_name": "Srikrishna mourya Karunakaram, Harshita",
+    "mentor_ldap_mail": "",
+    "project_description": "As mentors for this project, our primary goal is to guide students through the complete pipeline of natural language understanding and generation, culminating in the development and fine-tuning of a GPT-2-based model.\r\n\r\nThe work begins with a foundation in text processing techniques, including:\r\n\r\nTokenization – breaking text into words or subword units.\r\n\r\nStemming and Lemmatization – reducing words to their base or root forms to normalize language input.\r\n\r\nStop-word removal, case normalization, and sentence segmentation – essential preprocessing for clean and consistent data.\r\n\r\nWord-to-Vector Representations such as Word2Vec, GloVe, and TF-IDF embeddings to convert text into numerical form suitable for modeling.\r\n\r\nFollowing preprocessing, we move to document similarity and clustering:\r\n\r\nUsing cosine similarity, Euclidean distance, and Jaccard index to quantify semantic similarity between texts.\r\n\r\nApplying dimensionality reduction techniques such as PCA (Principal Component Analysis) and t-SNE (t-Distributed Stochastic Neighbor Embedding) for visualizing and clustering similar documents in lower-dimensional space.\r\n\r\nIn the advanced phase, we introduce Transformer architectures, the foundation of modern language models like GPT-2. Students learn about:\r\n\r\nSelf-attention mechanisms, positional encoding, and multi-head attention.\r\n\r\nThe concept of contextual embeddings, enabling models to understand meaning based on sentence structure.\r\n\r\nThe workflow of fine-tuning GPT-2 for domain-specific text generation tasks, along with best practices for training, validation, and evaluation.\r\n\r\nBy the end of the project, participants gain a holistic understanding of how raw text is transformed into structured data, analyzed for relationships, and ultimately used to generate coherent, context-aware text — mirroring the foundations of advanced generative AI systems.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 5,
+    "prerequisites": "Basic in python and jupyter",
+    "project_image_drive_link": "https://drive.google.com/open?id=1eKir8yH73LPHSPG9rgwThXy_r_vbc3cY"
+  },
+  {
+    "id": 26,
+    "project_name": "Speech Emotion Recognition",
+    "mentor_name": "Krishna Kukreja, Garvit Meena",
+    "mentor_ldap_mail": "",
+    "project_description": "This involves Emotion Classification from Audio Signals using Digital Signal Processing and Machine Learning. Build an end-to-end machine learning system that automatically detects and classifies emotional states (happiness, sadness, anger, fear, neutral, calm, disgust, surprise) from spoken audio using a combination of signal processing and data science techniques.",
+    "project_domains": [
+      "Core Projects"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 9,
+    "prerequisites": "Introduction to Python, Understanding of Vectors and Matrices. You will learn FFT, filtering, spectrograms from scratch. Hardware Pre-Requisties include 4GB Ram and 5-10GB storage on local computer. Gpu's are optional for this project. And Yes, Enthusiasm for Learning, Patience for Debugging and  Curiosity about audio/signals are Soft Pre-Requisites",
+    "project_image_drive_link": "https://drive.google.com/open?id=1sjouLMM5sJ1r8tnDvLMjaWrnDYSY76zT"
+  },
+  {
+    "id": 27,
+    "project_name": "Optimal Portfolio Allocation",
+    "mentor_name": "Ayusha Hongekar",
+    "mentor_ldap_mail": "",
+    "project_description": "This project dives into the heart of quantitative finance, where we build an intelligent model that allocates capital across multiple assets to achieve the perfect balance between risk and return.\r\n\r\nUsing concepts from Linear and Quadratic Programming, students design a system that answers the most fundamental question in investing:\r\n\r\n“How should I distribute my money across different assets to maximize my return for the least possible risk?”\r\n\r\nThe project begins with the basics of stock data analysis computing returns, volatility, and correlations  and gradually progresses to constructing a mean-variance optimization model, a Nobel Prize winning concept introduced by Harry Markowitz.\r\nThrough Python-based tools like CVXPY, NumPy, and Matplotlib, students implement a real-world optimization model that generates an efficient frontier the curve representing the set of best possible portfolios.",
+    "project_domains": [
+      "Core Projects"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "None",
+    "project_image_drive_link": "https://drive.google.com/open?id=1PVnu_fGLtjqIeaGhJ8s9Vg1E8ij8UGYX"
+  },
+  {
+    "id": 28,
+    "project_name": "Through LLM Journey",
+    "mentor_name": "Varun Lalwani, Shourya Saxena",
+    "mentor_ldap_mail": "",
+    "project_description": "The project will aim on covering LLMs and NLP from the basics while going into depth of each topic for better understanding.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 10,
+    "prerequisites": "none",
+    "project_image_drive_link": "https://drive.google.com/open?id=1_Lq93_iFLa5vCiRbGffoxFRZlVseaIQP"
+  },
+  {
+    "id": 29,
+    "project_name": "Flappy Learner",
+    "mentor_name": "Pranav Patil, Yashneil Rawat",
+    "mentor_ldap_mail": "",
+    "project_description": "\"Flappy Learner\" is an intensive, 6-week winter project designed to guide participants through the fundamentals of Artificial Intelligence and Reinforcement Learning (RL) by building an agent that learns to play the classic game, Flappy Bird.\r\n\r\nThis project is built for accessibility, welcoming participants regardless of their prior experience. However, due to the compressed 6-week timeline, it will move at a faster pace. We will start from the very basics of AI/ML and progressively build up to advanced Deep Reinforcement Learning concepts. The primary goal is to ensure every participant gains a strong, practical understanding of how and why an AI agent can learn complex tasks.\r\n\r\nLearning Objectives & Outcomes\r\nBy the end of this project, participants will:\r\n\r\nUnderstand Core AI/ML Concepts: Gain a solid theoretical foundation in machine learning, neural networks, and the principles of Reinforcement Learning.\r\n\r\nMaster RL Fundamentals: Learn to frame problems using Markov Decision Processes (MDPs) and understand key algorithms for solving them.\r\n\r\nImplement Deep RL Algorithms: Get hands-on experience implementing Deep Q-Networks (DQN).\r\n\r\nDevelop Python Proficiency: Become comfortable using essential Python libraries like NumPy and PyTorch.\r\n\r\nBuild an End-to-End Project: Apply all learned concepts to develop a complete project, which involves building the Flappy Bird game environment and training the RL agent.\r\n\r\nProject Structure (6-Week Timeline)\r\nThe project is divided into a 5-week learning phase and a 1-week final implementation phase.\r\n\r\nWeek 1: Introduction to AI/ML & Essential Python Libraries (NumPy, PyTorch)\r\n\r\nWeek 2: Deep Dive into Neural Networks\r\n\r\nWeek 3: Understanding Markov Decision Processes (MDPs)\r\n\r\nWeek 4: Classic Algorithms for Solving RL Problems (e.g., Q-Learning)\r\n\r\nWeek 5: Introduction to Deep Reinforcement Learning (DQN, PPO, TRPO)\r\n\r\nWeek 6: Final Project Implementation (Building the environment, implementing the DQN agent, training, and tuning)",
+    "project_domains": [
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 10,
+    "prerequisites": "Must know basic python programming and also must be familiar with git commands . While we will cover the basics, having seen or used NumPy before will give you a head start.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1bwn5c2rH3F1oe6SU-fKlvIKPqcoDe8FG"
+  },
+  {
+    "id": 30,
+    "project_name": "FlappyBird : where Flappy learns to fly",
+    "mentor_name": "Japman Kaur Aneja, Namish Bansal",
+    "mentor_ldap_mail": "",
+    "project_description": "This project trains an AI agent to play Flappy Bird game using Q-learning, a reinforcement learning technique. The agent learns through trial and error by interacting with the game environment i.e. choosing whether to flap or not based on its current state. Over time, it improves its performance by maximizing rewards for survival and avoiding obstacles. The project demonstrates how an AI can learn complex behaviors without direct supervision, using only rewards and penalties as feedback.",
+    "project_domains": [
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 (may extend to 5)",
+    "number_of_mentees": 15,
+    "prerequisites": "Nothing much, but MUST know how to keep a bird alive longer than 2 seconds in Flappy bird",
+    "project_image_drive_link": "https://drive.google.com/open?id=17FK7_wWKgMRN53d9UqttpiUf1VNmKnEz"
+  },
+  {
+    "id": 31,
+    "project_name": "RL in Trading",
+    "mentor_name": "Mayank Jain, Akshat Goel",
+    "mentor_ldap_mail": "",
+    "project_description": "This would be a very beginner friendly project starting with introducing you to python and all necessary libraries then a high level introduction to the concepts of reinforcement learning along with basics of finance and trading. The project helps mentees conduct their first exploration in the world of RL and connect the concepts learnt through this journey with real world scenarios involving financial decision making under uncertainity.",
+    "project_domains": [
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5-6",
+    "number_of_mentees": 20,
+    "prerequisites": "None",
+    "project_image_drive_link": "https://drive.google.com/open?id=1a0EYU6TTRL_6nTfMpkIEetNaFO5U4nRY"
+  },
+  {
+    "id": 32,
+    "project_name": "Image to Insight: The \"Meme\" Analyzer",
+    "mentor_name": "Santosh Guntuku, lakshaditya Singh",
+    "mentor_ldap_mail": "",
+    "project_description": "Have you ever pondered the meaning behind all those memes, screenshots, and social media posts? The goal of this project is to take your very first step into the exciting, hands-on world of multimodal AI. In this project, you are going to create your own complete “Image to Insight\" pipeline, allowing your program to \"see\" and \"read\" at the same time!\r\n\r\nFirst, you will teach your program how to view any image (such as a meme, comic, or product review,) and automatically extract all of the text using Computer Vision (CV).\r\n\r\nNext, you will be wearing your Natural Language Processing (NLP) hat in order to clean up that text, but more importantly, you will provide an analysis of its emotional tone. Is it positive, negative, or neutral?\r\n\r\nAt the end of the project you will have created a fully functional application that combines CV and NLP to create a handy tool. This is an introductory guided project for beginners and there is no complicated deep learning training required, just pure creative building!",
+    "project_domains": [
+      "Natural Language Processing",
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "The only true prerequisite for this project is curiosity and a genuine enthusiasm to learn and build! This is a guided, beginner-friendly project where we will walk you through all the steps. While not required, it’s a bonus if you have some basic experience with the Python programming language and know how to install and use new Python libraries (we'll be using tools like EasyOCR, TextBlob, and Pillow).",
+    "project_image_drive_link": "https://drive.google.com/open?id=1wB0JnXv2H7whCKgLaJ9g0vgKBPKuM7I9"
+  },
+  {
+    "id": 33,
+    "project_name": "Beginner's Guide to Machine Learning and Deep Learning",
+    "mentor_name": "Melvin Varghese",
+    "mentor_ldap_mail": "",
+    "project_description": "This four-week intensive project is designed to take you from the fundamentals of Machine Learning (ML) to building and training your own Deep Learning (DL) models. Through a blend of theory, guided tutorials, you’ll gain the practical skills and conceptual understanding needed to apply AI techniques in real-world scenarios.\r\n\r\nWeek 1: Foundations of Python and Machine Learning\r\nBegin your journey with a solid understanding of what Machine Learning is and how it powers today’s intelligent systems.\r\nTopics: Introduction to ML, Supervised vs. Unsupervised Learning\r\nTools & Libraries: Numpy, Pandas, Matplotlib, Seaborn\r\n\r\nWeek 2: Core Machine Learning Algorithms\r\nDive into the algorithms that form the backbone of predictive modeling.\r\nTopics: Linear Regression, Decision Trees, K-Nearest Neighbors\r\nConcepts: Model training, prediction, and evaluation metrics\r\n\r\nWeek 3: Advanced Machine Learning Techniques\r\nExplore more sophisticated algorithms and optimization methods that enhance model performance.\r\nTopics: Support Vector Machines, Random Forests, Gradient Boosting\r\nConcepts: Gradient Descent, Neural Networks & Backpropagation\r\n\r\n\r\nWeek 4: Deep Learning and Beyond\r\nStep into the world of Deep Learning and discover how to build intelligent models that learn from complex data.\r\nTopics: CNNs, RNNs, Training Deep Networks, Transfer Learning\r\nFrameworks: PyTorch",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 15,
+    "prerequisites": "None",
+    "project_image_drive_link": "https://drive.google.com/open?id=1PGjsnbHi3JD60yb8M9GIJmSKXXP6qHjT"
+  },
+  {
+    "id": 34,
+    "project_name": "Analysis of Geopolitical factors over Global Supply Chain using RL",
+    "mentor_name": "Adarsh Prajapati, Aditya Saran",
+    "mentor_ldap_mail": "",
+    "project_description": "Supply chains have been studied from time immemorial, using various methodologies like operations research, game theory, process management. However, with the advent of data analytics and ML, researchers have started using RL complimentarily with other deep learning frameworks to model the supply chain and reach to equilbria. \r\nYou can learn more about it by the research paper given in the github link - https://github.com/OptMLGroup/DeepBeerInventory-RL?tab=readme-ov-file\r\n(Don't get scared by the enormity as not everything is essential; we will be starting slow :)\r\nWe plan to scope it out to a global landscape, where we are witnessing various geopolitical tensions and study the sensitivity of the links between these nations. How is the supply chain disrupted, when wars break out, markets get open, treaties get signed, etc. from a data analytics and learning standpoint.",
+    "project_domains": [
+      "Reinforcement Learning",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 7,
+    "prerequisites": "It would be great if you know basics of supply chain and RL to grasp the concepts better, or else the learning curve might be steep. For studying analytical results, some concepts of Graph Theory might also be needed.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1xJ60R77b7pwkSb4AL1AxSevVa_dJ0alj"
+  },
+  {
+    "id": 35,
+    "project_name": "Accio Alpha – Kalman Filtering magic",
+    "mentor_name": "Gurnoor Sohal, Shreshtha Gupta",
+    "mentor_ldap_mail": "",
+    "project_description": "MAJOR OBJECTIVES:\r\nThis project is your ultimate gateway into Quantitative Finance. We will go beyond basic statistics to build, backtest, and rigorously analyze a sophisticated high-frequency trading algorithm based on the principles of mean-reversion.\r\nThe major component of this project is implementing the Kalman Filter which estimates the dynamically changing relationship between two assets, specifically the hedge ratio. You will learn to apply this state-space model, a technique widely used across finance.\r\nYou will successfully design and execute the entire algorithmic trading pipeline. This includes the initial selection of two historically co-moving assets and then code and apply the Kalman Filter for the dynamic estimation of their relationship. Following this, you will use the filter's output to define the precise entry and exit signals for trades. Finally, you will build a complete backtesting engine in Python to evaluate the strategy's performance.\r\n\r\nKEY SKILLS YOU WILL MASTER:\r\nThis project delivers high-demand skills for careers in FinTech, Quant Research, and Data Science. You will achieve a deep understanding of Mean Reversion and Market-Neutral Strategies in finance. You will gain hands-on mastery of the Kalman Filter, a critical advanced algorithm. Your proficiency in Python (pandas/numpy) and Time-Series analysis will be significantly enhanced",
+    "project_domains": [
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "None :) Just bring your curiosity and enthusiasm!",
+    "project_image_drive_link": "https://drive.google.com/open?id=1vRnFCcGd17Wn-p3kOKm1o4XCfqgbIvJa"
+  },
+  {
+    "id": 36,
+    "project_name": "Kalman Filtered Trader: A RL Agent for portfolio optimization",
+    "mentor_name": "Krishang Krishna, Aarav Malde",
+    "mentor_ldap_mail": "",
+    "project_description": "Tired of noisy markets? We built a Deep Reinforcement Learning  agent that sees past daily volatility.\r\n\r\nThis autonomous trader uses a Kalman Filter to estimate the true, underlying market trend . The RL agent then learns the optimal long-term strategy, dynamically allocating capital between SPY and cash to maximize returns while minimizing risk.\r\n\r\nFinal Result: A battle-tested, ML-driven portfolio that beats Buy & Hold on unseen test data, proving that intelligent signal processing and machine learning are the future of finance.",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 15,
+    "prerequisites": "Some Python Knowledge(Not necessary) and Lots of Enthusiasm!",
+    "project_image_drive_link": "https://drive.google.com/open?id=19Bg4EvEjZ6W-a2yOWVkmlEm7ULPPRYLE"
+  },
+  {
+    "id": 37,
+    "project_name": "Movie Recommendation System using Content based Filtering",
+    "mentor_name": "Uma Kumari, Manvi Mehta",
+    "mentor_ldap_mail": "",
+    "project_description": "This project focuses on building a Content-Based Movie Recommendation System that suggests movies similar to a selected movie by analyzing movie metadata such as genre, cast, crew, keywords, and plot overview. The system identifies patterns and relationships between movies based on their features rather than relying on user ratings or external feedback.",
+    "project_domains": [
+      "Core Projects",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "None just enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1Lasyf3K-WwvOEK5ZJsphvQkqWIEoFMGd"
+  },
+  {
+    "id": 38,
+    "project_name": "Blockchain-Integrated Machine learning system for Cryptocurrency Fraud Detection",
+    "mentor_name": "Pratyush Anand, Rahul Pal",
+    "mentor_ldap_mail": "",
+    "project_description": "Project Overview\r\n\r\nThis project integrates machine learning and blockchain to detect and record fraudulent cryptocurrency transactions securely.\r\nThe ML component identifies abnormal transaction patterns, while blockchain ensures these predictions are immutable and transparent by storing their cryptographic hashes.\r\nThis combination enhances both intelligence and integrity — ML provides data-driven insights, and blockchain guarantees tamper-proof verification.\r\nBy the end, participants will understand how to combine data science, backend systems, and decentralized ledgers to build a real-world, verifiable fraud detection pipeline.\r\n\r\n5-Week Plan\r\n\r\nWeek 1 – ML & Data Basics\r\n\r\nLearn ML fundamentals, data preprocessing, feature engineering, model training, and evaluation using transaction-like datasets.\r\n\r\nWeek 2 – Model Improvement & Experimentation\r\n\r\nEnhance model accuracy, handle class imbalance, perform tuning, test robustness, and save final model for integration.\r\n\r\nWeek 3 – Blockchain Fundamentals\r\n\r\nUnderstand blockchain structure, smart contracts, and deploy a simple local contract to store and retrieve hashed data.\r\n\r\nWeek 4 – Integration Phase\r\n\r\nConnect ML predictions with blockchain; hash each prediction and record it via backend interaction for tamper-proof logging.\r\n\r\nWeek 5 – Dashboard & Documentation\r\n\r\n(Optional) Create a simple dashboard for visualization, verify blockchain records, document workflow, and finalize project for demo.\r\n\r\nTech Stack\r\n\r\nLanguage: Python, Solidity\r\n\r\nML Tools: Pandas, Scikit-learn\r\n\r\nFrontend (Optional): Streamlit / React, web3.py",
+    "project_domains": [
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 10,
+    "prerequisites": "No hard prerequisite , fundamental knowledge of python is a plus",
+    "project_image_drive_link": "https://drive.google.com/open?id=1Q8tcdgVOjU-HkalKwBqEj1ksfMt6pvge"
+  },
+  {
+    "id": 39,
+    "project_name": "Scrape IT!!",
+    "mentor_name": "Pragallapati V S D Sai Mohith, Sai Divya Teja",
+    "mentor_ldap_mail": "",
+    "project_description": "This project is perfect for beginners who are excited about automation and data analysis. The work is well-structured, starting with learning essential Python libraries like NumPy, pandas, and matplotlib, followed by mastering web scraping tools such as BeautifulSoup and Selenium. By the end, you’ll build a real-world project that showcases your ability to collect, analyze, and visualize data — a great way to turn your curiosity into practical skills!",
+    "project_domains": [
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 25,
+    "prerequisites": "Ice skating... ok just kidding 😅 Enthusiasm and an interest in automating work (perfect for lazy geniuses like us 😎).",
+    "project_image_drive_link": "https://drive.google.com/open?id=1W05l2P8CCkQeOip4OKQkF4ZebY8wSNTJ"
+  },
+  {
+    "id": 40,
+    "project_name": "🎶 Warming Up the Mic: Build Your own Speech-to-Text Engine!",
+    "mentor_name": "Aditya Sanapala",
+    "mentor_ldap_mail": "",
+    "project_description": "Welcome, everyone! ❄️\r\nThis winter, we’re diving into something exciting - we’ll be building our very own text-to-speech engine! 🗣️✨\r\nThe goal is to train our model on existing voice data so it can learn how to speak naturally, and then use it to bring new text to life with realistic, expressive speech.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 15,
+    "prerequisites": "All you need is enthusiasm and a basic understanding of Python - and if you don’t have that yet, we’ll provide with resources beforehand.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1R01uVeEaO23xnQM9C1Hj2LcEvh5hlQwZ"
+  },
+  {
+    "id": 41,
+    "project_name": "web scraper",
+    "mentor_name": "K.Hari Hara Teja",
+    "mentor_ldap_mail": "",
+    "project_description": "This project \"web scraper\" is a 4-week, project-based programming course focused on web scraping and data analysis. The curriculum guides you from foundational skills like setting up a GitHub repository and learning web fundamentals (HTML, CSS), through data manipulation with Pandas and visualization with Matplotlib. It then progresses into core web scraping technologies, starting with Requests and BeautifulSoup for static sites, and advancing to JavaScript and Selenium for handling dynamic web pages, all culminating in a final project to apply these combined skills.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 15,
+    "prerequisites": "nothing except enthu",
+    "project_image_drive_link": "https://drive.google.com/open?id=13KkDmIHpk9fX51TeZ04zyOwbnPumDoEw"
+  },
+  {
+    "id": 42,
+    "project_name": "Sentiment Analysis for Financial News with NLP",
+    "mentor_name": "Tejas Kulkarni, Syed Ali",
+    "mentor_ldap_mail": "",
+    "project_description": "This project combines natural language processing (NLP) with quantitative trading, allowing you to explore how unstructured textual data (news headlines, financial reports) can be converted into tradable signals.​\r\n\r\nThe five-week structure:\r\n\r\nWeek 1: Introduction to NLP and sentiment analysis. Learn text preprocessing techniques (tokenization, stop word removal, stemming/lemmatization), and implement basic sentiment scoring using lexicon-based approaches (word counting, sentiment dictionaries).​\r\n\r\nWeek 2: Machine learning for text classification. Build a Bag-of-Words representation and train supervised learning models (Logistic Regression, Naive Bayes, K-Nearest Neighbors) on labeled financial news data to classify sentiment (positive/negative/neutral).​\r\n\r\nWeek 3: Advanced NLP with pre-trained models. Use FinBERT (a BERT model fine-tuned on financial texts) through the HuggingFace transformers library to perform sentiment analysis. Compare performance with simpler models and understand transfer learning.​\r\n\r\nWeek 4: Building trading signals from sentiment. Aggregate sentiment scores across multiple news sources, correlate sentiment with stock price movements, and develop simple trading rules (e.g., go long when sentiment improves, short when it deteriorates).​\r\n\r\nWeek 5: Backtesting the sentiment-driven strategy and evaluating performance. Analyze whether sentiment provides predictive power, investigate lag effects (how long does sentiment impact prices), and discuss market efficiency implications. Explore the theoretical ML aspects: classification accuracy, precision-recall tradeoffs, and overfitting in NLP models.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "Basic Python programming, Basic statistics (means, probabilities),  Familiarity with machine learning concepts helpful but not required (will be introduced)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1TpgFnttwLBT8C6v7W37ZA_Y-3SIp5QZl"
+  },
+  {
+    "id": 43,
+    "project_name": "Fake News Detector using NLP",
+    "mentor_name": "Shivam Saini",
+    "mentor_ldap_mail": "",
+    "project_description": "It is a four-week, beginner-friendly project where you will build a simple, reliable fake vs real news classifier in a Jupyter Notebook using classic NLP techniques and scikit-learn, starting from zero prior experience in Python or AI:\r\nWeek 1: Learn the fundamentals of python and use the pandas library to explore datasets\r\nWeek 2: Dive into basic NLP and ML techniques\r\nWeek 3: Building the first prototype of the model using logistic regression\r\nWeek 4: Make further enhancements to the model and go beyond a simple accuracy score, learn how to properly evaluate the model's performance and then act like an \"AI Detective\" to look inside its brain and understand how it's making decisions.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 15,
+    "prerequisites": "None",
+    "project_image_drive_link": "https://drive.google.com/open?id=129A_oKSy1aTg-KPaKoSbnTPjo1NOW2SG"
+  },
+  {
+    "id": 44,
+    "project_name": "Stock Prediction model using  LSTM",
+    "mentor_name": "Varad Padhye, Dhanvin",
+    "mentor_ldap_mail": "",
+    "project_description": "Ever wondered if machines can predict where a stock is headed next? In this project, we’ll dive into the fascinating world of stock price forecasting using Long Short-Term Memory (LSTM) networks, a powerful type of neural network that’s built to handle time-series data like stock prices.\r\n\r\nThe stock market is full of chaos, noise, and surprises and that’s exactly what makes this challenge so exciting. Our goal? To teach a model how to spot patterns in that chaos and make smart predictions based on past price movements.\r\n\r\nWe’ll start from the ground up exploring Python, data science essentials (Pandas, NumPy, Matplotlib, Scikit-learn, yfinance), and the basics of trading and technical analysis so you know what those candlesticks and indicators really mean.\r\n\r\nThen we’ll move into hands-on modeling cleaning and preparing real stock market data, building a sliding-window dataset to capture price trends, and training our own LSTM network to forecast the next move. Along the way, you’ll tune hyperparameters, visualize predictions, and measure accuracy with metrics like MSE.\r\n\r\nBy the end, you won’t just have a working prediction model you’ll understand how data scientists and quants use machine learning to decode market behavior.\r\n\r\nIf you’ve ever wanted to mix finance, coding, and AI, this is the perfect place to start",
+    "project_domains": [
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 5,
+    "prerequisites": "none",
+    "project_image_drive_link": "https://drive.google.com/open?id=1_aAk7MssLYVE_UOEoG_aTNPoQfSOsPSj"
+  },
+  {
+    "id": 45,
+    "project_name": "Introduction to Anomaly Detection using Probabilistic ML",
+    "mentor_name": "Sayandeep Haldar, Dhruv Chaturvedi",
+    "mentor_ldap_mail": "",
+    "project_description": "The project aims to develop a robust and adaptive real-time anomaly detection system by integrating a hybrid suite of machine learning models. The core methodology combines probabilistic models like Gaussian Mixture Models (GMM) and Bayesian Networks for density estimation and uncertainty quantification with the fast, online learning capabilities of the Fuzzy ARTMAP neural network for adaptive pattern classification. This ensemble approach is further strengthened by incorporating non-probabilistic methods such as Isolation Forests and One-Class Support Vector Machines as baselines. \r\n\r\nThe system architecture involves data preprocessing, multi-model training to establish \"normal\" baselines, an integrated anomaly detection engine that provides a consensus-based anomaly score, and a feedback loop to allow the Fuzzy ARTMAP to incrementally adapt to evolving data patterns. The expected outcome is a scalable and efficient solution capable of improving detection accuracy and reducing false positives in various applications like finance and industrial monitoring.",
+    "project_domains": [
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 25,
+    "prerequisites": "Just basics of python as well as some fundamentals of its libraries like scikit-learn , numpy , matplotlib , pandas and some basics of statistics",
+    "project_image_drive_link": "https://drive.google.com/open?id=1dIdX2zFvMFhdegCgQwJDxqWKmov5ZaUL"
+  },
+  {
+    "id": 46,
+    "project_name": "Intro to Reinforcement Learning",
+    "mentor_name": "Krishna Sai Shishir Vuppala",
+    "mentor_ldap_mail": "",
+    "project_description": "In this Project you will be familiarising yourself with a ML technique known as Reinforcement Learning which is a technique in which we ask a machine to maximise its score and the machine \"learns\" the optimal ways to maximise its score. Reinforcement learning is a very interesting field and i hope you guys will have fun in this project :)\r\n\r\nThe project will be structured as multiple weeks\r\nWeek 0 -> Basic Introduction to Python (Numpy & Matplotlib)\r\nWeek 1 -> Learn about the Multi-Armed Bandit problem and explore various solutions\r\nWeek 2 -> Learn the basics of Markov Chains and modeling Markov Decision Process\r\nWeek 3 -> Learn about Policy Gradient algorithm and implement it to solve problems\r\nWeek 4 -> Finish off by using all the techniques you have learned so far to use RL to create a solver for a simple game like 15 sliding puzzle or a smaller version of 2048",
+    "project_domains": [
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 20,
+    "prerequisites": "No prerequisites required other than your enthusiam :D",
+    "project_image_drive_link": "https://drive.google.com/open?id=11bNSflDaVCXnualrdzGKnuGnAwNuMRnb"
+  },
+  {
+    "id": 47,
+    "project_name": "GitHub Repository Guide Agent",
+    "mentor_name": "Rushikesh Shinde, Divyanshu Gupta",
+    "mentor_ldap_mail": "",
+    "project_description": "This four-week project guides mentees through the end-to-end development of an \"agentic\" AI system. The final output will be a web application where any user can paste a public GitHub repository URL, and the AI agent will analyze its contents to generate a \"guided tour\" for a new developer.\r\n\r\n- Week 1: Foundations & API Tooling: Mentees will learn to interact with external web services by building a Python tool using the PyGithub library. The goal is to successfully fetch and display the README.md content from any given repository.\r\n\r\n- Week 2: Integrating the AI \"Brain\": This week focuses on integrating a Large Language Model (e.g., Google's Gemini API). Mentees will learn basic prompt engineering to create a script that can read and summarize the text fetched in Week 1.\r\n\r\n- Week 3: Building the Core Agent: Mentees will combine multiple data sources, teaching the agent to analyze both the README and the repository's complete file/folder structure. The agent will then use advanced prompting to synthesize this information into a structured, insightful analysis.\r\n\r\n- Week 4: Delivering a Showcasable UI: To complete the project, mentees will use the Streamlit library to build a simple, interactive web interface, transforming their Python script into a polished, showcasable application.",
+    "project_domains": [
+      "Agentic AI"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 10,
+    "prerequisites": "Basics of Python and Git (not a hard one) along with a lot of enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1rhVN-gST_Xb5Bp02C76lBaXiho1w03e4"
+  },
+  {
+    "id": 48,
+    "project_name": "Predicting Market Dynamics for Data-Driven Portfolio Optimization",
+    "mentor_name": "Sushant Padha, Dakshesh Sanjay Mishra",
+    "mentor_ldap_mail": "",
+    "project_description": "𝘐𝘵 𝘢𝘪𝘯'𝘵 𝘸𝘩𝘢𝘵 𝘺𝘰𝘶 𝘥𝘰𝘯'𝘵 𝘬𝘯𝘰𝘸 𝘵𝘩𝘢𝘵 𝘨𝘦𝘵𝘴 𝘺𝘰𝘶 𝘪𝘯𝘵𝘰 𝘵𝘳𝘰𝘶𝘣𝘭𝘦. 𝘐𝘵'𝘴 𝘸𝘩𝘢𝘵 𝘺𝘰𝘶 𝘬𝘯𝘰𝘸 𝘧𝘰𝘳 𝘴𝘶𝘳𝘦 𝘵𝘩𝘢𝘵 𝘫𝘶𝘴𝘵 𝘢𝘪𝘯'𝘵 𝘴𝘰. ~𝘔𝘢𝘳𝘬 𝘛𝘸𝘢𝘪𝘯\r\n\r\nPortfolio optimization is about balancing risk and return to build the most efficient investment portfolio—but doing this traditionally requires deep knowledge of finance and statistical modeling. This is where machine learning comes in. In this project, we’ll use ML techniques to learn patterns from market data, predict returns and risks, and visualize how markets evolve. These predictions will then feed into optimization models to construct data-driven portfolios. The project ties together data analysis, machine learning, financial modeling, and optimization in an intuitive, hands-on way.",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 8,
+    "prerequisites": "Familiarity with Python + NumPy/Pandas; Basic exposure to ML (understand terms like loss fn); Basic probability; Loads of enthusiasm of course",
+    "project_image_drive_link": "https://drive.google.com/open?id=1DmuCgB6a6fJgntb8oWrDrhqh-lQnm7zE"
+  },
+  {
+    "id": 49,
+    "project_name": "Neural Networks - Teaching Computers to Think!",
+    "mentor_name": "Abhijeet Singh, Vibhor Bhartiya",
+    "mentor_ldap_mail": "",
+    "project_description": "This winter project offers a hands-on introduction to Python, Machine Learning, and Deep Learning. Participants will begin with programming basics and progress toward building neural networks, exploring either Computer Vision (CNNs) or Natural Language Processing (NLP) which will be decided by the mentees. By the end, each mentee will complete a guided project showcasing their learning.\r\n\r\nWeek 1 - Python Foundations\r\n- Python syntax, data types, logic building\r\n- Using NumPy, Pandas, and Matplotlib\r\n\r\nWeek 2 - Introduction to ML\r\n- Supervised learning: Linear & Logistic Regression\r\n- Model evaluation\r\n\r\nWeek 3 - Neural Networks & Deep Learning\r\n- Basics of neural networks: layers, weights, activations\r\n- Loss functions and optimizers\r\n- Building a simple feedforward model using Keras/TensorFlow\r\n\r\n<---Choose Your Path--->\r\n\r\n* Track A - Natural Language Processing (NLP)\r\n\r\nWeek 4 - Foundations of NLP\r\n- Text cleaning: tokenization, stop words, lemmatization\r\n- Vectorization: Bag of Words, TF-IDF\r\n- Exploratory analysis of textual data\r\n\r\nWeek 5 - Build a Chatbot\r\n- Overview of Transformer architecture\r\n- Using GPT-2/BERT via Hugging Face\r\n- Preparing movie dialogue data and training chatbot logic\r\n\r\nFinal Project: A text-based chatbot capable of natural, context-aware replies.\r\n\r\n*Track B - Computer Vision (CNNs)\r\n\r\nWeek 4 - Convolutional Neural Networks\r\n- Image preprocessing and augmentation (Caltech-101 dataset)\r\n- Understanding kernels, filters, pooling layers\r\n- Building and training a CNN using TensorFlow/Keras\r\n\r\nWeek 5 (Final Project) - “Who’s That Pokémon?” (Pokémon Classifier)\r\n- Train a Pokémon classifier with improved CNN techniques\r\n- Apply dropout, batch normalization, and augmentation\r\n- Evaluate model accuracy and visualize results",
+    "project_domains": [
+      "Natural Language Processing",
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "Curiosity, enthusiasm, and a basic familiarity with programming concepts are all you need. No prior experience with ML or deep learning is required - we’ll build everything from the ground up!",
+    "project_image_drive_link": "https://drive.google.com/open?id=15LWXkHs1l4TDnEcPZaRJTJj1cMqhX6EN"
+  },
+  {
+    "id": 50,
+    "project_name": "Decoding the AI Black Box: Feature Visualization & Error Analysis",
+    "mentor_name": "Prajwal Nayak, Juee Jahagirdar",
+    "mentor_ldap_mail": "",
+    "project_description": "This project introduces the core modern concept of Deep Features (Embeddings). You will train a simple Convolutional Neural Network (CNN) on the Fashion-MNIST dataset, not just to classify, but to extract the high-dimensional feature vectors—the model's \"internal thoughts.\" The main analytical task involves applying classical Data Science techniques like t-SNE and PCA to map these complex feature vectors into a simple, colorful 2D scatter plot. The final result will be a powerful visualization that reveals how the network organizes the data into semantic clusters. This allows you to analytically determine why the network gets confused between similar items (e.g., trousers and coats) by visually measuring the overlap in their feature space. This is a practical introduction to Model Interpretability",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "* Fundamental knowledge of Python is required. * No prior ML/DL experience is necessary. * The first week is dedicated to a refresher of key libraries: $\\mathbf{NumPy}$, $\\mathbf{Pandas}$, and basic data loading principles, ensuring a smooth start to the technical phases. * Students should be comfortable following tutorials for library installation (e.g., TensorFlow/Keras).",
+    "project_image_drive_link": "https://drive.google.com/open?id=1Yz7ygmsxBLJdqGUZXfYQQWUQGVnfk5kt"
+  },
+  {
+    "id": 51,
+    "project_name": "Decode the Vision: Building CNNs for Real-World Image Classification",
+    "mentor_name": "Jasnoor Kaur, Nidhi Kumari",
+    "mentor_ldap_mail": "",
+    "project_description": "This project engages participants in a deep learning project for computer vision, covering essential Python concepts to create image classifiers used in real-world applications. Over a 4-6 week period, participants will develop an understanding of how machinery perceives visual information, will engage with a neural net experience, and will translate their own ideas into code with TensorFlow or PyTorch. \r\n\r\nBy week 5, students will have created their own CNN model to classify images, and by week 6, students will augment that model through data augmentation techniques, optimization, and visualization. This project is focused on developing an applied understanding and technical experience for the students so that they can provide some foundational skills in the space of artificial intelligence and computer vision.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 5,
+    "prerequisites": "just bring your enthu!",
+    "project_image_drive_link": "https://drive.google.com/open?id=1x7XkqpFp640YbP-oLL_0v59Rzly3ixSW"
+  },
+  {
+    "id": 52,
+    "project_name": "The Eye Within the Code: Crafting a Face Recognition AI",
+    "mentor_name": "Subodh Patel",
+    "mentor_ldap_mail": "",
+    "project_description": "Have you ever wondered how a machine learns to see? How your phone instantly recognizes your face, not just detecting a shape, but understanding who you are?\r\n\r\nIn The Eye Within the Code, we dive into the art and science of teaching machines to perceive. This project blends computer vision and deep learning to build a Face Recognition AI powered by Siamese Neural Networks, models designed to learn similarity the way humans do.\r\n\r\nThrough this 6-week journey, mentees will go from raw pixels to a working AI system capable of recognizing faces using one-shot learning. You’ll train a neural network that compares two images and learns to identify whether they belong to the same person, the foundation of real-world face verification systems.\r\n\r\nBy the end, mentees will not just have code that sees, they’ll have crafted a machine’s eye, capable of perception through mathematics.\r\n\r\nWhat You’ll Learn:\r\nFundamentals of image preprocessing and dataset handling\r\nThe working of Siamese Neural Networks and contrastive loss\r\nModel building with TensorFlow/Keras\r\nImplementing real-time face recognition using OpenCV\r\nEthics and limitations of face recognition technology",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 10,
+    "prerequisites": "1.Basic Python programming  2.Curiosity and enthusiasm to learn about AI and Computer Vision",
+    "project_image_drive_link": "https://drive.google.com/open?id=1Dhddvm_SmmKCzxAM92eOqS9P_0DThNW6"
+  },
+  {
+    "id": 53,
+    "project_name": "Architecting LLMs: Building the engine of ChatGPT from First Principles",
+    "mentor_name": "Sai Divya Teja, Sri Surya Varma",
+    "mentor_ldap_mail": "",
+    "project_description": "This project demystifies the \"magic\" behind AI like ChatGPT by building its core engine from the ground up. Instead of just using AI libraries as a black box, you will learn to build them, following a renowned curriculum from Andrej Karpathy, a co-founding member of OpenAI and Tesla's former Director of AI.\r\nThe journey starts at absolute zero. You will first write your own simple program that understands how a computer actually learns from its mistakes (a custom autograd engine). From there, you will scale up, building models that can understand and generate text one character at a time.\r\nThe project culminates in the final challenge: assembling your own functional mini-GPT. You will code the \"Transformer\" blocks and \"self-attention\" mechanisms - the key components that allow an AI to understand context, creating the very engine that powers today's most advanced language models. This is a code-heavy, deeply rewarding challenge to truly understand generative AI from first principles.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 15,
+    "prerequisites": "Python Programming Basics, Python OOP (will provide resources), Basic Linear Algebra and Calculus, and most importantly lotss of Enthu",
+    "project_image_drive_link": "https://drive.google.com/open?id=10lzxs_IJ5IsrKLKyc8ojsHxV-uZG33gd"
+  },
+  {
+    "id": 54,
+    "project_name": "Theoretical ML : Algorithms To Applications",
+    "mentor_name": "Mulagalapati Eswara Venkata Parthiv, Siddharth Nandipati",
+    "mentor_ldap_mail": "",
+    "project_description": "This 4-week journey will take you from the fundamentals of machine learning to building a facial recognition system using OpenCV. Starting with the Perceptron, mentees progress through neural networks and CNNs, culminating in an applied computer vision project that integrates all learned concepts.\r\nWeek 0: Preparatory week focusing on building essential skills for machine learning\r\nPython for ML: NumPy, Pandas, Matplotlib, control structures, and basic OOP\r\nMathematical Essentials:\r\nLinear Algebra → vectors, matrices, dot products, eigenvalues\r\nCalculus → derivatives, gradients, partial differentiation\r\nProbability & Statistics → mean, variance, distributions, Bayes’ theorem\r\n\r\nData Handling: Reading datasets, basic preprocessing, and visualization\r\nWeek 1 - The Perceptron & Linear Models\r\nFocus: Foundations of learning and linear separability\r\nConcepts: Perceptron rule, decision boundaries, gradient descent, loss functions\r\nImplementation: Perceptron from scratch using NumPy\r\nVisualization: Plot decision boundaries for simple datasets (Iris, XOR)\r\nDeliverable: Jupyter notebook + short writeup on limitations of linear models\r\n\r\nWeek 2 - Multi-Layer Neural Networks\r\nFocus: Moving beyond linearity with hidden layers\r\nConcepts: Feedforward networks, activation functions (ReLU, Sigmoid), backpropagation\r\nImplementation: Two-layer NN from scratch or with PyTorch basics\r\nExperiment: Train on XOR and MNIST subsets, visualize accuracy/loss curves\r\nDeliverable: Working NN notebook + explanation of activation impacts\r\n\r\nWeek 3 - CNNs & Visual Understanding\r\nFocus: Teaching machines to “see”\r\nConcepts: Convolutional layers, pooling, feature maps, image preprocessing\r\nTools: PyTorch/TensorFlow + OpenCV basics\r\n\r\nWeek 4 - Facial Recognition with OpenCV\r\nImplementation: Detect faces → Extract embeddings → Classify/recognize faces\r\nTools: OpenCV + pre-trained models (FaceNet / MobileNet / OpenFace)\r\nDeliverable: Working face recognition demo (images or webcam) + short report\r\n\r\nYOU WILL:\r\nUnderstand the evolution from Perceptron → Neural Networks → CNNs\r\nBuild and train models from scratch\r\nWork with real image data using OpenCV\r\nImplement a functional face recognition system",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 16,
+    "prerequisites": "As much enthu as you can muster.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1fo1CjaAFxz2jyZEnp404q9qdVmk3QOzx"
+  },
+  {
+    "id": 55,
+    "project_name": "ChronosTrade: Multi-Modal Stock Market Prediction using LSTM, ARIMA, and Sentiment Analysis",
+    "mentor_name": "Aakash Tarang, Mullani Rehan Shahanur",
+    "mentor_ldap_mail": "",
+    "project_description": "ChronosTrade is a comprehensive stock market prediction framework that integrates traditional time series analysis with modern deep learning techniques and real-time sentiment analysis. The project systematically explores the predictive power of ARIMA models (covering AR, MA, and integrated components) alongside LSTM neural networks for capturing complex temporal patterns in stock price data.\r\n\r\nThe system incorporates sentiment analysis of financial news and social media, implementing full NLP pipelines for text preprocessing, feature extraction, and sentiment scoring. All data collection, cleaning, and feature engineering is performed manually, providing hands-on experience with financial data wrangling and preparation.\r\n\r\nThis end-to-end solution demonstrates how combining technical indicators, historical price patterns, and market sentiment can create robust predictive models for financial markets.",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "Basic Python and Mathematics",
+    "project_image_drive_link": "https://drive.google.com/open?id=1c5WTdw8mCRXjuVl1ZQHV3PQHvekUc4rO"
+  },
+  {
+    "id": 56,
+    "project_name": "FaceCipher",
+    "mentor_name": "Varun Sri Teja Namala",
+    "mentor_ldap_mail": "",
+    "project_description": "Project Name: FaceCipher\r\n\r\nProject Description: Advanced Facial Recognition System\r\n\r\nThis project, FaceCipher, focuses on creating an advanced facial recognition system designed to accurately identify and verify faces, making it highly valuable for applications requiring high security and reliability. By leveraging modern deep learning and computer vision techniques, this model will learn intricate patterns in facial features, achieving exceptional accuracy in differentiating even closely resembling faces.\r\n\r\nProject Overview:\r\n\r\nWeek 1: We will begin with a brief revision of Python fundamentals to ensure everyone is on the same page. Then, we will introduce essential tools for data manipulation and visualization, setting up an efficient workflow using popular Python libraries. Foundational ML concepts, such as Linear and Logistic Regression, will lay the groundwork for predictive modeling and classification. We’ll also introduce Classifiers, algorithms that categorize data based on patterns in input features.\r\n\r\nWeek 2: This week focuses on Deep Learning, starting with frameworks like TensorFlow and PyTorch, alongside core concepts of neural networks. Additionally, we’ll explore YOLOv8, a leading model in object detection and classification, reinforced through hands-on assignments.\r\n\r\nWeek 3: We dive into image processing with OpenCV, an essential tool for preparing image data, followed by an in-depth look at Convolutional Neural Networks (CNNs), which are highly effective for handling image-based data. Practical assignments will reinforce these skills.\r\n\r\nWeek 4: In the final phase, we will build the facial recognition model, training it to recognize subtle facial details and differentiate faces with precision. This model will serve as a powerful solution for reliable facial verification in real-world applications.\r\n\r\nThrough FaceCipher, you’ll gain expertise in advanced machine learning and deep learning methods while developing a practical, impactful facial recognition system ready for real-world deployment.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 20,
+    "prerequisites": "asic Python knowledge, enthusiasm for machine learning, curiosity in computer vision, and a collaborative mindset.",
+    "project_image_drive_link": "https://drive.google.com/open?id=163zTGLyBeQaJ_icZ1YwPnv9AzQK6mO9-"
+  },
+  {
+    "id": 57,
+    "project_name": "Augmented Reality Face Tracking and Overlay System",
+    "mentor_name": "Krisha Biradar, Dhruva Reddy",
+    "mentor_ldap_mail": "",
+    "project_description": "This project combines Computer Vision and Augmented Reality (AR) to create a system that detects facial landmarks and automatically fits virtual objects onto a user’s face. \r\n\r\nThe system uses MediaPipe for real-time face landmark detection, OpenCV (image processing) and Pillow (image handling) to dynamically scale, position, and blend an overlay image — for example, placing sunglasses, a halo, or a crown accurately on the face. The overlay’s background is removed using rembg (AI-based background removal).\r\n\r\nMentees will learn how facial tracking, geometry computation, and AR rendering work together to produce effects similar to virtual try-on or face filters seen in applications like Snapchat or Lenskart. This project provides practical experience in integrating Computer Vision pipelines with Augmented Reality rendering to create real-time, face-aware visual effects.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 6,
+    "prerequisites": "basics of python would be helpful but not a hard requirement",
+    "project_image_drive_link": "https://drive.google.com/open?id=1a4zpLZRs1N_jo_fQkl696PTA3YYk3nLy"
+  },
+  {
+    "id": 58,
+    "project_name": "Foundations of Computer Vision",
+    "mentor_name": "Tezas Chetry, Bibaswan Biswas",
+    "mentor_ldap_mail": "",
+    "project_description": "This 5-week program introduces the fundamental principles and modern techniques of computer vision. The science of enabling machines to understand and interpret visual information. Starting from the core image processing concepts and classical computer vision algorithms, the course progresses toward modern deep learning–based methods used in recognition, detection, and segmentation tasks.\r\n\r\nThroughout the program, mentees will learn how visual features are extracted, represented, and used for decision-making, developing both theoretical understanding and implementation skills.\r\n\r\nThe final guided project will combine all these ideas, allowing mentees to apply computer vision techniques, guided by mentors through each stage of model design, training, and evaluation.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "Recommended: 1. Basic Python Programming(Understanding of variables, loops, functions, lists, NumPy arrays)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1DT16KqYEa7--yUBZMai3X0k-MzsMI282"
+  },
+  {
+    "id": 59,
+    "project_name": "Image Deblurring using Deep Learning",
+    "mentor_name": "Sam Navdeep K",
+    "mentor_ldap_mail": "",
+    "project_description": "Image deblurring using deep learning involves training neural networks, typically Convolutional Neural Networks (CNNs), to restore sharp images from blurred inputs. These models learn complex mappings between blurred and sharp image pairs during training, automatically discovering features that characterize blur patterns",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "None",
+    "project_image_drive_link": "Screenshot 2025-11-03 214747 - Kolukula Sam Navdeep.png"
+  },
+  {
+    "id": 60,
+    "project_name": "Data-Driven Carbon Footprint Analytics for Chemical Processes",
+    "mentor_name": "Armaan Valecha",
+    "mentor_ldap_mail": "",
+    "project_description": "This 4-week project focuses on developing a quantitative framework to analyze and predict the carbon footprint of chemical processes using process-level operational data such as temperature, pressure, flow rate, and energy consumption. Students will perform statistical and machine learning-based modeling to identify key parameters influencing CO₂ emissions and evaluate process efficiency under different operating conditions. Alongside, a light NLP component will be used to extract sustainability targets and emission-related keywords from company sustainability reports or audit documents, allowing a comparison between reported sustainability goals and actual process data trends. By the end of the project, students will have built a data-driven emission prediction model, visualized correlations between process parameters and carbon intensity, and generated actionable insights on process optimization and sustainability alignment.",
+    "project_domains": [
+      "Core Projects",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Basic understanding of Python and libraries like Numpy, Pandas, MatPlotlib and scikit-learn",
+    "project_image_drive_link": "https://drive.google.com/open?id=141qeGgQCJoYMLNJFczaFwuYpYcxoYeLA"
+  },
+  {
+    "id": 61,
+    "project_name": "Sarcasm Detection in News Headlines",
+    "mentor_name": "Anousha Puvvala",
+    "mentor_ldap_mail": "",
+    "project_description": "This project focuses on building a machine learning model that can tell whether a sentence or a news headline is sarcastic or not. For example, when someone says “I just love getting stuck in traffic”, the words sound positive, but the meaning is actually negative — that’s sarcasm! Detecting this kind of hidden meaning is tricky because it depends on understanding the context of the sentence rather than just the words themselves.\r\n\r\nOver four weeks, one will learn how to clean and prepare text data, convert it into a form that a model can understand (using a transformer tokenizer), and fine-tune a pretrained language model to recognize sarcasm. They will train the model to classify text as sarcastic or non-sarcastic and then test how well it performs using metrics like accuracy and F1-score.\r\n\r\nIn the final week, you will also explore how to interpret the model’s predictions i.e. by seeing which words the model focuses on when it detects sarcasm. As an optional extension, you can create a simple Streamlit app where users can type in any sentence and instantly see if the model thinks it’s sarcastic or not.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Basic understanding of Python, Familiarity with common libraries like NumPy, Pandas, and scikit-learn",
+    "project_image_drive_link": "https://drive.google.com/open?id=1fx9gmJCXii6tli_-zRY9QI3MSP6U3tl-"
+  },
+  {
+    "id": 62,
+    "project_name": "Machine Learning From Scratch",
+    "mentor_name": "Apoorv goyal, Advay Bapat",
+    "mentor_ldap_mail": "",
+    "project_description": "A lot of introductory Machine Learning courses just introduce the concepts superficial and directly move to using already set up libraries to \"train\" models and then compute test \"metrics\" and claim they have cracked it!\r\n\r\nIf you don't exactly know what the two quoted words mean in the above paragraph, you are not alone. And don't worry if you didn't understand a single word from above. All we need is a curious mind puzzeled about the buzz of AI and ML going around and wants to formally crack it.\r\n\r\nThis project starts by introducing and testing some pre-requisites for learning ML the right way. And no it's not only python, but the Math- Linear algebra, calculus amd what not. Worry not all the resources will be provided early on. \r\n\r\nMajor focus will be on supervised and unsupervised learning.\r\nThere will be assignments/mini implementation based projects throughout the duration. These assignments will be based on implementing the techniques from scratch that's where the theoretical knowledge will be usefull.\r\n\r\nTowards the end a list of projects will be released which will be evaluated as the final project of the course.\r\n\r\nAn introduction to Reinforcement Learning is planned but only if time permits.\r\n\r\n\r\nRefer to the following page for further updates regarding the course(will br updated as we move through the course)-https://www.notion.so/WiDS-2025-2a11eb12b31280068536db7033504bbe?source=copy_link",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 20,
+    "prerequisites": "No hard pre-requisites except loads of enthusiasm to learn something new. But the following skills are a plus (one can always learn them on the fly)- Basic coding knowledge, Enthusiasm to learn Math",
+    "project_image_drive_link": "https://drive.google.com/open?id=1JwdfRBLeg3CWRnEGGsHDzttubXE9Y2rC"
+  },
+  {
+    "id": 63,
+    "project_name": "Heatwave Forecasting Model",
+    "mentor_name": "Srishti Poddar, Swati",
+    "mentor_ldap_mail": "",
+    "project_description": "In this project, we’ll build a Heatwave Forecasting Model using machine learning, starting completely from scratch. The idea is to use past meteorological data (like temperature, humidity, wind speed, and pressure) to predict the likelihood and intensity of upcoming heatwaves. Through this process, you’ll not only learn to handle real-world climate datasets but also grasp key Machine Learning concepts step by step, from data cleaning and feature selection to model training, evaluation, and interpretation. By the end, you’ll have both a working predictive model and a solid foundation in ML techniques, applied to a real environmental challenge.",
+    "project_domains": [
+      "Core Projects",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4-5 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Enthusiasm and Curiosity",
+    "project_image_drive_link": "https://drive.google.com/open?id=1FaTXZcU9lMZ7xlCsv6rxXEVeEoR8zU_V"
+  },
+  {
+    "id": 64,
+    "project_name": "AutoDevX: The Next-Gen Agentic AI for Autonomous Code Testing and Self-Improving Applications",
+    "mentor_name": "Anmol Sureka",
+    "mentor_ldap_mail": "",
+    "project_description": "AutoDevX represents the next generation of intelligent software engineering - a fully agentic AI system capable of reading, understanding, testing, and improving entire codebases autonomously.\r\nIt brings together the power of synthetic users and autonomous code agents to create a closed-loop development ecosystem — one that continuously evolves your application without human intervention.\r\nIn this ecosystem, AI agents act as developers, testers, and quality engineers — all within a single, unified framework. They can:\r\n\r\nExplore your platform like real users, Detect functional and performance issues, Propose or apply intelligent fixes, Run validation tests, and Push verified improvements directly to your repository.\r\nImagine a team of tireless AI engineers who:\r\nSimulate real user journeys across your application,\r\nDetect every possible bug or UX glitch,\r\nSuggest and test fixes in real time, and\r\nContinuously make your software better — without ever breaking existing features.\r\nThat’s AutoDevX - the future of self-healing, self-optimizing software.\r\n\r\nBuilt collaboratively, this project aims to redefine the modern software lifecycle, transforming reactive maintenance into proactive, intelligent evolution.\r\nThis is not just another automation tool — it’s a leap toward autonomous digital ecosystems where codebases can think, test, and grow intelligently.\r\n\r\nTogether, we’ll build one of the most powerful AI-driven engineering systems of this decade — a platform that turns the dream of autonomous, continuous software improvement into reality.\r\n\r\n⚙️ Core Capabilities\r\n🧠 Agentic Code Understanding:\r\nLLM-based code interpreters that semantically analyze your repository, detect inefficiencies, and suggest refactors.\r\n🧍‍♂️ Synthetic User Simulation:\r\nAI-powered users (via Playwright or RL environments) that autonomously navigate, interact, and test your interfaces and APIs.\r\n🔁 Self-Healing Loop:\r\nIntelligent agents that detect, fix, re-test, and validate issues automatically — achieving continuous improvement cycles.\r\n📈 Continuous Learning:\r\nEach successful fix feeds back into the learning loop, improving future accuracy through reinforcement learning and experience-based adaptation.\r\n☁️ End-to-End Integration:\r\nBuilt with tools like GitHub, Docker, LangChain, and CI/CD pipelines, enabling full automation from testing to deployment.\r\n\r\n🧪 Hands-On Learning & Tech Exposure\r\nBy working on AutoDevX, you’ll get real-world, hands-on experience with:\r\nCutting-edge agentic AI frameworks and orchestration systems.\r\nReinforcement learning techniques for adaptive test agents.\r\nAdvanced code execution and sandboxing environments.\r\nEnd-to-end deployment workflows using Docker and CI/CD pipelines.\r\nHigh-quality software tools for building, running, and testing AI-driven applications.\r\n\r\nThis project offers a rare, high-quality mix of applied AI, autonomous systems, and software engineering  pushing the boundaries of what agentic intelligence can achieve in real-world development pipelines.",
+    "project_domains": [
+      "Agentic AI",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "Python , Basics of Large Language Models, reinforcement learning (optional but helpful)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1bfBlBQYCwH75pzL1PtbuHnPIKt64B1TG"
+  },
+  {
+    "id": 65,
+    "project_name": "Introduction to Machine Learning",
+    "mentor_name": "Saksham Khandelwal, Kushagra Kushwaha",
+    "mentor_ldap_mail": "",
+    "project_description": "This Project will serve as a foundation for most of ML projects you will be doing later.\r\n\r\nContents\r\n- Week-1 : Basics of Python and required libraries such as Numpy, Matplotlib, Pandas\r\n- Week-2 : Implementing Gradient Descent, Linear Regression, Logistic Regression, and other related concepts\r\n- Week-3 : Implementing Artificial Neural Networks and Convolutional Neural Networks\r\n- Week-4 : Exploring other algorithms(maybe)\r\n- Week-5/6: Final Project (problem statement not decided though!)",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5-6",
+    "number_of_mentees": 15,
+    "prerequisites": "None",
+    "project_image_drive_link": "https://drive.google.com/open?id=1CNQfMszk6bFPWJzgz0LSkOSa7APETYgu"
+  },
+  {
+    "id": 66,
+    "project_name": "Text Sentiment Analysis API",
+    "mentor_name": "Nikhil Khandelwal, Ayush Vijay Awatade",
+    "mentor_ldap_mail": "",
+    "project_description": "Train a text sentiment classifier and serve it via an API for real-time predictions.\r\nTech Stack to be used:\r\nFastAPI, Flask, Scikit-Learn, Hugging Face, Docker, Python",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 12,
+    "prerequisites": "Python",
+    "project_image_drive_link": "https://drive.google.com/open?id=1QBmMGIYegWpkJZIB5lUMN6v7A5b01ZGY"
+  },
+  {
+    "id": 67,
+    "project_name": "Coding a ChatGPT like transformer from scratch",
+    "mentor_name": "Sandipan Dhali, Parth Jain",
+    "mentor_ldap_mail": "",
+    "project_description": "Have you ever been curious about how AI bots like ChatGPT actually think? In this project, over the course of 4-5 weeks, we will dive deep into that. We will start building our own \"mini-GPT\" from the ground up, beginning with the absolute fundamental unit which is neural networks. \r\n\r\nThen we'll keep building, step by step. You will see how models remember words in text, using RNNs and LSTMs. You will learn some of the core concepts of NLP like word embeddings (using word2vec), seq2seq models and the Attention mechanism that made everything else possible. And we will implement everything in PyTorch, which is the primary library used in AI research. \r\n\r\nFor the final project, you will build and train a real Decoder-Only Transformer model, which is the same technology that powers most state-of-the-art AI today.You will train it on a real large dataset to generate completely new text.  When you leave this project, you won't just know how to use AI, you will know how it works right down to its core.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 15,
+    "prerequisites": "A beginner level grasp on python and a lots of enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1jmC7mtZ3kHmnsw2n0AY3tyPBF2YHakcN"
+  },
+  {
+    "id": 68,
+    "project_name": "Fake News Detection using NLP",
+    "mentor_name": "Sugandh Kumar",
+    "mentor_ldap_mail": "",
+    "project_description": "In the era of rapid information exchange, misinformation and fake news have become major global challenges. This project aims to build a Fake News Detection System using Natural Language Processing (NLP) and Machine Learning (ML) techniques.\r\nParticipants will work on real-world datasets to analyze linguistic and semantic patterns in news articles, extract features using TF-IDF and Word2Vec/GloVe embeddings, and train models such as Logistic Regression, Naïve Bayes, and Support Vector Machine (SVM). The project will emphasize data preprocessing, feature extraction, model training, and evaluation using metrics like Precision, Recall, and F1-score.\r\nBy the end of the project, mentees will understand the complete NLP pipeline for text classification and gain practical experience in comparing different ML approaches for detecting fake news.",
+    "project_domains": [
+      "Core Projects",
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 10,
+    "prerequisites": "Basic Python programming and a lot of enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1b5kVIpk2oLGUw_yunQF13feJFJZLL--_"
+  },
+  {
+    "id": 69,
+    "project_name": "Lidar Cone Detection (LCD)",
+    "mentor_name": "Kasak Malhotra, Bhoomi Singhvi",
+    "mentor_ldap_mail": "",
+    "project_description": "This project explores how autonomous vehicles “see” their surroundings using LiDAR sensors. Each LiDAR scan produces thousands of 3D points containing distance and intensity information. Using the DBSCAN clustering algorithm, these points are grouped to identify and separate individual cones on a racetrack. Participants will learn how raw sensor data transforms into meaningful perception which is a key step in enabling vehicles to navigate safely and intelligently. The project blends concepts from computer vision, unsupervised learning, and real-world robotics applications, offering a hands-on introduction to AI for self-driving systems.",
+    "project_domains": [
+      "Core Projects",
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "No Pre-Requisites",
+    "project_image_drive_link": "https://drive.google.com/open?id=19qs3HcYwTuj0Y_d2ejLOg6z6ltOt2OrH"
+  },
+  {
+    "id": 70,
+    "project_name": "WildVision: Detecting Life in the Wilderness",
+    "mentor_name": "Anubhav Yadav, Devounkar Giri",
+    "mentor_ldap_mail": "",
+    "project_description": "Ever wondered how AI can help spot wildlife from aerial or forest images?\r\nIn WildVision, you’ll step into the shoes of an AI ecologist — teaching a machine to detect regions containing animals, birds, and insects in images of the wild!\r\n\r\nYou’ll build a Machine Learning pipeline from scratch, working on real image data.\r\nYour mission:\r\n\r\nPreprocess images to a uniform resolution (800×600) and divide them into a grid.\r\n\r\nEngineer handcrafted visual features to help the model learn what “wildlife” looks like.\r\n\r\nTrain and evaluate ML models to classify which regions contain life.\r\n\r\nHighlight detected zones visually and export results in a smart, readable CSV format.\r\n\r\nYou’ll learn how to:\r\n🔹 Handle and clean image data\r\n🔹 Design meaningful features from images (without using deep learning!)\r\n🔹 Apply classical ML models like SVMs, Random Forests, or Logistic Regression\r\n🔹 Generate interpretable visual outputs\r\n\r\nBy the end, you’ll have built a mini wildlife detection system — merging creativity, coding, and data science to help AI “see” the natural world",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 10,
+    "prerequisites": "A lot of enthusiasm and a bit of familiarity with python would be a plus.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1QDF52nXlMI_E3p00WXxXgZAB_D8HujFI"
+  },
+  {
+    "id": 71,
+    "project_name": "Ask the Image: Explainable AI for Visual Q&A",
+    "mentor_name": "Shahab Ahmad, Manish Kumar Palsaniya",
+    "mentor_ldap_mail": "",
+    "project_description": "This project explores Visual Question Answering (VQA) — a fascinating area at the intersection of Computer Vision and Natural Language Processing (NLP). The objective is to develop an intelligent system that can look at an image, understand its content, and answer natural language questions about it (e.g., “What is the man holding?”).\r\n\r\nMentees will build an end-to-end VQA pipeline using state-of-the-art Vision and Language models such as BLIP, Flamingo-style multimodal transformers, or CLIP-based architectures. \r\n\r\nBeyond generating correct answers, the project focuses on explainability — understanding why the model gave a particular response. Participants will design attention-based visualizations (e.g., heatmaps) to highlight which regions of an image most influenced the model’s decision, creating a transparent and interpretable AI system.\r\n\r\nBy the end of the project, mentees will have:\r\n\r\nDeveloped a working VQA system capable of answering questions on real-world images.\r\n\r\nImplemented attention heatmap visualizations for model explainability.\r\n\r\nEvaluated model performance using accuracy and plausibility metrics.\r\n\r\nGained hands-on experience in multimodal learning, explainable AI (XAI), and vision-language reasoning.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 6,
+    "prerequisites": "Basic understanding of Deep Learning and PyTorch ; Familiarity with CNNs and Transformers ; Introductory knowledge of image and text embeddings;  (Optional but helpful) Familiarity with Hugging Face Transformers and attention visualization tools",
+    "project_image_drive_link": "https://drive.google.com/open?id=1LoTY6TosT92bjOQwKj5zbkxybvzQdWra"
+  },
+  {
+    "id": 72,
+    "project_name": "Simulation and Quantitative Analysis of the Black–Scholes Model Using Python",
+    "mentor_name": "Rakshit Rane, Madhav Miglani",
+    "mentor_ldap_mail": "",
+    "project_description": "This project focuses on the implementation and simulation of the Black–Scholes option pricing model, one of the foundational frameworks in quantitative finance. The objective is to understand how the model mathematically derives option prices, simulate its behavior under varying market conditions, and analyze its performance using computational techniques in Python.\r\nThe project begins by formulating the dynamics of asset prices through Geometric Brownian Motion (GBM), which models the random evolution of a stock price over time. Using Itô’s Lemma, this stochastic differential equation leads to the Black–Scholes Partial Differential Equation (PDE), from which closed-form pricing formulas for European call and put options are derived.\r\nAfter establishing the mathematical foundation, the model is implemented and simulated in Python using both analytical and numerical methods:\r\nAnalytical Approach:\r\nThe closed-form Black–Scholes equations are coded to compute option prices and their sensitivities — the Greeks (Delta, Gamma, Vega, Theta, Rho). These represent how option prices react to changes in market parameters such as the underlying asset price, volatility, and time to maturity.\r\nMonte Carlo Simulation:\r\nTo complement the analytical model, a Monte Carlo simulation is performed by generating numerous stochastic paths of the underlying asset price according to GBM dynamics. The option price is then estimated as the discounted expected payoff. This probabilistic approach not only reinforces the theoretical expectation interpretation of Black–Scholes but also allows for flexible experimentation with volatility and time parameters.\r\nVisualization & Sensitivity Analysis:\r\nThe project employs data visualization to illustrate how option prices vary with volatility, strike price, and time to maturity. Additionally, Monte Carlo convergence plots demonstrate how simulation accuracy improves as the number of simulated paths increases.",
+    "project_domains": [
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Basic probability and statistics, multivariable calculus and some understanding of stochastic intuition",
+    "project_image_drive_link": "https://drive.google.com/open?id=1uQpHlXpl9AXsVpWZ_wuWQ_4JU_-R-keg"
+  },
+  {
+    "id": 73,
+    "project_name": "Bridging Language and Personalization: A Practical Dive into AI Applications",
+    "mentor_name": "Meet Agrawal, Sarthak Toshniwal",
+    "mentor_ldap_mail": "",
+    "project_description": "This project delves into the depth of AI that shapes our digital lives. It begins with an understanding of the power of Large Language Models (LLMs), the foundational technology behind today's most advanced AI. From this foundation, the project explores two practical applications.\r\n\r\n1. Sentiment Analysis crucial for algorithmically identifying and categorizing subjective information in text. Beyond just analyzing product reviews, it is essential for brand monitoring on social media, gauging public opinion, and understanding customer feedback at scale. The project explores this as a text classification problem, identifying the author's attitude—whether positive, negative, or neutral.\r\n\r\n2. Recommender Systems, a powerful form of information filtering. The project focuses on Collaborative Filtering, a method that models preferences based on past user behavior (such as ratings or clicks) rather than item content. It operates on the user-item matrix to learn latent embeddings for both users and items. This enables effective preference elicitation and \"serendipitous discovery\"—suggesting relevant items a user might not have found otherwise, such as your next favorite movie or song.\r\n\r\nThe project itself is structured as a hands-on learning opportunity, welcoming anyone interested, as no prerequisites are required.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 25,
+    "prerequisites": "Knowledge of Python libraries is a plus.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1822ZppJHnEphcPAgefrCmpH9Oh0OBAuF"
+  },
+  {
+    "id": 74,
+    "project_name": "Market Mood & Moves: Sentiment-Driven Stock Prediction",
+    "mentor_name": "Meet Agrawal, Sarthak Toshniwal",
+    "mentor_ldap_mail": "",
+    "project_description": "This project explores how collective investor sentiment—drawn from unstructured textual sources like financial news and social-media discussion—can be quantitatively analysed and used to improve stock price forecasting. Underlying the work is the behavioural finance view that markets are influenced not just by fundamentals, but by investor psychology. We will extract text data (via APIs like NewsAPI and PRAW for Reddit), apply NLP preprocessing (cleaning, tokenisation, stop-word removal, lemmatisation) and use finance-tuned deep models (e.g., FinBERT) to compute sentiment scores for each document. These scores will then be aggregated into daily sentiment signals per stock. Meanwhile we’ll pair these signals with conventional market data (returns, volume, perhaps other technical features) and build a time-series model—an LSTM network—that takes in the multi-feature sequence and predicts the next day’s return or movement direction. Finally, we translate the model’s output into trading rules (buy if up-signal, sell/short if down-signal).",
+    "project_domains": [
+      "Natural Language Processing",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4-5",
+    "number_of_mentees": 8,
+    "prerequisites": "Basic Python programming (loops, data handling, plotting)  Familiarity with pandas and NumPy for data analysis  Introductory understanding of machine learning concepts",
+    "project_image_drive_link": "https://drive.google.com/open?id=1ciUV839YfRXXg3lx5Oir5yOdLZeJyfvV"
+  },
+  {
+    "id": 75,
+    "project_name": "Building Reasoning LLMs from Scratch using Chain-of-though Reasoning (DeepSeek R1)",
+    "mentor_name": "Neel Shah, Rushabh Bonde",
+    "mentor_ldap_mail": "",
+    "project_description": "This project aims to bridge the gap between simple LLMs and true artificial reasoning. We will implement and fine-tune a specialized Large Language Model designed for complex, multi-step logical deduction, mirroring the capabilities of SOTA(State-Of-The-Art Models) like DeepSeek-R1.\r\nOur focus is on implementing Chain-of-Thought (CoT) reasoning, not just as a prompting trick, but as a deeply embedded, fine-tuned behavior. We will begin with a high-performance base model and train it on specialized datasets to explicitly follow logical pathways.\r\n\r\nThis project is a deep dive into the complete \"Reasoning Stack\":\r\n\r\nCore Fine-Tuning (SFT): We will implement Chain-of-Thought fine-tuning to teach the model to break down problems and articulate its reasoning process step-by-step.\r\n\r\nAdvanced Alignment (RL): We will go beyond basic training and apply Reinforcement Learning (specifically RLHF/DPO) to align the model's outputs, optimizing its reasoning steps for accuracy and coherence.\r\n\r\nAgentic Integration (RAG): We will integrate our reasoning engine into an advanced RAG pipeline. Instead of just \"stuffing context,\" our model will act as a \"Reasoning Agent,\" capable of analyzing retrieved data, identifying contradictions, and synthesizing a final, reasoned answer.\r\n\r\nThis project is from the most widely asked domain in the internship interviews.\r\nAs an AI Researcher myself, (2 internationally published papers in the domain of AL & Quantitative Finance), I would strongly recommend this for the students thinking of pursuing their future in AI & ML.",
+    "project_domains": [
+      "Agentic AI",
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 20,
+    "prerequisites": "Basics of Python and Lots of Enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1k2FCQHQbv1SsrHwqOwFnHljaNd-xPlGE"
+  },
+  {
+    "id": 76,
+    "project_name": "Tokens to Thought: A Contextual Transformer",
+    "mentor_name": "Mrigank Goel, Hindocha Avadh Dharmeshbhai",
+    "mentor_ldap_mail": "",
+    "project_description": "The project serves as an educational resource for the WiDS-2025 - Winter in Data Science 2025. It guides learners through creating a Generative AI model inspired by the paper \"Attention is All You Need.\" The learning path is organized weekly, focusing on progressive concepts and practical implementation:\r\n\r\nWeek 1 introduces essential Python skills and foundational libraries such as NumPy and Matplotlib.\r\nWeek 2 covers neural network fundamentals and basic model construction.\r\nWeek 3 moves to TensorFlow implementation, custom layers, and assignments like MNIST and housing price prediction.\r\nWeeks 4-5 delve into attention mechanisms and their TensorFlow applications, including training a small language model.\r\nThe repository is primarily in Jupyter Notebook format, supporting interactive learning and experimentation and the project contributions and materials aim to provide a smooth, hands-on introduction to generative AI and transformer models.",
+    "project_domains": [
+      "Natural Language Processing"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4-5 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Just bring your enthu!",
+    "project_image_drive_link": "https://drive.google.com/open?id=1B-gg5cAfkUJAGu8sUPhL35KYYU3u6OU4"
+  },
+  {
+    "id": 77,
+    "project_name": "Applying AI models on Video Footage using YOLO and OpenCV",
+    "mentor_name": "Kushagra Bansal",
+    "mentor_ldap_mail": "",
+    "project_description": "This project aims to build a high-performance computer vision application that can detect and classify objects in real-time video footage. The system will integrate OpenCV (Open Source Computer Vision Library), a powerful library for video and image processing, with YOLO (You Only Look Once), a state-of-the-art, real-time object detection model.\r\n\r\nOpenCV will be used as the project's backbone, handling tasks like capturing video from a file or live webcam, pre-processing individual frames, and displaying the final, annotated video stream. YOLO will serve as the \"brain\" of the operation, analyzing each frame to identify the location and class of multiple objects with high speed and accuracy.\r\n\r\nThe final deliverable will be a Python application that can take a video source as input and produce a real-time output stream with all detected objects clearly labeled.\r\n\r\nThe skill is currently in high demand for image processing and data extraction in all kind of industries including banking, finance, tech to Tourism Firms.",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 7,
+    "prerequisites": "Some Prior experience in Python and jupyter notebook along with basic knowledge of Neural networks and machine learning",
+    "project_image_drive_link": "https://drive.google.com/open?id=1NH5djitYsISDaytqptzBas42iptj13k5"
+  },
+  {
+    "id": 78,
+    "project_name": "Predicting Stock Volatility Using Financial News Sentiment Analysis",
+    "mentor_name": "Karan Bansal, Bhavin",
+    "mentor_ldap_mail": "",
+    "project_description": "The project aims to explore how financial news sentiment influences stock market volatility using data-driven techniques. Students will collect financial news data from XML feeds and combine it with historical stock price data obtained through APIs. The workflow will involve parsing XML data, performing text cleaning, applying sentiment analysis techniques, and quantifying sentiment scores over time.\r\n\r\nOnce the sentiment data is aligned with stock trading days, the project will involve engineering features such as average sentiment, sentiment volatility, lagged effects, and rolling correlations with price movements. Using these features, students will develop machine learning models to predict whether a stock’s price is likely to rise, fall, or remain stable in the following trading session.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 20,
+    "prerequisites": "None but basic familiarity with Python programming will be helpful",
+    "project_image_drive_link": "https://drive.google.com/open?id=1iN_S-Q3SW-9mWFmUFlpyHciSXxdNV2ir"
+  },
+  {
+    "id": 79,
+    "project_name": "Age guesstimator",
+    "mentor_name": "Bhagyansh Sahu, Krish Bhanderi",
+    "mentor_ldap_mail": "",
+    "project_description": "This project develops a computer vision system that predicts a person’s age range and gender from facial images using deep learning. Based on the open-source Gender-and-Age-Detection repository, it employs OpenCV and pretrained Caffe CNN models for real-time classification. Students will learn to handle image data, perform face detection, run inference, and visualize predictions. The project offers hands-on experience with CNNs, transfer learning, and ethical considerations in AI. Deliverables include a working detection script or notebook, result visualization, and a brief report analyzing accuracy and potential improvements.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "lots of enthu",
+    "project_image_drive_link": "https://drive.google.com/open?id=1t8bKGU_jbHQv2AlQ6GsjFwU7O2_6Z8UO"
+  },
+  {
+    "id": 80,
+    "project_name": "End-to-End ML Systems on new datasets: From Transfer Learning to Production Deployment with Federated Averaging",
+    "mentor_name": "Chaitanya Deshkar, Yuvraj Parekh",
+    "mentor_ldap_mail": "",
+    "project_description": "Build a real ML system in 6-8 weeks—from training to deployment. Learn the complete engineering pipeline: train vision models with PyTorch, implement federated learning using Flower framework, build REST APIs with FastAPI, containerize with Docker, and deploy to the cloud with monitoring. No ML experience needed—we start with Python basics and guide you through transfer learning, handling distributed data, and production deployment. You'll ship a working plant disease detection app achieving 85-90% accuracy, complete with live demo.\r\n\r\nDownload the image we have given with this, it might help",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 25,
+    "prerequisites": "Python Basics (essential) Variables, loops, functions, basic data structures Willingness to Learn (most important!)  This is a learning project; we'll teach you ML concepts. You'll face errors and bugs, that's normal. Team collaboration and asking for help when stuck.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1EtYJYwcmnIBDqci2A5wCH3zOViKM9u5Y"
+  },
+  {
+    "id": 81,
+    "project_name": "Advanced Agentic AI for Beginners",
+    "mentor_name": "Samarth Banodia, Pranav Mylarassu",
+    "mentor_ldap_mail": "",
+    "project_description": "Immerse yourself in Advanced Agentic AI For Beginners, a 6-week learning journey designed to take students from basic Python all the way to developing production-ready agentic AI systems using Google’s Agent Development Kit (ADK). In this hands-on mentorship track, you’ll build confidence in coding with Python and Jupyter Notebooks, understand essential machine learning concepts, and dive deep into the mechanics behind neural networks and transformer architectures—the foundation of today’s large language models. You’ll learn to use Hugging Face and Ollama to run open-source LLMs locally, and master retrieval-augmented generation (RAG) for combining custom datasets with AI models. As you progress, you’ll work with agentic AI design, orchestrating tool use, state management, and multi-agent workflows—applying frameworks like LangChain, LangGraph, and finally Google ADK to move from prototypes to robust, scalable solutions. Course content, weekly assignments, and curated resources will guide you through practical implementations, agent composition, and deployment best practices. In weeks five and six, you’ll select from a set of advanced agentic AI project options (not fixed in advance), architect your own multi-agent solution, prepare it for production deployment, and document your results. By the end, you’ll have a strong grasp on modern agentic architectures—from building basic neural nets to launching Python-based agents ready for industry use with Google ADK—equipped for hackathons, internships, or real-world AI challenges. No prior machine learning experience is required; just a drive to learn and the willingness to build.",
+    "project_domains": [
+      "Agentic AI"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 15,
+    "prerequisites": "No hard prerequisites but knowledge of Python, numpy & ML is a plus",
+    "project_image_drive_link": "https://drive.google.com/open?id=1eQDaiLW5OjNu9gd_El4AtAYzDswGI22b"
+  },
+  {
+    "id": 82,
+    "project_name": "AI for Logical Thinking",
+    "mentor_name": "Abhilasha, Harshitha Inampudi",
+    "mentor_ldap_mail": "",
+    "project_description": "This project aims to explore how artificial intelligence can reason, prove, and think logically - just like humans once taught machines to do.\r\nOver the duration of this project, participants will journey from the foundations of logic in computer science to building a simple AI theorem prover. Along the way, we’ll explore how early AI systems like The Logic Theorist shaped modern reasoning algorithms, and learn different search and learning methods and they can guide proofs efficiently.",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5-6 Weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "A background in Logic for Computer Science would be helpful but not essential",
+    "project_image_drive_link": "https://drive.google.com/open?id=1VdEnWMs7DNYCFd7Ci38k0FsHW0sOQKtn"
+  },
+  {
+    "id": 83,
+    "project_name": "ReMind: An Agentic AI Tutor for Memory Retention",
+    "mentor_name": "Muhammed Sufiyan",
+    "mentor_ldap_mail": "",
+    "project_description": "ReMind is an interactive, memory aware AI system built using Python that helps users retain knowledge by periodically revisiting and testing what they’ve learned in previous conversations. The project uses an agentic approach. the AI not only responds to user queries but also proactively engages with the user after a few prompts to check their understanding of past topics.\r\n\r\nThe assistant maintains a structured memory of past interactions, identifies key learning points, and, after a certain interval, generates personalized recall questions. This approach reinforces long-term memory retention, mimicking how human tutors use spaced repetition to test understanding.\r\n\r\nThe system can be run as a command-line chatbot or integrated with simple front-end tools like Streamlit or Gradio for an interactive experience. It can also evaluate user responses, give feedback, and adapt its questioning style based on user performance.",
+    "project_domains": [
+      "Agentic AI"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "none",
+    "project_image_drive_link": "https://drive.google.com/open?id=183XCgruBM-QS_wca-101Y0ZjFMPfL3Ud"
+  },
+  {
+    "id": 84,
+    "project_name": "Agentic Auto-flows",
+    "mentor_name": "Mridul Choudhary",
+    "mentor_ldap_mail": "",
+    "project_description": "This course on Agentic AI Development using n8n and modern automation frameworks introduces learners to the creation of intelligent, self-operating AI agents that integrate reasoning, automation, and data workflows. Participants will learn how to design and deploy AI systems capable of performing complex, personalized tasks — including a Report Writer that generates structured documents from prompts or data, a Personalized Study Buddy that adapts to each learner’s progress and goals, and a Startup Idea Recommender that leverages user insights and trend analysis to propose viable business opportunities. Through hands-on projects, learners will gain practical experience with n8n, API orchestration, and LLM integration, equipping them to build scalable and adaptive AI solutions for real-world applications.",
+    "project_domains": [
+      "Agentic AI"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "Nil",
+    "project_image_drive_link": "https://drive.google.com/open?id=11eCi2or8k-ERqvJH8M1lzuj9ABlnzjCS"
+  },
+  {
+    "id": 85,
+    "project_name": "Can Computers Think",
+    "mentor_name": "Pulkit Gupta, Amogh Agrawal",
+    "mentor_ldap_mail": "",
+    "project_description": "This project about Reinforcement Learning introduces basic RL techniques in an engaging, beginner-friendly way, blending theory with hands-on assignments. Reinforcement Learning is an highly evolving branch of Machine Learning which involves an agent trying to learn from its environment by making mistakes unlike other techniques in ML. It involves an agent making moves and getting rewarded or penalized, and learning from its rewards and penalties. Reinforcement Learning is similar to how babies or animals learn, and this is what makes it fascinating and interesting. This journey provides a practical, comfortably-paced introduction to RL, offering a compelling look at how machines can be trained to mimic aspects of human decision-making and learning. The project does not assume any prerequisites, aside from loads of enthusiasm :)",
+    "project_domains": [
+      "Reinforcement Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 6,
+    "prerequisites": "NA",
+    "project_image_drive_link": "https://drive.google.com/open?id=1qbynY8XvI-DrmjJM4szMuEFyFsi-CxGq"
+  },
+  {
+    "id": 86,
+    "project_name": "TYPES OF TRESS IN DATA STRUCTURE",
+    "mentor_name": "Ashwary Verma, Aryan Prakash",
+    "mentor_ldap_mail": "",
+    "project_description": "This project focuses on understanding, analyzing, and visualizing various types of trees used in data structures, which are fundamental components of computer science and programming. Trees provide an efficient way to store, manage, and retrieve hierarchical data, and are widely used in databases, file systems, compilers, artificial intelligence, and more.\r\n\r\nThe project explores different tree data structures, including:\r\n\r\nBinary Trees – where each node has at most two children.\r\n\r\nBinary Search Trees (BSTs) – used for efficient searching, insertion, and deletion.\r\n\r\nAVL Trees – self-balancing binary search trees that maintain height balance.\r\n\r\nRed-Black Trees – another type of self-balancing BST used in libraries and databases.\r\n\r\nB-Trees and B+ Trees – widely used in databases and file systems for indexing.\r\n\r\nHeaps – complete binary trees used in priority queues and heap sort.\r\n\r\nTrie (Prefix Tree) – used for string operations like autocomplete and spell checking.\r\n\r\nThrough this project, students can:\r\n\r\nLearn the structure, properties, and applications of different tree types.\r\n\r\nUnderstand how various tree operations (insertion, deletion, traversal, searching) are implemented.\r\n\r\nVisualize how data is organized within each tree.\r\n\r\nCompare performance and use cases of different tree structures.\r\n\r\nThe goal of this project is to simplify complex data structure concepts through interactive demonstrations, visual aids, and clear explanations, helping learners and developers grasp how trees optimize data processing and organization in computer systems.",
+    "project_domains": [
+      "Core Projects"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5-6 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "-",
+    "project_image_drive_link": "https://drive.google.com/open?id=1c5R7bwzHqiXIINuYvsIGOGGd0ct3Ndrl"
+  },
+  {
+    "id": 87,
+    "project_name": "Options Pricing",
+    "mentor_name": "Mayank kansal, Ayush Sharma",
+    "mentor_ldap_mail": "",
+    "project_description": "In this project, we’re diving into Options Pricing using Python, taking a fresh look at the Black-Scholes Equation — the backbone of options theory. While Black-Scholes is a classic, it relies on some pretty outdated assumptions about volatility and interest rates, which don’t always hold up in today’s fast-moving markets.\r\n\r\nTo tackle this, we’ll use Deep Learning models like Multi-Layer Perceptrons (MLP) and Long Short-Term Memory (LSTM) networks. These models let us capture real-time market trends by using recent price and volatility data, making our predictions way more adaptive and accurate than the old-school approach. We will certainly build MLP1, MLP2, and the LSTM model, which take 20-day historical volatility as an input, while the LSTM model takes in the latest 20 days of underlying price, allowing it to learn volatility.\r\n\r\nBy the end, you’ll get hands-on with data processing and learn how to build models that go beyond Black-Scholes, blending finance and AI for modern, flexible options pricing. This project is a great way to get practical experience and add something unique to your profile.",
+    "project_domains": [
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 week",
+    "number_of_mentees": 5,
+    "prerequisites": "There are no hard prerequisites - just bring your enthusiasm and a willingness to dive in! We’ll provide the resources and tools; your curiosity and commitment will shape how much you gain from this experience. While not required, a basic familiarity with Python and Options Pricing would be a nice bonus.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1fW5YVwqJ6rkQXhTIKTKtyfTwUgi5W-e2"
+  },
+  {
+    "id": 88,
+    "project_name": "Real-Time Anomaly Detection in Surveillance Videos",
+    "mentor_name": "Adish Gupta",
+    "mentor_ldap_mail": "",
+    "project_description": "Ever wondered how AI surveillance systems detect fights, thefts, or accidents in real time? In this project, you’ll build one yourself.\r\nYou’ll train deep learning models on real-world video datasets like MOT17 and CUHK Avenue, use YOLOv5 for object detection, and implement DeepSORT tracking to monitor movement and flag unusual activities.\r\n\r\nBy the end of 5 weeks, you’ll have a fully functional real-time anomaly detection pipeline — capable of spotting irregular behavior in surveillance feeds. This project is perfect for those looking to dive into computer vision, neural networks, and AI for social good using just Python and OpenCV.\r\n\r\nGet ready to experience the thrill of teaching machines to “see” and “understand” the world.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 5,
+    "prerequisites": "Solid grasp in Python",
+    "project_image_drive_link": "https://drive.google.com/open?id=1lQ5AiYmjycpUInrUfU-I-QuzCi3YRK2I"
+  },
+  {
+    "id": 89,
+    "project_name": "Object Recognition System Using Deep Learning (YOLOv5 Framework)",
+    "mentor_name": "Utkarsh Tanwar, Yogesh Sangwan",
+    "mentor_ldap_mail": "",
+    "project_description": "his project aims to design and implement an Object Recognition and Tracking System using deep learning techniques, primarily leveraging the YOLOv5 framework for object detection and the DeepSORT algorithm for object tracking in videos.\r\n\r\nThe main goal of the project is to accurately detect, classify, and continuously track multiple objects in real-time video streams. YOLOv5 (You Only Look Once, version 5) is a state-of-the-art object detection model known for its high speed and accuracy. It performs detection in a single forward pass of the network, making it ideal for real-time applications.\r\n\r\nOnce objects are detected by YOLOv5, the DeepSORT (Simple Online and Realtime Tracking with a Deep Association Metric) algorithm is used to assign unique IDs and maintain object identities across frames, even when objects overlap, move quickly, or leave and re-enter the frame. DeepSORT enhances tracking stability by combining motion information from a Kalman filter with appearance information from a deep neural network.\r\nThrough this project, participants will gain hands-on experience with real-world AI tools and workflows, learning how modern object detection and tracking systems are built and deployed.\r\nProject Schedule:\r\nWeek 1\r\nBasics of Neural Networks, CNNs and Open-CV\r\nWeek 2\r\nUnderstanding Object Detection and YOLOV5 \r\nWeek 3\r\nTraining a YOLOV5 Model on Object images\r\nWeek 4\r\nUsing Deep-sort to utilize Trained model over video recording",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 Weeks",
+    "number_of_mentees": 12,
+    "prerequisites": "Intermediate experience of Python and ML",
+    "project_image_drive_link": "https://drive.google.com/open?id=1tQPaAUJaFcfEZBZ5ZR195pnNC8mj513o"
+  },
+  {
+    "id": 90,
+    "project_name": "DL Content Based Recommender for Movies",
+    "mentor_name": "Daksh Makwana",
+    "mentor_ldap_mail": "",
+    "project_description": "This project implements a Content-Based Filtering recommender system for movies using a custom-built Deep Neural Network (DNN) architecture based on TensorFlow/Keras.\r\n\r\nThe system learns to predict a user's movie rating by generating a dense User Feature and a Movie Feature from complex, hand-engineered feature sets.\r\nThe core achievement lies in the ground-up construction and training of the dual-tower neural network model using the Keras Functional API, ensuring maximum flexibility and transparency in the feature vector generation process.",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4",
+    "number_of_mentees": 10,
+    "prerequisites": "only python:)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1QqpbiFM7Yq6TtvU-4sB4AZMYlFAxxSmO"
+  },
+  {
+    "id": 91,
+    "project_name": "From Video to Notes: Build an AI That Watches Lectures for You",
+    "mentor_name": "Dinesh",
+    "mentor_ldap_mail": "",
+    "project_description": "This guided project helps you create a simple AI assistant that automatically summarizes YouTube lectures into neat, readable notes. You’ll learn how to fetch transcripts using the YouTube Transcript API, process the text, and generate concise topic summaries using pre-trained transformer models like T5-small or BART.\r\nBy the end, you’ll have a working Flask or Streamlit web app that takes a YouTube link and outputs key points, timestamps, and insights. No prior AI experience required. We’ll guide you step-by-step from data extraction to model integration and front-end display.",
+    "project_domains": [
+      "Natural Language Processing",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "Basic Python programming, Familiarity with APIs and JSON, Optional: Streamlit or Flask basics, Interest in applying AI to real-world problems, (These pre-requisites are not mandatory, they just give you a slight advantage.)",
+    "project_image_drive_link": "https://drive.google.com/open?id=1u6D_5MPGkZvnwW2ENjK16T00SWo2Ecpq"
+  },
+  {
+    "id": 92,
+    "project_name": "Financial Modelling",
+    "mentor_name": "Prince Kumar, Veer Lohia",
+    "mentor_ldap_mail": "",
+    "project_description": "Ever wondered how analysts on Wall Street decide what a company is really worth? Or how spreadsheets can tell the story of an entire business?\r\nIn this project, you’ll step into the shoes of a financial analyst -> building real, dynamic models from scratch. From decoding financial statements to predicting future profits and valuing companies, this project blends finance, logic, and data science into one exciting winter adventure.\r\n\r\nBy the end, you’ll not only know your way around Excel like a pro, but also use Python to make your models smarter, faster, and way cooler.\r\n\r\n\r\n• What You’ll Learn\r\n\r\nThe language of finance — income statements, balance sheets, and cash flows.\r\n\r\nHow to build and link these into a 3-statement model.\r\n\r\nHow to value companies using Discounted Cash Flow (DCF) and relative valuation.\r\n\r\nHow to stress-test assumptions through scenario and sensitivity analysis.\r\n\r\nHow to use Python to supercharge financial analysis and visualize results\r\n.\r\n\r\n• 4-Week Adventure Plan\r\n\r\nWeek\tTheme\tWhat You’ll Do\tMilestone\r\n\r\n1. Decode the Numbers\tLearn to read, interpret, and link financial statements.\tBuild your first 3-statement model (IS, BS, CF).\t\r\n2. The Valuation Toolkit\tCreate ratio dashboards and forecast future performance.\tCompute WACC and set up your DCF base model.\t\r\n3. The Analyst’s Playground\tExtend DCF, try out relative valuation, and test scenarios.\tComplete your full-fledged valuation model.\t\r\n4. Python x Finance\tUse Python to automate calculations and visualize valuation insights.\tSubmit your final model + analytical report.\r\n\t\r\n\r\n• How We’ll Roll\r\n\r\n1. Learn the Basics — simple intros to finance, valuation, and Excel magic.\r\n\r\n\r\n2. Build Your Model — real company data, hands-on spreadsheets.\r\n\r\n\r\n3. Add the Data-Science Twist — a dash of Python for smart analytics.\r\n\r\n\r\n4. Showcase Your Work — report, insights, and models that tell a story.\r\n\r\n\r\n• Skills You’ll Pick Up\r\n\r\nFinancial statement analysis\r\n\r\nExcel modelling and linking\r\n\r\nCompany valuation (DCF & multiples)\r\n\r\nPython for finance (pandas, NumPy, matplotlib)\r\n\r\nData storytelling and report writing\r\n\r\n\r\n• Resources You’ll Love\r\n\r\nBooks: Pignataro’s Financial Modeling and Valuation, Rosenbaum & Pearl’s Investment Banking\r\n\r\nCourses: Aswath Damodaran’s Valuation lectures (YouTube), CFI/Wall Street Prep modules\r\n\r\nTools: Excel, Python\r\n\r\n\r\n• What You’ll Deliver\r\n\r\nA working Excel + Python financial model\r\n\r\nA concise report explaining your logic and results\r\n\r\nA serious boost to your data-driven finance portfolio\r\n\r\n\r\n• Duration\r\n\r\n4 Weeks (During WiDS 2025) — individual project",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "Just lots of enthu and Interest in finance",
+    "project_image_drive_link": "https://drive.google.com/open?id=1nuO4ngbmPhuKr9D7zat39hw-H5uXdX9c"
+  },
+  {
+    "id": 93,
+    "project_name": "Spotify Song Mood Classifier",
+    "mentor_name": "Tanya Menghani, Shrestha Khatri",
+    "mentor_ldap_mail": "",
+    "project_description": "Music is emotional every song carries a distinct mood, from energetic and happy to calm or melancholic.\r\nThe Spotify Song Mood Classifier is an AI project that aims to predict a song’s mood using its audio features such as tempo, energy, valence, danceability, and acousticness.\r\n\r\nUsing publicly available Spotify datasets (or the Spotify API), this project guides you through every step of the data-science pipeline from Python programming and exploratory analysis to model building and visualization.\r\nBy the end, you’ll have a working model  and possibly a small web app that classifies songs by mood and can even recommend “vibe-based” playlists.\r\n\r\nWeek wise plan -\r\nWeek 1 – Python & Data Foundations:\r\nLearn Python basics and explore the Spotify dataset using pandas and matplotlib.\r\n\r\nWeek 2 – Exploratory Data Analysis:\r\nUnderstand Spotify audio features, clean the data, and discover patterns linking sound attributes to mood.\r\n\r\nWeek 3 – Model Building:\r\nTrain your first machine-learning model to classify songs into mood categories.\r\n\r\nWeek 4 – Model Optimization & Insights:\r\nRefine the model, analyze feature importance, and visualize how musical traits influence emotion.\r\n\r\nWeek 5 – Visualization & Deployment:\r\nBuild an interactive Streamlit app and present your final mood classification results with visuals and insights.",
+    "project_domains": [
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5",
+    "number_of_mentees": 20,
+    "prerequisites": "Only your enthusiasm",
+    "project_image_drive_link": "https://drive.google.com/open?id=1r1KEqUZR6m03rp8egQVHndvXHPRb1yx2"
+  },
+  {
+    "id": 94,
+    "project_name": "GPU Programming using CUDA and Triton",
+    "mentor_name": "Abhineet Agarwal",
+    "mentor_ldap_mail": "",
+    "project_description": "This winter project offers a hands-on, 6-week guided learning path inspired by NVIDIA’s internal CUDA engineer training roadmap. Participants will go beyond tutorials to develop deep intuition about GPU hardware, parallel programming, and memory optimization.\r\n\r\nWeek 1 — GPU Intuition & Hardware Foundations\r\nUnderstand how GPUs differ from CPUs and why they excel at parallel workloads.\r\n\r\nWeek 2 — Parallel Thinking & Algorithm Design\r\nLearn to design algorithms that map efficiently to GPU architectures.\r\n\r\nWeek 3 — CUDA Fundamentals\r\nWrite your first CUDA kernels and experiment with threads, blocks, and grids.\r\n\r\nWeek 4 — Memory Optimization\r\nMaster GPU memory hierarchy and implement shared memory optimizations.\r\n\r\nWeek 5 — Real Kernels\r\nBuild and benchmark real-world kernels like Softmax and matrix multiplication.\r\n\r\nWeek 6 — Triton for Modern GPU Programming\r\nUse OpenAI’s Triton to write high-performance kernels with concise, Pythonic syntax.",
+    "project_domains": [
+      "Core Projects",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6",
+    "number_of_mentees": 5,
+    "prerequisites": "Python, Linear Algebra, Basic knowledge of processor design will help but is not necessary",
+    "project_image_drive_link": "https://drive.google.com/open?id=1s-0BdHQU-bK5TjscQrN5q1VUfoOO9_fF"
+  },
+  {
+    "id": 95,
+    "project_name": "Auto-Damage Vision",
+    "mentor_name": "Rajdeep Agarwal, Syed Ali",
+    "mentor_ldap_mail": "",
+    "project_description": "This project focuses on building an automated system that detects visible damage on vehicles using computer vision techniques. The goal is to classify whether a given vehicle is damaged or not damaged and classify the severity of the damage, and optionally highlight the damaged region. This simulates real-world applications in insurance claims, garage automation, and fleet management.",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 Weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "Fundamental python required to understand depth and a little bit of basics of ML preferred",
+    "project_image_drive_link": "Auto-Damage Vision Poster - Rajdeep Agarwal.png"
+  },
+  {
+    "id": 96,
+    "project_name": "Equity classification using Machine Learning on Financial Ratios",
+    "mentor_name": "Raheel Aggarwal",
+    "mentor_ldap_mail": "",
+    "project_description": "Project: Building a classifier on the fundamental financial ratios of an equity (as opposed to stock prices), to predict the investment decision for the equity. Note - We will only deal with long term outcomes of these investments as opposed to prediction of short term fluctuations which is the domain of algorithmic trading. You will: - Build models of multiple types with varying hyper-parameters. - Interpret and compare the results of different models and its implications on the classification problem at hand - Compare the ML predictions to the conventional method of equity selection and its implications on the classification problem at hand. Key takeaways: - What are financial ratios and how are the conventionally used in equity selection? - Execution of various models (decision trees, LDA, NN, etc.) and best practices in dealing with data. - Interpretation of machine learning models in a field relevant manner.",
+    "project_domains": [
+      "Theoretical Machine Learning",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 10,
+    "prerequisites": "Python experience",
+    "project_image_drive_link": "IMG-20251122-WA0002 - Raheel Aggarwal.jpg"
+  },
+  {
+    "id": 97,
+    "project_name": "VisionLock - Build a Facial Recognition Tool",
+    "mentor_name": "Rujula Ganesh Rahate",
+    "mentor_ldap_mail": "",
+    "project_description": "In this project, mentees will build a facial recognition system using deep learning. They’ll start with face detection and alignment using OpenCV/MTCNN, extract feature embeddings with models like FaceNet or Siamese Networks, and implement similarity-based verification for identity matching. By the end, participants will have hands-on experience in computer vision, transfer learning, and real-time face recognition using a live webcam interface.",
+    "project_domains": [
+      "Computer Vision"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "All one needs is enthusiasm! Knowing a bit of NumPy, Pandas, or TensorFlow/PyTorch is a bonus.",
+    "project_image_drive_link": "09faaffdec45d9775c0ba3fb5ecad92a - Rujula Rahate.jpg"
+  },
+  {
+    "id": 98,
+    "project_name": "Financial Analysis of Multiple Models used in Corporate Finance and Economics",
+    "mentor_name": "Tushaar Anoop Jhamtani",
+    "mentor_ldap_mail": "",
+    "project_description": "This project explores a broad range of analytical models commonly used in corporate finance and economics. The goal is to understand how these models work, compare their assumptions, evaluate their real-world applications, and identify their strengths and limitations. The project will be divided into multiple subtopics, each focusing on a specific financial or economic model. Examples include valuation models (DCF, comparables), capital structure theories (Modigliani–Miller, trade-off theory), risk and return models (CAPM, APT), forecasting models, macroeconomic frameworks, and more. Through detailed analysis, simulations, case studies, and comparative evaluations, this project aims to provide a comprehensive understanding of how these models support decision-making in corporate finance and economic policy. It is designed to help students and practitioners deepen their knowledge, develop analytical skills, and gain practical insights into the tools used in financial and economic analysis.",
+    "project_domains": [
+      "Quantitative Analytics",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 25,
+    "prerequisites": "None",
+    "project_image_drive_link": "WIDS logo - Tushaar Jhamtani.png"
+  },
+  {
+    "id": 99,
+    "project_name": "Noisy Truth",
+    "mentor_name": "Nilkrishna N. Gajare",
+    "mentor_ldap_mail": "",
+    "project_description": "👋 Welcome to \"Noisy Truth\"! Ever wonder how a self-driving car or a deep-sea sub knows exactly where it is without GPS? They use a powerful trick to fuse messy, unreliable sensor data into one clear, high-confidence \"truth.\" In this project, you'll learn that trick. We'll start with the classic Kalman Filter, but our main mission is to build the Unscented Kalman Filter (UKF)—the \"pro-level\" upgrade for handling the real world's complex, curvy paths. Our core challenge: We'll build the \"brain\" for an Autonomous Underwater Vehicle (AUV). We'll have to take its wildly drifting internal sensors and combine them with fuzzy, noisy sonar \"pings\" to find its true path in the dark. By the end, you'll have mastered a core skill used in robotics, aerospace, and beyond: the ability to find truth in the noise.",
+    "project_domains": [
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 20,
+    "prerequisites": "basic python",
+    "project_image_drive_link": "image - Gajare Nilkrishna Nirmalkumar.png"
+  },
+  {
+    "id": 100,
+    "project_name": "Predictive Customer Analytics: CLV Forecasting & Behavioral Segmentation Using RFM Methodology",
+    "mentor_name": "Sneha Mane, Yuvraj Tiwari",
+    "mentor_ldap_mail": "",
+    "project_description": "This project is a focused 6-week intermediate-level analytics initiative where you will learn to build a predictive system that forecasts customer lifetime value (CLV) and segments customers using Recency, Frequency, Monetary (RFM) analysis. Starting with cleaning and exploring real customer transaction data, you will engage in feature engineering to create meaningful variables reflecting customer behavior, purchase patterns, and engagement. Using RFM methodology, you will segment customers into actionable groups that inform targeted marketing strategies. Then, you’ll build machine learning models (logistic regression, random forest, XGBoost) to predict customer churn with high precision and recall, helping identify customers at risk of leaving. Parallelly, you will calculate and model CLV to estimate each customer’s projected revenue contribution, enabling smarter budget allocation. By project end, you’ll have honed skills in Python programming, data analysis, machine learning, business intelligence, and storytelling—empowering you to translate data into actionable business decisions as done by leading companies worldwide",
+    "project_domains": [
+      "Core Projects",
+      "Quantitative Analytics"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 weeks",
+    "number_of_mentees": 15,
+    "prerequisites": "Proficiency in Python, along with its core data science libraries like pandas, numpy, scikit-learn, and matplotlib.",
+    "project_image_drive_link": "WhatsApp Image 2025-11-09 at 21.47.11_45088b6f - Harshul Jain.jpg"
+  },
+  {
+    "id": 101,
+    "project_name": "ML Meets the Sun and Wind: Smart Mapping for Renewable Energy Hotspots",
+    "mentor_name": "Tanvi Anand",
+    "mentor_ldap_mail": "",
+    "project_description": "Imagine teaching AI to “hunt for sunshine and wind” from space 🌤️! In this project, you’ll harness the power of Remote Sensing, Machine Learning, and Geospatial Intelligence to find the perfect spots for solar panels and wind turbines. Using data from satellites like Sentinel, ERA5, and NASA POWER, you’ll build a smart model that blends terrain analysis, solar irradiance, wind velocity, and land use patterns into one AI-driven energy suitability map. From coding in Python and Google Earth Engine to generating dazzling heatmaps of renewable potential, you’ll get to see data science light up the future of sustainable energy. 🌞⚙️💡 This will help you understand how energy systems, sustainability and GIS intersect with ML and you'll have a cool inter-disciplinary project to showcase at the end of this !! Week 1: Understanding basics of Google Earth Engine and Python Week 2: Define your study region, collect relevant datasets, and understand spatial relationships. Week 3: Convert raw satellite data into usable features for ML and understand various models + Teach your ML model what “good” energy sites look like Week 4: Create cool maps on GEE or QGIS + Validate your Models Week 5: Interact with peers, showcase your models and refine based on feedback Week 6: Final Project Report writing/ Presentation",
+    "project_domains": [
+      "Core Projects",
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "6 weeks",
+    "number_of_mentees": 20,
+    "prerequisites": "None but familiarity with Python and handling data sets will be beneficial",
+    "project_image_drive_link": "ChatGPT Image Nov 6, 2025, 10_33_25 PM - Tanvi Anand.png"
+  },
+  {
+    "id": 102,
+    "project_name": "AI Media Automation Lab",
+    "mentor_name": "Jeet Gurbani",
+    "mentor_ldap_mail": "",
+    "project_description": "This is a collaborative mentorship initiative where participants learn to design and build fully autonomous AI pipelines that transform real-time data—like news, trends, or ideas—into complete, publish-ready video content. Through hands-on projects, mentees explore how to combine large language models (LLMs), intelligent agents, text-to-speech systems, and automated video generation tools to create dynamic media experiences. This program covers every layer of modern AI automation: from prompt engineering, data parsing, and multimodal reasoning, to voice synthesis, visual composition, and social media distribution. By the end, mentees will have built a real-world system capable of fetching information, generating creative scripts, producing videos with AI voices and visuals, and auto-publishing them—an end-to-end learning journey that blends technical depth with creative storytelling.",
+    "project_domains": [
+      "Agentic AI"
+    ],
+    "project_category": "Collaborative Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 4,
+    "prerequisites": "A basic understanding of Python programming and a general idea of how AI agents work. Specific knowledge of frameworks isn’t required but is appreciated. Most importantly — bring a strong passion to learn, experiment, and build with AI automation.",
+    "project_image_drive_link": "Screenshot 2025-11-05 173604 - Jeet Gurbani.png"
+  },
+  {
+    "id": 103,
+    "project_name": "Minigames using SAT solver",
+    "mentor_name": "Anshul Goyal",
+    "mentor_ldap_mail": "",
+    "project_description": "In this project we will look at how SAT solvers can be used to solve small logic puzzles. We start by learning the basics of propositional logic—how to write simple true/false statements and combine them to express rules. After that, we introduce the main ideas behind DPLL, the basic procedure used by many SAT solvers to search for a solution. Using these ideas, the project focuses on turning games like Sudoku and Tsukoban into sets of logical rules and using a SAT solver to automatically find solutions.",
+    "project_domains": [
+      "Miscellaneous"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 8,
+    "prerequisites": "None :) Just bring your curiosity and enthusiasm!",
+    "project_image_drive_link": "anshul_wids_image"
+  },
+  {
+    "id": 104,
+    "project_name": "OncoNet - Skin Cancer Classification and Lesion Segmentation Using Deep Learning and Vision Transformers",
+    "mentor_name": "Dawar J Deka",
+    "mentor_ldap_mail": "",
+    "project_description": "This project focuses on developing an advanced, end-to-end artificial intelligence system capable of accurately detecting and analyzing skin cancer using dermoscopic medical images. Leveraging the internationally recognized ISIC (International Skin Imaging Collaboration) datasets, participants will work with one of the world’s largest and most reliable open repositories of skin lesion images, widely used in medical research and global diagnostic challenges.\r\n\r\nThe objective of the project is twofold. First, students will build a multi-class skin cancer classification model that can distinguish between several clinically recognized skin lesion types, including melanoma, basal cell carcinoma, benign keratosis, and others. This task will involve constructing baseline convolutional neural network (CNN) models, progressing to more sophisticated architectures such as EfficientNet and modern Vision Transformers (ViT). This progression will provide a strong understanding of both classical deep learning and contemporary transformer-based approaches for image analysis.\r\n\r\nSecond, participants will develop a lesion segmentation model that precisely identifies the boundaries of skin abnormalities in the images. This portion of the project will utilize U-Net and its advanced variants, enabling pixel-level segmentation of the lesion area. The segmentation component is critical for medical applications, as it supports explainability, enhances diagnostic accuracy, and mirrors the structure of professional medical imaging competitions such as the ISIC Challenge. For advanced learners, the project can be extended to incorporate Transformer-based segmentation models such as TransUNet.\r\n\r\nBeyond building predictive models, students will learn essential medical AI practices, including proper dataset preprocessing, class imbalance handling, rigorous evaluation using metrics such as AUC, F1-score, Dice coefficient, and Intersection over Union, and generation of clinically interpretable visual explanations. Techniques like Grad-CAM and attention map visualization from Vision Transformers will be used to provide insight into model decisions, aligning with standards expected in medical research settings.\r\n\r\nBy the end of the program, participants will have constructed a complete medical imaging pipeline that integrates classification, segmentation, and interpretability—skills directly relevant to cutting-edge research and competitions in medical AI.",
+    "project_domains": [
+      "Computer Vision",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "5 Weeks",
+    "number_of_mentees": 5,
+    "prerequisites": "Basic Python programming and familiarity with NumPy, Pandas, and Matplotlib. Prior exposure to machine learning concepts is helpful but not required, as all essential ML and deep learning foundations will be learnt during the project.",
+    "project_image_drive_link": "https://drive.google.com/open?id=1wK44DEMvWlP49aQgnyCY82ROtDF7dKh0"
+  },
+  {
+    "id": 105,
+    "project_name": "Battery SOH estimation",
+    "mentor_name": "Aditya O, Harshvardhan Srivastav and Aryaman Kavi",
+    "mentor_ldap_mail": "",
+    "project_description": "This intensive winter course explores the intersection of computational physics and deep learning, specifically focusing on Physics-Informed Neural Networks (PINNs). Students will address a critical challenge in the renewable energy sector: estimating the State of Health (SOH) of Lithium-ion batteries.\r\n\r\nUnlike traditional data-driven approaches that treat physical systems as \"black boxes,\" this course teaches a hybrid methodology. Students will integrate the governing partial differential equations (PDEs) of electrochemistry directly into neural network loss functions, creating models that are robust, data-efficient, and physically consistent. By the conclusion of the course, participants will have developed a functional \"Digital Twin\" capable of estimating battery degradation parameters from standard voltage and current measurement",
+    "project_domains": [
+      "Core Projects",
+      "Theoretical Machine Learning"
+    ],
+    "project_category": "Guided Project",
+    "project_duration_weeks": "4 weeks",
+    "number_of_mentees": 9,
+    "prerequisites": "Python (Intermediate: NumPy, PyTorch/TensorFlow basics),  Calculus (Basic understanding of derivatives/gradients).",
+    "project_image_drive_link": "https://drive.google.com/open?id=1MJe5PwTfNdJDxTIe-BUORkrC3YR2xYaO"
+  }
+]

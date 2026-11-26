@@ -16,7 +16,6 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
   const imgSrc = `/wids-2025/images/projects/project_image_${project.id}.jpg` || "/wids-2025/images/placeholder.png";
   const tags = [
     project.project_type,
-    project.difficulty,
     project.project_domain_1,
     project.project_domain_2,
   ].filter(Boolean);
@@ -26,7 +25,7 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-[1200px] bg-gradient-to-b from-[#1c0c32]/90 via-[#140826]/80 to-[#0a0316] border border-pink-500/25 rounded-2xl p-6 md:p-8 text-white shadow-[0_10px_35px_rgba(236,72,153,0.15)] space-y-10"
+      className="w-full max-w-5xl bg-gradient-to-b from-[#1c0c32]/90 via-[#140826]/80 to-[#0a0316] border border-pink-500/25 rounded-2xl p-6 md:p-8 text-white shadow-[0_10px_35px_rgba(236,72,153,0.15)] space-y-10"
     >
       <h2 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 text-transparent bg-clip-text drop-shadow-[0_0_25px_rgba(236,72,153,0.35)]">
         {project.project_title}
@@ -61,11 +60,15 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
             </div>
           )}
 
-          {/* Details */}
+          {/* Full project details */}
           <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-gray-300">
             <div>
-              <div className="text-xs text-gray-400">Weekly Hours</div>
-              <div className="font-medium">{project.weekly_hours || "—"}</div>
+              <div className="text-xs text-gray-400">Mentor</div>
+              <div className="font-medium">{project.mentor?.name || "—"}</div>
+            </div>
+            <div>
+              <div className="text-xs text-gray-400">Mentor LDAP email</div>
+              <div className="font-medium">{project.mentor?.email || "Pending verification"}</div>
             </div>
             <div>
               <div className="text-xs text-gray-400">Mentees</div>
@@ -73,13 +76,18 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
             </div>
             <div>
               <div className="text-xs text-gray-400">Duration</div>
-              <div className="font-medium">{project.duration_weeks || "—"} weeks</div>
+              <div className="font-medium">{project.duration_weeks || "—"}</div>
             </div>
             <div>
               <div className="text-xs text-gray-400">Pre-Requisites</div>
               <div className="font-medium">{project.pre_requisites || "—"}</div>
             </div>
           </div>
+          {project.project_image_drive_link && (
+            <a href={project.project_image_drive_link} target="_blank" rel="noopener noreferrer" className="text-sm text-pink-300 underline hover:text-pink-200">
+              View original image on Google Drive
+            </a>
+          )}
         </div>
       </div>
 
@@ -103,11 +111,11 @@ const ProjectDetailsCard = ({ project, onWishlistToggle }: ProjectDetailsCardPro
           >
             {isWishlisted ? (
               <>
-                <HeartOff size={16} className="text-pink-300" /> Remove from Wishlist
+                <HeartOff size={16} className="text-pink-300" /> Remove from basket
               </>
             ) : (
               <>
-                <Heart size={16} className="text-cyan-300" /> Add to Wishlist
+                <Heart size={16} className="text-cyan-300" /> Add project to basket
               </>
             )}
           </button>

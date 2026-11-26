@@ -14,11 +14,12 @@ export interface ProjectItem {
   project_description: string;
   difficulty: string;
   project_type: string;
-  duration_weeks: number;
-  weekly_hours: number;
+  duration_weeks: string | number;
+  weekly_hours: string | number;
   number_of_mentees: number;
   pre_requisites: string;
   project_image: string;
+  project_image_drive_link?: string;
   resources_link: string;
   previously_completed: boolean;
   project_experience: string;

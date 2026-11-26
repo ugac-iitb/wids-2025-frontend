@@ -6,6 +6,7 @@ import { ProjectItem } from "@/types/projectitem";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { API_URL } from "@/lib/constants";
+import { getCatalogProject } from "@/lib/catalog";
 
 type ProjectDetailsPageProps = {
   projectId: string;
@@ -39,11 +40,36 @@ const ProjectDetailsPage = ({ projectId }: ProjectDetailsPageProps) => {
   useEffect(() => {
     (async () => {
       try {
-        const token = localStorage.getItem("access_token");
-        if (!token) throw new Error("Please log in to view projects.");
+        const record = getCatalogProject(Number(projectId));
+        if (!record) throw new Error("Project not found.");
+        const details = {
+          id: record.id,
+          project_title: record.project_name,
+          project_description: record.project_description,
+          project_domain_1: record.project_domains[0] || "",
+          project_domain_2: record.project_domains[1] || "",
+          project_type: record.project_category,
+          difficulty: "",
+          duration_weeks: record.project_duration_weeks,
+          weekly_hours: "",
+          number_of_mentees: record.number_of_mentees,
+          pre_requisites: record.prerequisites,
+          project_image: record.project_image_drive_link,
+          project_image_drive_link: record.project_image_drive_link,
+          mentor: { id: 0, name: record.mentor_name, email: record.mentor_ldap_mail, roll_no: null, is_mentor: true },
+          is_wishlisted: false,
+        } as ProjectItem;
+        setProject(details);
 
-        const data = await fetchJSON(`${API}/api/get_project_details/${projectId}`);
-        setProject(data.project);
+        const token = localStorage.getItem("access_token");
+        if (token) {
+          try {
+            const data = await fetchJSON(`${API}/api/get_project_details/${projectId}`);
+            setProject({ ...details, is_wishlisted: Boolean(data.project?.is_wishlisted) });
+          } catch (err) {
+            console.error("Could not load basket status:", err);
+          }
+        }
       } catch (err: any) {
         console.error("Projects load error:", err);
         setError(err?.message || "Failed to fetch project details.");
@@ -57,7 +83,7 @@ const ProjectDetailsPage = ({ projectId }: ProjectDetailsPageProps) => {
     if (!project) return;
     const token = localStorage.getItem("access_token");
     if (!token) {
-      alert("Please log in to manage wishlist");
+      alert("Please log in with IITB SSO to add a project to your basket.");
       return;
     }
 

@@ -160,7 +160,7 @@ const ProjectCard = ({ project, onRemove }: ProjectCardProps) => {
                     size={16}
                     className="text-pink-300 transition-transform group-hover:scale-110"
                   />
-                  {loading ? "Updating..." : "Remove from Wishlist"}
+                  {loading ? "Updating..." : "Remove from basket"}
                 </>
               ) : (
                 <>
@@ -168,7 +168,7 @@ const ProjectCard = ({ project, onRemove }: ProjectCardProps) => {
                     size={16}
                     className="text-cyan-300 transition-transform group-hover:scale-110"
                   />
-                  {loading ? "Updating..." : "Add to Wishlist"}
+                  {loading ? "Updating..." : "Add project to basket"}
                 </>
               )}
             </button>
