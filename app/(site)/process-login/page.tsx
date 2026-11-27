@@ -13,8 +13,8 @@ function ProcessLoginClient() {
 
   const [responseMsg, setResponseMsg] = useState("Processing login...");
 
-  const exchangeUrl =
-    `${API_URL}/auth/callback/`;
+  const cleanApiUrl = (API_URL || "").replace(/\/+$/, "");
+  const exchangeUrl = `${cleanApiUrl}/auth/callback/`;
   const includeCreds = true;
 
   useEffect(() => {
@@ -28,10 +28,13 @@ function ProcessLoginClient() {
 
     const sendCodeToBackend = async () => {
       try {
+        console.log(`[ProcessLogin] Exchanging OAuth code with backend: ${exchangeUrl}`);
         const res = await fetch(exchangeUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
+            Accept: "application/json",
+            "ngrok-skip-browser-warning": "true",
           },
           body: new URLSearchParams({ code }),
           credentials: includeCreds ? "include" : "same-origin",
@@ -62,9 +65,9 @@ function ProcessLoginClient() {
         } else {
           setResponseMsg(`Error: ${data.error || "Login failed"}`);
         }
-      } catch (err) {
-        console.error("Error:", err);
-        setResponseMsg("Error processing login");
+      } catch (err: any) {
+        console.error(`[ProcessLogin] Failed to connect to backend at ${exchangeUrl}:`, err);
+        setResponseMsg(`Could not connect to backend server at ${exchangeUrl}. Please ensure your Django backend is running.`);
       }
     };
 
