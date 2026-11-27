@@ -124,6 +124,7 @@ const MentorPortal = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const initialLoadDone = useRef(false);
+  const isNavigatingStep = useRef(false);
 
   const authUrl = `https://gymkhana.iitb.ac.in/profiles/oauth/authorize/?client_id=${clientID}&response_type=code&scope=basic%20profile%20ldap%20program&redirect_uri=${encodeURIComponent(
     redirectURI
@@ -314,23 +315,40 @@ const MentorPortal = () => {
             }
             if (data.image_drive_link) setImageDriveLink(data.image_drive_link);
 
+            // Load local draft as fallback if cloud draft is missing any fields
+            const localKey = `wids_mentor_draft_${userLdap || "anonymous"}`;
+            const rawDraft = localStorage.getItem(localKey);
+            let localDraft: any = null;
+            if (rawDraft) {
+              try {
+                localDraft = JSON.parse(rawDraft);
+              } catch {}
+            }
+
             // Section 3
-            if (data.past_project_work) setPastProjectWork(data.past_project_work);
-            if (data.python_ml_experience) setPythonMlExperience(data.python_ml_experience);
+            if (data.past_project_work) {
+              setPastProjectWork(data.past_project_work);
+            } else if (localDraft?.pastProjectWork) {
+              setPastProjectWork(localDraft.pastProjectWork);
+            }
+
+            if (data.python_ml_experience) {
+              setPythonMlExperience(data.python_ml_experience);
+            } else if (localDraft?.pythonMlExperience) {
+              setPythonMlExperience(localDraft.pythonMlExperience);
+            }
+
             if (data.project_resources_link) {
               setProjectResourcesLink(data.project_resources_link);
-            } else {
-              // Fallback to local draft if cloud row has empty link
-              const localKey = `wids_mentor_draft_${userLdap || "anonymous"}`;
-              const rawDraft = localStorage.getItem(localKey);
-              if (rawDraft) {
-                try {
-                  const draft = JSON.parse(rawDraft);
-                  if (draft.projectResourcesLink) setProjectResourcesLink(draft.projectResourcesLink);
-                } catch {}
-              }
+            } else if (localDraft?.projectResourcesLink) {
+              setProjectResourcesLink(localDraft.projectResourcesLink);
             }
-            if (data.comments_suggestions) setCommentsSuggestions(data.comments_suggestions);
+
+            if (data.comments_suggestions) {
+              setCommentsSuggestions(data.comments_suggestions);
+            } else if (localDraft?.commentsSuggestions) {
+              setCommentsSuggestions(localDraft.commentsSuggestions);
+            }
 
             setAutoSaveStatus(data.is_submitted ? "Application Finalized" : "Draft synced from account");
           } else {
@@ -562,8 +580,12 @@ const MentorPortal = () => {
       formData.append("prerequisites", prerequisites.trim());
 
       // Section 3
-      formData.append("past_project_work", pastProjectWork.trim());
-      formData.append("python_ml_experience", pythonMlExperience.trim());
+      const draftPastWork = pastProjectWork.trim() || (typeof document !== "undefined" ? (document.getElementById("field-past-project-work") as HTMLTextAreaElement)?.value?.trim() || "" : "");
+      formData.append("past_project_work", draftPastWork);
+
+      const draftPythonExp = pythonMlExperience.trim() || (typeof document !== "undefined" ? (document.getElementById("field-python-ml-experience") as HTMLTextAreaElement)?.value?.trim() || "" : "");
+      formData.append("python_ml_experience", draftPythonExp);
+
       const draftResLink = projectResourcesLink.trim() || (typeof document !== "undefined" ? (document.getElementById("field-project-resources-link") as HTMLInputElement)?.value?.trim() || "" : "");
       formData.append("project_resources_link", draftResLink);
       formData.append("comments_suggestions", commentsSuggestions.trim());
@@ -856,6 +878,7 @@ const MentorPortal = () => {
 
   // Multi-step Navigation Handlers
   const handleNextStep = () => {
+    if (isNavigatingStep.current) return;
     if (isFinalSubmitted) {
       if (currentStepIndex < stepList.length - 1) {
         setCurrentStepIndex((prev) => prev + 1);
@@ -872,6 +895,11 @@ const MentorPortal = () => {
     } else if (currentKey === "section-2") {
       if (!validateSection2()) return;
     }
+
+    isNavigatingStep.current = true;
+    setTimeout(() => {
+      isNavigatingStep.current = false;
+    }, 400);
 
     saveCloudDraft(false);
     if (currentStepIndex < stepList.length - 1) {
@@ -890,19 +918,22 @@ const MentorPortal = () => {
     }
   };
 
-  // Final Form Pre-Submit
-  const handlePreSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Final Form Pre-Submit (Only triggered by clicking the final Submit button)
+  const handlePreSubmit = (e?: React.FormEvent | React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     if (isFinalSubmitted) return;
 
-    // If Enter key was pressed while on an earlier step, smoothly advance to next step instead of submitting
-    if (currentStepIndex < stepList.length - 1) {
-      handleNextStep();
+    // Strict guard: Only allow submission when on the final step
+    if (currentStepIndex !== stepList.length - 1) {
       return;
     }
 
     if (!validateSection1()) {
-      setCurrentStepIndex(0);
+      const s1Idx = stepList.findIndex((s) => s.key === "section-1");
+      if (s1Idx >= 0) setCurrentStepIndex(s1Idx);
       return;
     }
     if (coMentor === "Yes") {
@@ -980,8 +1011,12 @@ const MentorPortal = () => {
       formData.append("prerequisites", prerequisites.trim());
 
       // Section 3
-      formData.append("past_project_work", pastProjectWork.trim());
-      formData.append("python_ml_experience", pythonMlExperience.trim());
+      const draftPastWork = pastProjectWork.trim() || (typeof document !== "undefined" ? (document.getElementById("field-past-project-work") as HTMLTextAreaElement)?.value?.trim() || "" : "");
+      formData.append("past_project_work", draftPastWork);
+
+      const draftPythonExp = pythonMlExperience.trim() || (typeof document !== "undefined" ? (document.getElementById("field-python-ml-experience") as HTMLTextAreaElement)?.value?.trim() || "" : "");
+      formData.append("python_ml_experience", draftPythonExp);
+
       const draftResLink = projectResourcesLink.trim() || (typeof document !== "undefined" ? (document.getElementById("field-project-resources-link") as HTMLInputElement)?.value?.trim() || "" : "");
       formData.append("project_resources_link", draftResLink);
       formData.append("comments_suggestions", commentsSuggestions.trim());
@@ -1358,7 +1393,12 @@ const MentorPortal = () => {
             </div>
           )}
 
-          <form onSubmit={handlePreSubmit} className="space-y-8">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            className="space-y-8"
+          >
             <AnimatePresence mode="wait">
               {/* ======================================================== */}
               {/* STEP: SECTION 1 - GENERAL INFORMATION */}
@@ -2394,8 +2434,13 @@ const MentorPortal = () => {
 
                 {currentStepIndex < stepList.length - 1 ? (
                   <button
+                    key="step-nav-next-btn"
                     type="button"
-                    onClick={handleNextStep}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleNextStep();
+                    }}
                     className="w-full sm:w-auto py-2.5 px-6 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-purple-600 hover:from-pink-400 hover:to-purple-500 transition shadow-[0_0_20px_rgba(236,72,153,0.35)] flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>Next Section</span>
@@ -2405,7 +2450,9 @@ const MentorPortal = () => {
                   </button>
                 ) : !isFinalSubmitted ? (
                   <button
-                    type="submit"
+                    key="step-nav-submit-btn"
+                    type="button"
+                    onClick={handlePreSubmit}
                     disabled={isSubmitting}
                     className="w-full sm:w-auto py-3 px-7 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-purple-600 hover:from-pink-400 hover:via-fuchsia-500 hover:to-purple-500 transition shadow-[0_0_25px_rgba(236,72,153,0.45)] disabled:opacity-60 flex items-center justify-center gap-2 cursor-pointer"
                   >
