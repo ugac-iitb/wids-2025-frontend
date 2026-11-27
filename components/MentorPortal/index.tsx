@@ -317,7 +317,19 @@ const MentorPortal = () => {
             // Section 3
             if (data.past_project_work) setPastProjectWork(data.past_project_work);
             if (data.python_ml_experience) setPythonMlExperience(data.python_ml_experience);
-            if (data.project_resources_link) setProjectResourcesLink(data.project_resources_link);
+            if (data.project_resources_link) {
+              setProjectResourcesLink(data.project_resources_link);
+            } else {
+              // Fallback to local draft if cloud row has empty link
+              const localKey = `wids_mentor_draft_${userLdap || "anonymous"}`;
+              const rawDraft = localStorage.getItem(localKey);
+              if (rawDraft) {
+                try {
+                  const draft = JSON.parse(rawDraft);
+                  if (draft.projectResourcesLink) setProjectResourcesLink(draft.projectResourcesLink);
+                } catch {}
+              }
+            }
             if (data.comments_suggestions) setCommentsSuggestions(data.comments_suggestions);
 
             setAutoSaveStatus(data.is_submitted ? "Application Finalized" : "Draft synced from account");
@@ -552,7 +564,8 @@ const MentorPortal = () => {
       // Section 3
       formData.append("past_project_work", pastProjectWork.trim());
       formData.append("python_ml_experience", pythonMlExperience.trim());
-      formData.append("project_resources_link", projectResourcesLink.trim());
+      const draftResLink = projectResourcesLink.trim() || (typeof document !== "undefined" ? (document.getElementById("field-project-resources-link") as HTMLInputElement)?.value?.trim() || "" : "");
+      formData.append("project_resources_link", draftResLink);
       formData.append("comments_suggestions", commentsSuggestions.trim());
 
       if (imageDriveLink.trim()) {
@@ -814,21 +827,30 @@ const MentorPortal = () => {
   };
 
   const validateSection3 = (): boolean => {
-    if (!pastProjectWork.trim()) {
+    const pastVal = pastProjectWork.trim() || (typeof document !== "undefined" ? (document.getElementById("field-past-project-work") as HTMLTextAreaElement)?.value?.trim() || "" : "");
+    if (!pastVal) {
       toast.error("Please fill in question 1 in Section 3 (Past Project Work or 'No').");
       scrollToField("field-past-project-work");
       return false;
     }
-    if (!pythonMlExperience.trim()) {
+    if (!pastProjectWork.trim() && pastVal) setPastProjectWork(pastVal);
+
+    const pyVal = pythonMlExperience.trim() || (typeof document !== "undefined" ? (document.getElementById("field-python-ml-experience") as HTMLTextAreaElement)?.value?.trim() || "" : "");
+    if (!pyVal) {
       toast.error("Please fill in question 2 in Section 3 (Python/ML Experience).");
       scrollToField("field-python-ml-experience");
       return false;
     }
-    if (!projectResourcesLink.trim()) {
-      toast.error("Please fill in question 3 in Section 3 (Project Resources Link).");
+    if (!pythonMlExperience.trim() && pyVal) setPythonMlExperience(pyVal);
+
+    const resVal = projectResourcesLink.trim() || (typeof document !== "undefined" ? (document.getElementById("field-project-resources-link") as HTMLInputElement)?.value?.trim() || "" : "");
+    if (!resVal) {
+      toast.error("Please fill in question 3 in Section 3 (Project Resources Link). If not ready yet, write 'Will provide before bootcamp' or 'To be updated'.");
       scrollToField("field-project-resources-link");
       return false;
     }
+    if (!projectResourcesLink.trim() && resVal) setProjectResourcesLink(resVal);
+
     return true;
   };
 
@@ -872,6 +894,12 @@ const MentorPortal = () => {
   const handlePreSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isFinalSubmitted) return;
+
+    // If Enter key was pressed while on an earlier step, smoothly advance to next step instead of submitting
+    if (currentStepIndex < stepList.length - 1) {
+      handleNextStep();
+      return;
+    }
 
     if (!validateSection1()) {
       setCurrentStepIndex(0);
@@ -954,7 +982,8 @@ const MentorPortal = () => {
       // Section 3
       formData.append("past_project_work", pastProjectWork.trim());
       formData.append("python_ml_experience", pythonMlExperience.trim());
-      formData.append("project_resources_link", projectResourcesLink.trim());
+      const draftResLink = projectResourcesLink.trim() || (typeof document !== "undefined" ? (document.getElementById("field-project-resources-link") as HTMLInputElement)?.value?.trim() || "" : "");
+      formData.append("project_resources_link", draftResLink);
       formData.append("comments_suggestions", commentsSuggestions.trim());
 
       if (imageDriveLink.trim()) {
