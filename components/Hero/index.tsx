@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import WhatIsWIDS from "../WhatisWiDS";
 import { useRef } from "react";
+import { MENTOR_REGISTRATION_OPEN } from "@/lib/constants";
 
 const Hero = () => {
   const router = useRouter();
@@ -87,21 +88,34 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="max-w-3xl mx-auto mt-6 flex flex-col items-center"
           >
-            <p className="text-xl sm:text-2xl md:text-3xl text-white font-semibold mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-              Mentor registrations are now open!
-            </p>
+            {MENTOR_REGISTRATION_OPEN ? (
+              <>
+                <p className="text-xl sm:text-2xl md:text-3xl text-white font-semibold mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                  Mentor registrations are now open!
+                </p>
 
-            <button
-              onClick={() => router.push("/mentor")}
-              className="px-8 py-3.5 rounded-full font-bold text-white text-lg sm:text-xl bg-gradient-to-r from-[#e16993] via-[#c2185b] to-[#7b1fa2] hover:from-[#f06292] hover:to-[#8e24aa] shadow-[0_0_25px_rgba(225,105,147,0.5)] border border-[#ffa6c9]/60 transition-transform duration-200 hover:scale-[1.03] active:scale-95 inline-flex items-center gap-2.5 group cursor-pointer"
-            >
-              <span>Register as Mentor</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-            </button>
+                <button
+                  onClick={() => router.push("/mentor")}
+                  className="px-8 py-3.5 rounded-full font-bold text-white text-lg sm:text-xl bg-gradient-to-r from-[#e16993] via-[#c2185b] to-[#7b1fa2] hover:from-[#f06292] hover:to-[#8e24aa] shadow-[0_0_25px_rgba(225,105,147,0.5)] border border-[#ffa6c9]/60 transition-transform duration-200 hover:scale-[1.03] active:scale-95 inline-flex items-center gap-2.5 group cursor-pointer"
+                >
+                  <span>Register as Mentor</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </button>
 
-            <p className="mt-3.5 text-sm sm:text-base text-pink-200/90 font-medium tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] text-center">
-              (Mentor Registration Deadline: 27th November, 11:59 PM)
-            </p>
+                <p className="mt-3.5 text-sm sm:text-base text-pink-200/90 font-medium tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)] text-center">
+                  (Mentor Registration Deadline: 27th November, 11:59 PM)
+                </p>
+              </>
+            ) : (
+              <div className="text-center py-4 px-6 sm:px-8 rounded-3xl bg-black/40 border border-purple-500/30 backdrop-blur-md shadow-2xl space-y-2">
+                <p className="text-lg sm:text-xl md:text-2xl text-white font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                  Mentor registrations are now closed.
+                </p>
+                <p className="text-sm sm:text-base text-pink-200/90 font-medium tracking-wide">
+                  Mentee registrations will begin soon!
+                </p>
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

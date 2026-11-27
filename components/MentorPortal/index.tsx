@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { API_URL, clientID, redirectURI } from "@/lib/constants";
+import { API_URL, clientID, redirectURI, MENTOR_REGISTRATION_OPEN, PHASE } from "@/lib/constants";
 
 const API = `${API_URL}`;
 import toast from "react-hot-toast";
@@ -61,7 +61,9 @@ interface FormStep {
 }
 
 const MentorPortal = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState<boolean>(MENTOR_REGISTRATION_OPEN);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
@@ -213,6 +215,12 @@ const MentorPortal = () => {
         const token = localStorage.getItem("access_token");
         if (!token) {
           setIsLoggedIn(false);
+          try {
+            const cfg = await fetchJSON(`${API}/api/config`);
+            if (cfg?.mentor_registration_open !== undefined) {
+              setIsRegistrationOpen(Boolean(cfg.mentor_registration_open));
+            }
+          } catch {}
           setLoading(false);
           return;
         }
@@ -220,6 +228,12 @@ const MentorPortal = () => {
         const me = await fetchJSON(`${API}/api/me`);
         if (!me?.authenticated) {
           setIsLoggedIn(false);
+          try {
+            const cfg = await fetchJSON(`${API}/api/config`);
+            if (cfg?.mentor_registration_open !== undefined) {
+              setIsRegistrationOpen(Boolean(cfg.mentor_registration_open));
+            }
+          } catch {}
           setLoading(false);
           return;
         }
@@ -234,6 +248,9 @@ const MentorPortal = () => {
         // Fetch saved status / cloud draft from Backend
         try {
           const statusRes = await fetchJSON(`${API}/api/mentor/registration-status`);
+          if (statusRes?.mentor_registration_open !== undefined) {
+            setIsRegistrationOpen(Boolean(statusRes.mentor_registration_open));
+          }
           if (statusRes?.submitted && statusRes?.data) {
             const data = statusRes.data;
 
@@ -494,7 +511,7 @@ const MentorPortal = () => {
 
   // Periodic Auto-Save to Cloud
   useEffect(() => {
-    if (!initialLoadDone.current || isFinalSubmitted || !isLoggedIn) return;
+    if (!initialLoadDone.current || isFinalSubmitted || !isLoggedIn || !isRegistrationOpen) return;
 
     const timer = setInterval(() => {
       saveCloudDraft(false);
@@ -502,6 +519,7 @@ const MentorPortal = () => {
 
     return () => clearInterval(timer);
   }, [
+    isRegistrationOpen,
     isFinalSubmitted,
     isLoggedIn,
     name,
@@ -526,7 +544,7 @@ const MentorPortal = () => {
 
   // Save Draft to Backend
   const saveCloudDraft = async (showToast = false) => {
-    if (isFinalSubmitted || isSavingDraft || !isLoggedIn) return;
+    if (isFinalSubmitted || isSavingDraft || !isLoggedIn || !isRegistrationOpen) return;
 
     setIsSavingDraft(true);
     setAutoSaveStatus("Auto-saving to WiDS Cloud...");
@@ -641,6 +659,10 @@ const MentorPortal = () => {
   // Toggle domain selection (max 2)
   const toggleDomain = (domain: string) => {
     if (isFinalSubmitted) return;
+    if (!isRegistrationOpen) {
+      toast.error("Mentor registrations are now closed. Mentee registrations will begin soon.");
+      return;
+    }
     if (selectedDomains.includes(domain)) {
       setSelectedDomains(selectedDomains.filter((d) => d !== domain));
     } else {
@@ -655,6 +677,10 @@ const MentorPortal = () => {
   // Image Upload handler
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isFinalSubmitted) return;
+    if (!isRegistrationOpen) {
+      toast.error("Mentor registrations are now closed. Mentee registrations will begin soon.");
+      return;
+    }
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -925,6 +951,10 @@ const MentorPortal = () => {
       e.stopPropagation();
     }
     if (isFinalSubmitted) return;
+    if (!isRegistrationOpen) {
+      toast.error("Mentor registrations are now closed. Mentee registrations will begin soon.");
+      return;
+    }
 
     // Strict guard: Only allow submission when on the final step
     if (currentStepIndex !== stepList.length - 1) {
@@ -1077,6 +1107,61 @@ const MentorPortal = () => {
     );
   }
 
+  // Registration Closed Screen (for users who have not finalized a submission)
+  if (!isRegistrationOpen && !isFinalSubmitted) {
+    return (
+      <div className="min-h-[75vh] flex items-center justify-center px-4 py-20 relative overflow-hidden">
+        <div className="absolute top-10 left-10 w-96 h-96 bg-pink-600/20 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-[140px] pointer-events-none" />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-lg w-full p-8 sm:p-10 rounded-3xl border border-pink-500/25 bg-gradient-to-br from-[#1b1026]/90 to-[#0d0517]/95 backdrop-blur-xl shadow-2xl text-center space-y-6 relative z-10"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-500/20 to-purple-500/20 border border-pink-500/30 flex items-center justify-center mx-auto text-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+
+          <div className="space-y-3">
+            <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-400/30">
+              Registration Closed
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-wide">
+              Mentor Registrations are now closed.
+            </h2>
+            <p className="text-base sm:text-lg text-purple-200/90 leading-relaxed font-medium">
+              Mentee registrations will begin soon!
+            </p>
+            <p className="text-xs sm:text-sm text-gray-400 pt-2 leading-relaxed">
+              Thank you for your overwhelming interest in WiDS 6.0. Project selections and mentee onboarding will be announced shortly.
+            </p>
+          </div>
+
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              onClick={() => router.push("/")}
+              className="w-full sm:w-auto py-3 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-[#e16993] via-[#c2185b] to-[#7b1fa2] hover:from-[#f06292] hover:to-[#8e24aa] shadow-[0_0_20px_rgba(225,105,147,0.4)] border border-[#ffa6c9]/40 transition hover:scale-105 active:scale-95 text-sm cursor-pointer"
+            >
+              Return to Home
+            </button>
+            {!isLoggedIn && (
+              <a
+                href={authUrl}
+                className="w-full sm:w-auto py-3 px-6 rounded-full font-semibold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/15 transition text-sm text-center"
+              >
+                Sign in to check submitted application
+              </a>
+            )}
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   // Not Logged In Screen
   if (!isLoggedIn) {
     return (
@@ -1125,6 +1210,29 @@ const MentorPortal = () => {
       </div>
 
       <div className="relative mx-auto max-w-4xl py-4">
+        {/* Registration Closed Notice for Submitted Mentors */}
+        {!isRegistrationOpen && isFinalSubmitted && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8 p-5 sm:p-6 rounded-3xl bg-pink-950/40 border border-pink-500/40 text-pink-200 shadow-2xl flex items-start sm:items-center gap-4 backdrop-blur-md"
+          >
+            <div className="p-2.5 rounded-2xl bg-pink-500/20 text-pink-300 shrink-0">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-extrabold text-white text-base sm:text-lg">
+                Mentor Registrations are now closed. Mentee registrations will begin soon.
+              </p>
+              <p className="text-xs sm:text-sm text-pink-200/80 mt-1 leading-relaxed">
+                Your mentor application has been received and is locked for review. You can review your submitted proposal details below.
+              </p>
+            </div>
+          </motion.div>
+        )}
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

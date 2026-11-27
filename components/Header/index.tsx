@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import menuData from "./menuData";
 import { checkIsMentor } from "@/lib/api";
 import { authEvents } from "@/app/utils/authEvent";
-import { API_URL } from "@/lib/constants";
+import { API_URL, MENTOR_REGISTRATION_OPEN } from "@/lib/constants";
 import { clientID, redirectURI } from "@/lib/constants";
 
 /* ✅ Centralized Auth Hook */
@@ -185,10 +185,12 @@ const Header = () => {
             }`}
           >
             <span className="flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-              </span>
+              {MENTOR_REGISTRATION_OPEN && (
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+                </span>
+              )}
               <span>Mentor Portal</span>
             </span>
           </Link>
